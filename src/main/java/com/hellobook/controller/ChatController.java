@@ -8,13 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/chat/*")
 public class ChatController {
 	
-	@GetMapping("list")
+	@GetMapping("chat_list")
 	public String chatList() {
 		return "/chat/chat_list";
 	}
 	
-	@GetMapping("room")
+	@GetMapping("chat_room")
 	public String chatRoom() {
 		return "/chat/chat_room";
+	}
+	
+	@GetMapping("chat_create")
+	public String chatCreate() {
+		return "/chat/chat_create";
 	}
 }

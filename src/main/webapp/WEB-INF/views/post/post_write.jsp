@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-친구찾기<br>
-<a href="/friend/match">조건으로 친구 찾기</a><br>
-<a href="/friend/search">검색으로 친구 찾기</a><br>
+포스트(게시글) 작성
 </body>
 </html>

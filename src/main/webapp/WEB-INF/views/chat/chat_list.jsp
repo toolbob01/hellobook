@@ -8,6 +8,7 @@
 </head>
 <body>
 채팅방 리스트<br>
-<a href="/chat/room">채팅방</a><br>
+<a href="/chat/chat_room">채팅방</a><br>
+<a href="/chat/chat_create">채팅방 만들기</a><br>
 </body>
 </html>

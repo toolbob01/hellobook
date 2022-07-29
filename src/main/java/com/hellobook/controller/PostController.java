@@ -8,8 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/post/*")
 public class PostController {
 	
-	@GetMapping("list")
-	public String findFriend() {
+	@GetMapping("post_list")
+	public String postList() {
 		return "/post/post_list";
+	}
+	
+	@GetMapping("post_write")
+	public String postWrite() {
+		return "/post/post_write";
+	}
+	
+	@GetMapping("post_update")
+	public String postUpdate() {
+		return "/post/post_update";
 	}
 }
