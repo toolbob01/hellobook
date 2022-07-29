@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-Ä£±¸ ¸®½ºÆ®<br>
-<a href="/friend/match">Á¶°ÇÀ¸·Î Ä£±¸ Ã£±â</a><br>
-<a href="/friend/search">°Ë»öÀ¸·Î Ä£±¸ Ã£±â</a><br>
+ì¹œêµ¬ ë¦¬ìŠ¤íŠ¸<br>
+<a href="/friend/match">ì¡°ê±´ìœ¼ë¡œ ì¹œêµ¬ ì°¾ê¸°</a><br>
+<a href="/friend/search">ê²€ìƒ‰ìœ¼ë¡œ ì¹œêµ¬ ì°¾ê¸°</a><br>
 </body>
 </html>

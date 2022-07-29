@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-¸¶ÀÌÆäÀÌÁö ÇÁ·ÎÇÊ ¼³Á¤<br>
-<a href="/mypage/like">³»°¡ ÁÁ¾Æ¿äÇÑ Æ÷½ºÆÃ</a><br>
-<a href="/mypage/post">³»°¡ ÀÛ¼ºÇÑ Æ÷½ºÆÃ</a><br>
-<a href="/mypage/donate">ÈÄ¿øÇÏ±â</a><br>
-<a href="/mypage/quit">È¸¿øÅ»Åð</a><br>
+ë§ˆì´íŽ˜ì´ì§€ í”„ë¡œí•„ ì„¤ì •<br>
+<a href="/mypage/like">ë‚´ê°€ ì¢‹ì•„ìš”í•œ í¬ìŠ¤íŒ…</a><br>
+<a href="/mypage/post">ë‚´ê°€ ìž‘ì„±í•œ í¬ìŠ¤íŒ…</a><br>
+<a href="/mypage/donate">í›„ì›í•˜ê¸°</a><br>
+<a href="/mypage/quit">íšŒì›íƒˆí‡´</a><br>
 </body>
 </html>
