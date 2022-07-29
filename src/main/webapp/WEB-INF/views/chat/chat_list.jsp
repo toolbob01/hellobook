@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-ä�ù� ����Ʈ<br>
-<a href="/chat/room">ä�ù�</a><br>
+채팅방 리스트<br>
+<a href="/chat/chat_room">채팅방</a><br>
+<a href="/chat/chat_create">채팅방 만들기</a><br>
 </body>
 </html>

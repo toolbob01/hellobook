@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>깃 쉬워요 ㅎㅎ</h1>
-ㅁ
-ㅁ
-ㅁ
-ㅁ
-ㅁ
-
+포스트(게시글) 작성
 </body>
 </html>
