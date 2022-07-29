@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-포스트(게시글) 리스트<br>
-<a href="/post/post_write">포스트 작성</a><br>
-<a href="/post/post_update">포스트 수정</a><br>
+친구 리스트<br>
+<a href="/friend/match">조건으로 친구 찾기</a><br>
+<a href="/friend/search">검색으로 친구 찾기</a><br>
 </body>
 </html>
