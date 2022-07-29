@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-프로필
+로그인<br>
+<a href="/member/findpwd">비밀번호 찾기</a>
 </body>
 </html>
