@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/friend/*")
 public class FriendController {
 	
-	@GetMapping("find")
+	@GetMapping("list")
 	public String findFriend() {
-		return "/friend/find_friend";
+		return "/friend/list";
 	}
 	
 	@GetMapping("match")
 	public String matchFriend() {
-		return "/friend/match_friend";
+		return "/friend/match";
 	}
 	
 	@GetMapping("search")
 	public String searchFriend() {
-		return "/friend/search_friend";
+		return "/friend/search";
 	}
 }
