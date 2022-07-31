@@ -1,18 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-메인 페이지<br>
-<a href="/member/login">로그인</a><br>
-<a href="/member/join">회원가입</a><br>
-<a href="/chat/chat_list">채팅방 리스트</a><br>
-<a href="/friend/list">친구 찾기</a><br>
-<a href="/mypage/mypage">마이페이지</a><br>
-<a href="/post/post_list">게시글 리스트</a><br>
-</body>
-</html>
+<%@ include file="header.jsp" %>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-md-12 my-5" align="center">
+                        <div class="border border-2 rounded-2" style="width: 600px; height: 700px;">
+                            <p>Post Wrap</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+                    a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+                </div>
+            </div>
+            
+            <div class="col-md-3" align="center">
+                <div class="sticky-side border border-2 my-5">
+                    <p>Side bar Wrap</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<%@ include file="footer.jsp" %>
