@@ -1,11 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!------ Include the above in your HEAD tag ---------->
 
-
-<html>
+<%@ include file="../header.jsp" %>
 <head>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -248,7 +245,6 @@ img {
 
 <body>
 	<div class="container">
-		<h3 class=" text-center">채팅 리스트</h3>
 		<div class="messaging">
 			<div class="inbox_msg">
 			
@@ -393,11 +389,4 @@ img {
 		    obj.style.height = (12 + obj.scrollHeight) + 'px';
 		}
 	</script>
-</body>
-</html>
-=======
-    pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp" %>
-채팅방 리스트<br>
 <%@ include file="../footer.jsp" %>
->>>>>>> 0b8e754ac1f58eda88d7613e68b8dee8cacf0962
