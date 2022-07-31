@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 <<<<<<< HEAD
     pageEncoding="UTF-8"%>
@@ -5,9 +6,12 @@
 채팅방 리스트<br>
 <%@ include file="../footer.jsp" %>
 >>>>>>> 0b8e754ac1f58eda88d7613e68b8dee8cacf0962
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+>>>>>>> 8afc8eabf78a9ce9572a4d111b1631b432a03213
 <!DOCTYPE html>
 <!------ Include the above in your HEAD tag ---------->
-
+<%@ include file="../header.jsp" %>
 
 <html>
 <head>
@@ -400,3 +404,10 @@ img {
 </body>
 </html>
 
+<<<<<<< HEAD
+=======
+
+
+<%@ include file="../footer.jsp" %>
+
+>>>>>>> 8afc8eabf78a9ce9572a4d111b1631b432a03213
