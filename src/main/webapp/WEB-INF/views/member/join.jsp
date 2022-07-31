@@ -24,6 +24,26 @@ body {
 	margin-bottom: 5px;
 }
 
+.form-check-input:checked {
+        background-color: #9fd5ff;
+        border-color: #9fd5ff;
+    }
+    
+    .form-control:focus {
+        color: #212529;
+        background-color: #fff;
+        border-color: #9fd5ff;
+        outline: 0;
+        box-shadow: 0 0 0 .25remrgba(13,110,253,.25);
+    }
+
+    .btn-helloblue {
+        color: #000;
+        background-color: #9fd5ff;
+        border-color: #9fd5ff;
+        font-weight: 600
+    }
+
 
 </style>
 </head>
@@ -182,7 +202,7 @@ body {
 							for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
 					</div>
 					<div class="mb-4"></div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit" style="background:#5caceb;">가입
+					<button class="btn btn-helloblue btn-lg btn-block" type="submit" >가입
 						</button>
 				</form>
 			</div>
