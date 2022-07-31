@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: user
-Build-Jdk: 1.8.0_221
-=======
 Built-By: ￫ﾰﾕ￬ﾤﾀ￭ﾘﾁ
 Build-Jdk: 11.0.12
->>>>>>> hellobook
 Created-By: Maven Integration for Eclipse
 
