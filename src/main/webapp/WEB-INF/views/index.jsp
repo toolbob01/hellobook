@@ -1,6 +1,142 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
+
+<style>
+    .post-title{
+        height: 60px;
+    }
+    .my-100{
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+    .mb-150{
+        margin-bottom: 150px;
+    }
+
+
+        .feed-box {
+            border: solid 1px rgb(202, 202, 202);
+            background-color: white;
+            margin-bottom: 25px;
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background: linear-gradient(to left,#9fd5ff, #f8f9f9);
+            /* background-color: #9fd5ff; */
+        }
+
+        .profile-id {
+            font-weight: bold;
+        }
+
+        .profile-name {
+            font-size: 12px;
+        }
+
+        .profile-img-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 70%;
+            overflow: hidden;
+            margin: 10px;
+            margin-right: 15px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-text {
+            flex-direction: column;
+            text-align: left;
+        }
+
+        #feed-img {
+            /* width: 100%; */
+            width: 600px; 
+            height: 600px;
+        }
+
+        .icon {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 10px;
+        }
+
+        .like {
+            text-align: left;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        .feed-text {
+            text-align: left;
+            margin: 10px;
+            font-size: 13px;
+        }
+
+        .comment {
+            text-align: left;
+            margin: 10px;
+            font-size: 12px;
+        }
+        .comment div{
+            margin-bottom: 5px;
+        }
+
+        #input-comment {
+            box-shadow: none;
+            border: none;
+            border-top: solid 1px rgb(202, 202, 202);
+        }
+
+        .recommend-msg {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-left: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 7px;
+        }
+
+        #recommend-text {
+            color: grey;
+        }
+
+        #recommend-plus {
+            text-decoration: none;
+            color: black;
+        }
+
+        #follow {
+            text-decoration: none;
+            font-weight: bold;
+            color: rgb(70, 156, 255);
+        }
+
+        .recommend-lst {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .information {
+            color: rgb(197, 197, 197);
+            font-size: 11px;
+            margin-left: 10px;
+            margin-top: 25px;
+        }
+</style>
+
 <div class="container-fluid">
     <div class="container">
         <div class="row">

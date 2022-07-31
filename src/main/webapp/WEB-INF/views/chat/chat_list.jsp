@@ -1,5 +1,18 @@
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
+    pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+채팅방 리스트<br>
+<%@ include file="../footer.jsp" %>
+>>>>>>> 0b8e754ac1f58eda88d7613e68b8dee8cacf0962
+=======
+>>>>>>> 69dbd21c95b90ac8e1af039806eb02eb11d25cfc
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+>>>>>>> 8afc8eabf78a9ce9572a4d111b1631b432a03213
 <!DOCTYPE html>
 
 <%@ include file="../header.jsp" %>
@@ -391,6 +404,16 @@ img {
 		    obj.style.height = (12 + obj.scrollHeight) + 'px';
 		}
 	</script>
+<<<<<<< HEAD
+=======
+</body>
+</html>
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> 69dbd21c95b90ac8e1af039806eb02eb11d25cfc
 
 <%@ include file="../footer.jsp" %>
 
+>>>>>>> 8afc8eabf78a9ce9572a4d111b1631b432a03213
