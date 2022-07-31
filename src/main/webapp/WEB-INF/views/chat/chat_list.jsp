@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+
+>>>>>>> 8e91778a1f770e544dd8034cba7655a03048f695
 <!DOCTYPE html>
-<!------ Include the above in your HEAD tag ---------->
 
 <%@ include file="../header.jsp" %>
+<<<<<<< HEAD
 <head>
+=======
+
+>>>>>>> 8e91778a1f770e544dd8034cba7655a03048f695
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -240,10 +248,10 @@ img {
 	overflow-y: auto;
 }
 </style>
-</head>
 
 
-<body>
+
+
 	<div class="container">
 		<div class="messaging">
 			<div class="inbox_msg">
@@ -389,4 +397,8 @@ img {
 		    obj.style.height = (12 + obj.scrollHeight) + 'px';
 		}
 	</script>
+<<<<<<< HEAD
 <%@ include file="../footer.jsp" %>
+=======
+<%@ include file="../footer.jsp" %>
+>>>>>>> 8e91778a1f770e544dd8034cba7655a03048f695

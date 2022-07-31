@@ -5,341 +5,343 @@
 <link rel="stylesheet" href="resources/css/reset.css">
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
+<%@ include file="header.jsp"%>
+
+<style>
+.post-title {
+	height: 60px;
+}
+
+.my-100 {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.mb-150 {
+	margin-bottom: 150px;
+}
+
+.feed-box {
+	border: solid 1px rgb(202, 202, 202);
+	background-color: white;
+	margin-bottom: 25px;
+}
+
+.profile {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background: linear-gradient(to left, #9fd5ff, #f8f9f9);
+	/* background-color: #9fd5ff; */
+}
+
+.profile-id {
+	font-weight: bold;
+}
+
+.profile-name {
+	font-size: 12px;
+}
+
+.profile-img-box {
+	width: 40px;
+	height: 40px;
+	border-radius: 70%;
+	overflow: hidden;
+	margin: 10px;
+	margin-right: 15px;
+}
+
+.profile-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.profile-text {
+	flex-direction: column;
+	text-align: left;
+}
+
+#feed-img {
+	/* width: 100%; */
+	width: 600px;
+	height: 600px;
+}
+
+.icon {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 10px;
+}
+
+.like {
+	text-align: left;
+	margin: 10px;
+	font-size: 16px;
+}
+
+.feed-text {
+	text-align: left;
+	margin: 10px;
+	font-size: 13px;
+}
+
+.comment {
+	text-align: left;
+	margin: 10px;
+	font-size: 12px;
+}
+
+.comment div {
+	margin-bottom: 5px;
+}
+
+#input-comment {
+	box-shadow: none;
+	border: none;
+	border-top: solid 1px rgb(202, 202, 202);
+}
+
+.recommend-msg {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-left: 10px;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 7px;
+}
+
+#recommend-text {
+	color: grey;
+}
+
+#recommend-plus {
+	text-decoration: none;
+	color: black;
+}
+
+#follow {
+	text-decoration: none;
+	font-weight: bold;
+	color: rgb(70, 156, 255);
+}
+
+.recommend-lst {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.information {
+	color: rgb(197, 197, 197);
+	font-size: 11px;
+	margin-left: 10px;
+	margin-top: 25px;
+}
+</style>
 <div class="container-fluid">
 	<div class="container">
 		<div class="row post-main-view-row">
+			<div class="col-lg-9">
+				<div class="row">
 
+					<div class="col-md-12 mb-150" align="center">
+						<div class="border border-2 rounded-2 shadow-lg my-5"
+							style="width: 600px; height: 700px;">
 
-			<!-- post -->
-			<div class="col-lg-7">
-				<div class="row post-box">
-					<article class="contents">
-						<!-- post 헤더 -->
-						<header class="top post-header">
-							<div class="user_container">
-								<div class="profile_img">
-									<img src="resources/imgs/thumb.jpeg" alt="프로필이미지">
+							<div class="feed-box">
+								<div class="profile border-bottom">
+									<div class="profile-img-box">
+										<img class="profile-img"
+											src="https://pbs.twimg.com/profile_images/1324185005883486208/gOBh4kKR_400x400.jpg">
+									</div>
+									<div class="profile-id">작성자</div>
 								</div>
-								<div class="user_name">
-									<div class="nick_name m_text">Hellobook</div>
-									<div class="country s_text">Seoul, South Korea</div>
+
+								<div class="feed-img border-bottom">
+									<div id="post1" class="carousel slide" data-bs-ride="true">
+										<div class="carousel-indicators">
+											<button type="button" data-bs-target="#post1"
+												data-bs-slide-to="0" class="active" aria-current="true"
+												aria-label="Slide 1"></button>
+											<button type="button" data-bs-target="#post1"
+												data-bs-slide-to="1" aria-label="Slide 2"></button>
+											<button type="button" data-bs-target="#post1"
+												data-bs-slide-to="2" aria-label="Slide 3"></button>
+										</div>
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img id="feed-img" src="img/add.PNG" alt="">
+											</div>
+											<div class="carousel-item">
+												<img id="feed-img"
+													src="https://static-storychat.pstatic.net/2020/9/1/47/208797_hm2fj34m3df60.jpg">
+											</div>
+											<div class="carousel-item">
+												<img id="feed-img" src="img/add.PNG" alt="">
+											</div>
+										</div>
+										<button class="carousel-control-prev" type="button"
+											data-bs-target="#post1" data-bs-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Previous</span>
+										</button>
+										<button class="carousel-control-next" type="button"
+											data-bs-target="#post1" data-bs-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Next</span>
+										</button>
+									</div>
 								</div>
-							</div>
-							<div class="sprite_more_icon" data-name="more"></div>
-						</header>
 
-						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
-						<div class="img_section">
-							<div class="trans_inner">
-								<div>
-									<img src="resources/imgs/img_section/img01.jpg" alt="visual01">
+								<div class="icon my-3">
+									<div>
+										<span class="material-icons-outlined">하트 13|</span> <span
+											class="material-icons-outlined">전체댓글|</span> <span
+											class="material-icons-outlined">공유하기|</span>
+									</div>
+									<div>
+										<span class="material-icons-outlined">|ex기능</span>
+									</div>
 								</div>
-							</div>
-						</div>
 
-						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
-						<div class="bottom_icons">
-							<div class="left_icons">
-								<div class="heart_btn">
-									<div class="sprite_heart_icon_outline" name="39"
-										data-name="heartbeat"></div>
-
+								<div class="like my-2">
+									<b>작성자</b> 글 내용 ~~~ n줄 이상 ... 처리 필요
 								</div>
-								<div class="sprite_bubble_icon"></div>
-								<div class="sprite_share_icon" data-name="share"></div>
-							</div>
 
-							<div class="right_icon">
-								<div class="sprite_bookmark_outline" data-name="bookmark"></div>
-							</div>
-
-						</div>
-
-						<div class="likes m_text">
-							좋아요 <span id="count">50</span>개
-						</div>
-
-						<!-- post 댓글 div -->
-						<div class="comment_container">
-							<div class="comment">
-								<div class="nick_name m_text">beak1</div>
-								<div>강아지가 너무 귀여워요!</div>
-							</div>
-							<div class="small_heart_btn">
-								<div class="sprite_small_heart_icon_outline"
-									data-name="commentheart"></div>
-							</div>
-						</div>
-
-						<div class="timer">36분 전</div>
-
-					</article>
-
-					<article class="contents">
-						<!-- post 헤더 -->
-						<header class="top post-header">
-							<div class="user_container">
-								<div class="profile_img">
-									<img src="resources/imgs/thumb.jpeg" alt="프로필이미지">
+								<div class="feed-text my-3">
+									<b>첫번째유저</b> 1줄 이상 ... 처리 필요
 								</div>
-								<div class="user_name">
-									<div class="nick_name m_text">Hellobook</div>
-									<div class="country s_text">Seoul, South Korea</div>
+
+								<div class="comment">
+									<div>
+										<b>기타유저1</b> 1줄 이상 ... 처리 필요
+									</div>
+									<div>
+										<b>기타유저2</b> 1줄 이상 ... 처리 필요
+									</div>
+									<div>
+										<b>기타유저3</b> 3명 정도까지만 뽑기
+									</div>
 								</div>
-							</div>
-							<div class="sprite_more_icon" date-name="more"></div>
-						</header>
 
-						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
-						<div class="img_section">
-							<div class="trans_inner">
-								<div>
-									<img src="resources/imgs/img_section/img01.jpg" alt="visual01">
-								</div>
-							</div>
-						</div>
-
-						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
-						<div class="bottom_icons">
-							<div class="left_icons">
-								<div class="heart_btn">
-									<div class="sprite_heart_icon_outline" name="39"
-										data-name="heartbeat"></div>
-
-								</div>
-								<div class="sprite_bubble_icon"></div>
-								<div class="sprite_share_icon" data-name="share"></div>
-							</div>
-
-							<div class="right_icon">
-								<div class="sprite_bookmark_outline" data-name="bookmark"></div>
-							</div>
-
-						</div>
-
-						<div class="likes m_text">
-							좋아요 <span id="count">50</span>개
-						</div>
-
-						<!-- post 댓글 div -->
-						<div class="comment_container">
-							<div class="comment">
-								<div class="nick_name m_text">beak1</div>
-								<div>강아지가 너무 귀여워요!</div>
-							</div>
-							<div class="small_heart_btn">
-								<div class="sprite_small_heart_icon_outline"
-									data-name="commentheart"></div>
-							</div>
-						</div>
-
-						<div class="timer">36분 전</div>
-
-					</article>
-
-					<article class="contents">
-						<!-- post 헤더 -->
-						<header class="top post-header">
-							<div class="user_container">
-								<div class="profile_img">
-									<img src="resources/imgs/thumb.jpeg" alt="프로필이미지">
-								</div>
-								<div class="user_name">
-									<div class="nick_name m_text">Hellobook</div>
-									<div class="country s_text">Seoul, South Korea</div>
-								</div>
-							</div>
-							<div class="sprite_more_icon" date-name="more"></div>
-						</header>
-
-						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
-						<div class="img_section">
-							<div class="trans_inner">
-								<div>
-									<img src="resources/imgs/img_section/img01.jpg" alt="visual01">
+								<div class="input-comment">
+									<input id="input-comment" type="text" class="form-control"
+										placeholder="댓글 달기...">
 								</div>
 							</div>
 						</div>
+					</div>
 
-						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
-						<div class="bottom_icons">
-							<div class="left_icons">
-								<div class="heart_btn">
-									<div class="sprite_heart_icon_outline" name="39"
-										data-name="heartbeat"></div>
+					<div class="col-md-12 mb-150" align="center">
+						<div class="border border-2 rounded-2 shadow-lg my-5"
+							style="width: 600px; height: 700px;">
 
+							<div class="feed-box">
+								<div class="profile border-bottom">
+									<div class="profile-img-box">
+										<img class="profile-img"
+											src="https://pbs.twimg.com/profile_images/1324185005883486208/gOBh4kKR_400x400.jpg">
+									</div>
+									<div class="profile-id">작성자</div>
 								</div>
-								<div class="sprite_bubble_icon"></div>
-								<div class="sprite_share_icon" data-name="share"></div>
-							</div>
 
-							<div class="right_icon">
-								<div class="sprite_bookmark_outline" data-name="bookmark"></div>
-							</div>
+								<div class="feed-img border-bottom">
+									<div id="post2" class="carousel slide" data-bs-ride="true">
+										<div class="carousel-indicators">
+											<button type="button" data-bs-target="#post2"
+												data-bs-slide-to="0" class="active" aria-current="true"
+												aria-label="Slide 1"></button>
+											<button type="button" data-bs-target="#post2"
+												data-bs-slide-to="1" aria-label="Slide 2"></button>
+											<button type="button" data-bs-target="#post2"
+												data-bs-slide-to="2" aria-label="Slide 3"></button>
+										</div>
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img id="feed-img" src="img/add.PNG" alt="">
+											</div>
+											<div class="carousel-item">
+												<img id="feed-img"
+													src="https://static-storychat.pstatic.net/2020/9/1/47/208797_hm2fj34m3df60.jpg">
+											</div>
+											<div class="carousel-item">
+												<img id="feed-img" src="img/add.PNG" alt="">
+											</div>
+										</div>
+										<button class="carousel-control-prev" type="button"
+											data-bs-target="#post2" data-bs-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Previous</span>
+										</button>
+										<button class="carousel-control-next" type="button"
+											data-bs-target="#post2" data-bs-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Next</span>
+										</button>
+									</div>
+								</div>
 
+								<div class="icon my-3">
+									<div>
+										<span class="material-icons-outlined">하트 13|</span> <span
+											class="material-icons-outlined">전체댓글|</span> <span
+											class="material-icons-outlined">공유하기|</span>
+									</div>
+									<div>
+										<span class="material-icons-outlined">|ex기능</span>
+									</div>
+								</div>
+
+								<div class="like my-2">
+									<b>작성자</b> 글 내용 ~~~ n줄 이상 ... 처리 필요
+								</div>
+
+								<div class="feed-text my-3">
+									<b>첫번째유저</b> 1줄 이상 ... 처리 필요
+								</div>
+
+								<div class="comment">
+									<div>
+										<b>기타유저1</b> 1줄 이상 ... 처리 필요
+									</div>
+									<div>
+										<b>기타유저2</b> 1줄 이상 ... 처리 필요
+									</div>
+									<div>
+										<b>기타유저3</b> 3명 정도까지만 뽑기
+									</div>
+								</div>
+
+								<div class="input-comment">
+									<input id="input-comment" type="text" class="form-control"
+										placeholder="댓글 달기...">
+								</div>
+							</div>
 						</div>
+					</div>
 
-						<div class="likes m_text">
-							좋아요 <span id="count">50</span>개
-						</div>
+				</div>
+				<!-- /row (post) -->
 
-						<!-- post 댓글 div -->
-						<div class="comment_container">
-							<div class="comment">
-								<div class="nick_name m_text">beak1</div>
-								<div>강아지가 너무 귀여워요!</div>
-							</div>
-							<div class="small_heart_btn">
-								<div class="sprite_small_heart_icon_outline"
-									data-name="commentheart"></div>
-							</div>
-						</div>
-
-						<div class="timer">36분 전</div>
-
-					</article>
+				<div class="row">
+					<div class="col-md-12">
+						a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+						a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+					</div>
 				</div>
 			</div>
-			<!-- //post -->
-
 
 			<div class="col-md-3" align="center">
-				<div class="side_box sticky-side my-5">
-				
-					<!-- 개인 프로필
-					<div class="user_profile">
-						<div class="profile_thumb">
-							<img src="imgs/thumb.jpeg" alt="프로필사진">
-						</div>
-						<div class="detail">
-							<div class="id m_text">Hellobook</div>
-							<div class="ko_name">헬로북</div>
-						</div>
-					</div> -->
-					
-					<article class="story">
-						<header class="story_header">
-							<div>스토리</div>
-							<div class="more">모두 보기</div>
-						</header>
-
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
-								</div>
-
-								<div class="detail">
-									<div class="id">hellobook</div>
-									<div class="time">1시간 전</div>
-								</div>
-							</div>
-						</div>
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
-								</div>
-
-								<div class="detail">
-									<div class="id">hellobook</div>
-									<div class="time">1시간 전</div>
-								</div>
-							</div>
-						</div>
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
-								</div>
-
-								<div class="detail">
-									<div class="id">hellobook</div>
-									<div class="time">1시간 전</div>
-								</div>
-							</div>
-						</div>
-					</article>
-
-					<article class="recommend">
-						<header class="reco_header">
-							<div>회원님을 위한 추천</div>
-							<div class="more">모두 보기</div>
-						</header>
-
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
-								</div>
-
-								<div class="detail">
-									<div class="id">hellobook</div>
-									<div class="time">1시간 전</div>
-								</div>
-							</div>
-						</div>
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
-								</div>
-
-								<div class="detail">
-									<div class="id">hellobook</div>
-									<div class="time">1시간 전</div>
-								</div>
-							</div>
-						</div>
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
-								</div>
-
-								<div class="detail">
-									<div class="id">hellobook</div>
-									<div class="time">1시간 전</div>
-								</div>
-							</div>
-						</div>
-					</article>
+				<div class="sticky-side border border-2 my-5">
+					<p>Side bar Wrap</p>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript">
-	onclick = function deligationFunc(e) {
-		let elem = e.target;
-		if(elem.getAttribute('data-name') == null){
-			elem = null;
-			return;
-		}
-// 		while (!elem.getAttribute('data-name')) {
-// 			elem = elem.parentNode;
-// 			if (elem.nodeName === 'BODY') {
-// 				elem = null;
-// 				return;
-// 			}
-// 		} 
-
-		if (elem.matches('[data-name="heartbeat"]')) {
-			console.log("하트");
-		} else if (elem.matches('[data-name="bookmark"]')) {
-			console.log("북마크");
-		} else if (elem.matches('[data-name="share"]')) {
-			console.log("공유");
-		} else if (elem.matches('[data-name="commentheart"]')) {
-			console.log("코멘트하트");
-		}
-		if (elem.matches('[data-name="more"]')) {
-			console.log("더보기");
-		}
-
-		elem.classList.toggle('on');
-	}
-</script>
 <%@ include file="footer.jsp"%>
