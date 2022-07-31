@@ -19,7 +19,7 @@
         <div class="d-flex flex-wrap align-items-center justify-content-lg-start nav-right">
 
         <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-logo">
-            <li><a href="#" class="nav-link link-dark fs-3">Hello Book</a></li>
+            <li><a href="/" class="nav-link link-dark fs-3">Hello Book</a></li>
         </ul>
 
         <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-search">
@@ -32,6 +32,11 @@
             <div class="mx-2">
             	<a href="/">
             		<img src="https://img.icons8.com/ios-glyphs/30/000000/home-page--v1.png"/>
+            	</a>
+            </div>
+            <div class="mx-2">
+            	<a href="/friend/list">
+            		<img src="https://img.icons8.com/ios-glyphs/30/000000/contacts.png"/>
             	</a>
             </div>
             <div class="mx-2">
@@ -49,11 +54,11 @@
                     <img src="https://img.icons8.com/ios-glyphs/30/000000/small-icons.png"/>
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Chat</a></li>
-                    <li><a class="dropdown-item" href="#">Friends</a></li>
+                    <li><a class="dropdown-item" href="/mypage/mypage">프로필</a></li>
+                    <li><a class="dropdown-item" href="/mypage/post">내가 쓴 글</a></li>
+                    <li><a class="dropdown-item" href="/mypage/like">좋아요한 글</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"><img src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/> Sign out</a></li>
+                    <li><a class="dropdown-item" href="#"><img src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>로그아웃</a></li>
                 </ul>
             </div>
         </div>
