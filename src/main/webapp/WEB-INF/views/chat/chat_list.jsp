@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 <<<<<<< HEAD
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+채팅방 리스트<br>
+<%@ include file="../footer.jsp" %>
+>>>>>>> 0b8e754ac1f58eda88d7613e68b8dee8cacf0962
 <!DOCTYPE html>
 <!------ Include the above in your HEAD tag ---------->
 
@@ -395,9 +399,4 @@ img {
 	</script>
 </body>
 </html>
-=======
-    pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp" %>
-채팅방 리스트<br>
-<%@ include file="../footer.jsp" %>
->>>>>>> 0b8e754ac1f58eda88d7613e68b8dee8cacf0962
+
