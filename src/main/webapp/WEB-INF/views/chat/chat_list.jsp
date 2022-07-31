@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!------ Include the above in your HEAD tag ---------->
@@ -5,6 +6,12 @@
 
 <html>
 <head>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+
+>>>>>>> hellobook
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -241,10 +248,10 @@ img {
 	overflow-y: auto;
 }
 </style>
-</head>
 
 
-<body>
+
+
 	<div class="container">
 		<h3 class=" text-center">채팅 리스트</h3>
 		<div class="messaging">
@@ -391,10 +398,13 @@ img {
 		    obj.style.height = (12 + obj.scrollHeight) + 'px';
 		}
 	</script>
+<<<<<<< HEAD
 </body>
 </html>
 
 
 
+=======
+>>>>>>> hellobook
 <%@ include file="../footer.jsp" %>
 
