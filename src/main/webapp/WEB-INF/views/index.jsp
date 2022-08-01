@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="resources/css/reset.css">
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
-<%@ include file="header.jsp"%>
 
 <style>
 .post-title {
@@ -175,14 +174,14 @@
 										</div>
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-												<img id="feed-img" src="img/add.PNG" alt="">
+												<img id="feed-img" src="/resources/imgs/img_section/img01.jpg" alt="">
 											</div>
 											<div class="carousel-item">
 												<img id="feed-img"
 													src="https://static-storychat.pstatic.net/2020/9/1/47/208797_hm2fj34m3df60.jpg">
 											</div>
 											<div class="carousel-item">
-												<img id="feed-img" src="img/add.PNG" alt="">
+												<img id="feed-img" src="/resources/imgs/img_section/img01.jpg" alt="">
 											</div>
 										</div>
 										<button class="carousel-control-prev" type="button"
@@ -263,14 +262,14 @@
 										</div>
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-												<img id="feed-img" src="img/add.PNG" alt="">
+												<img id="feed-img" src="/resources/imgs/img_section/img01.jpg" alt="">
 											</div>
 											<div class="carousel-item">
 												<img id="feed-img"
 													src="https://static-storychat.pstatic.net/2020/9/1/47/208797_hm2fj34m3df60.jpg">
 											</div>
 											<div class="carousel-item">
-												<img id="feed-img" src="img/add.PNG" alt="">
+												<img id="feed-img" src="/resources/imgs/img_section/img01.jpg" alt="">
 											</div>
 										</div>
 										<button class="carousel-control-prev" type="button"

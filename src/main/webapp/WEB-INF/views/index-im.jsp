@@ -18,7 +18,7 @@
 						<header class="top post-header">
 							<div class="user_container">
 								<div class="profile_img">
-									<img src="resources/imgs/thumb.jpeg" alt="프로필이미지">
+									<img src="/resources/imgs/thumb.jpeg" alt="프로필이미지">
 								</div>
 								<div class="user_name">
 									<div class="nick_name m_text">Hellobook</div>
@@ -32,7 +32,7 @@
 						<div class="img_section">
 							<div class="trans_inner">
 								<div>
-									<img src="resources/imgs/img_section/img01.jpg" alt="visual01">
+									<img src="/resources/imgs/img_section/img01.jpg" alt="visual01">
 								</div>
 							</div>
 						</div>
@@ -80,7 +80,7 @@
 						<header class="top post-header">
 							<div class="user_container">
 								<div class="profile_img">
-									<img src="resources/imgs/thumb.jpeg" alt="프로필이미지">
+									<img src="/resources/imgs/thumb.jpeg" alt="프로필이미지">
 								</div>
 								<div class="user_name">
 									<div class="nick_name m_text">Hellobook</div>
@@ -142,7 +142,7 @@
 						<header class="top post-header">
 							<div class="user_container">
 								<div class="profile_img">
-									<img src="resources/imgs/thumb.jpeg" alt="프로필이미지">
+									<img src="/resources/imgs/thumb.jpeg" alt="프로필이미지">
 								</div>
 								<div class="user_name">
 									<div class="nick_name m_text">Hellobook</div>
@@ -156,7 +156,7 @@
 						<div class="img_section">
 							<div class="trans_inner">
 								<div>
-									<img src="resources/imgs/img_section/img01.jpg" alt="visual01">
+									<img src="/resources/imgs/img_section/img01.jpg" alt="visual01">
 								</div>
 							</div>
 						</div>
@@ -226,7 +226,7 @@
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
 								</div>
 
 								<div class="detail">
@@ -238,7 +238,7 @@
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
 								</div>
 
 								<div class="detail">
@@ -270,7 +270,7 @@
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
 								</div>
 
 								<div class="detail">
@@ -282,7 +282,7 @@
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
 								</div>
 
 								<div class="detail">
@@ -294,7 +294,7 @@
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
 								</div>
 
 								<div class="detail">
