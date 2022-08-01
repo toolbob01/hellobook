@@ -100,7 +100,7 @@ a {
 	<div class="container login">
 		<img class="logo_hellobook" src="/resources/imgs/logo.png"
 			alt="hellobook_logo"> <input type="text" class="input_login"
-			name="userID" id="userID" placeholder="전화번호, 사용자 이름 또는 이메일">
+			name="userID" id="userID" placeholder="이메일을 입력하세요.">
 		<input type="password" class="input_login" name="userPW" id="userPW"
 			placeholder="비밀번호"> <a href="#none"><button
 				id="btn_login" disabled>로그인</button></a> 
