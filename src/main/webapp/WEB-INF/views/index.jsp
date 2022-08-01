@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="resources/css/reset.css">
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
-<%@ include file="header.jsp"%>
 
 <style>
 .post-title {
