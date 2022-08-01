@@ -1,0 +1,330 @@
+@charset "UTF-8";
+
+.container-mypage {
+	padding: 30px 20px 0;
+	box-sizing: content-box;
+    padding: 60px 20px 0;
+    width: calc(100% - 40px);
+    margin-bottom: 0;
+    flex-grow: 1;
+    margin: 0 auto 30px;
+    max-width: 935px;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.mypage_header {
+	align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    position: relative;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+.mypage_thumbnail_a {
+	flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    align-items: stretch;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.mypage_thumbnail_b {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    align-items: stretch;
+    box-sizing: border-box;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.mypage_thumbnail_c {
+	background-color: rgb(var(--ig-secondary-background));
+	border-radius: 50%;
+	box-sizing: border-box;
+	height: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.mypage_thumbnail_d {
+	border: 0;
+	cursor: pointer;
+	height: 100%;
+	padding: 0;
+	width: 100%;
+}
+
+.mypage_thumbnail_e {
+	border: 0;
+    font: inherit;
+    font-size: 100%;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    vertical-align: baseline;
+    width: 100%;
+}
+
+.mypage_thumbnail_f {
+	display: none!important;	
+}
+
+.mypage_profile_b {
+	align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 1;
+    min-width: 0;
+    position: relative;
+}
+
+.mypage_profile_c {
+	display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgb(var(--ig-primary-text));
+    font-weight: var(--font-weight-system-light);
+    font-size: var(--system-28-font-size);
+    line-height: var(--system-28-line-height);
+    margin: -5px 0 -6px;
+    font-family: var(--font-family-system);
+}
+
+.mypage_profile_d {
+	margin-left: calc(var(--base-unit) * 5);
+	flex: 0 1 auto;
+	justify-content: flex-start;
+	flex-direction: row;
+	align-items: stretch;
+	align-content: stretch;
+	display: flex;
+	box-sizing: border-box;
+    position: relative;
+}
+
+.mypage_profile_e {
+	flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: stretch;
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.mypage_profile_f {
+	background-color: transparent;
+    border: 1px solid rgb(var(--ig-stroke));
+    color: rgb(var(--ig-secondary-button));
+    border-radius: 4px;
+    position: relative;
+    text-decoration: none;
+    -webkit-user-select: auto;
+    -webkit-appearance: none;
+    background: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-family: var(--font-family-system);
+    font-size: 14px;
+    font-weight: var(--font-weight-system-semibold);
+    padding: 5px 9px;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    width: auto;
+    font: inherit;
+    margin: 0;
+    vertical-align: baseline;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    list-style: none;
+    outline: none;
+}
+
+.mypage_profile_g {
+	flex-direction: row;
+    flex-shrink: 0;
+    margin-left: 5px;
+}
+
+.mypage_profile_h {
+	align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+}
+
+.mypage_profile_i {
+	align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.mypage_margin {
+	margin-bottom: 20px;
+}
+
+.mypage_info_a {
+	margin-bottom: 20px;
+	display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+.mypage_info_b {
+	margin-left: 0;
+	font-size: var(--system-16-font-size);
+    margin-right: 40px;
+    border: 0;
+    font: inherit;
+    padding: 0;
+    vertical-align: baseline;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.mypage_info_c {
+	display: block;
+	color: rgb(var(--ig-primary-text));
+	font-weight: var(--font-weight-system-regular);
+	margin: 0;
+	font-size: var(--system-16-font-size);
+    line-height: var(--system-16-line-height);
+    font-family: var(--font-family-system);
+    border: 0;
+    font: inherit;
+    padding: 0;
+    vertical-align: baseline;
+    align-items: stretch;
+    box-sizing: border-box;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.mypage_info_d {
+	color: rgb(var(--ig-primary-text));
+    font-weight: 600;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+.mypage_nickname_a {
+	align-items: stretch;
+    border: 0;
+    box-sizing: border-box;
+    display: block;
+    flex-direction: column;
+    flex-shrink: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+.mypage_nickname_b {
+	display: inline!important;
+    margin: 0!important;
+    color: rgb(var(--ig-primary-text));
+    font-weight: var(--font-weight-system-semibold);
+    font-size: var(--system-16-font-size);
+    line-height: var(--system-16-line-height);
+    font-family: var(--font-family-system);
+    border: 0;
+    font: inherit;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+@media (min-width: 736px) {
+	.mypage_header {
+		margin-bottom: 44px;
+	}
+	
+	.mypage_thumbnail_a {
+		flex-basis: 0px;
+		flex-grow: 1;
+		margin-right: 30px;
+	}
+	
+	.mypage_thumbnail_b {
+		height: calc(148px + 2px);
+		width: 150px;
+	}
+	
+	.mypage_profile_a {
+		flex-basis: 30px;
+		flex-grow: 2;
+	}
+}
+
+@media (max-width: 735px) {
+	.mypage_header {
+		margin-left: 16px;
+		margin-right: 16px;
+		margin-top: 16px;
+	}
+	
+	.mypage_thumbnail_a {
+		justify-content: center;
+		margin-right: 28px;
+	}
+	
+	.mypage_thumbnail_b {
+		height: calc(.5 * 150px + 2px);
+		width: 77px;
+	}
+	
+	.mypage_profile_a {
+		flex-basis: 0px;
+		flex-grow: 1;
+	}
+}
