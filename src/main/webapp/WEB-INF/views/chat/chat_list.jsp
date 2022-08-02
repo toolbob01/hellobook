@@ -42,6 +42,13 @@ img {
    width: 40%;
 }
 
+.recent_heading h4 {
+	color: #707070;
+	font-size: 1.3vmax;
+	margin: auto;
+	font-weight: bold; 
+}
+
 .srch_bar {
    display: inline-block;
    text-align: right;
@@ -52,12 +59,8 @@ img {
    padding: 10px 29px 10px 20px;
    overflow: hidden;
    border-bottom: 1px solid #c4c4c4;
-}
-
-.recent_heading h4 {
-   color: #05728f;
-   font-size: 1.3vmax;
-   margin: auto;
+   /*/////////////*/
+   background-color: #fff;
 }
 
 .srch_bar input {
@@ -244,6 +247,7 @@ button:focus {
 
 .messaging {
    padding: 0 0 50px 0;
+   margin-top: 100px;
 }
 
 .msg_history {
@@ -256,7 +260,7 @@ button:focus {
 
 <body>
    <div class="container">
-      <h3 class=" text-center">채팅 리스트</h3>
+<!--       <h3 class=" text-center">Chat</h3> -->
       <div class="messaging">
          <div class="inbox_msg">
          

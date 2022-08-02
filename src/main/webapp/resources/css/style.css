@@ -1,3 +1,26 @@
+.on_cursor {
+	cursor: pointer;
+}
+.online-circle {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background-color: #9fd5ff;
+	border-radius: 15px;
+	border: 1px solid #adb5bd42;
+}
+.offline-circle {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background-color: #adb5bd;
+	border-radius: 15px;
+	border: 1px solid #adb5bd42;
+}
+.time-status {
+	margin-left: 10px;
+}
+
 .sprite_insta_icon {
 	display: inline-block;
 	background: url('../imgs/background01.png') no-repeat -53px -235px;
@@ -31,6 +54,10 @@
 	background: url('../imgs/background01.png') no-repeat -52px -261px;
 	width: 24px;
 	height: 22px;
+}
+.heart-count {
+	font-size: 15px;
+	margin-left: 10px;
 }
 
 .sprite_small_search_icon {
@@ -273,11 +300,11 @@ body{
 
 .contents {
 	width: 614px;
-	
 	border: 1px solid rgba(0,0,0,0.09);
 	border-radius: 3px;
 	margin-bottom: 60px;
 	background: white;
+	box-shadow: 2px 2px 3px #78787838;
 }
 
 .post-box {
@@ -342,13 +369,28 @@ body{
 	background: url('../imgs/background01.png') no-repeat -26px -261px;
 }
 
-.contents .likes {
+.contents .posting-master {
 	padding: 5px 20px;
 	color: #262626;
 }
+.posting-master-name {
+    font-size: 16px;
+    font-weight: bold;
+	margin-bottom: 7px;
+}
+.posting-master-content {
+    font-size: 14px;
+    font-weight: normal;
+	line-height: 1.5;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
 
 .contents .comment_container {
-	display: flex;
+	/**/display: block;
 	justify-content: space-between;
 	align-items: center;
 	padding: 5px 20px;
@@ -357,7 +399,21 @@ body{
 .contents .comment_container .comment {
 	display: flex;
 	font-size: 14px;
-
+	margin-top: 10px;
+}
+.real_comment {
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+.more_comment_dot {
+	width: 25px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	font-size: 25px;
+}
+.more_comment_dot:hover{
+	cursor: pointer;
 }
 
 .contents  .comment_container .comment .nick_name {
@@ -402,18 +458,11 @@ body{
 	opacity: 0.6;
 }
 
-.contents .bottom_icons .left_icons > div {
-	margin-right: 10px;
-	cursor: pointer;
-}
+/* .contents .bottom_icons .left_icons > div { */
+/* 	margin-right: 10px; */
+/* 	cursor: pointer; */
+/* } */
 
-.small_heart_btn {
-    cursor: pointer;
-}
-
-.contents .bottom_icons .right_icon > div{
-	cursor: pointer;
-}
 
 /* 사이드 박스 부분 */
 
@@ -429,11 +478,11 @@ body{
 }
 
 .side_box .profile_thumb {
-	width: 50px;
-	height: 50px;
+	width: 60px;
+	height: 60px;
 	border-radius: 50%;
 	overflow: hidden;
-	margin-right: 10px;
+	margin-right: 20px;
 }
 
 .side_box .profile_thumb img{
@@ -462,6 +511,7 @@ body{
 	color: #262626;
 	font-weight: bold;
 	background: white;
+	box-shadow: 5px 5px 5px #78787838;
 }
 
 .side_box> article> header {
@@ -479,6 +529,7 @@ body{
 }
 
 .side_box .detail .id{
+	font-size: 15px;
 	margin-bottom: 5px;
 }
 
@@ -497,6 +548,9 @@ body{
 	font-size: 10px;
 	letter-spacing: 0.2px;
 	color: #999;
+	text-align: left;
+	display: flex;
+	align-items: center;
 }
 
 .side_box .scroll_inner {
