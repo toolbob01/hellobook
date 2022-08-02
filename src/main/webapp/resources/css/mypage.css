@@ -138,6 +138,8 @@
 	flex: 1 1 auto;
     min-height: 0;
     min-width: 0;
+    margin-left: 12px;
+    border: 1px solid #f8f9f9;
     justify-content: flex-start;
     flex-direction: column;
     align-items: stretch;
@@ -145,13 +147,12 @@
     display: flex;
     box-sizing: border-box;
     position: relative;
+    background-color: #9fd5ff;
+    border-radius: 10px;
 }
 
 .mypage_profile_f {
-	background-color: transparent;
-    border: 1px solid rgb(var(--ig-stroke));
-    color: rgb(var(--ig-secondary-button));
-    border-radius: 4px;
+    color: #333;
     position: relative;
     text-decoration: none;
     -webkit-user-select: auto;
@@ -160,9 +161,6 @@
     box-sizing: border-box;
     cursor: pointer;
     display: block;
-    font-family: var(--font-family-system);
-    font-size: 14px;
-    font-weight: var(--font-weight-system-semibold);
     padding: 5px 9px;
     text-align: center;
     text-overflow: ellipsis;
@@ -171,7 +169,6 @@
     font: inherit;
     margin: 0;
     vertical-align: baseline;
-    -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     list-style: none;
     outline: none;
