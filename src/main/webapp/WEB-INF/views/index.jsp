@@ -57,14 +57,12 @@
 						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
 						<div class="bottom_icons">
 							<div class="left_icons">
-								<div class="heart_btn">
-									<div class="sprite_heart_icon_outline on_cursor" name="39" data-name="heartbeat"></div>
-									<span class="heart-count on_cursor">39 명이 좋아합니다</span>
-								</div>
+								<div class="sprite_heart_icon_outline on_cursor" name="39" data-name="heartbeat"></div>
+								<span class="heart-count on_cursor">39 명이 좋아합니다</span>
 							</div>
 							<div class="right_icon">
-								<div class="sprite_bubble_icon"></div>
-								<div class="sprite_share_icon" data-name="share"></div>
+<!-- 								<div class="sprite_bubble_icon"></div> -->
+								<div class="sprite_share_icon on_cursor" data-name="share"></div>
 							</div>
 						</div>
 
