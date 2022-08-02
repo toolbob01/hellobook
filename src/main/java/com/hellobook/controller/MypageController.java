@@ -22,14 +22,9 @@ public class MypageController {
 	public String quit() {
 		return "/mypage/quit";
 	}
-	
-	@GetMapping("post")
-	public String post() {
-		return "/mypage/post";
-	}
-	
-	@GetMapping("like")
+
+	@GetMapping("setting")
 	public String like() {
-		return "/mypage/like";
+		return "/mypage/setting";
 	}
 }

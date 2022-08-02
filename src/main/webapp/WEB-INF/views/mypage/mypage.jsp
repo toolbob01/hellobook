@@ -62,6 +62,48 @@
 					</div>
 				</section>
 			</header>
+			<div class="nav nav-tabs mypage_tablist_a" id="nav-tab" role="tablist">
+				<button class="mypage_tablist_b" id="nav-post-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-post" aria-selected="true">
+					<div class="mypage_tablist_c">
+						<img src="https://img.icons8.com/ios-glyphs/30/000000/keypad.png"/>게시물
+					</div>
+				</button>
+				<button class="mypage_tablist_b" id="nav-saved-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-saved" aria-selected="false">
+					<div class="mypage_tablist_c">
+						<img src="https://img.icons8.com/ios-glyphs/30/000000/save--v1.png"/>저장됨
+					</div>
+				</button>
+				<button class="mypage_tablist_b" id="nav-like-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-like" aria-selected="false">
+					<div class="mypage_tablist_c">
+						<img src="https://img.icons8.com/ios-glyphs/30/000000/filled-like.png"/>좋아요
+					</div>
+				</button>
+			</div>
+			<div class="tab-content" id="nav-tabContent">
+				<div class="tab-pane fade show active mypage_content_a current" id="nav-home" role="tabpanel" aria-labelledby="nav-post-tab" tabindex="0">
+					<div class="mypage_content_b">
+						<div class="mypage_content_c">
+							게시물
+						</div>
+					</div>
+				</div>
+				
+				<div class="tab-pane fade mypage_content_a" id="nav-profile" role="tabpanel" aria-labelledby="nav-saved-tab" tabindex="0">
+					<div class="mypage_content_b">
+						<div class="mypage_content_c">
+							저장됨
+						</div>
+					</div>
+				</div>
+				
+				<div class="tab-pane fade mypage_content_a" id="nav-contact" role="tabpanel" aria-labelledby="nav-like-tab" tabindex="0">
+					<div class="mypage_content_b">
+						<div class="mypage_content_c">
+							좋아요
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
