@@ -39,20 +39,20 @@
 
 						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
 						<div class="bottom_icons">
-							<div class="left_icons">
+							<div class="right_icon">
 								<div class="heart_btn">
 									<div class="sprite_heart_icon_outline" name="39"
-										data-name="heartbeat"></div>
+										data-name="heartbeat"><span>39</span></div>
 
 								</div>
+								
+							</div>
+						
+							<div class="left_icons">
 								<div class="sprite_bubble_icon"></div>
 								<div class="sprite_share_icon" data-name="share"></div>
+<!-- 								<div class="sprite_bookmark_outline" data-name="bookmark"></div> -->
 							</div>
-
-							<div class="right_icon">
-								<div class="sprite_bookmark_outline" data-name="bookmark"></div>
-							</div>
-
 						</div>
 
 						<div class="likes m_text">
@@ -62,13 +62,22 @@
 						<!-- post 댓글 div -->
 						<div class="comment_container">
 							<div class="comment">
-								<div class="nick_name m_text">beak1</div>
+								<div class="nick_name m_text">jgc</div>
+								<div class="real_comment">강아지가 너무 귀여워요!강아지가 너무 귀여워요!강아지가 너무 귀여워요!강아지가 너무 귀여워요!강아지가 너무 귀여워요!</div>
+							</div>
+							<div class="comment">
+								<div class="nick_name m_text">long name userrrrrrrrrrr</div>
 								<div>강아지가 너무 귀여워요!</div>
 							</div>
-							<div class="small_heart_btn">
-								<div class="sprite_small_heart_icon_outline"
-									data-name="commentheart"></div>
+							<div class="comment">
+								<div class="nick_name m_text">Hong Gil Dong</div>
+								<div>강아지가 너무 귀여워요!</div>
 							</div>
+							<p class="more_comment_dot">...</p>
+<!-- 							<div class="small_heart_btn"> -->
+<!-- 								<div class="sprite_small_heart_icon_outline" -->
+<!-- 									data-name="commentheart"></div> -->
+<!-- 							</div> -->
 						</div>
 
 						<div class="timer">36분 전</div>
@@ -127,77 +136,16 @@
 								<div class="nick_name m_text">beak1</div>
 								<div>강아지가 너무 귀여워요!</div>
 							</div>
-							<div class="small_heart_btn">
-								<div class="sprite_small_heart_icon_outline"
-									data-name="commentheart"></div>
-							</div>
+<!-- 							<div class="small_heart_btn"> -->
+<!-- 								<div class="sprite_small_heart_icon_outline" -->
+<!-- 									data-name="commentheart"></div> -->
+<!-- 							</div> -->
 						</div>
 
 						<div class="timer">36분 전</div>
 
 					</article>
 
-					<article class="contents">
-						<!-- post 헤더 -->
-						<header class="top post-header">
-							<div class="user_container">
-								<div class="profile_img">
-									<img src="/resources/imgs/thumb.jpeg" alt="프로필이미지">
-								</div>
-								<div class="user_name">
-									<div class="nick_name m_text">Hellobook</div>
-									<div class="country s_text">Seoul, South Korea</div>
-								</div>
-							</div>
-							<div class="sprite_more_icon" date-name="more"></div>
-						</header>
-
-						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
-						<div class="img_section">
-							<div class="trans_inner">
-								<div>
-									<img src="/resources/imgs/img_section/img01.jpg" alt="visual01">
-								</div>
-							</div>
-						</div>
-
-						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
-						<div class="bottom_icons">
-							<div class="left_icons">
-								<div class="heart_btn">
-									<div class="sprite_heart_icon_outline" name="39"
-										data-name="heartbeat"></div>
-
-								</div>
-								<div class="sprite_bubble_icon"></div>
-								<div class="sprite_share_icon" data-name="share"></div>
-							</div>
-
-							<div class="right_icon">
-								<div class="sprite_bookmark_outline" data-name="bookmark"></div>
-							</div>
-
-						</div>
-
-						<div class="likes m_text">
-							좋아요 <span id="count">50</span>개
-						</div>
-
-						<!-- post 댓글 div -->
-						<div class="comment_container">
-							<div class="comment">
-								<div class="nick_name m_text">beak1</div>
-								<div>강아지가 너무 귀여워요!</div>
-							</div>
-							<div class="small_heart_btn">
-								<div class="sprite_small_heart_icon_outline"
-									data-name="commentheart"></div>
-							</div>
-						</div>
-
-						<div class="timer">36분 전</div>
-
-					</article>
 				</div>
 			</div>
 			<!-- //post -->

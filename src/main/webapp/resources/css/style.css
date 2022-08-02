@@ -273,11 +273,11 @@ body{
 
 .contents {
 	width: 614px;
-	
 	border: 1px solid rgba(0,0,0,0.09);
 	border-radius: 3px;
 	margin-bottom: 60px;
 	background: white;
+	box-shadow: 2px 2px 3px #78787838;
 }
 
 .post-box {
@@ -348,7 +348,7 @@ body{
 }
 
 .contents .comment_container {
-	display: flex;
+	/**/display: block;
 	justify-content: space-between;
 	align-items: center;
 	padding: 5px 20px;
@@ -357,7 +357,16 @@ body{
 .contents .comment_container .comment {
 	display: flex;
 	font-size: 14px;
-
+	margin-top: 10px;
+}
+.real_comment {
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+.more_comment_dot {
+	margin-top: 15px;
+	font-size: 25px;
 }
 
 .contents  .comment_container .comment .nick_name {
@@ -462,6 +471,7 @@ body{
 	color: #262626;
 	font-weight: bold;
 	background: white;
+	box-shadow: 5px 5px 5px #78787838;
 }
 
 .side_box> article> header {
