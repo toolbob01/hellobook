@@ -22,7 +22,7 @@
         <div class="d-flex flex-wrap align-items-center justify-content-lg-start nav-right">
 
         <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-logo">
-            <li><a href="/" class="nav-link link-dark fs-3">Hello Book</a></li>
+            <li><a href="/" class="nav-link link-dark fs-3"><img class="logo_hellobook" src="/resources/imgs/logo.png"></a></li>
         </ul>
 
         <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-search">
