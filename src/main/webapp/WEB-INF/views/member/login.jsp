@@ -53,8 +53,8 @@ img.logo_hellobook {
 	width: 268px;
 	height: 30px;
 	margin: 13px auto;
-	color: #000;
-	background-color: #9fd5ff;
+	color: white;
+	background-color: #0d6efd;
 	border: none;
 	border-radius: 3px;
 	font-size: 14px;
@@ -62,7 +62,7 @@ img.logo_hellobook {
 }
 
 #btn_login:disabled {
-	background-color: #9fd5ff;
+	background-color: #0d6efd;
 }
 
 #btn_login:disabled:hover {
