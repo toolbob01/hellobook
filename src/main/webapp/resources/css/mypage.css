@@ -151,6 +151,13 @@
     border-radius: 10px;
 }
 
+.mypage_profile_f:hover {
+	background-color: #fafafa;
+	border: 1px solid #9fd5ff;
+	color: #333;
+	border-radius: 10px;
+}
+
 .mypage_profile_f {
     color: #333;
     position: relative;
@@ -375,7 +382,6 @@
 }
 
 .mypage_content_c {
-	max-width: 350px;
 	margin-top: calc(var(--base-unit) * 15);
 	margin-right: calc(var(--base-unit) * 11);
 	margin-left: calc(var(--base-unit) * 11);
@@ -406,6 +412,23 @@
 
 .nav-link.active {
     color: #495057;
+}
+
+.btn-hellobook {
+	background: #9fd5ff;
+	border-color: #9fd5ff;
+	display:block;
+	height:40px; 
+	line-height:40px; 
+	margin:15px auto; 
+	text-align:center; 
+	color:#333; 
+	transition:all 0.9s, color 0.3;  
+}
+
+.btn-hellobook:hover {
+	box-shadow:402px 0 0 0 rgba(0,0,0,0.5) inset;
+	color:#fff;
 }
 
 @media (min-width: 736px) {
