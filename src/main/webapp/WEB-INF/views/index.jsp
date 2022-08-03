@@ -4,8 +4,8 @@
 <div class="container-fluid">
 	<div class="container">
 		<div class="row post-main-view-row">
-
-
+		
+			
 			<!-- post -->
 			<div class="col-lg-7">
 				<div class="row post-box">
@@ -14,10 +14,13 @@
 						<header class="top post-header">
 							<div class="user_container">
 								<div class="profile_img">
-									<img src="/resources/imgs/thumb.jpeg" alt="프로필이미지">
+									<img src="/resources/imgs/thumb02.jpg" alt="프로필이미지">
+								</div>
+								<div class="profile_flag">
+									<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>
 								</div>
 								<div class="user_name">
-									<div class="nick_name m_text">Hellobook</div>
+									<div class="nick_name m_text">Hanulso</div>
 									<div class="country s_text">Seoul, South Korea</div>
 								</div>
 							</div>
@@ -54,14 +57,12 @@
 						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
 						<div class="bottom_icons">
 							<div class="left_icons">
-								<div class="heart_btn">
-									<div class="sprite_heart_icon_outline on_cursor" name="39" data-name="heartbeat"></div>
-									<span class="heart-count on_cursor">39 명이 좋아합니다</span>
-								</div>
+								<div class="sprite_heart_icon_outline on_cursor" name="39" data-name="heartbeat"></div>
+								<span class="heart-count on_cursor">39 명이 좋아합니다</span>
 							</div>
 							<div class="right_icon">
-								<div class="sprite_bubble_icon"></div>
-								<div class="sprite_share_icon" data-name="share"></div>
+<!-- 								<div class="sprite_bubble_icon"></div> -->
+								<div class="sprite_share_icon on_cursor" data-name="share"></div>
 							</div>
 						</div>
 
@@ -71,6 +72,8 @@
 								두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다 두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다 두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다
 							</div>
 						</div>
+
+						<div class="timer">36분 전</div>
 
 						<!-- post 댓글 div -->
 						<div class="comment_container">
@@ -92,9 +95,6 @@
 <!-- 									data-name="commentheart"></div> -->
 <!-- 							</div> -->
 						</div>
-
-						<div class="timer">36분 전</div>
-
 					</article>
 
 					<article class="contents">
@@ -103,6 +103,9 @@
 							<div class="user_container">
 								<div class="profile_img">
 									<img src="/resources/imgs/thumb.jpeg" alt="프로필이미지">
+								</div>
+								<div class="profile_flag">
+									<img class="flag_icon" src="https://img.icons8.com/fluency/25/000000/south-korea-circular.png"/>
 								</div>
 								<div class="user_name">
 									<div class="nick_name m_text">Hellobook</div>
@@ -209,8 +212,8 @@
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<img class="flag_icon" src="https://img.icons8.com/color/30/000000/south-korea-circular.png"/>
+									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/></div>
 								</div>
 
 								<div class="detail">
@@ -225,8 +228,8 @@
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<img class="flag_icon" src="https://img.icons8.com/color/30/000000/south-korea-circular.png"/>
+									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
 								</div>
 
 								<div class="detail">
@@ -241,7 +244,8 @@
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
 								</div>
 
 								<div class="detail">
@@ -256,14 +260,15 @@
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
 								</div>
 
 								<div class="detail">
 									<div class="id">offlineUser</div>
 									<div class="time">
 										<div class="offline-circle"></div>
-										<span class="time-status">1시간 전</span>
+										<span class="time-status">2시간 전</span>
 									</div>
 								</div>
 							</div>
@@ -271,14 +276,15 @@
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
 								</div>
 
 								<div class="detail">
 									<div class="id">offlineUser</div>
 									<div class="time">
 										<div class="offline-circle"></div>
-										<span class="time-status">1시간 전</span>
+										<span class="time-status">3시간 전</span>
 									</div>
 								</div>
 							</div>
@@ -331,6 +337,12 @@
 					</article>
 				</div>
 			</div>
+
+			<!-- Modal Test -->
+			<div class="modal-posting">
+				
+			</div>
+			<!-- /Modal Test -->
 
 		</div>
 	</div>
