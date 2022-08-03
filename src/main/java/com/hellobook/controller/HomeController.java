@@ -17,7 +17,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/im", method = RequestMethod.GET)
 	public String home_im() {
-		return "index-im";
+		return "index_test";
 	}
 	
 }

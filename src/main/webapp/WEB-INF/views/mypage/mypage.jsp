@@ -14,7 +14,7 @@
 							</button>
 							<div>
 								<form>
-									<input accept="image/jpeg,image/png" class="mypage_thumbnail_f" type="file">
+									<input accept="image/jpeg,image/png" class="mypage_thumbnail_f" type="file" name="image">
 								</form>
 							</div>
 							
@@ -26,15 +26,17 @@
 						<h2 class="mypage_profile_c" tabidex="-1">hellobook</h2>
 						<div class="mypage_profile_d">
 							<div class="mypage_profile_e">
-								<a class="mypage_profile_f" href="#">프로필 편집</a>
+								<a class="mypage_profile_f" href="/mypage/setting">프로필 수정</a>
 							</div>
 						</div>
 						<div class="mypage_profile_g">
+							<form id="mypage_profile_frm">
 							<button class="mypage_profile_h" type="button">
 								<div class="mypage_profule_i">
 									<img src="https://img.icons8.com/ios-glyphs/30/000000/gear.png"/>
 								</div>
 							</button>
+							</form>
 						</div>
 					</div>
 					<div class="mypage_margin">
@@ -83,7 +85,71 @@
 				<div class="tab-pane fade show active mypage_content_a current" id="nav-home" role="tabpanel" aria-labelledby="nav-post-tab" tabindex="0">
 					<div class="mypage_content_b">
 						<div class="mypage_content_c">
-							게시물
+							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+						        <div class="col">
+						          <div class="card shadow-sm">
+						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+						
+						           
+						          </div>
+						        </div>
+						        <div class="col">
+						          <div class="card shadow-sm">
+						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+						
+						            
+						          </div>
+						        </div>
+						        <div class="col">
+						          <div class="card shadow-sm">
+						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+						
+						            
+						          </div>
+						        </div>
+						        <div class="col">
+						          <div class="card shadow-sm">
+						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+						
+						            
+						          </div>
+						        </div>
+						        <div class="col">
+						          <div class="card shadow-sm">
+						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+						
+						            
+						          </div>
+						        </div>
+						        <div class="col">
+						          <div class="card shadow-sm">
+						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+						
+						            
+						          </div>
+						        </div>
+						        <div class="col">
+						          <div class="card shadow-sm">
+						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+						
+						            
+						          </div>
+						        </div>
+						        <div class="col">
+						          <div class="card shadow-sm">
+						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+						
+						            
+						          </div>
+						        </div>
+						        <div class="col">
+						          <div class="card shadow-sm">
+						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
+						
+						            
+						          </div>
+						        </div>
+						      </div>
 						</div>
 					</div>
 				</div>
@@ -107,4 +173,35 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal -->
+<div class="modal modal-hide fade py-5" tabindex="-1" role="dialog" id="mypagemodal" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-body p-5">
+      	<button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">프로필 수정</button>
+        <button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">로그아웃</button>
+        <button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+ $(document).ready(function() {
+	 $('.mypage_thumbnail_d').click(function() {
+		 $('.mypage_thumbnail_f').click();
+	 });
+ });
+ 
+ $('.mypage_profile_h').on('click', function(){
+	 $('#mypagemodal').modal('show');
+ });
+ // 모달 안의 취소 버튼에 이벤트를 건다.
+ $('#closeModalBtn').on('click', function(){
+	 $('#mypagemodal').modal('hide');  
+ });
+ 
+ 
+</script>
 <%@ include file="../footer.jsp" %>
