@@ -8,23 +8,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/mypage/*")
 public class MypageController {
 	
-	@GetMapping("mypage")
+	@GetMapping("/mypage")
 	public String mypage() {
 		return "/mypage/mypage";
 	}
 	
-	@GetMapping("donate")
-	public String donate() {
-		return "/mypage/donate";
+	@GetMapping({"/setting/","/setting/editprofile"})
+	public String editprofile() {
+		return "/mypage/setting/editprofile";
 	}
 	
-	@GetMapping("quit")
+	@GetMapping("/setting/changepwd")
+	public String changepwd() {
+		return "/mypage/setting/changepwd";
+	}
+	
+	@GetMapping("/setting/quit")
 	public String quit() {
-		return "/mypage/quit";
+		return "/mypage/setting/quit";
 	}
 
-	@GetMapping("setting")
-	public String like() {
-		return "/mypage/setting";
-	}
 }
