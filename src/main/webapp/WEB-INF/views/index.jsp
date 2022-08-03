@@ -12,7 +12,7 @@
 					<article class="contents">
 						<!-- post 헤더 -->
 						<header class="top post-header">
-							<div class="user_container">
+							<div class="user_container" onclick="location.href='#'">
 								<div class="profile_img">
 									<img src="/resources/imgs/thumb02.jpg" alt="프로필이미지">
 								</div>
@@ -24,7 +24,7 @@
 									<div class="country s_text">Seoul, South Korea</div>
 								</div>
 							</div>
-							<div class="sprite_more_icon" data-name="more"></div>
+							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div>
 						</header>
 
 						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
@@ -79,7 +79,7 @@
 						<div class="comment_container">
 							<div class="comment">
 								<div class="nick_name m_text">long name userrrrrrrrrrr</div>
-								<div class="real_comment">강아지가 너무 귀여워요!</div>
+								<div class="real_comment"><span class="hashTag">@날태그해줘</span>강아지가 너무 귀여워요!</div>
 							</div>
 							<div class="comment">
 								<div class="nick_name m_text">jgc</div>
@@ -100,7 +100,7 @@
 					<article class="contents">
 						<!-- post 헤더 -->
 						<header class="top post-header">
-							<div class="user_container">
+							<div class="user_container" onclick="location.href='#'">
 								<div class="profile_img">
 									<img src="/resources/imgs/thumb.jpeg" alt="프로필이미지">
 								</div>
@@ -112,7 +112,7 @@
 									<div class="country s_text">Seoul, South Korea</div>
 								</div>
 							</div>
-							<div class="sprite_more_icon" date-name="more"></div>
+							<div class="sprite_more_icon" date-name="more" onclick="location.href='#'"></div>
 						</header>
 
 						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
@@ -210,13 +210,13 @@
 
 						<div class="scroll_inner">
 							<div class="thumb_user">
-								<div class="profile_thumb">
+								<div class="profile_thumb" onclick="location.href='#'">
 									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
 									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/></div>
 								</div>
 
 								<div class="detail">
-									<div class="id">im_online</div>
+									<div class="id" onclick="location.href='#'">im_online</div>
 									<div class="time">
 										<div class="online-circle"></div>
 										<span class="time-status">온라인</span>
@@ -230,13 +230,13 @@
 						</div>
 						<div class="scroll_inner">
 							<div class="thumb_user">
-								<div class="profile_thumb">
+								<div class="profile_thumb" onclick="location.href='#'">
 									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
 									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
 								</div>
 
 								<div class="detail">
-									<div class="id">im_online</div>
+									<div class="id" onclick="location.href='#'">im_online</div>
 									<div class="time">
 										<div class="online-circle"></div>
 										<span class="time-status">온라인</span>

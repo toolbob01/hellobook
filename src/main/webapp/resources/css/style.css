@@ -1,8 +1,15 @@
+.hashTag {
+	color: #9fd5ff;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-shadow: 
+}
 .msg-link {
 	position: absolute;
 	top: 9px;
 	right: 30px;
 	color: #999999;
+/* 	color: #9fd5ff; */
 	font-size: 30px;
 	display: none;
 }
@@ -385,6 +392,7 @@ body{
 .contents .top .user_container {
 	display: flex;
 	position: relative;
+	cursor: pointer;
 }
 
 /* 콘텐츠 영역 이미지 섹션 */
@@ -530,6 +538,7 @@ body{
 /* 	border-radius: 50%; */
 /* 	overflow: hidden; */
 	margin-right: 20px;
+	cursor: pointer;
 }
 
 .side_box .profile_thumb img{
@@ -578,6 +587,7 @@ body{
 .side_box .detail .id{
 	font-size: 15px;
 	margin-bottom: 5px;
+	cursor: pointer;
 }
 
 .thumb_user {
