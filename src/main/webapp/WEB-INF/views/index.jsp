@@ -61,7 +61,7 @@
 								<span class="heart-count on_cursor">39 명이 좋아합니다</span>
 							</div>
 							<div class="right_icon">
-<!-- 								<div class="sprite_bubble_icon"></div> -->
+<!-- 							<div class="sprite_bubble_icon"></div> -->
 								<div class="sprite_share_icon on_cursor" data-name="share"></div>
 							</div>
 						</div>
@@ -79,17 +79,26 @@
 						<div class="comment_container">
 							<div class="comment">
 								<div class="nick_name m_text">long name userrrrrrrrrrr</div>
-								<div class="real_comment"><span class="hashTag">@날태그해줘</span>강아지가 너무 귀여워요!</div>
+								<div class="real_comment">
+									<span class="hashTag" onclick="location.href='#'">@TagMe</span>
+									강아지가 너무 귀여워요!
+								</div>
 							</div>
 							<div class="comment">
 								<div class="nick_name m_text">jgc</div>
-								<div class="real_comment">강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! </div>
+								<div class="real_comment">
+									강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 
+								</div>
 							</div>
 							<div class="comment">
 								<div class="nick_name m_text">Hong Gil Dong</div>
-								<div class="real_comment">대표댓글 3명까지, 더보기는 "하단 점점점" 또는 "상단 아이콘"</div>
+								<div class="real_comment">
+									대표댓글 3명까지, 더보기는 "하단 점점점" 또는 "상단 아이콘"
+								</div>
 							</div>
-							<p class="more_comment_dot">...</p>
+							<p class="more_comment_dot">
+								<span class="more-comment">...</span>
+							</p>
 <!-- 							<div class="small_heart_btn"> -->
 <!-- 								<div class="sprite_small_heart_icon_outline" -->
 <!-- 									data-name="commentheart"></div> -->
@@ -105,7 +114,7 @@
 									<img src="/resources/imgs/thumb.jpeg" alt="프로필이미지">
 								</div>
 								<div class="profile_flag">
-									<img class="flag_icon" src="https://img.icons8.com/fluency/25/000000/south-korea-circular.png"/>
+									<img class="flag_icon" src="https://img.icons8.com/color/25/000000/south-korea-circular.png"/>
 								</div>
 								<div class="user_name">
 									<div class="nick_name m_text">Hellobook</div>
@@ -381,15 +390,75 @@
 				</div>
 			</div>
 
-			<!-- Modal Test -->
-			<div class="modal-posting">
-				
-			</div>
-			<!-- /Modal Test -->
-
 		</div>
 	</div>
 </div>
+
+
+<div class="modal-background">
+	<div class="closeModalBtnDiv">
+		<span class="closeModalBtn fs-5 text-white on_cursor">X</span>
+	</div>
+
+	<div class="modal-detail">
+		<div class="container-fluid">
+			<div class="row">
+			
+				<div class="col-md-7" style="padding: 0px">
+				<div class="modal-detail-left d-flex flex-column">
+					<div class="trans_inner">
+						<div id="carousel-modal1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+						  <div class="carousel-inner">
+						    <div class="carousel-item active">
+						      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
+						    </div>
+						    <div class="carousel-item">
+						      <img src="/resources/imgs/logo.png" alt="...">
+						    </div>
+						    <div class="carousel-item">
+						      <img src="/resources/imgs/thumb.jpeg" alt="...">
+						    </div>
+						  </div>
+						  <button class="carousel-control-prev" type="button" data-bs-target="#carousel-modal1" data-bs-slide="prev">
+						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						    <span class="visually-hidden">Previous</span>
+						  </button>
+						  <button class="carousel-control-next" type="button" data-bs-target="#carousel-modal1" data-bs-slide="next">
+						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+						    <span class="visually-hidden">Next</span>
+						  </button>
+						</div>
+					</div>
+					<div class="modal-detail-contents">
+						<div class="posting-master">
+							<p class="posting-master-name">Hanulso</p>
+							<div class="modal-posting-master-content">
+								여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+							</div>
+<!-- 							<div class="modal-posting-master-content"> -->
+<!-- 								asdasdasdasdasdasdasdasasdsa -->
+<!-- 							</div> -->
+						</div>
+					</div>
+				</div>
+				</div>
+				
+				<div class="col-md-5" style="padding: 0;">
+					<div class="modal-detail-right">
+						<div class="all-comment">
+						
+						</div>
+						<div class="write-comment">
+						
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /Modal Test -->
 
 <script type="text/javascript">
 	onclick = function deligationFunc(e) {
@@ -422,6 +491,7 @@
 		elem.classList.toggle('on');
 	}
 	
+	// Side Bar - Hover
 	$(".thumb_user").hover(function(){
 		$(this).css("background-color", "rgb(204 204 204 / 19%)");
 		$(this).children('.msg-link').css("display","block");
@@ -429,5 +499,22 @@
 		$(this).css("background-color", "#ffffff");
 		$(this).children('.msg-link').css("display","none");
 	})
+	
+	// Modal - Detail
+	$(".more-comment").on("click", function(){
+		$(".modal-background").css("display","block");
+	})
+	
+	$(document).mouseup(function (e){
+		var modal = $(".modal-background");
+		if( modal.has(e.target).length === 0){
+			$(".modal-background").css('display','none');
+		}
+	});
+	
+	// 모달 안의 X 버튼에 이벤트를 건다.
+	 $('.closeModalBtn').on('click', function(){
+		 $('.modal-background').css("display", "none");  
+	 });
 </script>
 <%@ include file="footer.jsp"%>
