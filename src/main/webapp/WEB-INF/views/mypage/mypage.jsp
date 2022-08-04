@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<link rel="stylesheet" href="/resources/css/mypage.css">
+
 <div class="container-fluid">
 	<div class="container">
 		<div class="container-mypage">
@@ -70,11 +70,7 @@
 						<img src="https://img.icons8.com/ios-glyphs/30/000000/keypad.png"/>게시물
 					</div>
 				</button>
-				<button class="mypage_tablist_b" id="nav-saved-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-saved" aria-selected="false">
-					<div class="mypage_tablist_c">
-						<img src="https://img.icons8.com/ios-glyphs/30/000000/save--v1.png"/>저장됨
-					</div>
-				</button>
+				
 				<button class="mypage_tablist_b" id="nav-like-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-like" aria-selected="false">
 					<div class="mypage_tablist_c">
 						<img src="https://img.icons8.com/ios-glyphs/30/000000/filled-like.png"/>좋아요
@@ -85,87 +81,90 @@
 				<div class="tab-pane fade show active mypage_content_a current" id="nav-home" role="tabpanel" aria-labelledby="nav-post-tab" tabindex="0">
 					<div class="mypage_content_b">
 						<div class="mypage_content_c">
-							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-						        <div class="col">
-						          <div class="card shadow-sm">
-						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
-						
-						           
-						          </div>
-						        </div>
-						        <div class="col">
-						          <div class="card shadow-sm">
-						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
-						
-						            
-						          </div>
-						        </div>
-						        <div class="col">
-						          <div class="card shadow-sm">
-						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
-						
-						            
-						          </div>
-						        </div>
-						        <div class="col">
-						          <div class="card shadow-sm">
-						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
-						
-						            
-						          </div>
-						        </div>
-						        <div class="col">
-						          <div class="card shadow-sm">
-						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
-						
-						            
-						          </div>
-						        </div>
-						        <div class="col">
-						          <div class="card shadow-sm">
-						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
-						
-						            
-						          </div>
-						        </div>
-						        <div class="col">
-						          <div class="card shadow-sm">
-						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
-						
-						            
-						          </div>
-						        </div>
-						        <div class="col">
-						          <div class="card shadow-sm">
-						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
-						
-						            
-						          </div>
-						        </div>
-						        <div class="col">
-						          <div class="card shadow-sm">
-						            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
-						
-						            
-						          </div>
-						        </div>
+							<div class="mypage_like_a">
+							
+								<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+							        <div class="col">
+							          <div class="card shadow-sm">
+							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							
+							           
+							          </div>
+							        </div>
+							        <div class="col">
+							          <div class="card shadow-sm">
+							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							
+							            
+							          </div>
+							        </div>
+							        <div class="col">
+							          <div class="card shadow-sm">
+							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							
+							            
+							          </div>
+							        </div>
+							        <div class="col">
+							          <div class="card shadow-sm">
+							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							
+							            
+							          </div>
+							        </div>
+							        <div class="col">
+							          <div class="card shadow-sm">
+							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							
+							            
+							          </div>
+							        </div>
+							        <div class="col">
+							          <div class="card shadow-sm">
+							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							
+							            
+							          </div>
+							        </div>
+							        <div class="col">
+							          <div class="card shadow-sm">
+							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							
+							            
+							          </div>
+							        </div>
+							        <div class="col">
+							          <div class="card shadow-sm">
+							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							
+							            
+							          </div>
+							        </div>
+							        <div class="col">
+							          <div class="card shadow-sm">
+							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
+							
+							            
+							          </div>
+							        </div>
+							      </div>
+							  
 						      </div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="tab-pane fade mypage_content_a" id="nav-profile" role="tabpanel" aria-labelledby="nav-saved-tab" tabindex="0">
-					<div class="mypage_content_b">
-						<div class="mypage_content_c">
-							저장됨
-						</div>
-					</div>
-				</div>
 				
 				<div class="tab-pane fade mypage_content_a" id="nav-contact" role="tabpanel" aria-labelledby="nav-like-tab" tabindex="0">
 					<div class="mypage_content_b">
 						<div class="mypage_content_c">
-							좋아요
+							<div class="mypage_like_a">
+								<div class="mypage_like_b">
+									<h1>좋아요한 게시물</h1>
+									<p>내가 좋아요한 게시물 리스트를 보여줍니다.</p>
+									<span>게시물 보러가기</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -179,9 +178,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content rounded-4 shadow">
       <div class="modal-body p-5">
-      	<button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">프로필 수정</button>
-        <button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">로그아웃</button>
-        <button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">취소</button>
+      	<a href="/mypage/setting/editprofile"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">프로필 수정</button></a>
+      	<a href="/mypage/setting/changepwd"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">비밀번호 변경</button></a>
+      	<a href="/mypage/setting/quit"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">회원탈퇴</button></a>
+      	<a href="/mypage/setting/report"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">문제 신고</button></a>
+        <a href="/member/logout"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">로그아웃</button></a>
+        <a href="#"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">취소</button></a>
       </div>
     </div>
   </div>

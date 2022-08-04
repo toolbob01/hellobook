@@ -89,13 +89,7 @@ body {
 	<div class="container">
 		<div class="row">
 			<div class="col-3">
-				<nav>
-					<ul>
-						<li><a href="/mypage/setting/editprofile">프로필 수정</a></li>
-						<li><a href="/mypage/setting/changepwd">비밀번호 변경</a></li>
-						<li><a href="/mypage/setting/quit">회원탈퇴</a></li>
-					</ul>
-				</nav>
+				<%@ include file="sidebar.jsp" %>
 			</div>
 			<div class="col-9">
 				<div class="input-form col-md-12 mx-auto">
