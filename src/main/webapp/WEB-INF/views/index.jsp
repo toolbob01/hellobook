@@ -205,8 +205,7 @@
 					<article class="story">
 						<header class="story_header">
 							<div>친구 리스트</div>
-<!-- 							<div class="more">모두 보기</div> -->
-							<div class="sprite_more_icon" data-name="more"></div>
+							<div class="sprite_more_icon" data-name="more" onclick="location.href='/friend/list'"></div>
 						</header>
 
 						<div class="scroll_inner">
@@ -223,6 +222,10 @@
 										<span class="time-status">온라인</span>
 									</div>
 								</div>
+								
+								<div class="msg-link">
+									<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
+								</div>
 							</div>
 						</div>
 						<div class="scroll_inner">
@@ -238,6 +241,10 @@
 										<div class="online-circle"></div>
 										<span class="time-status">온라인</span>
 									</div>
+								</div>
+								
+								<div class="msg-link">
+									<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
 								</div>
 							</div>
 						</div>
@@ -255,6 +262,10 @@
 										<span class="time-status">1시간 전</span>
 									</div>
 								</div>
+								
+								<div class="msg-link">
+									<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
+								</div>
 							</div>
 						</div>
 						<div class="scroll_inner">
@@ -270,6 +281,10 @@
 										<div class="offline-circle"></div>
 										<span class="time-status">2시간 전</span>
 									</div>
+								</div>
+								
+								<div class="msg-link">
+									<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
 								</div>
 							</div>
 						</div>
@@ -287,6 +302,10 @@
 										<span class="time-status">3시간 전</span>
 									</div>
 								</div>
+								
+								<div class="msg-link">
+									<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
+								</div>
 							</div>
 						</div>
 					</article>
@@ -295,42 +314,66 @@
 						<header class="reco_header">
 							<div>친구 추천</div>
 <!-- 							<div class="more">모두 보기</div> -->
-							<div class="sprite_more_icon" data-name="more"></div>
+							<div class="sprite_more_icon" data-name="more" onclick="location.href='/'"></div>
 						</header>
 
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/></div>
 								</div>
 
 								<div class="detail">
-									<div class="id">hellobook</div>
-									<div class="time">1시간 전</div>
+									<div class="id">im_online</div>
+									<div class="time">
+										<div class="online-circle"></div>
+										<span class="time-status">온라인</span>
+									</div>
+								</div>
+								
+								<div class="msg-link">
+									<i class="bi bi-plus-lg" onclick="location.href='#'"></i>
 								</div>
 							</div>
 						</div>
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
 								</div>
 
 								<div class="detail">
-									<div class="id">hellobook</div>
-									<div class="time">1시간 전</div>
+									<div class="id">offlineUser</div>
+									<div class="time">
+										<div class="offline-circle"></div>
+										<span class="time-status">3시간 전</span>
+									</div>
+								</div>
+								
+								<div class="msg-link">
+									<i class="bi bi-plus-lg" onclick="location.href='#'"></i>
 								</div>
 							</div>
 						</div>
 						<div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
-									<img src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
 								</div>
 
 								<div class="detail">
-									<div class="id">hellobook</div>
-									<div class="time">1시간 전</div>
+									<div class="id">offlineUser</div>
+									<div class="time">
+										<div class="offline-circle"></div>
+										<span class="time-status">3시간 전</span>
+									</div>
+								</div>
+								
+								<div class="msg-link">
+									<i class="bi bi-plus-lg" onclick="location.href='#'"></i>
 								</div>
 							</div>
 						</div>
@@ -378,5 +421,13 @@
 
 		elem.classList.toggle('on');
 	}
+	
+	$(".thumb_user").hover(function(){
+		$(this).css("background-color", "rgb(204 204 204 / 19%)");
+		$(this).children('.msg-link').css("display","block");
+	},function(){
+		$(this).css("background-color", "#ffffff");
+		$(this).children('.msg-link').css("display","none");
+	})
 </script>
 <%@ include file="footer.jsp"%>

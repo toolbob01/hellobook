@@ -59,7 +59,7 @@
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="/mypage/mypage">프로필</a></li>
-                    <li><a class="dropdown-item" href="/mypage/setting">설정</a></li>
+                    <li><a class="dropdown-item" href="/mypage/setting/">설정</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#"><img src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>로그아웃</a></li>
                 </ul>

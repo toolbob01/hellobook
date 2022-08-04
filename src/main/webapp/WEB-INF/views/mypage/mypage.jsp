@@ -26,7 +26,7 @@
 						<h2 class="mypage_profile_c" tabidex="-1">hellobook</h2>
 						<div class="mypage_profile_d">
 							<div class="mypage_profile_e">
-								<a class="mypage_profile_f" href="/mypage/setting">프로필 수정</a>
+								<a class="mypage_profile_f" href="/mypage/setting/editprofile">프로필 수정</a>
 							</div>
 						</div>
 						<div class="mypage_profile_g">

@@ -1,3 +1,15 @@
+.msg-link {
+	position: absolute;
+	top: 9px;
+	right: 30px;
+	color: #999999;
+	font-size: 30px;
+	display: none;
+}
+.msg-link .bi-chat-dots, .bi-plus-lg {
+	cursor: pointer;
+}
+
 .profile_flag {
 	position: absolute;
     top: 20px;
@@ -572,6 +584,7 @@ body{
 	display: flex;
 	align-itmes: center;
 	padding: 10px 20px;
+	position: relative;
 }
 
 .thumb_user .profile_thumb {
