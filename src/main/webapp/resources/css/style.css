@@ -95,16 +95,12 @@
 	height: 90vh;
 }
 .modal-detail .carousel-item img {
-/* 	width: 45vw; */
-/* 	height: 45vh; */
 	width: 100%;
 	height: 50vh;
 	margin: 0;
 	padding: 0;
 }
-/* .modal-detail-contents { */
-	
-/* } */
+
 .modal-detail .posting-master {
 	padding: 20px;
 }
@@ -137,6 +133,17 @@
 	height: 30vh;
 	padding: 20px;
 	border: solid 1px black;
+}
+.comment-profile {
+	
+}
+.comment-profile-img {
+	
+}
+.comment-profile-flag {
+	position: absolute;
+	top: 16px;
+    left: -8px;
 }
 /* /Modal CSS */
 

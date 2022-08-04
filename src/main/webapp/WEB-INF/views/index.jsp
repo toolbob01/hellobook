@@ -93,7 +93,7 @@
 							<div class="comment">
 								<div class="nick_name m_text">Hong Gil Dong</div>
 								<div class="real_comment">
-									대표댓글 3명까지, 더보기는 "하단 점점점" 또는 "상단 아이콘"
+									대표댓글 3명까지, 더보기는 "하단 점점점" 클릭 !
 								</div>
 							</div>
 							<p class="more_comment_dot">
@@ -447,6 +447,12 @@
 					<div class="modal-detail-right">
 						<div class="all-comment">
 							댓글 리스트
+							<div class="comment-profile">
+								<img class="comment-profile-img" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+								<div class="comment-profile-flag">
+									<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
+								</div>
+							</div>
 						</div>
 						<div class="write-div">
 							<p class="posting-master-name">댓글 작성</p>
