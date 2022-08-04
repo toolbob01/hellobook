@@ -115,7 +115,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color: rgb(var(--ig-primary-text));
-    font-weight: var(--font-weight-system-light);
+    font-weight: bold;
     font-size: var(--system-28-font-size);
     line-height: var(--system-28-line-height);
     margin: -5px 0 -6px;
@@ -149,6 +149,7 @@
     position: relative;
     background-color: #9fd5ff;
     border-radius: 10px;
+    font-weight: bold;
 }
 
 .mypage_profile_f:hover {
@@ -275,7 +276,7 @@
 	display: inline!important;
     margin: 0!important;
     color: rgb(var(--ig-primary-text));
-    font-weight: var(--font-weight-system-semibold);
+    font-weight: bold;
     font-size: var(--system-16-font-size);
     line-height: var(--system-16-line-height);
     font-family: var(--font-family-system);
@@ -414,21 +415,54 @@
     color: #495057;
 }
 
+.modal-body {
+	display:table;
+}
+
 .btn-hellobook {
 	background: #9fd5ff;
 	border-color: #9fd5ff;
-	display:block;
+	display:table-cell;
 	height:40px; 
 	line-height:40px; 
 	margin:15px auto; 
 	text-align:center; 
-	color:#333; 
-	transition:all 0.9s, color 0.3;  
+	transition:all 0.9s, color 0.3s;
+	color: #000;
+    font-weight: 600;
+    vertical-align:middle;
+    line-height: 1px;
 }
 
 .btn-hellobook:hover {
 	box-shadow:402px 0 0 0 rgba(0,0,0,0.5) inset;
 	color:#fff;
+}
+
+.mypage_like_a {
+	width: 951px;
+	height: auto;
+	margin-top:20px;
+	
+	
+}
+
+.mypage_like_b {
+	
+	line-height: 100px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px 0 rgb(0 0 0 / 15%);
+}
+
+.mp-st-sidebar_a {
+	margin-top: 80px;
+}
+
+.mp-st-sidebar_b {
+	border-radius: 10px;
+	box-shadow: 0 8px 20px 0 rgb(0 0 0 / 15%);
 }
 
 @media (min-width: 736px) {
