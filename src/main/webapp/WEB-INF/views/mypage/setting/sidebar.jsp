@@ -20,7 +20,7 @@
         </div>
       </a>
 
-      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm"">
+      <a href="/mypage/setting/report" class="list-group-item list-group-item-action py-3 lh-sm"">
         <div class="d-flex w-100 align-items-center justify-content-between">
           <strong class="mb-1">문제 신고</strong>
 

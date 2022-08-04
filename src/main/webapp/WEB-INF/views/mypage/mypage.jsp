@@ -178,12 +178,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content rounded-4 shadow">
       <div class="modal-body p-5">
-      	<button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal"><p>프로필 수정</p></button>
-      	<button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">비밀번호 변경</button>
-      	<button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">회원탈퇴</button>
-      	<button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">문제 신고</button>
-        <button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">로그아웃</button>
-        <button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">취소</button>
+      	<a href="/mypage/setting/editprofile"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">프로필 수정</button></a>
+      	<a href="/mypage/setting/changepwd"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">비밀번호 변경</button></a>
+      	<a href="/mypage/setting/quit"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">회원탈퇴</button></a>
+      	<a href="/mypage/setting/report"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">문제 신고</button></a>
+        <a href="/member/logout"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">로그아웃</button></a>
+        <a href="#"><button type="button" class="btn btn-lg btn-hellobook mt-5 w-100" data-bs-dismiss="modal">취소</button></a>
       </div>
     </div>
   </div>

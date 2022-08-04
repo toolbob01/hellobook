@@ -465,6 +465,10 @@
 	box-shadow: 0 8px 20px 0 rgb(0 0 0 / 15%);
 }
 
+.modal-body a {
+	text-decoration: none;
+}
+
 @media (min-width: 736px) {
 	.mypage_header {
 		margin-bottom: 44px;
