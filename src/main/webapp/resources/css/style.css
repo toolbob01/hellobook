@@ -2,7 +2,7 @@
 	color: #9fd5ff;
 	margin-left: 5px;
 	margin-right: 5px;
-	text-shadow: 0.5px 0.5px 0.5px #8080803b;
+	text-shadow: 0.5px 0.5px 0.5px #8080801f;
 	cursor: pointer;
 }
 .msg-link {
@@ -102,12 +102,15 @@
 	margin: 0;
 	padding: 0;
 }
-.modal-detail-contents {
+/* .modal-detail-contents { */
 	
-}
+/* } */
 .modal-detail .posting-master {
 	padding: 20px;
-	margin-top: 20px;
+}
+.modal-detail .posting-master-name {
+	margin-left: 15px;
+	margin-bottom: 15px;
 }
 .modal-posting-master-content {
 	height: 30vh;
@@ -116,6 +119,7 @@
 	line-height: 1.5;
 	word-break:break-word;
 	overflow: auto;
+	border: solid 1px black;
 }
 
 .modal-detail-right {
@@ -123,6 +127,15 @@
 }
 .all-comment {
 	height: 50vh;
+	padding: 20px;
+	border: solid 1px black;
+}
+.write-div {
+	padding: 20px;
+}
+.write-comment {
+	height: 30vh;
+	padding: 20px;
 	border: solid 1px black;
 }
 /* /Modal CSS */
