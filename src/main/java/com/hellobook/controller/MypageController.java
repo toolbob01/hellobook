@@ -27,5 +27,10 @@ public class MypageController {
 	public String quit() {
 		return "/mypage/setting/quit";
 	}
+	
+	@GetMapping("/setting/report")
+	public String report() {
+		return "/mypage/setting/report";
+	}
 
 }

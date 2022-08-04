@@ -13,8 +13,16 @@
 <link rel="stylesheet" href="/resources/css/hellobook.css">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
+<<<<<<< HEAD
 <link rel="stylesheet" href="/resources/css/mypage.css">
 
+=======
+
+<link rel="stylesheet" href="/resources/css/mypage.css">
+
+
+
+>>>>>>> 3cbdb20828856431882e859d3cbef2ed11c27fc5
 <title>Hello Book</title>
 </head>
 <body>
