@@ -83,6 +83,10 @@ img {
    margin: 0 0 0 -27px;
 }
 
+.input-group-addon {
+   pointer-events:none;
+}
+
 .chat_ib h5 {
    font-size: 15px;
    color: #464646;
@@ -125,6 +129,7 @@ img {
    border-bottom: 1px solid #c4c4c4;
    margin: 0;
    padding: 18px 16px 10px;
+   cursor: pointer;
 }
 
 .inbox_chat {
@@ -134,6 +139,8 @@ img {
 
 .active_chat {
    background: #ebebeb;
+   cursor: default;
+   pointer-events:none;
 }
 
 .incoming_msg_img {
@@ -264,7 +271,6 @@ button:focus {
       <div class="messaging">
          <div class="inbox_msg">
          
-         
             <!-- 채팅방 목록 -->
             <div class="inbox_people">
                <div class="headind_srch">
@@ -273,7 +279,7 @@ button:focus {
                   </div>
                   <div class="srch_bar">
                      <div class="stylish-input-group">
-                        <input type="text" class="search-bar" placeholder="Search">
+                        <input type="text" class="search-bar" placeholder="Search" onkeyup="searchUser()">
                         <span class="input-group-addon">
                            <button type="button">
                               <i class="fa fa-search" aria-hidden="true"></i>
@@ -283,46 +289,43 @@ button:focus {
                   </div>
                </div>
                <div class="inbox_chat">
-               <!-- 액티브된 채팅유저(가장 먼저 보이는 채팅) -->
-                  <div class="chat_list active_chat">
+               <!-- 채팅유저 -->
+                  <div class="chat_list" data-email="friendA" data-rno="1">
                      <div class="chat_people">
                         <div class="chat_img">
                            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                         </div>
                         <div class="chat_ib">
-                           <h5>이름 <span class="chat_date">07-31</span></h5>
+                           <h5>friendA <span class="chat_date">07-31</span></h5>
                            <p>최근 메세지</p>
                         </div>
                      </div>
                   </div>
-               <!-- //액티브된 채팅유저(가장 먼저 보이는 채팅) -->
-               
-               <!-- 대기중인 채팅유저 -->
-                  <div class="chat_list">
+                  <div class="chat_list" data-email="friendB" data-rno="2">
                      <div class="chat_people">
                         <div class="chat_img">
                         <!-- 유저 프로필 사진 -->
                            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                         </div>
                         <div class="chat_ib">
-                           <h5>이름 <span class="chat_date">07-31</span></h5>
+                           <h5>friendB <span class="chat_date">07-31</span></h5>
                            <p>최근 메세지</p>
                         </div>
                      </div>
                   </div>
-                  <div class="chat_list">
+                  <div class="chat_list" data-email="friendC" data-rno="3">
                      <div class="chat_people">
                         <div class="chat_img">
                         <!-- 유저 프로필 사진 -->
                            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                         </div>
                         <div class="chat_ib">
-                           <h5>이름 <span class="chat_date">07-31</span></h5>
+                           <h5>friendC <span class="chat_date">07-31</span></h5>
                            <p>세줄 이상의 긴글은 잘라서 ... 표시합니다. 세줄 이상의 긴글은 잘라서 ... 표시합니다. 세줄 이상의 긴글은 잘라서 ... 표시합니다.</p>
                         </div>
                      </div>
                   </div>
-               <!-- //대기중인 채팅유저 -->
+               <!--채팅유저 -->
                </div>
             </div>
             <!-- //채팅방 목록 -->
@@ -330,55 +333,7 @@ button:focus {
             <!-- 채팅방 -->
             <div class="mesgs">
                <div class="msg_history">
-               
-                  <!-- 받은 메세지 -->
-                  <div class="incoming_msg">
-                     <div class="incoming_msg_img">
-                        <img src="https://ptetutorials.com/images/user-profile.png"
-                           alt="sunil">
-                     </div>
-                     <div class="received_msg">
-                        <div class="received_withd_msg">
-                           <p>받은 메세지 내용입니다.</p>
-                           <span class="time_date"> 11:01 AM | 07-31</span>
-                        </div>
-                     </div>
-                  </div>
-                  <!-- //받은 메세지 -->
-                  
-                  <!-- 보낸 메세지 -->
-                  <div class="outgoing_msg">
-                     <div class="sent_msg">
-                        <p>보낸 메세지 내용입니다.</p>
-                        <span class="time_date"> 11:01 AM | 07-31</span>
-                     </div>
-                  </div>
-                  <!-- //보낸 메세지 -->
-                  
-                  <!-- 보낸 메세지 -->
-                  <div class="outgoing_msg">
-                     <div class="sent_msg">
-                        <p>보낸 메세지 내용입니다.</p>
-                        <span class="time_date"> 11:01 AM | 07-31</span>
-                     </div>
-                  </div>
-                  <!-- //보낸 메세지 -->
-                  
-                  <!-- 받은 메세지 -->
-                  <div class="incoming_msg">
-                     <div class="incoming_msg_img">
-                        <img src="https://ptetutorials.com/images/user-profile.png"
-                           alt="sunil">
-                     </div>
-                     <div class="received_msg">
-                        <div class="received_withd_msg">
-                           <p>내용이 길어져도 전부 표시되게 합니다. 내용이 길어져도 전부 표시되게 합니다. 내용이 길어져도 전부 표시되게 합니다.
-                            내용이 길어져도 전부 표시되게 합니다. 내용이 길어져도 전부 표시되게 합니다. 내용이 길어져도 전부 표시되게 합니다.</p>
-                           <span class="time_date"> 11:01 AM | 07-31</span>
-                        </div>
-                     </div>
-                  </div>
-                  <!-- //받은 메세지 -->
+               <!-- 내용 출력 -->
                </div>
                <!-- //채팅방 -->
                
@@ -406,5 +361,223 @@ button:focus {
          // $(".inbox_chat").css("height", 550 + 12 + obj.scrollHeight);
          $(".inbox_chat").css("height", 550 + obj.scrollHeight);
       }
+      
+      let firstChat = $(".inbox_chat").children("div").first();
+      let chatRoom = $(".msg_history");
+      let userId = 'friendD';
+      
+      
+      //페이지 처음 시작시 맨 위 채팅방 자동 활성화
+      window.onload = function(){
+    	  
+    	  console.log(firstChat);
+    	  chatUserId = firstChat.attr('data-email');
+    	  console.log(chatUserId);
+    	  //ajax 실행해서 메세지 list 받아오기
+    	  //아래 내용 삭제
+    	  let list = [
+    			{
+    				"mno":"1",
+    				"rno":1,
+    				"content":"친구 A에게 보낸 메세지.",
+    				"email":"friendD",
+    				"mdate":"11:41 AM | 07-31",
+    				"status":2
+    			},
+    			{
+    				"mno":"5",
+    				"rno":1,
+    				"content":"친구 A에게 보낸 메세지.2",
+    				"email":"friendD",
+    				"mdate":"11:48 AM | 07-31",
+    				"status":2
+    			},
+    			{
+    				"mno":"9",
+    				"rno":1,
+    				"content":"친구 A가 보낸 메세지.",
+    				"email":"friendA",
+    				"mdate":"11:51 AM | 07-31",
+    				"status":2
+    			},
+    			{
+    				"mno":"13",
+    				"rno":1,
+    				"content":"친구 A가 보낸 메세지.2",
+    				"email":"friendA",
+    				"mdate":"12:01 AM | 07-31",
+    				"status":2
+    			}
+    		]
+    	  //위 내용 삭제
+    	  
+    	  chatChange(list);
+    	  $(this).addClass('active_chat');
+      }
+      
+      //채팅방 이동
+      function chatChange(msgList){
+
+    	  var chatMsg = "";
+    	  
+    	  $.each(msgList,function(index,item){
+    	  
+    	  if(item.email == userId){
+    		  chatMsg += '<div class="outgoing_msg"><div class="sent_msg"><p>'+item.content+'</p><span class="time_date">'+item.mdate+'</span></div></div>';
+		  }else{
+			  chatMsg += '<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>';
+			  chatMsg += '<div class="received_msg"><div class="received_withd_msg"><p>'+item.content+'</p><span class="time_date">'+item.mdate+'</span></div></div></div>';
+		  }  
+    	  })
+    	  
+    	  chatRoom.html(chatMsg);
+      }
+      
+      
+      $(".chat_list").on("click",function() {
+    	  console.log("채팅방 이동");
+    	  chatUserId = $(this).attr('data-email');
+    	  
+    	  //여기서 ajax이용해서 데이터베이스로부터 id검색해서 채팅내용을 전부 list로 가져오기
+    	  //시간 순서대로 리스트를 받아올거고 메시지 번호,그룹 아이디,메시지 내용,이메일,시간,상태를 받아옴
+    	  //사용할 땐 아래의 내용을 전부 지울 것
+    	  let listA = [
+    			{
+    				"mno":"1",
+    				"rno":1,
+    				"content":"친구 A에게 보낸 메세지.",
+    				"email":"friendD",
+    				"mdate":"11:41 AM | 07-31",
+    				"status":2
+    			},
+    			{
+    				"mno":"5",
+    				"rno":1,
+    				"content":"친구 A에게 보낸 메세지.2",
+    				"email":"friendD",
+    				"mdate":"11:48 AM | 07-31",
+    				"status":2
+    			},
+    			{
+    				"mno":"9",
+    				"rno":1,
+    				"content":"친구 A가 보낸 메세지.",
+    				"email":"friendA",
+    				"mdate":"11:51 AM | 07-31",
+    				"status":2
+    			},
+    			{
+    				"mno":"13",
+    				"rno":1,
+    				"content":"친구 A가 보낸 메세지.2",
+    				"email":"friendA",
+    				"mdate":"12:01 AM | 07-31",
+    				"status":2
+    			}
+    		]
+    	  let listB = [
+  			{
+  				"mno":"1",
+  				"rno":2,
+  				"content":"친구 B에게 보낸 메세지",
+  				"email":"friendD",
+  				"mdate":"11:01 AM | 07-31",
+  				"status":2
+  			},
+  			{
+  				"mno":"4",
+  				"rno":2,
+  				"content":"친구 B가 보낸 장문의 메세지 <br/>친구 B가 보낸 장문의 메세지 <br/>친구 B가 보낸 장문의 메세지 <br/>친구 B가 보낸 장문의 메세지 <br/>",
+  				"email":"friendB",
+  				"mdate":"11:07 AM | 07-31",
+  				"status":2
+  			},
+  			{
+  				"mno":"5",
+  				"rno":2,
+  				"content":"친구 B에게 보낸 메세지. 2",
+  				"email":"friendD",
+  				"mdate":"11:10 AM | 07-31",
+  				"status":2
+  			},
+  			{
+  				"mno":"9",
+  				"rno":2,
+  				"content":"친구 B가 보낸 메세지.2",
+  				"email":"friendB",
+  				"mdate":"11:12 AM | 07-31",
+  				"status":2
+  			}
+  		  ]
+    	let listC = [
+  			{
+  				"mno":"9",
+  				"rno":3,
+  				"content":"친구 C가 보낸 메세지.",
+  				"email":"friendC",
+  				"mdate":"11:01 AM | 07-31",
+  				"status":2
+  			},
+  			{
+  				"mno":"19",
+  				"rno":3,
+  				"content":"친구 C가 보낸 메세지.2",
+  				"email":"friendC",
+  				"mdate":"11:07 AM | 07-31",
+  				"status":2
+  			},
+  			{
+  				"mno":"21",
+  				"rno":3,
+  				"content":"친구 C에게 보낸 메세지.",
+  				"email":"friendD",
+  				"mdate":"11:08 AM | 07-31",
+  				"status":2
+  			},
+  			{
+  				"mno":"25",
+  				"rno":3,
+  				"content":"친구 C에게 보낸 장문의 메세지.<br/>친구 C에게 보낸 장문의 메세지.<br/>친구 C에게 보낸 장문의 메세지.<br/>친구 C에게 보낸 장문의 메세지.<br/>",
+  				"email":"friendD",
+  				"mdate":"11:11 AM | 07-31",
+  				"status":2
+  			}
+  		  ]
+    	  
+    	  let msgList;
+    	  
+    	  if(chatUserId == 'friendA'){
+        	  msgList = listA
+    	  }else if(chatUserId == 'friendB'){
+    		  msgList = listB
+    	  }else{
+    		  msgList = listC
+    	  }
+    	//사용할 땐 위의 내용을 전부 지울 것
+    	
+    	  chatChange(msgList);
+    	  
+    	  $(".active_chat").removeClass('active_chat');
+    	  $(this).addClass('active_chat');
+    	  
+      })
+      
+      
+      //유저 검색(Email을 이용한 검색)
+      function searchUser() {
+    	  var search = $(".search-bar").val().toLowerCase();
+    	  
+    	  let listChat = document.getElementsByClassName("chat_list");
+    	  
+    	  for (let i=0; i<listChat.length; i++) {
+    		  chatUserEmail = listChat[i].getAttribute('data-email').toLowerCase();
+    		  if(chatUserEmail.indexOf(search) != -1) {
+    			  listChat[i].style.display = "";
+    		  }else{
+    			  listChat[i].style.display = "none";
+    		  };
+    	  };
+      };
+      
    </script>
 <%@ include file="../footer.jsp" %>
