@@ -1,19 +1,53 @@
 
 body::-webkit-scrollbar {
-    width: 20px; /*스크롤바의 너비*/
+    width: 20px; 
 }
-
 body::-webkit-scrollbar-thumb {
-    background-color: yellow; /*스크롤바의 색상*/
+    background: linear-gradient(to bottom,#9fd5ff, #f8f9f9);
     background-clip: padding-box;
     border: 4px solid transparent;
-    border-top-left-radius: 50px;
-    border-bottom-right-radius: 50px;
+    border-radius: 10px;
+}
+body::-webkit-scrollbar-track {
+    background-color: white; 
+}
+.all-comment::-webkit-scrollbar {
+    width: 20px; 
+}
+.all-comment::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom,#9fd5ff, #f8f9f9);
+    background-clip: padding-box;
+    border: 4px solid transparent;
+    border-radius: 10px;
+}
+.all-comment::-webkit-scrollbar-track {
+    background-color: white; 
+}
+.modal-posting-master-content::-webkit-scrollbar {
+    width: 20px; 
+}
+.modal-posting-master-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom,#9fd5ff, #f8f9f9);
+    background-clip: padding-box;
+    border: 4px solid transparent;
+    border-radius: 10px;
+}
+.modal-posting-master-content::-webkit-scrollbar-track {
+    background-color: white; 
+}
+.comment-write-div .form-control::-webkit-scrollbar {
+    width: 20px; 
+}
+.comment-write-div .form-control::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom,#9fd5ff, #f8f9f9);
+    background-clip: padding-box;
+    border: 4px solid transparent;
+    border-radius: 10px;
+}
+.comment-write-div .form-control::-webkit-scrollbar-track {
+    background-color: white; 
 }
 
-body::-webkit-scrollbar-track {
-    background-color: grey; /*스크롤바 트랙 색상*/
-}
 
 .hashTag {
 	color: #9fd5ff;
@@ -121,9 +155,9 @@ body::-webkit-scrollbar-track {
 .modal-detail .posting-master {
 	padding: 20px;
 }
-.modal-detail .posting-master-name {
-	margin-left: 15px;
-	margin-bottom: 15px;
+.posting-master .comment-profile {
+	margin-top: 0px;
+	margin-bottom: 10px;
 }
 .modal-posting-master-content {
 	height: 30vh;
@@ -132,41 +166,104 @@ body::-webkit-scrollbar-track {
 	line-height: 1.5;
 	word-break:break-word;
 	overflow: auto;
-	border: solid 1px black;
+/* 	border: solid 1px black; */
 }
 
 .modal-detail-right {
 	height: 90vh;
 }
 .all-comment {
-	height: 50vh;
+	height: 70vh;
 	padding: 20px;
-	border: solid 1px black;
+	border: solid 1px #ccc;
+	overflow: auto;
 }
-.write-div {
-	padding: 20px;
-}
-.write-comment {
-	height: 30vh;
-	padding: 20px;
-	border: solid 1px black;
-}
+
 .comment-profile {
 	position: relative;
+    margin-top: 25px;
 }
 .comment-profile-img {
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
     border-radius: 50%;
     overflow: hidden;
     margin-right: 20px;
 }
 .comment-profile-flag {
 	position: absolute;
-    top: 20px;
-    left: -12px;
+    top: 15px;
+    left: -8px;
+}
+.comment-name {
+	font-size: 16px;
+	font-weight: bold;
+}
+.comment-time, .comment-cocoment {
+	font-size: 16px;
+	color: grey;
+	padding: 5px;
+}
+.comment-cocoment:hover {
+	font-size: 16px;
+	color: black;
+	background-color: #9fd5ff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.comment-content {
+	margin-top: 20px;
+	line-height: 1.4;
+	word-break: break-word;
+}
+.comment-depth {
+	margin-left: 40px;
+	margin-top: -10px;
+}
+.cocoment-open { padding: 5px; }
+.cocoment-open:hover {
+	background-color: #9fd5ff;
+	border-radius: 5px;
+}
+
+.comment-write-div {
+	padding: 20px;
+	border-left: solid 1px #ccc;
+}
+.comment-write-div .form-control {
+	height: 7vh;
+	resize: none;
+}
+.comment-write-div .form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #9fd5ff;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(159 213 255 / 44%);
+}
+.comment-write-div .msg_send_btn {
+   background: #9fd5ff none repeat scroll 0 0;
+   border: medium none;
+   border-radius: 50%;
+   color: #fff;
+   cursor: pointer;
+   font-size: 17px;
+   height: 33px;
+/*    position: absolute; */
+/*    right: 10px; */
+/*    top: 11px; */
+   width: 33px;
+    margin-top: -8px;
+    margin-bottom: 15px;
+}
+.comment-write-div .msg_send_btn:hover {
+   border: solid 2px #76bef5;
 }
 /* /Modal CSS */
+
+
+
+
 
 .sprite_insta_icon {
 	display: inline-block;
@@ -526,7 +623,7 @@ body{
 	color: #262626;
 }
 .posting-master-name {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
 	margin-bottom: 7px;
 }
