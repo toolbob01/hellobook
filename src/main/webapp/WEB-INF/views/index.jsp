@@ -446,13 +446,16 @@
 				<div class="col-md-5" style="padding: 0;">
 					<div class="modal-detail-right">
 						<div class="all-comment">
-							댓글 리스트
+							<p class="fs-5 mb-3">댓글 리스트</p>
+							
 							<div class="comment-profile">
 								<img class="comment-profile-img" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
 								<div class="comment-profile-flag">
-									<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
+									<img src="https://img.icons8.com/color/25/000000/japan-circular.png"/>
 								</div>
+								<div class="comment-name">Hanulso</div>
 							</div>
+							
 						</div>
 						<div class="write-div">
 							<p class="posting-master-name">댓글 작성</p>
