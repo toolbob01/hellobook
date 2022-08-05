@@ -161,9 +161,9 @@
 }
 
 .mypage_profile_f:hover {
-	background-color: #fafafa;
 	border: 1px solid #9fd5ff;
-	color: #333;
+	box-shadow:402px 0 0 0 rgba(0,0,0,0.5) inset;
+	color:#fff;
 	border-radius: 10px;
 }
 
@@ -175,6 +175,7 @@
     -webkit-appearance: none;
     background: none;
     box-sizing: border-box;
+    transition:all 0.9s, color 0.3s;
     cursor: pointer;
     display: block;
     padding: 5px 9px;
@@ -242,13 +243,12 @@
 .mypage_info_c {
 	display: block;
 	color: rgb(var(--ig-primary-text));
-	font-weight: var(--font-weight-system-regular);
+	font-weight: bold;
 	margin: 0;
 	font-size: var(--system-16-font-size);
     line-height: var(--system-16-line-height);
     font-family: var(--font-family-system);
     border: 0;
-    font: inherit;
     padding: 0;
     vertical-align: baseline;
     align-items: stretch;
@@ -260,9 +260,8 @@
 
 .mypage_info_d {
 	color: rgb(var(--ig-primary-text));
-    font-weight: 600;
     border: 0;
-    font: inherit;
+    font-weight: normal;
     font-size: 100%;
     margin: 0;
     padding: 0;
@@ -293,7 +292,6 @@
     line-height: var(--system-16-line-height);
     font-family: var(--font-family-system);
     border: 0;
-    font: inherit;
     padding: 0;
     vertical-align: baseline;
 }
