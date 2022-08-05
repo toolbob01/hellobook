@@ -56,7 +56,7 @@
                 	<img src="https://img.icons8.com/ios-glyphs/30/000000/add--v1.png"/>
                 </a>
             </div>
-            <div class="mx-2 header-icon">
+            <div class="mx-2">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://img.icons8.com/ios-glyphs/30/000000/small-icons.png"/>
                 </a>
