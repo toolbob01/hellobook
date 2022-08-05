@@ -1,8 +1,16 @@
+.hashTag {
+	color: #9fd5ff;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-shadow: 0.5px 0.5px 0.5px #8080801f;
+	cursor: pointer;
+}
 .msg-link {
 	position: absolute;
 	top: 9px;
 	right: 30px;
 	color: #999999;
+/* 	color: #9fd5ff; */
 	font-size: 30px;
 	display: none;
 }
@@ -51,16 +59,95 @@
 }
 
 /* Modal CSS */
-.modal-posting {
-	width: 700px;
-	height: 800px;
-	border-radius: 15px;
-	border: 1px solid #adb5bd42;
+
+.modal-background{ z-index: 51;
+	display: none;
+	position: fixed;
+	top:0; left: 0; bottom: 0; right: 0;
+	background: rgb(0 0 0 / 63%);
+}
+
+.modal-detail { z-index: 52;
+	max-width: 1000px;
+	width: 90vw;
+	height: 90vh;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+/* 	margin-top: 30px; */
+	transform: translate(-50%, -50%);
+	border: 5px outset #9fd5ff;
+	border-radius: 5px;
 	box-shadow: 2px 2px 3px #78787838;
-	z-index: 50;
-/* 	display: none; */
-/* 	top: 50%; */
-/* 	left: 50%; */
+	background-color: white;
+}
+
+.closeModalBtnDiv {
+	position: relative;
+}
+.closeModalBtn {
+	position: absolute;
+    top: 20px;
+    right: 30px
+}
+
+.modal-detail-left {
+	height: 90vh;
+}
+.modal-detail .carousel-item img {
+	width: 100%;
+	height: 50vh;
+	margin: 0;
+	padding: 0;
+}
+
+.modal-detail .posting-master {
+	padding: 20px;
+}
+.modal-detail .posting-master-name {
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
+.modal-posting-master-content {
+	height: 30vh;
+    font-size: 14px;
+    font-weight: normal;
+	line-height: 1.5;
+	word-break:break-word;
+	overflow: auto;
+	border: solid 1px black;
+}
+
+.modal-detail-right {
+	height: 90vh;
+}
+.all-comment {
+	height: 50vh;
+	padding: 20px;
+	border: solid 1px black;
+}
+.write-div {
+	padding: 20px;
+}
+.write-comment {
+	height: 30vh;
+	padding: 20px;
+	border: solid 1px black;
+}
+.comment-profile {
+	position: relative;
+}
+.comment-profile-img {
+	width: 40px;
+	height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+.comment-profile-flag {
+	position: absolute;
+    top: 20px;
+    left: -12px;
 }
 /* /Modal CSS */
 
@@ -385,6 +472,7 @@ body{
 .contents .top .user_container {
 	display: flex;
 	position: relative;
+	cursor: pointer;
 }
 
 /* 콘텐츠 영역 이미지 섹션 */
@@ -530,6 +618,7 @@ body{
 /* 	border-radius: 50%; */
 /* 	overflow: hidden; */
 	margin-right: 20px;
+	cursor: pointer;
 }
 
 .side_box .profile_thumb img{
@@ -578,6 +667,7 @@ body{
 .side_box .detail .id{
 	font-size: 15px;
 	margin-bottom: 5px;
+	cursor: pointer;
 }
 
 .thumb_user {
