@@ -465,8 +465,16 @@
 	box-shadow: 0 8px 20px 0 rgb(0 0 0 / 15%);
 }
 
+.modal-content {
+	margin-top: 200px;
+}
+
 .modal-body a {
 	text-decoration: none;
+}
+
+.posted:hover {
+	opacity: 0.5;
 }
 
 @media (min-width: 736px) {
