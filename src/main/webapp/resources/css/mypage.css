@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+.header-icon:hover {
+	opacity: 0.5;	
+}
+
+.header-icon>ul:hover {
+	opacity: 1;
+}
+
 .container-mypage {
 	box-sizing: content-box;
     padding: 60px 20px 0;
@@ -198,6 +206,10 @@
     padding: 8px;
 }
 
+.mypage_profile_h:hover {
+	opacity: 0.5;
+}
+
 .mypage_profile_i {
 	align-items: center;
     display: flex;
@@ -331,6 +343,10 @@
     background-color: transparent;
     list-style: none;
     outline: none;
+}
+
+.mypage_tablist_b:hover {
+	opacity: 0.5;
 }
 
 .mypage_tablist_c {

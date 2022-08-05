@@ -37,27 +37,27 @@
         </ul>
 
         <div class="dropdown d-flex justify-content-center text-end nav-memu">
-            <div class="mx-2">
+            <div class="mx-2 header-icon">
             	<a href="/">
             		<img src="https://img.icons8.com/ios-glyphs/30/000000/home-page--v1.png"/>
             	</a>
             </div>
-            <div class="mx-2">
+            <div class="mx-2 header-icon">
             	<a href="/friend/list">
             		<img src="https://img.icons8.com/ios-glyphs/30/000000/contacts.png"/>
             	</a>
             </div>
-            <div class="mx-2">
+            <div class="mx-2 header-icon">
             	<a href="/chat/chat_list">
                 	<img src="https://img.icons8.com/ios-glyphs/30/000000/speech-bubble-with-dots.png"/>
                 </a>
             </div>
-            <div class="mx-2">
+            <div class="mx-2 header-icon">
             	<a href="/post/post_write">
                 	<img src="https://img.icons8.com/ios-glyphs/30/000000/add--v1.png"/>
                 </a>
             </div>
-            <div class="mx-2">
+            <div class="mx-2 header-icon">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://img.icons8.com/ios-glyphs/30/000000/small-icons.png"/>
                 </a>
