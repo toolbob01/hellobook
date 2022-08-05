@@ -85,64 +85,64 @@
 							
 								<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 							        <div class="col">
-							          <div class="card shadow-sm">
-							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
-							
+							          <div class="card shadow-sm posted">
+							            
+										<img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post9">
 							           
 							          </div>
 							        </div>
 							        <div class="col">
-							          <div class="card shadow-sm">
-							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							          <div class="card shadow-sm posted">
+							            <img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post8">
 							
 							            
 							          </div>
 							        </div>
 							        <div class="col">
-							          <div class="card shadow-sm">
-							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							          <div class="card shadow-sm posted">
+							            <img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post7">
 							
 							            
 							          </div>
 							        </div>
 							        <div class="col">
-							          <div class="card shadow-sm">
-							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							          <div class="card shadow-sm posted">
+							            <img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post6">
 							
 							            
 							          </div>
 							        </div>
 							        <div class="col">
-							          <div class="card shadow-sm">
-							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							          <div class="card shadow-sm posted">
+							            <img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post5">
 							
 							            
 							          </div>
 							        </div>
 							        <div class="col">
-							          <div class="card shadow-sm">
-							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							          <div class="card shadow-sm posted">
+							            <img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post4">
 							
 							            
 							          </div>
 							        </div>
 							        <div class="col">
-							          <div class="card shadow-sm">
-							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							          <div class="card shadow-sm posted">
+							            <img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post3">
 							
 							            
 							          </div>
 							        </div>
 							        <div class="col">
-							          <div class="card shadow-sm">
-							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect> </svg>
+							          <div class="card shadow-sm posted">
+							            <img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post2">
 							
 							            
 							          </div>
 							        </div>
 							        <div class="col">
-							          <div class="card shadow-sm">
-							            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
+							          <div class="card shadow-sm posted">
+							            <img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post1">
 							
 							            
 							          </div>
@@ -162,7 +162,7 @@
 								<div class="mypage_like_b">
 									<h1>좋아요한 게시물</h1>
 									<p>내가 좋아요한 게시물 리스트를 보여줍니다.</p>
-									<span>게시물 보러가기</span>
+									<span>현재 내가 좋아요한 게시물이 없습니다.</span>
 								</div>
 							</div>
 						</div>
@@ -189,6 +189,17 @@
   </div>
 </div>
 
+<!-- Post Modal -->
+<div class="modal modal-hide fade py-5" tabindex="-1" role="dialog" id="postmodal" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-body p-5">
+      	인덱스 페이지 게시물 조회와 같은 디자인으로 만들 예정
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
  $(document).ready(function() {
 	 $('.mypage_thumbnail_d').click(function() {
@@ -202,6 +213,10 @@
  // 모달 안의 취소 버튼에 이벤트를 건다.
  $('#closeModalBtn').on('click', function(){
 	 $('#mypagemodal').modal('hide');  
+ });
+ 
+ $('.posted').on('click', function(){
+	 $('#postmodal').modal('show');
  });
  
  
