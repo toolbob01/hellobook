@@ -42,7 +42,6 @@
 .mypage_thumbnail_a {
 	flex-shrink: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     border: 0;
     font: inherit;
@@ -53,6 +52,7 @@
     align-items: stretch;
     box-sizing: border-box;
     position: relative;
+    flex-direction: row;
 }
 
 .mypage_thumbnail_b {
@@ -124,7 +124,7 @@
     white-space: nowrap;
     color: rgb(var(--ig-primary-text));
     font-weight: bold;
-    font-size: var(--system-28-font-size);
+    font-size: 28px;
     line-height: var(--system-28-line-height);
     margin: -5px 0 -6px;
     font-family: var(--font-family-system);
@@ -397,10 +397,6 @@
 }
 
 .mypage_content_c {
-	margin-top: calc(var(--base-unit) * 15);
-	margin-right: calc(var(--base-unit) * 11);
-	margin-left: calc(var(--base-unit) * 11);
-	margin-bottom: calc(var(--base-unit) * 15);
 	flex: 0 0 auto;
 	justify-content: flex-start;
 	flex-direction: column;
@@ -414,6 +410,14 @@
     font-size: 100%;
     padding: 0;
     vertical-align: baseline;
+}
+
+.mypage_content_d {
+	border-top: 1px solid #eee;
+}
+
+.mypage_content_e {
+	margin-top: 20px;
 }
 
 .mypage_tablist_c .current {
@@ -463,11 +467,12 @@
 
 .mypage_like_b {
 	
+	border-top: 1px solid #eee;
 	line-height: 100px;
-        text-align: center;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 8px 20px 0 rgb(0 0 0 / 15%);
+	text-align: center;
+        
+        
+        
 }
 
 .mp-st-sidebar_a {
@@ -503,8 +508,8 @@
 	}
 	
 	.mypage_thumbnail_b {
-		height: calc(148px + 2px);
-		width: 150px;
+		height: calc(178px + 2px);
+		width: 180px;
 	}
 	
 	.mypage_profile_a {
