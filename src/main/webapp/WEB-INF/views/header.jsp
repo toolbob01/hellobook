@@ -12,9 +12,10 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Inconsolata&family=Kosugi+Maru&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/resources/css/hellobook.css">
 <link rel="stylesheet" href="/resources/css/reset.css">
@@ -22,6 +23,12 @@
 <link rel="stylesheet" href="/resources/css/mypage.css">
 
 <link rel="stylesheet" href="/resources/css/mypage.css">
+
+<style>
+body {
+	font-family: 'Inconsolata', 'Kosugi Maru', 'Noto Sans KR';
+}
+</style>
 
 <title>Hello Book</title>
 </head>

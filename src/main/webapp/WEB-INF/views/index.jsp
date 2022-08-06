@@ -2,10 +2,27 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
 
+
 <div class="container-fluid">
 	<div class="container">
 		<div class="row post-main-view-row">
 		
+		
+		<div class="font-test" style="border: soild 3px black; margin: 100px; font-size: 30px; line-height: 1.5;">
+			<p>이것은 한글입니다 ~</p>
+			<p>This is English ~</p>
+			<p>これは、日本語でござる。分かりました。難しい。優しい。気持ちいい。<br>12345　10月10日　2022年　社長　先生　学生　大学　あかさたなはまやらわ　アカサタナハマヤラワ</p>
+		</div>
+		<div class="font-test" style="border: soild 3px black; margin: 50px; font-size: 20px; line-height: 1.5;">
+			<p>이것은 한글입니다 ~</p>
+			<p>This is English ~</p>
+			<p>これは、日本語でござる。分かりました。難しい。優しい。気持ちいい。<br>12345　10月10日　2022年　社長　先生　学生　大学　あかさたなはまやらわ　アカサタナハマヤラワ</p>
+		</div>
+		<div class="font-test" style="border: soild 3px black; margin: 50px; font-size: 10px; line-height: 1.5;">
+			<p>이것은 한글입니다 ~</p>
+			<p>This is English ~</p>
+			<p>これは、日本語でござる。分かりました。難しい。優しい。気持ちいい。<br>12345　10月10日　2022年　社長　先生　学生　大学　あかさたなはまやらわ　アカサタナハマヤラワ</p>
+		</div>
 			
 			<!-- post -->
 			<div class="col-lg-7">
@@ -25,7 +42,7 @@
 									<div class="country s_text">Seoul, South Korea</div>
 								</div>
 							</div>
-							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div>
+<!-- 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div> -->
 						</header>
 
 						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
@@ -97,13 +114,9 @@
 									대표댓글 3명까지, 더보기는 "하단 점점점" 클릭 !
 								</div>
 							</div>
-							<p class="more_comment_dot">
+							<div class="more-comment-div">
 								<span class="more-comment">...</span>
-							</p>
-<!-- 							<div class="small_heart_btn"> -->
-<!-- 								<div class="sprite_small_heart_icon_outline" -->
-<!-- 									data-name="commentheart"></div> -->
-<!-- 							</div> -->
+							</div>
 						</div>
 					</article>
 
@@ -122,7 +135,7 @@
 									<div class="country s_text">Seoul, South Korea</div>
 								</div>
 							</div>
-							<div class="sprite_more_icon" date-name="more" onclick="location.href='#'"></div>
+<!-- 							<div class="sprite_more_icon" date-name="more" onclick="location.href='#'"></div> -->
 						</header>
 
 						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
@@ -513,6 +526,10 @@
 								하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
 							</div>
 							<!-- c:if 대댓글 개수가 1 이상이면 -->
+							<div class="mt-3 ms-3 on_cursor">
+								<i class="bi bi-arrow-return-right fs-5"></i>
+								<span class="cocoment-open ms-3">펼치기 / 접기</span>
+							</div>
 							<div class="comment-depth">
 								<div class="comment-profile d-flex">
 									<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
