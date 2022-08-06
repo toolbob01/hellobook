@@ -22,8 +22,6 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/mypage.css">
 
-<<<<<<< HEAD
-<link rel="stylesheet" href="/resources/css/mypage.css">
 
 <style>
 body {
@@ -31,8 +29,6 @@ body {
 }
 </style>
 
-=======
->>>>>>> 5e56b923808df6f4a0f700028671996257e9c2b4
 <title>Hello Book</title>
 </head>
 <body>
