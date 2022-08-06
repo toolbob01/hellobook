@@ -1,15 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: ￫ﾰﾕ￬ﾤﾀ￭ﾘﾁ
 Build-Jdk: 11.0.12
-=======
-<<<<<<< HEAD
-Built-By: computer
-Build-Jdk: 11.0.12
-=======
-Built-By: user
-Build-Jdk: 1.8.0_221
->>>>>>> 08867999f5fe3c5cc61c4e7346c1d5d16c1f7653
->>>>>>> fc93140cebbaffcb2dc5292a66e435b3142e2791
 Created-By: Maven Integration for Eclipse
 
