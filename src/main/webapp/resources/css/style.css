@@ -13,7 +13,7 @@ body::-webkit-scrollbar-track {
     background-color: white; 
 }
 .all-comment::-webkit-scrollbar {
-    width: 20px; 
+    width: 15px; 
 }
 .all-comment::-webkit-scrollbar-thumb {
     background: linear-gradient(to top,#9fd5ff, white);
@@ -25,7 +25,7 @@ body::-webkit-scrollbar-track {
     background-color: white; 
 }
 .modal-posting-master-content::-webkit-scrollbar {
-    width: 20px; 
+    width: 15px; 
 }
 .modal-posting-master-content::-webkit-scrollbar-thumb {
     background: linear-gradient(to top,#9fd5ff, white);
@@ -37,7 +37,7 @@ body::-webkit-scrollbar-track {
     background-color: white; 
 }
 .comment-write-div .form-control::-webkit-scrollbar {
-    width: 20px; 
+    width: 15px; 
 }
 .comment-write-div .form-control::-webkit-scrollbar-thumb {
     background: linear-gradient(to top,#9fd5ff, white);
@@ -49,7 +49,7 @@ body::-webkit-scrollbar-track {
     background-color: white; 
 }
 .carousel-inner::-webkit-scrollbar {
-    width: 20px; 
+    width: 15px; 
 }
 .carousel-inner::-webkit-scrollbar-thumb {
 /*     background: linear-gradient(to bottom,#9fd5ff, #f8f9f9); */
