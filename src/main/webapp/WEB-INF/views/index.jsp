@@ -36,10 +36,10 @@
 								<div id="carousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
 								  <div class="carousel-inner">
 								    <div class="carousel-item active">
-								      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
+								      <img src="/resources/imgs/long.jpg" alt="...">
 								    </div>
 								    <div class="carousel-item">
-								      <img src="/resources/imgs/logo.png" alt="...">
+								      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
 								    </div>
 								    <div class="carousel-item">
 								      <img src="/resources/imgs/thumb.jpeg" alt="...">
@@ -136,7 +136,7 @@
 								<div id="carousel2" class="carousel slide" data-bs-ride="carousel"  data-bs-interval="false">
 								  <div class="carousel-inner">
 								    <div class="carousel-item active">
-								      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
+								      <img src="/resources/imgs/long.jpg" alt="...">
 								    </div>
 								    <div class="carousel-item">
 								      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
@@ -413,6 +413,9 @@
 						<div id="carousel-modal1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
 						  <div class="carousel-inner">
 						    <div class="carousel-item active">
+						      <img src="/resources/imgs/long.jpg" alt="...">
+						    </div>
+						    <div class="carousel-item">
 						      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
 						    </div>
 						    <div class="carousel-item">

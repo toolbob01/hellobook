@@ -3,9 +3,10 @@ body::-webkit-scrollbar {
     width: 20px; 
 }
 body::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom,#9fd5ff, #f8f9f9);
+/*     background: linear-gradient(to bottom,#9fd5ff, #f8f9f9); */
+	background: linear-gradient(to top,#9fd5ff, white);
     background-clip: padding-box;
-    border: 4px solid transparent;
+    border: 1px solid #ccc;
     border-radius: 10px;
 }
 body::-webkit-scrollbar-track {
@@ -15,9 +16,9 @@ body::-webkit-scrollbar-track {
     width: 20px; 
 }
 .all-comment::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom,#9fd5ff, #f8f9f9);
+    background: linear-gradient(to top,#9fd5ff, white);
     background-clip: padding-box;
-    border: 4px solid transparent;
+    border: 1px solid #ccc;
     border-radius: 10px;
 }
 .all-comment::-webkit-scrollbar-track {
@@ -27,9 +28,9 @@ body::-webkit-scrollbar-track {
     width: 20px; 
 }
 .modal-posting-master-content::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom,#9fd5ff, #f8f9f9);
+    background: linear-gradient(to top,#9fd5ff, white);
     background-clip: padding-box;
-    border: 4px solid transparent;
+    border: 1px solid #ccc;
     border-radius: 10px;
 }
 .modal-posting-master-content::-webkit-scrollbar-track {
@@ -39,16 +40,42 @@ body::-webkit-scrollbar-track {
     width: 20px; 
 }
 .comment-write-div .form-control::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom,#9fd5ff, #f8f9f9);
+    background: linear-gradient(to top,#9fd5ff, white);
     background-clip: padding-box;
-    border: 4px solid transparent;
+    border: 1px solid #ccc;
     border-radius: 10px;
 }
 .comment-write-div .form-control::-webkit-scrollbar-track {
     background-color: white; 
 }
+.carousel-inner::-webkit-scrollbar {
+    width: 20px; 
+}
+.carousel-inner::-webkit-scrollbar-thumb {
+/*     background: linear-gradient(to bottom,#9fd5ff, #f8f9f9); */
+	background: linear-gradient(to top,#9fd5ff, white);
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.carousel-inner::-webkit-scrollbar-track {
+    background-color: white; 
+}
 
 
+
+.post-box .carousel-inner {
+	position: relative;
+    width: 100%;
+    overflow: auto;
+    height: 50vh;
+}
+.post-box .carousel-item img {
+	width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 .hashTag {
 	color: #9fd5ff;
 	margin-left: 5px;
@@ -145,11 +172,17 @@ body::-webkit-scrollbar-track {
 .modal-detail-left {
 	height: 90vh;
 }
+.modal-detail .carousel-inner {
+	position: relative;
+    width: 100%;
+    overflow: auto;
+    height: 50vh;
+}
 .modal-detail .carousel-item img {
 	width: 100%;
-	height: 50vh;
-	margin: 0;
-	padding: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .modal-detail .posting-master {
