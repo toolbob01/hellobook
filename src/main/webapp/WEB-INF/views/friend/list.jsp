@@ -9,6 +9,7 @@ friendlist {
 	width: 100%;
 	font-family: fontello, 'Nanum Gothic', sans-serif, Arial;
 	background-color: white;
+	
 }
 
 .friend {
@@ -16,12 +17,19 @@ friendlist {
 	top: 0;
 	left: 0;
 	display: grid;
-	grid-template-columns: 5rem 1.25rem auto 1.25rem;
+	grid-template-columns: 1.5rem 1.25rem auto 3rem;
 	grid-template-rows: 1.875rem 3.125rem auto 6.25rem;
 	gap: 0;
 	align-items: stretch;
 	grid-template-areas: "nav  .  setting  . " "nav  .   header  . "
-		"nav  .    main   . "
+		"nav  .    main   . ";
+		background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 }
 
 header {
@@ -31,22 +39,9 @@ header {
 	background-color: white;
 }
 
-header span {
-	float: right;
-	margin-left: 15px;
-	font-size: 24px;
-	color: gray;
-}
-
 header>* {
 	line-height: 50px;
 	vertical-align: middle;
-}
-
-h1 {
-	font-size: 24px;
-	font-weight: bold;
-	display: inline;
 }
 
 /* 네비게이션 스타일 지정 */
@@ -149,30 +144,17 @@ li>img {
 
 		<!-- 헤더 영역 -->
 		<header style="display: block;">
-			<h1>친구 목록</h1>
-			<span>친구 찾기</span>
+			<button class="btn btn-light" type="submit"
+				style="font-size: 24px; font-weight: bold; display: inline; background-color:white;">친구
+				목록</button>
+			<button class="btn btn-light" type="submit"
+				style="float: right; margin-left: 15px; font-size: 24px; color: gray; background-color:white;">친구
+				찾기</button>
 		</header>
-		<!-- 각종 기능 nav 영역 -->
-		<nav>
-			<div class="main-menu">
-				<a href="friend.html"><img src="/resources/imgs/instagram.png"></a>
-				<a href="friend.html"><img src="/resources/imgs/instagram.png"></a>
-				<a href="friend.html"><img src="/resources/imgs/instagram.png"></a>
-				<a href="friend.html"><img src="/resources/imgs/instagram.png"></a>
-			</div>
 
-		</nav>
-		<!-- My 프로필 표시 부분 -->
+	
 		<main>
-			<div>
-				<ul>
-					<li><img src="/resources/imgs/me.png" alt="프로필">
-						<div class="profile">
-							<p>Hellobook</p>
-							<p>상태메시지 영역</p>
-						</div></li>
-				</ul>
-			</div>
+			
 			<!-- 즐겨찾기 부분-->
 			<div>
 				<div class="profile-title">
