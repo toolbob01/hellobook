@@ -15,9 +15,31 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/mypage.css">
 
-<link rel="stylesheet" href="/resources/css/mypage.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 <style>
+
+@font-face {
+    font-family: 'Inconsolata';
+  
+         unicode-range: U+0041-005A, U+0061-007A;
+}
+
+
+@font-face {
+    font-family: 'Kosugi Maru';
+   
+         unicode-range:	U+3041-U+3096, U+309D, U+309E, U+30A1 - U+30FA, U+30FC, U+FF10 - U+FF19;
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+   
+         unicode-range: U+AC00-D7A3;
+        }
+
 .login {
 	width: 380px;
 	height: 350px;
@@ -33,7 +55,8 @@
 	border-radius: 10px;
 	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	font-family: 'Inconsolata', 'Kosugi Maru', 'Noto Sans KR';
 }
 
 img.logo_hellobook {

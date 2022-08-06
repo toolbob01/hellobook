@@ -39,7 +39,7 @@
 								</div>
 								<div class="user_name">
 									<div class="nick_name m_text">Hanulso</div>
-									<div class="country s_text">Seoul, South Korea</div>
+									<div class="country s_text">東京, 日本</div>
 								</div>
 							</div>
 <!-- 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div> -->
