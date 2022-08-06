@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
-
 <div class="container-fluid">
 	<div class="container">
 		<div class="row post-main-view-row">
