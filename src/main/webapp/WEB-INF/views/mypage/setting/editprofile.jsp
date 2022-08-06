@@ -112,11 +112,11 @@ body {
 						</div>
 						<div class="col-md-6 mb-3">
 							
-							<button class="btn-hellobook" style="width:auto;border-radius:10px;">카카오 계정 연동</button> 
+							<button class="btn btn-primary" style="width:auto;border-radius:10px;">카카오 계정 연동</button> 
 							
 						</div>
 						<div class="col-md-6 mb-3">
-							<button class="btn-hellobook" style="width:auto;border-radius:10px;">페이스북 계정 연동</button>
+							<button class="btn btn-primary" style="width:auto;border-radius:10px;">페이스북 계정 연동</button>
 						</div>
 
 						
@@ -166,7 +166,7 @@ body {
 					<hr class="mb-4">
 
 					<div class="mb-4"></div>
-					<button class="btn btn-helloblue btn-lg btn-block" type="submit">수정	</button>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">수정	</button>
 				</form>
 			</div>
 			</div>
