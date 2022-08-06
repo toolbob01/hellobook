@@ -1,6 +1,10 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: Gyoon
+=======
+Built-By: ￫ﾰﾕ￬ﾤﾀ￭ﾘﾁ
+>>>>>>> 5e56b923808df6f4a0f700028671996257e9c2b4
 Build-Jdk: 11.0.12
 =======
 <<<<<<< HEAD
