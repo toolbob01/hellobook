@@ -1,6 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+    pageEncoding="UTF-8"%>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<!-- BootStrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- BootStrap Icon -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/resources/css/hellobook.css">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/css/mypage.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Inconsolata&family=Kosugi+Maru&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/resources/css/mypage.css">
 
 <style>
 .login {
@@ -18,7 +39,8 @@
 	border-radius: 10px;
 	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	font-family: 'Inconsolata', sans-serif, Kosugi Maru', monospace, 'Dongle', sans-serif;
 }
 
 img.logo_hellobook {
@@ -49,12 +71,11 @@ img.logo_hellobook {
 	outline: none;
 }
 
-#btn_login {
-	width: 268px;
+#btnlogin {
+width: 268px;
 	height: 30px;
 	margin: 13px auto;
 	color: white;
-	background-color: #0d6efd;
 	border: none;
 	border-radius: 3px;
 	font-size: 14px;
@@ -102,12 +123,11 @@ a {
 			alt="hellobook_logo"> <input type="text" class="input_login"
 			name="userID" id="userID" placeholder="이메일을 입력하세요.">
 		<input type="password" class="input_login" name="userPW" id="userPW"
-			placeholder="비밀번호"> <a href="#none"><button
-				id="btn_login" disabled>로그인</button></a> 
+			placeholder="비밀번호"> <a href="#none"><button type="button" class="btn btn-sm btn-primary" id="btnlogin">로그인</button></a> 
 				
 				<a class="btn btn-block btn-social btn-facebook"
 			onclick="document.facebook.submit();"> <span
-			class="fa fa-facebook"></span>Facebook으로 로그인
+			class="fa fa-facebook" ></span>Facebook으로 로그인
 		</a>
 		
 		<a class="btn btn-block btn-social btn-google" onclick="document.google.submit();">
@@ -119,5 +139,3 @@ a {
 	<script src="js/login.js"></script>
 </body>
 </html>
-
-<%@ include file="../footer.jsp"%>

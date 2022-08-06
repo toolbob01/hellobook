@@ -2,7 +2,9 @@
 
 body {
 	background-color: #f8f9f9;
+
 }
+
 
 .nav-gradation {
 	background: linear-gradient(to bottom,#9fd5ff, #f8f9f9);
