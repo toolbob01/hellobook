@@ -178,7 +178,7 @@ body {
 							</div>
 							<br/>
 							<div id="button_div">
-								<button class="btn btn-helloblue btn-lg btn-block" id="quitBtn" type="button">탈퇴</button>
+								<button class="btn btn-primary btn-lg btn-block" id="quitBtn" type="button">탈퇴</button>
 							</div>
 						</form>
 					</div>

@@ -3,13 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <!-- BootStrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- BootStrap Icon -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Inconsolata&family=Kosugi+Maru&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="/resources/css/hellobook.css">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
@@ -36,22 +42,22 @@
         </ul>
 
         <div class="dropdown d-flex justify-content-center text-end nav-memu">
-            <div class="mx-2">
+            <div class="mx-2 header-icon">
             	<a href="/">
             		<img src="https://img.icons8.com/ios-glyphs/30/000000/home-page--v1.png"/>
             	</a>
             </div>
-            <div class="mx-2">
+            <div class="mx-2 header-icon">
             	<a href="/friend/list">
             		<img src="https://img.icons8.com/ios-glyphs/30/000000/contacts.png"/>
             	</a>
             </div>
-            <div class="mx-2">
+            <div class="mx-2 header-icon">
             	<a href="/chat/chat_list">
                 	<img src="https://img.icons8.com/ios-glyphs/30/000000/speech-bubble-with-dots.png"/>
                 </a>
             </div>
-            <div class="mx-2">
+            <div class="mx-2 header-icon">
             	<a href="/post/post_write">
                 	<img src="https://img.icons8.com/ios-glyphs/30/000000/add--v1.png"/>
                 </a>

@@ -117,8 +117,8 @@ body {
 								<i class="fa-solid fa-eye"></i>
 							</div>
 						</div>
-						<button class="btn btn-helloblue btn-lg btn-block" id="changePwBtn" type="submit">확인</button>
-						<button class="btn btn-helloblue btn-lg btn-block" id="cancleBtn" type="button">취소</button>
+						<button class="btn btn-primary btn-lg btn-block" id="changePwBtn" type="submit">확인</button>
+						<button class="btn btn-outline-primary btn-lg btn-block" id="cancleBtn" type="button">취소</button>
 					</form>
 					</div>
 				</div>

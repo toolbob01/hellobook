@@ -1,7 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- BootStrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- BootStrap Icon -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/resources/css/hellobook.css">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/css/mypage.css">
 
+<link rel="stylesheet" href="/resources/css/mypage.css">
 
 <style>
 .login {
@@ -50,21 +64,18 @@ img.logo_hellobook {
 	outline: none;
 }
 
-#btn_login {
-	width: 268px;
+#btnSearchPwd {
+width: 268px;
 	height: 30px;
 	margin: 13px auto;
-	color: #000;
-	background-color: #9fd5ff;
+	color: white;
 	border: none;
 	border-radius: 3px;
 	font-size: 14px;
 	font-weight: 600;
 }
 
-#btn_login:disabled {
-	background-color: #9fd5ff;
-}
+
 
 #btn_login:disabled:hover {
 	cursor: default;
@@ -106,8 +117,7 @@ a {
 	
 			<input type="text" class="input_login"
 			name="userID" id="userID" placeholder="회원가입한 이메일을 입력하세요.">
-	<a href="#none"><button
-				id="btn_login" disabled>비밀번호 찾기</button></a> 
+	<a href="#none"><button type="button" class="btn btn-primary" id="btnSearchPwd">비밀번호 찾기</button></a> 
 				
 			
 		
@@ -121,4 +131,3 @@ a {
 
 
 
-<%@ include file="../footer.jsp" %>
