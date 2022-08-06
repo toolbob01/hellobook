@@ -112,11 +112,11 @@ body {
 						</div>
 						<div class="col-md-6 mb-3">
 							
-							<button class="btn-hellobook" style="width:auto;">카카오 계정 연동</button> 
+							<button class="btn-hellobook" style="width:auto;border-radius:10px;">카카오 계정 연동</button> 
 							
 						</div>
 						<div class="col-md-6 mb-3">
-							<button class="btn-hellobook" style="width:auto;">페이스북 계정 연동</button>
+							<button class="btn-hellobook" style="width:auto;border-radius:10px;">페이스북 계정 연동</button>
 						</div>
 
 						
