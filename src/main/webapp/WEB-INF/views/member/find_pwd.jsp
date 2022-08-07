@@ -1,15 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <!-- BootStrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 <!-- BootStrap Icon -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/resources/css/hellobook.css">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
@@ -17,28 +25,26 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 
 <style>
-
 @font-face {
-    font-family: 'Inconsolata';
-  
-         unicode-range: U+0041-005A, U+0061-007A;
-}
-
-
-@font-face {
-    font-family: 'Kosugi Maru';
-   
-         unicode-range:	U+3041-U+3096, U+309D, U+309E, U+30A1 - U+30FA, U+30FC, U+FF10 - U+FF19;
+	font-family: 'Inconsolata';
+	unicode-range: U+0041-005A, U+0061-007A;
 }
 
 @font-face {
-    font-family: 'Noto Sans KR';
-   
-         unicode-range: U+AC00-D7A3;
-        }
+	font-family: 'Kosugi Maru';
+	unicode-range: U+3041 -U +3096, U+309D, U+309E, U+30A1- U+30FA, U+30FC,
+		U+FF10- U+FF19;
+}
+
+@font-face {
+	font-family: 'Noto Sans KR';
+	unicode-range: U+AC00-D7A3;
+}
 
 .login {
 	width: 380px;
@@ -88,7 +94,7 @@ img.logo_hellobook {
 }
 
 #btnSearchPwd {
-width: 268px;
+	width: 268px;
 	height: 30px;
 	margin: 13px auto;
 	color: white;
@@ -97,8 +103,6 @@ width: 268px;
 	font-size: 14px;
 	font-weight: 600;
 }
-
-
 
 #btn_login:disabled:hover {
 	cursor: default;
@@ -126,27 +130,17 @@ a {
 .button_forgot:hover {
 	cursor: pointer;
 }
-
-
 </style>
-
-
-
-
 <body>
 	<div class="container login">
 		<img class="logo_hellobook" src="/resources/imgs/logo.png"
-			alt="hellobook_logo"> 
-	
-			<input type="text" class="input_login"
-			name="userID" id="userID" placeholder="회원가입한 이메일을 입력하세요.">
-	<a href="#none"><button type="button" class="btn btn-primary" id="btnSearchPwd">비밀번호 찾기</button></a> 
-				
-			
-		
-		
-		 <span class="button_forgot" onclick="location.href='/member/login'">로그인으로</span>
-		  <span class="button_forgot" onclick="location.href='/member/join'" style="margin-top:5px;" >새 계정 만들기</span>
+			alt="hellobook_logo"> <input type="text" class="input_login"
+			name="userID" id="userID" placeholder="회원가입한 이메일을 입력하세요."> <a
+			href="#none"><button type="button" class="btn btn-primary"
+				id="btnSearchPwd">비밀번호 찾기</button></a> <span class="button_forgot"
+			onclick="location.href='/member/login'">로그인으로</span> <span
+			class="button_forgot" onclick="location.href='/member/join'"
+			style="margin-top: 5px;">새 계정 만들기</span>
 	</div>
 	<script src="js/login.js"></script>
 </body>
