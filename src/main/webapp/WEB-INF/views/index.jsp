@@ -39,7 +39,7 @@
 								</div>
 								<div class="user_name">
 									<div class="nick_name m_text">Hanulso</div>
-									<div class="country s_text">東京, 日本</div>
+									<div class="mt-1 s_text">東京, 日本</div>
 								</div>
 							</div>
 <!-- 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div> -->
@@ -105,7 +105,7 @@
 							<div class="comment">
 								<div class="nick_name m_text">jgc</div>
 								<div class="real_comment">
-									강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 
+									尻尾が長すぎ ! Too long tail ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 
 								</div>
 							</div>
 							<div class="comment">
