@@ -66,7 +66,6 @@
 }
 </style>
 
-<body>
 	<div class="container postwrite">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
@@ -99,21 +98,6 @@
 		</div>
 
 	</div>
-
-</body>
-
-
-
-
-
-
-
-
-
-
-
-</html>
-
 
 
 <%@ include file="../footer.jsp"%>
