@@ -26,7 +26,7 @@ body {
 }
 
 label.form-check-label {
-    margin: auto;
+    margin-top: 5px;
     vertical-align: middle;
 }
 
@@ -206,7 +206,7 @@ h4.mb-3 {
 					<label class="custom-control-label" for="agreement">개인정보 수집 및 이용에 동의합니다.</label>
 				</div>
 				<div class="mb-4"></div>
-				<button class="btn btn-helloblue btn-lg btn-block" type="button" onclick="formCheck()">가입
+				<button class="btn btn-primary btn-lg btn-block" type="button" onclick="formCheck()">가입
 				</button>
 				
 				<input type="hidden" name="hobby" id="hobby" value="">
