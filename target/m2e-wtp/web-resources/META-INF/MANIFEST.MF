@@ -1,5 +1,13 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: home
+=======
+<<<<<<< HEAD
+Built-By: home
+=======
+Built-By: Gyoon
+>>>>>>> 849478a25990127b8b5733ef4e9add2a7b3c434b
+>>>>>>> master
 Build-Jdk: 11.0.12
 Created-By: Maven Integration for Eclipse
 
