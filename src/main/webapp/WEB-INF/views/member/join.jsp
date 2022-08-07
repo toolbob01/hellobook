@@ -26,7 +26,7 @@ body {
 }
 
 label.form-check-label {
-    margin: auto;
+    margin-top: 5px;
     vertical-align: middle;
 }
 
