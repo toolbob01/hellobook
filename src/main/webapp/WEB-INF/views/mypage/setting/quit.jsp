@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../header.jsp"%>
 <head>
-<script src="https://kit.fontawesome.com/aa30b88fc4.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/aa30b88fc4.js" crossorigin="anonymous"></script>
 </head>
 <style>
 body {
