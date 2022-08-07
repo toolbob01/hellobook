@@ -9,13 +9,13 @@
 		
 		
 		<div class="font-test" style="border: soild 3px black; margin: 100px; font-size: 30px; line-height: 1.5;">
-			<p>이것은 한글입니다 ~</p>
-			<p>This is English ~</p>
+			<p>이것은 한글입니다 ~ 12341231241 10월 10일</p>
+			<p>This is English ~ 10 10 1212412</p>
 			<p>これは、日本語でござる。分かりました。難しい。優しい。気持ちいい。<br>12345　10月10日　2022年　社長　先生　学生　大学　あかさたなはまやらわ　アカサタナハマヤラワ</p>
 		</div>
 		<div class="font-test" style="border: soild 3px black; margin: 50px; font-size: 20px; line-height: 1.5;">
-			<p>이것은 한글입니다 ~</p>
-			<p>This is English ~</p>
+			<p>이것은 한글입니다 ~ 12341231241 10월 10일</p>
+			<p>This is English ~ 10 10 1212412</p>
 			<p>これは、日本語でござる。分かりました。難しい。優しい。気持ちいい。<br>12345　10月10日　2022年　社長　先生　学生　大学　あかさたなはまやらわ　アカサタナハマヤラワ</p>
 		</div>
 		<div class="font-test" style="border: soild 3px black; margin: 50px; font-size: 10px; line-height: 1.5;">
@@ -39,7 +39,7 @@
 								</div>
 								<div class="user_name">
 									<div class="nick_name m_text">Hanulso</div>
-									<div class="country s_text">東京, 日本</div>
+									<div class="mt-1 s_text">東京, 日本</div>
 								</div>
 							</div>
 <!-- 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div> -->
@@ -105,7 +105,7 @@
 							<div class="comment">
 								<div class="nick_name m_text">jgc</div>
 								<div class="real_comment">
-									강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 
+									尻尾が長すぎ ! Too long tail ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 
 								</div>
 							</div>
 							<div class="comment">

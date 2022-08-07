@@ -23,7 +23,7 @@ body::-webkit-scrollbar-thumb {
 /*     background: linear-gradient(to bottom,#9fd5ff, #f8f9f9); */
 	background: linear-gradient(to top,#9fd5ff, white);
     background-clip: padding-box;
-    border: 2.5px solid #ccc;
+    border: 1.5px solid #ccc;
     border-radius: 10px;
 }
 body::-webkit-scrollbar-track {
@@ -250,7 +250,7 @@ body::-webkit-scrollbar-track {
 	font-weight: bold;
 }
 .comment-time, .comment-cocoment {
-	font-size: 16px;
+	font-size: 12px;
 	color: grey;
 	padding: 5px;
 }
@@ -436,7 +436,7 @@ body::-webkit-scrollbar-track {
 }
 
 .m_text{
-    font-size: 14px;
+    font-size: 17px;
     font-weight: bold;
 }
 
@@ -705,12 +705,13 @@ body{
     overflow:hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
+    margin-top: 3px;
 }
 .more-comment-div {
 	margin-top: 15px;
 	margin-bottom: 30px;
 }
-.more-comment { font-size: 25px; }
+.more-comment { font-size: 20px; }
 .more-comment:hover{
 	cursor: pointer;
 	color: #ccc;
@@ -721,10 +722,9 @@ body{
 }
 
 .contents .timer {
-	font-size: 10px;
+	font-size: 12px;
 	letter-spacing: 0.2px;
 	color: #999;
-/* 	border-bottom: 1px solid rgba(0,0,0,0.09); */
 	padding: 10px 20px;
 }
 
