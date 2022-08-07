@@ -144,10 +144,10 @@ li>img {
 
 		<!-- 헤더 영역 -->
 		<header style="display: block;">
-			<button class="btn btn-light" type="submit"
+			<button class="btn btn-light" type="submit" 
 				style="font-size: 24px; font-weight: bold; display: inline; background-color:white;">친구
 				목록</button>
-			<button class="btn btn-light" type="submit"
+			<button class="btn btn-light" type="submit" onclick="location.href='/friend/search'"
 				style="float: right; margin-left: 15px; font-size: 24px; color: gray; background-color:white;">친구
 				찾기</button>
 		</header>
