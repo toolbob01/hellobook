@@ -94,84 +94,239 @@ body {
 				<div id="notice">
 					<h4 class="mb-3">프로필 수정</h4>
 				</div>
-				<form class="validation-form" novalidate="">
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<label for="nickname">닉네임</label> <input type="text" class="form-control" id="nickname" placeholder="" value="" required="">
-							<div class="invalid-feedback">닉네임을 입력해주세요.</div>
+				<form class="validation-form" id="regForm" action="regtest" method="post" novalidate>
+				<div class="row">
+					<div class="col-md-12 mb-3">
+						<div class="input_div">
+							<label for="nickname">닉네임</label> <input type="text"
+								class="form-control" id="nickname" name="nickname" placeholder="">
+							<div class="notice-bubble" id="nickname-notice"></div>
 						</div>
-						
-						<div class="col-md-8 mb-3">
-							<label for="code">전화번호</label> <input type="text" class="form-control" id="code" placeholder="" required="">
-
+					</div>
+					
+					<div class="col-md-12 mb-3">
+						<div class="input_div">
+							<label for="language">모국어</label><br>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" name="language" id="korean" value="K" onclick="checkOnlyOne(this)">
+								<label class="form-check-label" for="korean">한국어</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" name="language" id="japanese" value="J" onclick="checkOnlyOne(this)">
+									<label class="form-check-label" for="japanese">일본어</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" name="language" id="etc" value="E" onclick="checkOnlyOne(this)">
+								<label class="form-check-label" for="etc">기타</label>
+							</div>
+							<div class="notice-bubble" id="lan-notice">모국어를 선택해주세요.</div>
 						</div>
-
-						<div class="col-md-2 mb-3">
-							<label for="code">연령(만)</label> <input type="text" class="form-control" id="code" placeholder="" required="">
-
+					</div>
+					<div class="col-md-12 mb-3">
+						<div class="input_div">
+							<label for="birth">생년월일</label>
+							<input type="date" class="form-control" name="birth" id="birth" min="1900-01-01" style="width: 50%; min-width: 10px;" >
+							<div class="notice-bubble" id="birth-notice"></div>
 						</div>
-						<div class="col-md-6 mb-3">
-							
-							<button class="btn btn-primary" style="width:auto;border-radius:10px;">카카오 계정 연동</button> 
-							
+					</div>
+					<div class="col-md-12 mb-3">
+						<div class="input_div">
+							<label for="sex">성별</label><br>
+							<div class="row" id="sexCheckDiv">
+								<div class="form-check col-md-3 mb-3">
+									<input class="form-check-input" type="radio" name="sex" id="male" value="M" checked>
+									<label class="form-check-label" for="male">남성</label>
+								</div>
+								<div class="form-check col-md-3 mb-3">
+									<input class="form-check-input" type="radio" name="sex" id="female" value="F">
+									<label class="form-check-label" for="female">여성</label>
+								</div>
+							</div>
 						</div>
-						<div class="col-md-6 mb-3">
-							<button class="btn btn-primary" style="width:auto;border-radius:10px;">페이스북 계정 연동</button>
-						</div>
-
-						
-						<div class="mb-3">
+					</div>
+					<div class="mb-3">
+						<div class="row" id="hobbyCheckBox">
 							<label for="nickname">관심분야</label><br>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> <label class="form-check-label" for="inlineCheckbox1">여행</label>
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" type="checkbox" name="hobbys" id="trip" value="1" >
+								<label class="form-check-label" for="trip">여행</label>
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> <label class="form-check-label" for="inlineCheckbox2">음식</label>
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" type="checkbox" name="hobbys" id="food" value="2" > 
+								<label class="form-check-label" for="food">음식</label>
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> <label class="form-check-label" for="inlineCheckbox2">언어</label>
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" type="checkbox" name="hobbys" id="lan" value="3" > 
+								<label class="form-check-label" for="lan">언어</label>
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> <label class="form-check-label" for="inlineCheckbox2">악기</label>
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" type="checkbox" name="hobbys" id="instrument" value="4" > 
+								<label class="form-check-label" for="instrument">악기</label>
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> <label class="form-check-label" for="inlineCheckbox2">독서</label>
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" type="checkbox" name="hobbys" id="reading" value="5" >
+								<label class="form-check-label" for="reading">독서</label>
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> <label class="form-check-label" for="inlineCheckbox2">운동</label>
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" type="checkbox" name="hobbys" id="exercise" value="6" >
+								<label class="form-check-label" for="exercise">운동</label>
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> <label class="form-check-label" for="inlineCheckbox2">사진</label>
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" type="checkbox" name="hobbys" id="photo" value="7" >
+								<label class="form-check-label" for="photo">사진</label>
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> <label class="form-check-label" for="inlineCheckbox2">음악</label>
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" type="checkbox" name="hobbys" id="music" value="8" >
+								<label class="form-check-label" for="music">음악</label>
 							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> <label class="form-check-label" for="inlineCheckbox2">동물</label>
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" type="checkbox" name="hobbys" id="animal" value="9" >
+								<label class="form-check-label" for="animal">동물</label>
 							</div>
-
-
 						</div>
-					</div>	
-					
+					</div>
+				</div>
 
-					
-
-					
-						
-
-
-
-
-					<hr class="mb-4">
-
-					<div class="mb-4"></div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit">수정	</button>
-				</form>
+				<hr class="mb-4">
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="agreement" name="agreement" required>
+					<label class="custom-control-label" for="agreement">개인정보 수집 및 이용에 동의합니다.</label>
+				</div>
+				<div class="mb-4"></div>
+				<button class="btn btn-primary btn-lg btn-block" type="button" onclick="formCheck()">가입
+				</button>
+				
+				<input type="hidden" name="hobby" id="hobby" value="">
+			</form>
 			</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+function checkOnlyOne(element) {
+	const checkboxes = document.getElementsByName("language");
+	checkboxes.forEach((cb)=> {
+		cb.checked = false;
+	})
+	
+	element.checked = true;
+}
+
+function checkForm(){
+	console.log("유효성 검사");
+}
+
+
+
+const nickname = $("#nickname");
+const language = document.getElementsByName("language");
+const birth = $("#birth");
+const sex = $("#sex");
+const hobbys = document.getElementsByName("hobbys");
+const hobby = $("#hobby");
+
+const nicknameNotice = $("#nickname-notice");
+const lanNotice = $("#lan-notice");
+const birthNotice = $("#birth-notice");
+
+var pwCheck = /^(?=.*?[a-zA-Z0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+//blur 이벤트
+nickname.on("blur",function(){
+	nicknameNotice.css('display','none')
+	
+	if(nickname.val() == ''){
+		nicknameNotice.html("닉네임을 입력해주세요.");
+		nicknameNotice.css('display','flex')
+		nickname.focus();
+		return
+	}
+	
+	if(nickname.val().search(/\s/) != -1){
+		nicknameNotice.html("닉네임은 공백을 포함할 수 없습니다.");
+		nicknameNotice.css('display','flex')
+		nickname.focus();
+		return
+	}
+})
+
+birth.on("blur",function(){
+	birthNotice.css('display','none')
+	
+	if(birth.val() == ''){
+		birthNotice.html("생년월일을 입력해주세요.")
+		birthNotice.css('display','flex')
+		birth.focus();
+		return
+	}
+	
+	if(birth.val().substr(0,4) < 1900){
+		birthNotice.html("1900년 미만은 입력하실 수 없습니다.")
+		birthNotice.css('display','flex')
+		birth.val("");
+		birth.focus();
+		return
+	}
+})
+
+//유효성 검사
+function formCheck(){
+	
+	if(nickname.val() == ''){
+		alert("닉네임을 입력해주세요.");
+		nickname.focus();
+		return
+	}
+	
+	if(nickname.val().search(/\s/) != -1){
+		alert("닉네임은 공백을 포함할 수 없습니다.");
+		nickname.focus();
+		return
+	}
+
+	var i=0;
+	
+	language.forEach((lan)=> {
+		if(lan.checked){
+			i++;
+		}
+	})
+	
+	if(i != 1){
+		alert("모국어를 선택해주세요.")
+		return
+	}
+	
+	if(birth.val() == ''){
+		alert("생년월일을 입력해주세요.")
+		birth.focus();
+		return
+	}
+	
+	if(birth.val().substr(0,4) < 1900){
+		alert("1900년 미만은 입력하실 수 없습니다.")
+		birth.val("");
+		birth.focus();
+		return
+	}
+	
+	var hb="";
+	
+	hobbys.forEach((arr)=> {
+		if(arr.checked){
+			hb += arr.value+','
+			arr.setAttribute('disabled','disabled');
+		}
+	})
+	
+	hb = hb.substr(0,hb.length-1);
+	
+	hobby.val(hb);
+	
+	$("#regForm").submit();
+}
+</script>
 
 <%@ include file="../../footer.jsp" %>

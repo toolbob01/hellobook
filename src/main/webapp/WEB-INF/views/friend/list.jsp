@@ -2,12 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <style>
-friendlist {
-	display: flex;
+#friendlist {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	font-family: fontello, 'Nanum Gothic', sans-serif, Arial;
 	background-color: white;
 	
 }
@@ -32,54 +30,21 @@ friendlist {
 	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 }
 
-header {
+.friendlist_header {
 	grid-area: header;
 	position: static;
 	top: 30px;
 	background-color: white;
 }
 
-header>* {
+.friendlist_header>* {
 	line-height: 50px;
 	vertical-align: middle;
 }
 
-/* 네비게이션 스타일 지정 */
-nav {
-	grid-area: nav;
-	background-color: gray;
-	align-self: start;
-	position: sticky;
-	top: 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 100vh;
-}
-
-.main-menu img {
-	width: 50px;
-	height: 50px;
-	display: block;
-	margin: 0px auto;
-	margin-top: 25px;
-}
-
-.main-menu i, .sub-menu i {
-	display: block;
-	font-size: 1.75rem;
-	color: gray;
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.main-menu {
-	margin-top: 50px;
-}
-
 /* 메인 스타일 지정 */
 /* 친구 리스트 부분*/
-main {
+.friendlist_main {
 	grid-area: main;
 	display: flex;
 	flex-wrap: wrap;
@@ -88,7 +53,7 @@ main {
 	margin-left: 2px;
 }
 
-ul {
+.friendlist_ul {
 	list-style: none;
 	padding-left: 0;
 }
@@ -101,7 +66,7 @@ ul {
 }
 
 /* 메인 프로필들 li부분 */
-li {
+.friendlist_ul>li {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -111,7 +76,7 @@ li {
 	align-items: center;
 }
 /* 프로필사진 사이즈 */
-li>img {
+.friendlist_ul>li>img {
 	width: 50px;
 }
 /* 이름과 프로필 사진의 margin */
@@ -143,8 +108,13 @@ li>img {
 	<div class="container friend">
 
 		<!-- 헤더 영역 -->
+<<<<<<< HEAD
 		<header style="display: block;">
 			<button class="btn btn-light" type="submit" 
+=======
+		<header class="friendlist_header" style="display: block;">
+			<button class="btn btn-light" type="submit"
+>>>>>>> 849478a25990127b8b5733ef4e9add2a7b3c434b
 				style="font-size: 24px; font-weight: bold; display: inline; background-color:white;">친구
 				목록</button>
 			<button class="btn btn-light" type="submit" onclick="location.href='/friend/search'"
@@ -153,14 +123,14 @@ li>img {
 		</header>
 
 	
-		<main>
+		<main class="friendlist_main">
 			
 			<!-- 즐겨찾기 부분-->
 			<div>
 				<div class="profile-title">
 					<h2>즐겨찾기</h2>
 				</div>
-				<ul>
+				<ul class="friendlist_ul">
 					<li><img src="/resources/imgs/me.png" alt="친구1프로필사진">
 						<div class="profile">
 							<p>친구1</p>
@@ -179,7 +149,7 @@ li>img {
 					<h2>친구</h2>
 					<p>친구 수 표시</p>
 				</div>
-				<ul>
+				<ul class="friendlist_ul">
 					<li><img src="/resources/imgs/me.png" alt="친구3프로필사진">
 						<div class="profile">
 							<p>친구3</p>
