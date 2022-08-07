@@ -9,13 +9,13 @@
 		
 		
 		<div class="font-test" style="border: soild 3px black; margin: 100px; font-size: 30px; line-height: 1.5;">
-			<p>이것은 한글입니다 ~</p>
-			<p>This is English ~</p>
+			<p>이것은 한글입니다 ~ 12341231241 10월 10일</p>
+			<p>This is English ~ 10 10 1212412</p>
 			<p>これは、日本語でござる。分かりました。難しい。優しい。気持ちいい。<br>12345　10月10日　2022年　社長　先生　学生　大学　あかさたなはまやらわ　アカサタナハマヤラワ</p>
 		</div>
 		<div class="font-test" style="border: soild 3px black; margin: 50px; font-size: 20px; line-height: 1.5;">
-			<p>이것은 한글입니다 ~</p>
-			<p>This is English ~</p>
+			<p>이것은 한글입니다 ~ 12341231241 10월 10일</p>
+			<p>This is English ~ 10 10 1212412</p>
 			<p>これは、日本語でござる。分かりました。難しい。優しい。気持ちいい。<br>12345　10月10日　2022年　社長　先生　学生　大学　あかさたなはまやらわ　アカサタナハマヤラワ</p>
 		</div>
 		<div class="font-test" style="border: soild 3px black; margin: 50px; font-size: 10px; line-height: 1.5;">

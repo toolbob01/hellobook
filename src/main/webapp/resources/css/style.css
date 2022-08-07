@@ -710,7 +710,7 @@ body{
 	margin-top: 15px;
 	margin-bottom: 30px;
 }
-.more-comment { font-size: 25px; }
+.more-comment { font-size: 20px; }
 .more-comment:hover{
 	cursor: pointer;
 	color: #ccc;
