@@ -44,7 +44,6 @@
     display: flex;
     justify-content: center;
     border: 0;
-    font: inherit;
     font-size: 100%;
     margin: 0;
     padding: 0;
@@ -60,7 +59,6 @@
     margin-left: auto;
     margin-right: auto;
     border: 0;
-    font: inherit;
     font-size: 100%;
     margin: 0;
     padding: 0;
@@ -73,7 +71,6 @@
 }
 
 .mypage_thumbnail_c {
-	background-color: rgb(var(--ig-secondary-background));
 	border-radius: 50%;
 	box-sizing: border-box;
 	height: 100%;
@@ -92,7 +89,6 @@
 
 .mypage_thumbnail_e {
 	border: 0;
-    font: inherit;
     font-size: 100%;
     height: 100%;
     left: 0;
@@ -122,16 +118,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: rgb(var(--ig-primary-text));
     font-weight: bold;
     font-size: 28px;
-    line-height: var(--system-28-line-height);
+    line-height: 28px;
     margin: -5px 0 -6px;
-    font-family: var(--font-family-system);
 }
 
 .mypage_profile_d {
-	margin-left: calc(var(--base-unit) * 5);
+	margin-left: 5px;
 	flex: 0 1 auto;
 	justify-content: flex-start;
 	flex-direction: row;
@@ -165,30 +159,6 @@
 	box-shadow:402px 0 0 0 rgba(0,0,0,0.5) inset;
 	color:#fff;
 	border-radius: 10px;
-}
-
-.mypage_profile_f {
-    color: #333;
-    position: relative;
-    text-decoration: none;
-    -webkit-user-select: auto;
-    -webkit-appearance: none;
-    background: none;
-    box-sizing: border-box;
-    transition:all 0.9s, color 0.3s;
-    cursor: pointer;
-    display: block;
-    padding: 5px 9px;
-    text-align: center;
-    text-overflow: ellipsis;
-    text-transform: inherit;
-    width: auto;
-    font: inherit;
-    margin: 0;
-    vertical-align: baseline;
-    touch-action: manipulation;
-    list-style: none;
-    outline: none;
 }
 
 .mypage_profile_g {
@@ -230,10 +200,9 @@
 
 .mypage_info_b {
 	margin-left: 0;
-	font-size: var(--system-16-font-size);
+	font-size: 16px;
     margin-right: 40px;
     border: 0;
-    font: inherit;
     padding: 0;
     vertical-align: baseline;
     display: list-item;
@@ -242,12 +211,8 @@
 
 .mypage_info_c {
 	display: block;
-	color: rgb(var(--ig-primary-text));
 	font-weight: bold;
 	margin: 0;
-	font-size: var(--system-16-font-size);
-    line-height: var(--system-16-line-height);
-    font-family: var(--font-family-system);
     border: 0;
     padding: 0;
     vertical-align: baseline;
@@ -259,7 +224,6 @@
 }
 
 .mypage_info_d {
-	color: rgb(var(--ig-primary-text));
     border: 0;
     font-weight: normal;
     font-size: 100%;
@@ -275,7 +239,6 @@
     display: block;
     flex-direction: column;
     flex-shrink: 0;
-    font: inherit;
     font-size: 100%;
     margin: 0;
     padding: 0;
@@ -286,28 +249,21 @@
 .mypage_nickname_b {
 	display: inline!important;
     margin: 0!important;
-    color: rgb(var(--ig-primary-text));
-    font-weight: bold;
-    font-size: var(--system-16-font-size);
-    line-height: var(--system-16-line-height);
-    font-family: var(--font-family-system);
+    font-weight: semibold;
     border: 0;
     padding: 0;
     vertical-align: baseline;
 }
 
 .mypage_tablist_a {
-    border-top: 1px solid rgb(var(--ig-separator));
     align-items: center;
     border: 0;
     box-sizing: border-box;
-    color: var(--grey-5);
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
     font: inherit;
     font-size: 12px;
-    font-weight: var(--font-weight-system-semibold);
     justify-content: center;
     letter-spacing: 1px;
     margin: 0;
@@ -320,7 +276,6 @@
 .mypage_tablist_b {
 	align-items: center;
     color: rgb(var(--ig-primary-text));
-    border-top: 1px solid rgb(var(--ig-primary-text));
     cursor: pointer;
     display: flex;
     flex-direction: row;
@@ -413,7 +368,7 @@
 }
 
 .mypage_content_d {
-	border-top: 1px solid #eee;
+	border-top: 1px solid #dee2e6;
 }
 
 .mypage_content_e {
@@ -467,7 +422,7 @@
 
 .mypage_like_b {
 	
-	border-top: 1px solid #eee;
+	border-top: 1px solid #dee2e6;
 	line-height: 100px;
 	text-align: center;
         
