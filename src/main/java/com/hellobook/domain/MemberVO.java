@@ -1,6 +1,6 @@
 package com.hellobook.domain;
 
-import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -14,4 +14,5 @@ public class MemberVO {
 	private String birth;
 	private char sex;
 	private String hobby;
+	private List<AuthVO> authList;
 }
