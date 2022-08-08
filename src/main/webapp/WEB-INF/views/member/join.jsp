@@ -1,8 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
-
+<!DOCTYPE html>
+<html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<!-- BootStrap -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<!-- BootStrap Icon -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/resources/css/hellobook.css">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/css/mypage.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="/resources/css/mypage.css">
+
 <style>
 body {
 	
@@ -208,6 +237,8 @@ h4.mb-3 {
 				<div class="mb-4"></div>
 				<button class="btn btn-primary btn-lg btn-block" type="button" onclick="formCheck()">가입
 				</button>
+				<button class="btn btn-primary btn-lg btn-block" type="button" onclick="testForm()">테스트
+				</button>
 				
 				<input type="hidden" name="hobby" id="hobby" value="">
 				<input type="hidden" name="password" id="password" value="">
@@ -216,243 +247,21 @@ h4.mb-3 {
 	</div>
 </div>
 
+<script type="text/javascript" src="/resources/js/join.js"></script>
 <script>
-
-	/* window.onload = function(){
-		const dateInput = $("#birth")
-		let time = new Date();
-		let month = ('0'+(time.getMonth()+1)).slice(-2);
-		let date = ('0'+time.getDate()).slice(-2);
-		let today = time.getFullYear()+'-'+month+'-'+date;
-		console.log(today);
-		dateInput.val(today);
-	} */
-	
-	function checkOnlyOne(element) {
-		const checkboxes = document.getElementsByName("language");
-		checkboxes.forEach((cb)=> {
-			cb.checked = false;
-		})
+	function testForm(){
 		
-		element.checked = true;
-	}
-	
-	function checkForm(){
-		console.log("유효성 검사");
-	}
-	
-	
-	const email = $("#email");
-	const nickname = $("#nickname");
-	const pw = $("#pw");
-	const pw2 = $("#pw2");
-	const password = $("#password");
-	const language = document.getElementsByName("language");
-	const birth = $("#birth");
-	const sex = $("#sex");
-	const hobbys = document.getElementsByName("hobbys");
-	const hobby = $("#hobby");
-	const agree = $("#agreement");
-	
-	const emailNotice = $("#email-notice");
-	const nicknameNotice = $("#nickname-notice");
-	const pwNotice = $("#pw-notice");
-	const pw2Notice = $("#pw2-notice");
-	const lanNotice = $("#lan-notice");
-	const birthNotice = $("#birth-notice");
-	
-	var pwCheck = /^(?=.*?[a-zA-Z0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-	
-
-	//blur 이벤트
-	email.on("blur",function(){
-		emailNotice.css('display','none')
-		
-		if(email.val() == ''){
-			emailNotice.html("이메일을 입력해주세요.")
-			emailNotice.css('display','flex')
-			email.focus();
-			return
-		}
-	})
-	
-	nickname.on("blur",function(){
-		nicknameNotice.css('display','none')
-		
-		if(nickname.val() == ''){
-			nicknameNotice.html("닉네임을 입력해주세요.");
-			nicknameNotice.css('display','flex')
-			nickname.focus();
-			return
-		}
-		
-		if(nickname.val().search(/\s/) != -1){
-			nicknameNotice.html("닉네임은 공백을 포함할 수 없습니다.");
-			nicknameNotice.css('display','flex')
-			nickname.focus();
-			return
-		}
-	})
-	
-	pw.on("blur",function(){
-		pwNotice.css('display','none')
-		
-		if(pw.val() == ''){
-			pwNotice.html("비밀번호를 입력해주세요.")
-			pwNotice.css('display','flex')
-			pw.focus();
-			return
-		}
-		
-		if(pw.val().search(/\s/) != -1){
-			pwNotice.html("비밀번호는 공백을 포함할 수 없습니다.")
-			pwNotice.css('display','flex')
-			pw.focus();
-			return
-		}
-		
-		if(pw.val().length < 8 || !pwCheck.test(pw.val())){
-			pwNotice.html("8자리 이상, 두가지 이상의 영어 대·소문자, 숫자, 특수문자의 조합이어야 합니다.")
-			pwNotice.css('display','flex')
-			pw.focus();
-			return
-		}
-	})
-	
-	pw2.on("blur",function(){
-		pw2Notice.css('display','none')
-		
-		if(pw2.val() == ''){
-			pw2Notice.html("비밀번호를 입력해주세요.")
-			pw2Notice.css('display','flex')
-			pw2.focus();
-			return
-		}
-		
-		if(pw2.val() != pw.val()){
-			pw2Notice.html("비밀번호가 일치하지 않습니다.")
-			pw2Notice.css('display','flex')
-			return
-		}
-	})
-	
-	birth.on("blur",function(){
-		birthNotice.css('display','none')
-		
-		if(birth.val() == ''){
-			birthNotice.html("생년월일을 입력해주세요.")
-			birthNotice.css('display','flex')
-			birth.focus();
-			return
-		}
-		
-		if(birth.val().substr(0,4) < 1900){
-			birthNotice.html("1900년 미만은 입력하실 수 없습니다.")
-			birthNotice.css('display','flex')
-			birth.val("");
-			birth.focus();
-			return
-		}
-	})
-	
-	//유효성 검사
-	function formCheck(){
-		
-		if(!agree.is(":checked")){
-			alert("약관에 동의 후 가입이 가능합니다.");
-			return
-		}
-		
-		if(email.val() == ''){
-			alert("이메일을 입력해주세요.");
-			email.focus();
-			return
-		}
-		
-		if(nickname.val() == ''){
-			alert("닉네임을 입력해주세요.");
-			nickname.focus();
-			return
-		}
-		
-		if(nickname.val().search(/\s/) != -1){
-			alert("닉네임은 공백을 포함할 수 없습니다.");
-			nickname.focus();
-			return
-		}
-		
-		if(pw.val() == ''){
-			alert("비밀번호를 입력해주세요.");
-			pw.focus();
-			return
-		}
-		
-		if(pw.val().search(/\s/) != -1){
-			alert("비밀번호는 공백을 포함할 수 없습니다.");
-			pw.focus();
-			return
-		}
-		
-		if(pw.val().length < 8 || !pwCheck.test(pw.val())){
-			alert("8자리 이상, 두가지 이상의 영어 대·소문자, 숫자, 특수문자의 조합이어야 합니다.");
-			pw.focus();
-			return
-		}
-		
-		if(pw2.val() == ''){
-			alert("비밀번호를 입력해주세요.")
-			pw2.focus();
-			return
-		}
-		
-		if(pw2.val() != pw.val()){
-			alert("비밀번호가 일치하지 않습니다.")
-			pw2.focus();
-			return
-		}
-		
-		var i=0;
-		
-		language.forEach((lan)=> {
-			if(lan.checked){
-				i++;
-			}
-		})
-		
-		if(i != 1){
-			alert("모국어를 선택해주세요.")
-			return
-		}
-		
-		if(birth.val() == ''){
-			alert("생년월일을 입력해주세요.")
-			birth.focus();
-			return
-		}
-		
-		if(birth.val().substr(0,4) < 1900){
-			alert("1900년 미만은 입력하실 수 없습니다.")
-			birth.val("");
-			birth.focus();
-			return
-		}
-		
-		var hb="";
-		
-		hobbys.forEach((arr)=> {
-			if(arr.checked){
-				hb += arr.value+','
-				arr.setAttribute('disabled','disabled');
-			}
-		})
-		
-		hb = hb.substr(0,hb.length-1);
-		
-		hobby.val(hb);
+		email.val('test@test.com');
+		nickname.val('테스트용');
+		pw.val('test1234!');
+		pw2.val('test1234!');
+		$('input[id=korean]').prop("checked", true);
+		birth.val('2022-08-07');
+		hobby.val('1,2,3');
 		password.val(pw.val());
 		
 		$("#regForm").submit();
-	}
-	
+}
 </script>
-<%@ include file="../footer.jsp"%>
+</body>
+</html>
