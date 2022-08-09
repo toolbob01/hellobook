@@ -20,6 +20,16 @@
 	</resultMap>
 	
 	
+	<insert id="insertMember">
+		insert into member (email, password, nickname, language, birth, sex, hobby)
+		values (#{email}, #{password}, #{nickname}, #{language}, #{birth}, #{sex}, #{hobby})
+	</insert>
+	
+	<insert id="insertAuth">
+		insert into auth (email)
+		values (#{email})
+	</insert>
+	
 	<select id="read" resultMap="memberMap">
 		select m.email, password, nickname, language, birth, sex, hobby, auth
 		from member m
