@@ -264,6 +264,6 @@ a {
 			<input type="hidden" name="password" id="password" value="">
 		</form>
 	</div>
-<script type="text/javascript" src="/resources/js/join.js"></script>
+	<script src="/resources/js/join.js"></script>
 </body>
 </html>
