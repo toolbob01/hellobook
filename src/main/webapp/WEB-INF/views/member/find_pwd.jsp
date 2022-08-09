@@ -103,19 +103,67 @@ a {
 .button_forgot:hover {
 	cursor: pointer;
 }
+
+p{
+	font-size: 13px;
+    text-align: left;
+    color: red;
+    margin: 10px 0;
+    display:none;
+}
 </style>
 <body>
 	<div class="container login">
-		<img class="logo_hellobook" src="/resources/imgs/logo.png"
-			alt="hellobook_logo"> <input type="text" class="input_login"
-			name="userID" id="userID" placeholder="회원가입한 이메일을 입력하세요."> <a
-			href="#none"><button type="button" class="btn btn-primary"
-				id="btnSearchPwd">비밀번호 찾기</button></a> <span class="button_forgot"
-			onclick="location.href='/member/login'">로그인으로</span> <span
-			class="button_forgot" onclick="location.href='/member/join'"
-			style="margin-top: 5px;">새 계정 만들기</span>
+		<img class="logo_hellobook" src="/resources/imgs/logo.png" alt="hellobook_logo">
+		<div class="find_pwd_div">
+			<input type="text" class="input_login" name="email" id="email" placeholder="회원가입한 이메일을 입력하세요.">
+			<input type="text" class="input_login" name="code" id="code" placeholder="인증번호를 입력하세요." style="display: none">
+			<input type="text" class="input_login" name="pw" id="pw" placeholder="새 비밀번호" style="display: none">
+			<input type="text" class="input_login" name="pw2" id="pw2" placeholder="비밀번호 확인" style="display: none">
+		</div>
+		<p id = "notice">이메일을 입력해주세요.</p>
+		<button type="button" class="btn btn-primary" id="findPwdBtn" onclick="checkEmail()">비밀번호 찾기</button>
+		<span class="button_forgot" onclick="location.href='/member/login'">로그인으로</span>
+		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;">새 계정 만들기</span>
 	</div>
-	<script src="js/login.js"></script>
+	<script>
+		const email = $("#email");
+		const code = $("#code");
+		const pw = $("#pw");
+		const pw2 = $("#pw2");
+		const notice = $("#notice");
+		const findPwdBtn = $("#findPwdBtn");
+			
+		function checkEmail() {
+			if(email.val() == ''){
+				notice.show();
+				return;
+			}
+			
+			if(email.val() != ''){
+				email.val("");
+				email.hide();
+				notice.hide();
+				code.show();
+				findPwdBtn.attr("onclick","checkCode()");
+			}
+		}
+		
+		function checkCode() {
+			console.log("버튼: 비밀번호!");
+			code.val("");
+			code.hide();
+			pw.show();
+			pw2.show();
+			findPwdBtn.attr("onclick","changePwd()");
+		}
+		
+		function changePwd() {
+			if(pw.val() == pw2.val()){
+				console.log("비밀번호 변경완료!");
+			}
+		}
+	</script>
 </body>
 </html>
 

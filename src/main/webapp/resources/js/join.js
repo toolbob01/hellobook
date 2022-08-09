@@ -51,7 +51,6 @@
 		if(email.val() == ''){
 			emailNotice.html("이메일을 입력해주세요.")
 			emailNotice.css('display','flex')
-			email.focus();
 			return
 		}
 	})
@@ -62,14 +61,12 @@
 		if(nickname.val() == ''){
 			nicknameNotice.html("닉네임을 입력해주세요.");
 			nicknameNotice.css('display','flex')
-			nickname.focus();
 			return
 		}
 		
 		if(nickname.val().search(/\s/) != -1){
 			nicknameNotice.html("닉네임은 공백을 포함할 수 없습니다.");
 			nicknameNotice.css('display','flex')
-			nickname.focus();
 			return
 		}
 	})
@@ -80,21 +77,18 @@
 		if(pw.val() == ''){
 			pwNotice.html("비밀번호를 입력해주세요.")
 			pwNotice.css('display','flex')
-			pw.focus();
 			return
 		}
 		
 		if(pw.val().search(/\s/) != -1){
 			pwNotice.html("비밀번호는 공백을 포함할 수 없습니다.")
 			pwNotice.css('display','flex')
-			pw.focus();
 			return
 		}
 		
 		if(pw.val().length < 8 || !pwCheck.test(pw.val())){
 			pwNotice.html("8자리 이상, 두가지 이상의 영어 대·소문자, 숫자, 특수문자의 조합이어야 합니다.")
 			pwNotice.css('display','flex')
-			pw.focus();
 			return
 		}
 	})
@@ -105,7 +99,6 @@
 		if(pw2.val() == ''){
 			pw2Notice.html("비밀번호를 입력해주세요.")
 			pw2Notice.css('display','flex')
-			pw2.focus();
 			return
 		}
 		
@@ -122,7 +115,6 @@
 		if(birth.val() == ''){
 			birthNotice.html("생년월일을 입력해주세요.")
 			birthNotice.css('display','flex')
-			birth.focus();
 			return
 		}
 		
@@ -130,7 +122,6 @@
 			birthNotice.html("1900년 미만은 입력하실 수 없습니다.")
 			birthNotice.css('display','flex')
 			birth.val("");
-			birth.focus();
 			return
 		}
 	})
