@@ -11,7 +11,7 @@ public class MemberVO {
 	private String email;
 	private String nickname;
 	private String password;
-	private Date birth;
+	private java.sql.Date birth;
 	private char language; 
 	private char sex;       
 	private String hobby;

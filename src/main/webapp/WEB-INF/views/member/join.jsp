@@ -1,36 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-<!-- BootStrap -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<!-- BootStrap Icon -->
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/resources/css/hellobook.css">
-<link rel="stylesheet" href="/resources/css/reset.css">
-<link rel="stylesheet" href="/resources/css/style.css">
-<link rel="stylesheet" href="/resources/css/mypage.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
-
-<link rel="stylesheet" href="/resources/css/mypage.css">
+<%@ include file="../member/memberHeader.jsp" %>
 
 <style>
 body {
@@ -116,7 +86,8 @@ h4.mb-3 {
 	<div class="input-form-backgroud row">
 		<div class="input-form col-md-12 mx-auto">
 			<h4 class="mb-3">회원가입</h4>
-			<form class="validation-form" id="regForm" action="regtest" method="post" novalidate>
+			<form class="validation-form" id="regForm" action="/member/join" method="post" novalidate>
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				<div class="row">
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
@@ -237,9 +208,6 @@ h4.mb-3 {
 				<div class="mb-4"></div>
 				<button class="btn btn-primary btn-lg btn-block" type="button" onclick="formCheck()">가입
 				</button>
-				<button class="btn btn-primary btn-lg btn-block" type="button" onclick="testForm()">테스트
-				</button>
-				
 				<input type="hidden" name="hobby" id="hobby" value="">
 				<input type="hidden" name="password" id="password" value="">
 			</form>
@@ -248,20 +216,5 @@ h4.mb-3 {
 </div>
 
 <script type="text/javascript" src="/resources/js/join.js"></script>
-<script>
-	function testForm(){
-		
-		email.val('test@test.com');
-		nickname.val('테스트용');
-		pw.val('test1234!');
-		pw2.val('test1234!');
-		$('input[id=korean]').prop("checked", true);
-		birth.val('2022-08-07');
-		hobby.val('1,2,3');
-		password.val(pw.val());
-		
-		$("#regForm").submit();
-}
-</script>
 </body>
 </html>
