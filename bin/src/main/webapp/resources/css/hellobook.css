@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f8f9f9;
+
+}
+
+
+.nav-gradation {
+	background: linear-gradient(to bottom,#9fd5ff, #f8f9f9);
+}
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.sticky-side { 
+	position: sticky;
+	position: -webkit-sticky;
+	top:150px;     
+	height:500px;          
+	z-index:1;
+}
+
+@media screen and (max-width: 991px) {
+	.sticky-side {
+		display: none;
+	}
+	
+	.nav-search {
+		display: none;
+	}
+	
+	.nav-logo {
+		position: absolute;
+		top:5px;
+		left:40px;
+	}
+	
+	.nav-right {
+		justify-content: right!important;
+	}
+}
+
