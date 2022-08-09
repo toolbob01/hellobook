@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,11 +80,21 @@ body {
                     <li><a class="dropdown-item" href="/mypage/mypage">프로필</a></li>
                     <li><a class="dropdown-item" href="/mypage/setting/">설정</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"><img src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>로그아웃</a></li>
+                    <li><button class="dropdown-item" onclick="logoutBtn()" style="display: flex; align-items: center;"><img src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>&nbsp;로그아웃</button></li>
                 </ul>
             </div>
         </div>
 
         </div>
     </div>
+    
+    <form class="form-horizontal" method="post" action="/member/logout" id="logoutForm">
+		<input type="hidden" name="${_csrf.parameterName }"value="${_csrf.token }" />
+	</form>
+	
+	<script>
+		function logoutBtn(){
+			$("#logoutForm").submit();
+		}
+	</script>
 </header>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hellobook.mapper.MemberMapper">
+
+	<resultMap type="com.hellobook.domain.MemberVO" id="memberMap">
+		<id property="email" column="email"/>
+		<result property="email" column="email"/>
+		<result property="password" column="password"/>
+		<result property="nickname" column="nickname"/>
+		<result property="language" column="language"/>
+		<result property="birth" column="birth"/>
+		<result property="sex" column="sex"/>
+		<result property="hobby" column="hobby"/>
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	<resultMap type="com.hellobook.domain.AuthVO" id="authMap">
+		<result property="email" column="email"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
+	
+	<insert id="insertMember">
+		insert into member (email, password, nickname, language, birth, sex, hobby)
+		values (#{email}, #{password}, #{nickname}, #{language}, #{birth}, #{sex}, #{hobby})
+	</insert>
+	
+	<insert id="insertAuth">
+		insert into auth (email)
+		values (#{email})
+	</insert>
+	
+	<select id="read" resultMap="memberMap">
+		select m.email, password, nickname, language, birth, sex, hobby, auth
+		from member m
+		left outer join auth a
+		on m.email = a.email
+		where m.email = #{email}
+
+	</select>
+  
+</mapper>
+

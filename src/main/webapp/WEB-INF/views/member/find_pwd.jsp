@@ -1,33 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<!-- BootStrap -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<!-- BootStrap Icon -->
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/resources/css/hellobook.css">
-<link rel="stylesheet" href="/resources/css/reset.css">
-<link rel="stylesheet" href="/resources/css/style.css">
-<link rel="stylesheet" href="/resources/css/mypage.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
+<%@ include file="../member/memberHeader.jsp" %>
 
 <style>
 @font-face {
@@ -130,19 +103,67 @@ a {
 .button_forgot:hover {
 	cursor: pointer;
 }
+
+p{
+	font-size: 13px;
+    text-align: left;
+    color: red;
+    margin: 10px 0;
+    display:none;
+}
 </style>
 <body>
 	<div class="container login">
-		<img class="logo_hellobook" src="/resources/imgs/logo.png"
-			alt="hellobook_logo"> <input type="text" class="input_login"
-			name="userID" id="userID" placeholder="회원가입한 이메일을 입력하세요."> <a
-			href="#none"><button type="button" class="btn btn-primary"
-				id="btnSearchPwd">비밀번호 찾기</button></a> <span class="button_forgot"
-			onclick="location.href='/member/login'">로그인으로</span> <span
-			class="button_forgot" onclick="location.href='/member/join'"
-			style="margin-top: 5px;">새 계정 만들기</span>
+		<img class="logo_hellobook" src="/resources/imgs/logo.png" alt="hellobook_logo">
+		<div class="find_pwd_div">
+			<input type="text" class="input_login" name="email" id="email" placeholder="회원가입한 이메일을 입력하세요.">
+			<input type="text" class="input_login" name="code" id="code" placeholder="인증번호를 입력하세요." style="display: none">
+			<input type="text" class="input_login" name="pw" id="pw" placeholder="새 비밀번호" style="display: none">
+			<input type="text" class="input_login" name="pw2" id="pw2" placeholder="비밀번호 확인" style="display: none">
+		</div>
+		<p id = "notice">이메일을 입력해주세요.</p>
+		<button type="button" class="btn btn-primary" id="findPwdBtn" onclick="checkEmail()">비밀번호 찾기</button>
+		<span class="button_forgot" onclick="location.href='/member/login'">로그인으로</span>
+		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;">새 계정 만들기</span>
 	</div>
-	<script src="js/login.js"></script>
+	<script>
+		const email = $("#email");
+		const code = $("#code");
+		const pw = $("#pw");
+		const pw2 = $("#pw2");
+		const notice = $("#notice");
+		const findPwdBtn = $("#findPwdBtn");
+			
+		function checkEmail() {
+			if(email.val() == ''){
+				notice.show();
+				return;
+			}
+			
+			if(email.val() != ''){
+				email.val("");
+				email.hide();
+				notice.hide();
+				code.show();
+				findPwdBtn.attr("onclick","checkCode()");
+			}
+		}
+		
+		function checkCode() {
+			console.log("버튼: 비밀번호!");
+			code.val("");
+			code.hide();
+			pw.show();
+			pw2.show();
+			findPwdBtn.attr("onclick","changePwd()");
+		}
+		
+		function changePwd() {
+			if(pw.val() == pw2.val()){
+				console.log("비밀번호 변경완료!");
+			}
+		}
+	</script>
 </body>
 </html>
 
