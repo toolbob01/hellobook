@@ -42,6 +42,7 @@ public class FindpwdController {
 	//이메일 등록 유무 확인
 	@PostMapping(value = "/checkemail", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> findEmail(@RequestBody MemberVO mvo) {
+		log.info(mvo);
 		int emailCheck = findpwdService.checkEmail(mvo.getEmail());
 		return emailCheck != 0?
 				new ResponseEntity<>("success",HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
