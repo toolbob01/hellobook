@@ -45,20 +45,35 @@
 					<ul class="mypage_info_a">
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							게시물
+							<a href="#nav-tabContent" style="text-decoration: none;color:#333;">게시물</a>
 							<span class="mypage_info_d">0</span>
 							</div>
 						</li>
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							친구
+							<a href="/friend/list" style="text-decoration: none;color:#333;">친구</a>
 							<span class="mypage_info_d">0</span>
 							</div>
 						</li>
 					</ul>
 					<div class="mypage_nickname_a">
-						<span class="mypage_nickname_b">
-							내 이름은 코난 탐정이죵~ 내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~
+						<p style="font-weight:700;">자기소개</p><br>
+						<span class="mypage_nickname_b py-3">
+							내 이름은 코난 탐정이죵~
+						</span>
+						<br>
+					</div>
+					<div class="mypage_nickname_a py-3">
+						<p style="font-weight:700;">관심분야</p><br>
+						<span class="mypage_nickname_b py-3">
+							<span class="badge bg-primary text-white">여행</span>
+							<span class="badge bg-secondary text-white">음식</span>
+							<span class="badge bg-success text-white">언어</span>
+							<span class="badge bg-danger text-white">악기</span>
+							<span class="badge bg-warning text-dark">독서</span>
+							<span class="badge bg-info text-dark">운동</span>
+							<span class="badge bg-light text-dark">사진</span>
+							<span class="badge bg-dark text-white">음악</span>
 						</span>
 						<br>
 					</div>
