@@ -1,31 +1,40 @@
 package com.hellobook.domain;
 
 import java.util.Date;
+import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PostVO {
 
-	// Writer
+	// Member
 	private String email;
 	private String nickname;
+	private String profile;
+	private String language;
 	
 	// Post
 	private int pno;
 	private String content;
 	private Date pdate;
-	
-	private int like_cnt;
-	private int reply_cnt;
+	private String timer;
 	
 	// Reply
-	private int repno;
-	private String rcontent;
-	private char depth; // '1': 댓글 '2': 대댓글
-
+	private List<PostReplyVO> reply_list;
+	private int reply_cnt;
+	
 	// File
-	private int fno;
-	private String uuid;
+	private List<PostFileVO> file_list;
+	
+	// Like
+	private List<PostLikeVO> like_list;
+	private int like_cnt;
 	
 }
