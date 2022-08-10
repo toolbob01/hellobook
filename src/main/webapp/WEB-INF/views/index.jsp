@@ -48,7 +48,7 @@
 <!-- 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div> -->
 								<sec:authorize access="isAuthenticated()">
 								     <c:if test="true">
-										<div style="display:flex;">
+										<div style="display:flex;" >
 											<span style="margin-left:auto;"><a href="/post/post_update">게시물 수정</a> | <a href="/post/post_delete">게시물 삭제</a></span>
 										</div>
 								     </c:if>
