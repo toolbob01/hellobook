@@ -107,14 +107,36 @@ a {
 .button_forgot:hover {
 	cursor: pointer;
 }
+
+#loginErrorNotice {
+	font-size: 13px;
+    margin-top: 12px;
+    text-align: center;
+    color: red;
+}
+
+.btn-social{
+	border: 1px solid #ccc;
+    width: 268px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-google{
+    margin-top: 13px;
+}
 </style>
 <body>
 	<div class="container login">
 		<img class="logo_hellobook" src="/resources/imgs/logo.png" alt="hellobook_logo">
 		<form action="/login" method="post">
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" >
-			<input type="email" class="input_login" name="email" id="email" placeholder="이메일을 입력하세요.">
+			<input type="text" class="input_login" name="email" id="email" placeholder="이메일을 입력하세요.">
 			<input type="password" class="input_login" name="password" id="password" placeholder="비밀번호를 입력하세요.">
+			<c:if test="${error == '1'}">
+				<p id="loginErrorNotice">아이디 또는 비밀번호가 일치하지 않습니다.</p>
+			</c:if>
 			<button type="submit" class="btn btn-sm btn-primary" id="btnlogin" >로그인</button>
 		</form>
 		<a class="btn btn-block btn-social btn-facebook" onclick="document.facebook.submit();">

@@ -45,20 +45,35 @@
 					<ul class="mypage_info_a">
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							게시물
+							<a href="#nav-tabContent" style="text-decoration: none;color:#333;">게시물</a>
 							<span class="mypage_info_d">0</span>
 							</div>
 						</li>
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							친구
+							<a href="/friend/list" style="text-decoration: none;color:#333;">친구</a>
 							<span class="mypage_info_d">0</span>
 							</div>
 						</li>
 					</ul>
 					<div class="mypage_nickname_a">
-						<span class="mypage_nickname_b">
-							내 이름은 코난 탐정이죵~ 내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~내 이름은 코난 탐정이죵~
+						<p style="font-weight:700;">자기소개</p><br>
+						<span class="mypage_nickname_b py-3">
+							내 이름은 코난 탐정이죵~
+						</span>
+						<br>
+					</div>
+					<div class="mypage_nickname_a py-3">
+						<p style="font-weight:700;">관심분야</p><br>
+						<span class="mypage_nickname_b py-3">
+							<span class="badge bg-primary text-white">여행</span>
+							<span class="badge bg-secondary text-white">음식</span>
+							<span class="badge bg-success text-white">언어</span>
+							<span class="badge bg-danger text-white">악기</span>
+							<span class="badge bg-warning text-dark">독서</span>
+							<span class="badge bg-info text-dark">운동</span>
+							<span class="badge bg-light text-dark">사진</span>
+							<span class="badge bg-dark text-white">음악</span>
 						</span>
 						<br>
 					</div>
@@ -88,65 +103,140 @@
 							        <div class="col">
 							          <div class="card shadow-sm posted">
 							            
-										<img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post9">
-							           
+										<img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post9" style="z-index: 0;">
+										
+										<!-- 자기가 쓴 게시물일 경우만 보이게 sec:authorize access="isAuthenticated()" -->
+
+											<div class="mypage_post_btn" style="position: relative;">
+												<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+												<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
+								       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+								          		
+								          	</div>
+
+							          	<!-- 게시물 수정 삭제 버튼 -->
 							          </div>
+							          
 							        </div>
 							        <div class="col">
 							          <div class="card shadow-sm posted">
 							            <img src="/resources/imgs/img_section/img02.jpg" alt="..." width="100%" height="225" id="post8">
 							
-							            
+							            <!-- 자기가 쓴 게시물일 경우만 보이게 sec:authorize access="isAuthenticated()" -->
+										<div class="mypage_post_btn" style="position: relative;">
+											<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+											<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
+							       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+							          		
+							          	</div>
+							          	<!-- 게시물 수정 삭제 버튼 -->
 							          </div>
+							          
 							        </div>
 							        <div class="col">
 							          <div class="card shadow-sm posted">
 							            <img src="/resources/imgs/img_section/img03.jpg" alt="..." width="100%" height="225" id="post7">
-							
+										<!-- 자기가 쓴 게시물일 경우만 보이게 sec:authorize access="isAuthenticated()" -->
+										<div class="mypage_post_btn" style="position: relative;">
+											<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+											<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
+							       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+							          		
+							          	</div>
+							          	<!-- 게시물 수정 삭제 버튼 -->
 							            
 							          </div>
+							          
 							        </div>
 							        <div class="col">
 							          <div class="card shadow-sm posted">
 							            <img src="/resources/imgs/img_section/img04.jpg" alt="..." width="100%" height="225" id="post6">
-							
+										<!-- 자기가 쓴 게시물일 경우만 보이게 sec:authorize access="isAuthenticated()" -->
+										<div class="mypage_post_btn" style="position: relative;">
+											<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+											<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
+							       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+							          		
+							          	</div>
+							          	<!-- 게시물 수정 삭제 버튼 -->
 							            
 							          </div>
+							          
 							        </div>
 							        <div class="col">
 							          <div class="card shadow-sm posted">
 							            <img src="/resources/imgs/img_section/img05.jpg" alt="..." width="100%" height="225" id="post5">
-							
+										<!-- 자기가 쓴 게시물일 경우만 보이게 sec:authorize access="isAuthenticated()" -->
+										<div class="mypage_post_btn" style="position: relative;">
+											<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+											<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
+							       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+							          		
+							          	</div>
+							          	<!-- 게시물 수정 삭제 버튼 -->
 							            
 							          </div>
+							          
 							        </div>
 							        <div class="col">
 							          <div class="card shadow-sm posted">
 							            <img src="/resources/imgs/thumb.jpeg" alt="..." width="100%" height="225" id="post4">
-							
+										<!-- 자기가 쓴 게시물일 경우만 보이게 sec:authorize access="isAuthenticated()" -->
+										<div class="mypage_post_btn" style="position: relative;">
+											<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+											<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
+							       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+							          		
+							          	</div>
+							          	<!-- 게시물 수정 삭제 버튼 -->
 							            
 							          </div>
+							          
 							        </div>
 							        <div class="col">
 							          <div class="card shadow-sm posted">
 							            <img src="/resources/imgs/logo.png" alt="..." width="100%" height="225" id="post3">
-							
+										<!-- 자기가 쓴 게시물일 경우만 보이게 sec:authorize access="isAuthenticated()" -->
+										<div class="mypage_post_btn" style="position: relative;">
+											<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+											<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
+							       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+							          		
+							          	</div>
+							          	<!-- 게시물 수정 삭제 버튼 -->
 							            
 							          </div>
+							          
 							        </div>
 							        <div class="col">
 							          <div class="card shadow-sm posted">
 							            <img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post2">
-							
+										<!-- 자기가 쓴 게시물일 경우만 보이게 sec:authorize access="isAuthenticated()" -->
+										<div class="mypage_post_btn" style="position: relative;">
+											<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+											<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
+							       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+							          		
+							          	</div>
+							          	<!-- 게시물 수정 삭제 버튼 -->
 							            
 							          </div>
+							          
 							        </div>
 							        <div class="col">
 							          <div class="card shadow-sm posted">
 							            <img src="/resources/imgs/img_section/img02.jpg" alt="..." width="100%" height="225" id="post1">
-							
+										<!-- 자기가 쓴 게시물일 경우만 보이게 sec:authorize access="isAuthenticated()" -->
+										<div class="mypage_post_btn" style="position: relative;">
+											<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+											<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
+							       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+							          		
+							          	</div>
+							          	<!-- 게시물 수정 삭제 버튼 -->
 							            
 							          </div>
+							          
 							        </div>
 							      </div>
 							      </div>
@@ -383,6 +473,12 @@
 	 $('.mypage_thumbnail_d').click(function() {
 		 $('.mypage_thumbnail_f').click();
 	 });
+	 
+	 $('.posted').hover(function() {
+		 $(this).find($('.mypage_post_btn')).css('display','block');
+	 },function() {
+		 $(this).find($('.mypage_post_btn')).css('display','none');
+	 });
  });
  
  $('.mypage_profile_h').on('click', function(){
@@ -393,7 +489,7 @@
 	 $('#mypagemodal').modal('hide');  
  });
  
- $('.posted').on('click', function(){
+ $('.go_post').on('click', function(){
 	 $('#postmodal').modal('show');
  });
  
