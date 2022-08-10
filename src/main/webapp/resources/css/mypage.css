@@ -458,6 +458,7 @@
 
 .mypage_post_btn>a:hover {
 	display: block;
+	cursor: default;
 }
 
 @media (min-width: 736px) {
