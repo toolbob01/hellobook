@@ -46,6 +46,13 @@
 								</div>
 							</div>
 <!-- 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div> -->
+								<sec:authorize access="isAuthenticated()">
+								     <c:if test="true">
+										<div style="display:flex;">
+											<span style="margin-left:auto;"><a href="/post/post_update">게시물 수정</a> | <a href="/post/post_delete">게시물 삭제</a></span>
+										</div>
+								     </c:if>
+								</sec:authorize>
 						</header>
 
 						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
@@ -119,11 +126,6 @@
 							</div>
 							<div class="more-comment-div">
 								<span class="more-comment">...</span>
-								<!-- 자기가 쓴 게시물일 경우만 보이게 sec:authorize access="isAuthenticated()" -->
-								<div style="display:flex;">
-									<span style="margin-left:auto;"><a href="/post/post_update">게시물 수정</a> | <a href="/post/post_delete">게시물 삭제</a></span>
-								</div>
-								<!-- 게시물 수정 삭제 버튼 -->
 							</div>
 							
 						</div>

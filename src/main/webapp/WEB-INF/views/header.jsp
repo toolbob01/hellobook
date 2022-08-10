@@ -76,11 +76,19 @@ body {
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://img.icons8.com/ios-glyphs/30/000000/small-icons.png"/>
                 </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                <ul class="dropdown-menu text-small text-center" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="/mypage/mypage">프로필</a></li>
                     <li><a class="dropdown-item" href="/mypage/setting/">설정</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"><img src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>로그아웃</a></li>
+                    <li>
+                    	<form class="dropdown-item on_cursor" id="logoutFN" method="post" action="/member/logout" onclick="logoutFN()">
+                    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    		<div class="d-flex">
+	                    		<img class="" src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>
+	                    		<span class="mt-1 ms-3">로그아웃</span>	
+                    		</div>
+                    	</form>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -88,3 +96,10 @@ body {
         </div>
     </div>
 </header>
+
+<script>
+	function logoutFN(){
+		$("#logoutFN").submit();
+		console.log('Logout Success !!!');
+	}
+</script>
