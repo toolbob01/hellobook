@@ -449,6 +449,16 @@
 
 .posted:hover {
 	opacity: 0.5;
+	
+}
+
+.mypage_post_btn {
+	display: none;
+}
+
+.mypage_post_btn>a:hover {
+	display: block;
+	cursor: default;
 }
 
 @media (min-width: 736px) {

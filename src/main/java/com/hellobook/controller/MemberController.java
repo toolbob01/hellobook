@@ -31,10 +31,7 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@GetMapping("login")
-	public String login(String error, Model model) {
-		if(error != null) {
-			model.addAttribute("error", "1");
-		}
+	public String login() {
 		return "/member/login";
 	}
 	
