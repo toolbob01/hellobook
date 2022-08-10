@@ -27,7 +27,7 @@ public class PostVO {
 	private String timer;
 	
 	// Reply
-	private List<PostReplyVO> reply_list;
+	private List<ReplyVO> reply_list;
 	private int reply_cnt;
 	
 	// File

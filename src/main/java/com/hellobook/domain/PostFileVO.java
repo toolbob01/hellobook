@@ -16,6 +16,6 @@ public class PostFileVO {
 	private int fno;
 	private int pno;
 	private String email;
-	private String uuid;  // /resources/images/${DATABASE}
+	private String uuid;
 	
 }

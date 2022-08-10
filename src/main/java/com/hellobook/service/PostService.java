@@ -2,19 +2,24 @@ package com.hellobook.service;
 
 import java.util.List;
 
+import com.hellobook.domain.PostFileVO;
+import com.hellobook.domain.PostLikeVO;
+import com.hellobook.domain.PostVO;
+import com.hellobook.domain.ReplyVO;
+import com.hellobook.utility.Criteria;
+
 
 
 public interface PostService {
-//
-//	public List<PostVO> selectAllPost();
-//		public List<PostFileVO> selectFileByPno(int pno);
-//		public List<PostReplyVO> selectReplyByPno(int pno);
-//		public List<PostLikeVO> selectLikeByPno(int pno);
-//	
-//	public int insertHelloMember(HelloMember memberVO);
-//	public int insertPost(PostVO postVO);
-//	public int maxPno(String email);
-//	public int insertPostFile(PostFileVO postVO);
+
+	public List<PostVO> selectAllPost(Criteria cri);
+		public List<PostFileVO> selectFileByPno(int pno);
+		public List<ReplyVO> selectReplyByPno(int pno);
+		public List<PostLikeVO> selectLikeByPno(int pno);
+	
+	public int insertPost(PostVO postVO);
+	public int maxPno(String email);
+	public int insertPostFile(PostFileVO postVO);
 	
 	
 	

@@ -7,29 +7,14 @@
 	<div class="container">
 		<div class="row post-main-view-row">
 		
-		
-<!-- 		<div class="font-test" style="border: soild 3px black; margin: 100px; font-size: 30px; line-height: 1.5; word-break: break-word"> -->
-<!-- 			<p>이것은 30px 한글입니다 ~ 12341231241 10월 10일</p> -->
-<!-- 			<p>This is English ~ 10 10 1212412</p> -->
-<!-- 			<p> -->
-<!-- 				これは、日本語でござる。気持ちいい。12345　10月10日　2022年　あかさたなはまやらわ　アカサタナハマヤラワ -->
-<!-- 				与 両 乗 予 争 互 亡 交 他 付 件 任 伝 似 位 余 例 供 便 係 信 倒 候 値 偉 側 偶 備 働 優 光 全 共 具 内 冷 処 列 初 判 利 到 制 刻 割 加 助 努 労 務 勝 勤 化 単 危 原 参 反 収 取 受 可 号 合 向 君 否 吸 吹 告 呼 命 和 商 喜 回 因 困 園 在 報 増 声 変 夢 太 夫 失 好 妻 娘 婚 婦 存 宅 守 完 官 定 実 客 害 容 宿 寄 富 寒 寝 察 対 局 居 差 市 師 席 常 平 幸 幾 座 庭 式 引 当 形 役 彼 徒 得 御 必 忘 忙 念 怒 怖 性 恐 恥 息 悲 情 想 愛 感 慣 成 戦 戻 所 才 打 払 投 折 抜 抱 押 招 指 捕 掛 探 支 放 政 敗 散 数 断 易 昔 昨 晩 景 晴 暗 暮 曲 更 最 望 期 未 末 束 杯 果 格 構 様 権 横 機 欠 次 欲 歯 歳 残 段 殺 民 求 決 治 法 泳 洗 活 流 浮 消 深 済 渡 港 満 演 点 然 煙 熱 犯 状 猫 王 現 球 産 由 申 留 番 疑 疲 痛 登 皆 盗 直 相 眠 石 破 確 示 礼 祖 神 福 科 程 種 積 突 窓 笑 等 箱 米 精 約 組 経 給 絵 絶 続 緒 罪 置 美 老 耳 職 育 背 能 腹 舞 船 良 若 苦 草 落 葉 薬 術 表 要 規 覚 観 解 記 訪 許 認 誤 説 調 談 論 識 警 議 負 財 貧 責 費 資 賛 越 路 身 辞 込 迎 返 迷 追 退 逃 途 速 連 進 遅 遊 過 達 違 遠 適 選 部 都 配 酒 閉 関 阪 降 限 除 険 陽 際 雑 難 雪 静 非 面 靴 頂 頭 頼 顔 願 類 飛 首 馬 髪 鳴 -->
-<!-- 			</p> -->
-<!-- 		</div> -->
-<!-- 		<div class="font-test" style="border: soild 3px black; margin: 50px; font-size: 20px; line-height: 1.5;"> -->
-<!-- 			<p>이것은 20px 한글입니다 ~ 12341231241 10월 10일</p> -->
-<!-- 			<p>This is English ~ 10 10 1212412</p> -->
-<!-- 			<p>これは、日本語でござる。分かりました。難しい。優しい。気持ちいい。<br>12345　10月10日　2022年　社長　先生　学生　大学　あかさたなはまやらわ　アカサタナハマヤラワ</p> -->
-<!-- 		</div> -->
-<!-- 		<div class="font-test" style="border: soild 3px black; margin: 50px; font-size: 10px; line-height: 1.5;"> -->
-<!-- 			<p>이것은 12px 한글입니다 ~</p> -->
-<!-- 			<p>This is English ~</p> -->
-<!-- 			<p>これは、日本語でござる。分かりました。難しい。優しい。気持ちいい。<br>12345　10月10日　2022年　社長　先生　学生　大学　あかさたなはまやらわ　アカサタナハマヤラワ</p> -->
-<!-- 		</div> -->
 			
 			<!-- post -->
 			<div class="col-lg-7">
 				<div class="row post-box">
+				  
+				  <c:choose>
+				  <c:when test="${post_list[0] == null}">
+					<c:forEach var="postVO" items="${post_list}">
 					<article class="contents">
 						<!-- post 헤더 -->
 						<header class="top post-header">
@@ -47,12 +32,12 @@
 							</div>
 <!-- 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div> -->
 								<sec:authorize access="isAuthenticated()">
-								     <c:if test="true">
+								     <c:if test="${postVO.email eq username}">
 										<div class="updateDeleteDiv">
 											<span class="updateDeleteContent">
-												<a href="/post/post_update">게시물 수정</a>
+												<span class="updateLink" onclick="location.href='/post/post_update'">게시물 수정</span>
 												| 
-												<a href="/post/post_delete">게시물 삭제</a>
+												<span class="deleteLink" onclick="location.href='/post/post_delete'">게시물 삭제</span>
 											</span>
 										</div>
 								     </c:if>
@@ -110,120 +95,57 @@
 						<!-- post 댓글 div -->
 						<div class="comment_container">
 							<div class="comment">
-								<div class="nick_name m_text">long name userrrrrrrrrrr</div>
+								<div class="nick_name">한국인유저</div>
 								<div class="real_comment">
-									<span class="hashTag" onclick="location.href='#'">@TagMe</span>
+									<span class="hashTag" onclick="location.href='#'">@PungDaengYee</span>
 									강아지가 너무 귀여워요!
 								</div>
 							</div>
 							<div class="comment">
-								<div class="nick_name m_text">jgc</div>
+								<div class="nick_name">日本人ユーザー</div>
 								<div class="real_comment">
-									尻尾が長すぎ ! Too long tail ! 강아지 꼬리가 너무 길어요 ! 강아지 꼬리가 너무 길어요 ! 
+									尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 
 								</div>
 							</div>
 							<div class="comment">
-								<div class="nick_name m_text">Hong Gil Dong</div>
+								<div class="nick_name">English User</div>
 								<div class="real_comment">
-									대표댓글 3명까지, 더보기는 "하단 점점점" 클릭 !
+									Only three comments visible. Click ... under here to see more comments
 								</div>
 							</div>
 							<div class="more-comment-div">
 								<span class="more-comment">...</span>
 							</div>
-							
 						</div>
 					</article>
+					</c:forEach>
+				  </c:when>
+				  <c:otherwise>
+				  	<div class="text-center fs-3 mt-5">
+				  		No Post ...
+				  		<p class="fs-5 mt-3">(post 테이블에 더미데이터 있으면 더미갯수만큼 포스팅 보임)</p>
+				  		<p style="line-height: 1.5; text-align: left; font-size: 15px;">
+				  			<br><br><br><br><br><br>
+				  			January <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
+				  			February <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
+				  			March <span style="font-size: 12px;">한국어한국어한국어한국어한국어 한국어한국어한국어</span><br>
+				  			April <span style="font-size: 12px;">englishENGLISHenglish ENGLISHenglishENGLISH</span><br>
+				  			June <span style="font-size: 12px;">ENGLISHenglish ENGLISHenglishENGLISH</span><br>
+				  			July <span style="font-size: 12px;">englishENGLISHenglish ENGLISHenglishENGLISH</span><br>
+				  			October <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
+				  			September <span style="font-size: 12px;">漢字　ひらがなカタカナ漢字</span><br>
+				  			August <span style="font-size: 12px;">カタカナ漢字　ひらがなカタカナ漢字</span><br>
+				  			십일월 <span style="font-size: 12px;">한글한글한글</span><br>
+				  			십이월 <span style="font-size: 12px;">english english ENGLISH</span><br>
+				  			십삼월 <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
+				  		</p>
+				  	</div>
+				  </c:otherwise>
+				  </c:choose>
 
-					<article class="contents">
-						<!-- post 헤더 -->
-						<header class="top post-header">
-							<div class="user_container" onclick="location.href='#'">
-								<div class="profile_img">
-									<img src="/resources/imgs/thumb.jpeg" alt="프로필이미지">
-								</div>
-								<div class="profile_flag">
-									<img class="flag_icon" src="https://img.icons8.com/color/25/000000/south-korea-circular.png"/>
-								</div>
-								<div class="user_name">
-									<div class="nick_name m_text">Hellobook</div>
-									<div class="country s_text">Seoul, South Korea</div>
-								</div>
-							</div>
-<!-- 							<div class="sprite_more_icon" date-name="more" onclick="location.href='#'"></div> -->
-						</header>
-
-						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
-						<div class="img_section">
-							<div class="trans_inner">
-<!-- 								<div> -->
-<!-- 									<img src="/resources/imgs/img_section/img01.jpg" alt="visual01"> -->
-<!-- 								</div> -->
-								<div id="carousel2" class="carousel slide" data-bs-ride="carousel"  data-bs-interval="false">
-								  <div class="carousel-inner">
-								    <div class="carousel-item active">
-								      <img src="/resources/imgs/long.jpg" alt="...">
-								    </div>
-								    <div class="carousel-item">
-								      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
-								    </div>
-								    <div class="carousel-item">
-								      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
-								    </div>
-								  </div>
-								  <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
-								    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								    <span class="visually-hidden">Previous</span>
-								  </button>
-								  <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
-								    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-								    <span class="visually-hidden">Next</span>
-								  </button>
-								</div>
-							</div>
-						</div>
-
-						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
-						<div class="bottom_icons">
-							<div class="left_icons">
-								<div class="heart_btn">
-									<div class="sprite_heart_icon_outline" name="39"
-										data-name="heartbeat"></div>
-
-								</div>
-								<div class="sprite_bubble_icon"></div>
-								<div class="sprite_share_icon" data-name="share"></div>
-							</div>
-
-							<div class="right_icon">
-								<div class="sprite_bookmark_outline" data-name="bookmark"></div>
-							</div>
-
-						</div>
-
-						<div class="likes m_text">
-							좋아요 <span id="count">50</span>개
-						</div>
-
-						<!-- post 댓글 div -->
-						<div class="comment_container">
-							<div class="comment">
-								<div class="nick_name m_text">beak1</div>
-								<div>강아지가 너무 귀여워요!</div>
-							</div>
-<!-- 							<div class="small_heart_btn"> -->
-<!-- 								<div class="sprite_small_heart_icon_outline" -->
-<!-- 									data-name="commentheart"></div> -->
-<!-- 							</div> -->
-						</div>
-
-						<div class="timer">36분 전</div>
-
-					</article>
-
-				</div>
-			</div>
-			<!-- //post -->
+				</div> <!-- // post-box -->
+			</div> <!-- // col-lg-7 -->
+			
 
 
 			<div class="col-md-3" align="center">
@@ -416,12 +338,27 @@
 							</div>
 						</div>
 					</article>
-				</div>
-			</div>
+				</div> <!-- side_box -->
+			</div> <!-- col-md-3 -->
 
-		</div>
-	</div>
+
+<!-- Pagination -->
+<div class="pagination">
+    <a href="board.do?pageNum=1&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 
+    <a class="prevPage" href="board.do?pageNum=${pageVO.startPage - 1}&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 
+
+    <c:forEach var="num" begin="${pageVO.startPage}" end="${pageVO.endPage}">
+	  <a href="board.do?pageNum=${num}&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 			
+    </c:forEach>
+  
+    <a class="nextPage" href="board.do?pageNum=${pageVO.endPage + 1}&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 
+    <a href="board.do?pageNum=${pageVO.realEnd}&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 
 </div>
+
+
+		</div> <!-- post-main-view-row -->
+	</div> <!-- container -->
+</div> <!-- container-fluid -->
 
 
 <div class="modal-background">
@@ -590,13 +527,7 @@
 			elem = null;
 			return;
 		}
-// 		while (!elem.getAttribute('data-name')) {
-// 			elem = elem.parentNode;
-// 			if (elem.nodeName === 'BODY') {
-// 				elem = null;
-// 				return;
-// 			}
-// 		} 
+
 
 		if (elem.matches('[data-name="heartbeat"]')) {
 			console.log("하트");
@@ -639,5 +570,46 @@
 	 $('.closeModalBtn').on('click', function(){
 		 $('.modal-background').css("display", "none");  
 	 });
+	
+	
+	// Infinity Scroll
+ 	function YesScroll () {
+		const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
+		const fullContent = document.querySelector('.post-box'); // 전체를 둘러싼 컨텐츠 정보획득
+		const screenHeight = screen.height; // 화면 크기
+		let oneTime = false; // 일회용 글로벌 변수
+		document.addEventListener('scroll',OnScroll,{passive:true}) // 스크롤 이벤트함수정의
+	 	function OnScroll () { //스크롤 이벤트 함수
+	    	const fullHeight = fullContent.clientHeight; // infinite 클래스의 높이   
+	    	const scrollPosition = pageYOffset; // 스크롤 위치
+	    	if (fullHeight-screenHeight/2 <= scrollPosition && !oneTime) { // 만약 전체높이-화면높이/2가 스크롤포지션보다 작아진다면, 그리고 oneTime 변수가 거짓이라면
+				oneTime = true; // oneTime 변수를 true로 변경해주고,
+	      		madeBox(); // 컨텐츠를 추가하는 함수를 불러온다.
+	    	}
+	  	}
+		
+		const nextLink = pagination.querySelector('.nextPage'); // .pagination 의 .nextPage 링크
+		const nextURL = nextLink.getAttribute('href'); // .nextPage의 링크 주소
+		
+		function madeBox() {
+			const xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() { 
+			  if (xhr.readyState === xhr.DONE) { 
+			    if (xhr.status === 200 || xhr.status === 201) {
+			      const data = xhr.response; // 다음페이지의 정보
+			      const addList = data.querySelector('.contents'); // 다음페이지에서 list아이템을 획득 (contents = article)
+			      fullContent.appendChild(addList); // infinite에 list를 더해주기
+			      oneTime = false; // oneTime을 다시 false로 돌려서 madeBox를 불러올 수 있게 해주기
+			    } else {
+			      console.error(xhr.response);
+			    }
+			  }
+			};
+			xhr.open('GET', nextURL); // 다음페이지의 정보를 get
+			xhr.send();
+			xhr.responseType = "document";
+		}
+	}
+	YesScroll()
 </script>
 <%@ include file="footer.jsp"%>

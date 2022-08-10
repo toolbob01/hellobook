@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostReplyVO {
+public class ReplyVO {
 
 	// Reply
 	private int repno;

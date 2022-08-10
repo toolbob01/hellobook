@@ -7,14 +7,14 @@
 	    <foreach collection="typeArr" item="type">
 		  <trim prefix="OR">
 			<choose>
-				<when test="type == 'T'.toString()">
-					title like '%'||#{keyword}||'%'
+				<when test="type == 'E'.toString()">
+					lower(email) like '%'||lower(#{keyword})||'%'
+				</when>
+				<when test="type == 'N'.toString()">
+					lower(nickname) like '%'||lower(#{keyword})||'%'
 				</when>
 				<when test="type == 'C'.toString()">
-					content like '%'||#{keyword}||'%'
-				</when>
-				<when test="type == 'W'.toString()">
-					writer like '%'||#{keyword}||'%'
+					lower(content) like '%'||lower(#{keyword})||'%'
 				</when>
 			</choose>
 		  </trim>
@@ -23,26 +23,29 @@
 	</sql>
 <!-- ===================================================================================== -->
 
-	<select id="selectAllPost" resultType="com.hanulso.domain.PostVO">
-		SELECT p.pno, p.content, p.email, p.pdate, m.nickname, m.profile, m.language   
-		FROM post p, hello_member m     
-		WHERE p.email = m.email
-		ORDER BY p.pno DESC
+	<select id="selectAllPost" resultType="com.hellobook.domain.PostVO">
+        <![CDATA[
+ 			SELECT pno, content, email, pdate, nickname, profile, language 
+ 			FROM (  
+ 				SELECT /*+ index_desc(post post_pk)*/  rownum rn, p.pno, p.content, p.email, p.pdate, m.nickname, m.profile, m.language
+ 				FROM post p, member m   
+ 				WHERE p.email = m.email AND   
+ 		]]>
+				<include refid="criteria"></include>
+		<![CDATA[	
+ 			 	rownum <= #{pageNum} * #{amount} )  
+ 			WHERE rn > (#{pageNum}-1) * #{amount} 
+         ]]> 
 	</select>
-		<select id="selectFileByPno" resultType="com.hanulso.domain.PostFileVO">
+		<select id="selectFileByPno" resultType="com.hellobook.domain.PostFileVO">
 			SELECT * FROM post_file WHERE pno = #{pno}
 		</select>
-		<select id="selectReplyByPno" resultType="com.hanulso.domain.PostReplyVO">
-			SELECT * FROM post_reply WHERE pno = #{pno}
+		<select id="selectReplyByPno" resultType="com.hellobook.domain.ReplyVO">
+			SELECT * FROM reply WHERE pno = #{pno}
 		</select>
-		<select id="selectLikeByPno" resultType="com.hanulso.domain.PostLikeVO">
+		<select id="selectLikeByPno" resultType="com.hellobook.domain.PostLikeVO">
 			SELECT * FROM post_like WHERE pno = #{pno}
 		</select>
-
-	<insert id="insertHelloMember">
-		insert into hello_member (email,nickname,language,sex,profile) 
-		values(#{email},#{nickname},#{language},#{sex},#{profile})
-	</insert>
 
 	<insert id="insertPost">
 		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
