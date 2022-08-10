@@ -25,4 +25,17 @@ public class ChatController {
 	public String chatCreate() {
 		return "/chat/chat_create";
 	}
+	
+	
+//	@GetMapping("/chat")
+//	public void chat(Model model) {
+//		
+//		CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		
+//		
+//		log.info("==================================");
+//		log.info("@ChatController, GET Chat / Username : " + user.getUsername());
+//		
+//		model.addAttribute("userid", user.getUsername());
+//	}
 }
