@@ -621,6 +621,13 @@ body{
 	padding: 10px 10px;
 }
 
+.updateDeleteDiv { display: flex; font-size: 13px; }
+.updateDeleteDiv a:link { color: #333; text-decoration: none; }
+.updateDeleteDiv a:hover { color: #9fd5ff; text-decoration: none; }
+.updateDeleteDiv a:visited { color: #333; text-decoration: none; }
+.updateDeleteDiv a:active { color: #fff; background-color: #9fd5ff; }
+.updateDeleteContent { margin-left: auto; }
+
 .contents .top .profile_img {
 	width: 40px;
 	height: 40px;

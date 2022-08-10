@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-
 <%@ include file="../header.jsp" %>
 
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
 .container {
    max-width: 65%;
@@ -340,8 +334,8 @@ button:focus {
                <!-- 채팅 보내기 -->
                <div class="type_msg">
                   <div class="input_msg_write">
-                     <textarea class="write_msg" placeholder="메세지 입력" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
-                     <button class="msg_send_btn" type="button">
+                     <textarea class="write_msg" id="message" placeholder="메세지 입력" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
+                     <button class="msg_send_btn" type="button" id="sendBtn">
                         <i class="fa fa-paper-plane-o"  aria-hidden="true"></i>
                      </button>
                   </div>
@@ -579,5 +573,26 @@ button:focus {
     	  };
       };
       
+      $('#sendBtn').click(function() {
+    	  sendMessage();
+    	  $('message').val('');
+      });
+      
+      let sock = new SockJS("http://localhost:8080/chat/chat/");
+      sock.onmessage = onMessage;
+      sock.onclose = onClose;
+      //메시지 전송
+      function sendMessage() {
+    	  sock.send($('#message').val());
+      }
+      //서버로부터 메시지를 받았을 때
+      function onMessage(msg) {
+    	  var data = msg.data;
+    	  $('.msg_history').append(data + "<br/>");
+      }
+      //서버와 연결을 끊었을 때
+      function onClose(evt) {
+    	  $('.msg_history').append("연결 끊김");
+      }
    </script>
 <%@ include file="../footer.jsp" %>
