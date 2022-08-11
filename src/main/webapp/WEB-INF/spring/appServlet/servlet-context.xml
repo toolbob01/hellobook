@@ -33,6 +33,9 @@
 		<websocket:mapping handler="ChatHandler" path="/chat/chat/"/>
 		<websocket:sockjs/>
 	</websocket:handlers>
-	
+		
 	<beans:bean id="ChatHandler" class="com.hellobook.handler.ChatHandler"></beans:bean>
+	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.hellobook.auth.NaverLoginBO" />
 </beans:beans>
