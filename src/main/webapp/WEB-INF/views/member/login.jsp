@@ -126,6 +126,9 @@ a {
 .btn-google{
     margin-top: 13px;
 }
+
+.g-signin2{
+}
 </style>
 <body>
 	<div class="container login">
@@ -141,8 +144,8 @@ a {
 		</form>
 		<a class="btn btn-block btn-social btn-facebook" onclick="document.facebook.submit();">
 		<span class="fa fa-facebook"></span>Facebook으로 로그인</a>
-		<a class="btn btn-block btn-social btn-google" onclick="document.google.submit();">
-		<span class="fa fa-google"></span>Google로 로그인</a>
+		<a class="btn btn-block btn-social btn-facebook" href="${naverUrl}">Naver으로 로그인</a>
+		<div class="g-signin2" data-onsuccess="onSignIn">Google으로 로그인</div>
 		<span class="button_forgot" onclick="location.href='/member/findpwd'">비밀번호 찾기</span>
 		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;">회원가입 하기</span>
 	</div>
