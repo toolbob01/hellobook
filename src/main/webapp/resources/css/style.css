@@ -81,6 +81,9 @@ body::-webkit-scrollbar-track {
 
 
 
+
+.pagination { display: none; }
+
 .post-box .carousel-inner {
 	position: relative;
     width: 100%;
@@ -622,10 +625,9 @@ body{
 }
 
 .updateDeleteDiv { display: flex; font-size: 13px; }
-.updateDeleteDiv a:link { color: #333; text-decoration: none; }
-.updateDeleteDiv a:hover { color: #9fd5ff; text-decoration: none; }
-.updateDeleteDiv a:visited { color: #333; text-decoration: none; }
-.updateDeleteDiv a:active { color: #fff; background-color: #9fd5ff; }
+.updateDeleteDiv .updateLink, .deleteLink { color: #333; text-decoration: none; }
+.updateDeleteDiv .updateLink:hover, .deleteLink:hover { color: #9fd5ff; text-decoration: none; cursor: pointer;}
+.updateDeleteDiv .updateLink:active, .deleteLink:active { color: #fff; background-color: #9fd5ff; }
 .updateDeleteContent { margin-left: auto; }
 
 .contents .top .profile_img {
@@ -705,14 +707,14 @@ body{
 
 .contents .comment_container .comment {
 	display: flex;
-	font-size: 14px;
 	margin-top: 10px;
 }
 .real_comment {
     overflow:hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
-    margin-top: 3px;
+    font-size: 12px;
+    margin-top: 1px;
 }
 .more-comment-div {
 	margin-top: 15px;
@@ -725,7 +727,9 @@ body{
 }
 
 .contents  .comment_container .comment .nick_name {
+	font-size: 15px;
 	margin-right: 10px;
+	white-space:nowrap;
 }
 
 .contents .timer {
