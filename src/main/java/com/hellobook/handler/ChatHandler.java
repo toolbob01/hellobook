@@ -16,33 +16,33 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @RequestMapping("/chat/chat")
 public class ChatHandler extends TextWebSocketHandler{
 
-	//세션 리스트
+	
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
 	
 	private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
-	//클라이언트가 연결되었을 때 실행
+
 	
-	@Override
+
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		sessionList.add(session);
 		
-		logger.info("{} 연결됨", session.getId());
+		logger.info("{} �뿰寃곕맖", session.getId());
 	}
 	
-	//클라이언트가 웹소켓 서버로 메시지를 전송했을 때 실행
+
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		logger.info("{}로부터 {} 받음", session.getId(), message.getPayload());
-		//모든 유저에게 메시지 출력
+		logger.info("{}濡쒕��꽣 {} 諛쏆쓬", session.getId(), message.getPayload());
+		//紐⑤뱺 �쑀���뿉寃� 硫붿떆吏� 異쒕젰
 		for (WebSocketSession sess : sessionList) {
 			sess.sendMessage(new TextMessage(message.getPayload()));
 		}
 	}
 	
-	//클라이언트 연결을 끊었을 때 실행
+	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		sessionList.remove(session);
-		logger.info("{} 연결 끊김", session.getId());
+		logger.info("{} �뿰寃� �걡源�", session.getId());
 	}
 }
