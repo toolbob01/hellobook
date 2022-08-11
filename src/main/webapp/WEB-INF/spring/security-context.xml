@@ -13,9 +13,11 @@
 	<security:intercept-url pattern="/member/login" access="permitAll"/>
 	<security:intercept-url pattern="/member/join" access="permitAll"/>
 	<security:intercept-url pattern="/member/findpwd" access="permitAll"/>
+	<security:intercept-url pattern="/findpwd/**" access="permitAll"/>
+	<security:intercept-url pattern="/resources/**" access="permitAll"/>
 	<security:intercept-url pattern="/**" access="isAuthenticated()"/>
 	<security:form-login login-page="/member/login" authentication-success-handler-ref="customLoginSuccess" username-parameter="email"/>
-	<security:logout logout-url="/member/logout" logout-success-url="/" invalidate-session="true"/>
+	<security:logout logout-url="/member/logout" logout-success-url="/member/login" invalidate-session="true"/>
 	<security:access-denied-handler ref="customAccessDenied" />
 	
 </security:http>

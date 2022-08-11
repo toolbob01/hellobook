@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hellobook.mapper.PostMapper">
+
+	<sql id="criteria">
+	  <trim prefix="(" suffix=") and " prefixOverrides="OR">
+	    <foreach collection="typeArr" item="type">
+		  <trim prefix="OR">
+			<choose>
+				<when test="type == 'E'.toString()">
+					lower(email) like '%'||lower(#{keyword})||'%'
+				</when>
+				<when test="type == 'N'.toString()">
+					lower(nickname) like '%'||lower(#{keyword})||'%'
+				</when>
+				<when test="type == 'C'.toString()">
+					lower(content) like '%'||lower(#{keyword})||'%'
+				</when>
+			</choose>
+		  </trim>
+	    </foreach>
+	  </trim>
+	</sql>
+<!-- ===================================================================================== -->
+
+	<select id="selectAllPost" resultType="com.hellobook.domain.PostVO">
+        <![CDATA[
+ 			SELECT pno, content, email, pdate, nickname, profile, language 
+ 			FROM (  
+ 				SELECT /*+ index_desc(post post_pk)*/  rownum rn, p.pno, p.content, p.email, p.pdate, m.nickname, m.profile, m.language
+ 				FROM post p, member m   
+ 				WHERE p.email = m.email AND   
+ 		]]>
+				<include refid="criteria"></include>
+		<![CDATA[	
+ 			 	rownum <= #{pageNum} * #{amount} )  
+ 			WHERE rn > (#{pageNum}-1) * #{amount} 
+         ]]> 
+	</select>
+		<select id="selectFileByPno" resultType="com.hellobook.domain.PostFileVO">
+			SELECT * FROM post_file WHERE pno = #{pno}
+		</select>
+		<select id="selectReplyByPno" resultType="com.hellobook.domain.ReplyVO">
+			SELECT * FROM reply WHERE pno = #{pno}
+		</select>
+		<select id="selectLikeByPno" resultType="com.hellobook.domain.PostLikeVO">
+			SELECT * FROM post_like WHERE pno = #{pno}
+		</select>
+
+	<insert id="insertPost">
+		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
+			select post_seq.nextval from dual
+		</selectKey>
+		insert into post (pno,content,email,pdate) 
+		values(#{pno},#{content},#{email},sysdate)
+	</insert>
+
+	<select id="maxPno" resultType="int">
+		select max(pno) from post where email = #{email}
+	</select>
+
+	<insert id="insertPostFile">
+		<selectKey keyProperty="fno" order="BEFORE" resultType="int">
+			select post_file_seq.nextval from dual
+		</selectKey>
+		insert into post_file (fno,email,pno,uuid) 
+		values(#{fno},#{email},#{pno},#{uuid})
+	</insert>
+
+
+</mapper>

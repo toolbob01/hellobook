@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,11 +77,19 @@ body {
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://img.icons8.com/ios-glyphs/30/000000/small-icons.png"/>
                 </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                <ul class="dropdown-menu text-small text-center" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="/mypage/mypage">프로필</a></li>
                     <li><a class="dropdown-item" href="/mypage/setting/">설정</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"><img src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>로그아웃</a></li>
+                    <li>
+                    	<form class="dropdown-item on_cursor" id="logoutFN" method="post" action="/member/logout" onclick="logoutFN()">
+                    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    		<div class="d-flex">
+	                    		<img class="" src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>
+	                    		<span class="mt-1 ms-3">로그아웃</span>	
+                    		</div>
+                    	</form>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -88,3 +97,10 @@ body {
         </div>
     </div>
 </header>
+
+<script>
+	function logoutFN(){
+		$("#logoutFN").submit();
+		console.log('Logout Success !!!');
+	}
+</script>

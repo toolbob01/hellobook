@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../member/memberHeader.jsp" %>
+<%@ include file="../member/memberHeader.jsp"%>
 
 <style>
 @font-face {
@@ -104,66 +104,43 @@ a {
 	cursor: pointer;
 }
 
-p{
+p {
 	font-size: 13px;
-    text-align: left;
-    color: red;
-    margin: 10px 0;
-    display:none;
+	text-align: left;
+	color: red;
+	margin: 10px 0;
+	display: none;
+}
+
+#button_div > button {
+	width: 100%;
 }
 </style>
 <body>
 	<div class="container login">
-		<img class="logo_hellobook" src="/resources/imgs/logo.png" alt="hellobook_logo">
+		<img class="logo_hellobook" src="/resources/imgs/logo.png"
+			alt="hellobook_logo">
 		<div class="find_pwd_div">
 			<input type="text" class="input_login" name="email" id="email" placeholder="회원가입한 이메일을 입력하세요.">
-			<input type="text" class="input_login" name="code" id="code" placeholder="인증번호를 입력하세요." style="display: none">
-			<input type="text" class="input_login" name="pw" id="pw" placeholder="새 비밀번호" style="display: none">
-			<input type="text" class="input_login" name="pw2" id="pw2" placeholder="비밀번호 확인" style="display: none">
+			<input type="text" class="input_login" name="code" id="code" placeholder="인증번호를 입력하세요." style="display: none"> 
+			<input type="password" class="input_login" name="pw" id="pw" placeholder="새 비밀번호" style="display: none"> 
+			<input type="password" class="input_login" name="pw2" id="pw2" placeholder="비밀번호 확인" style="display: none">
 		</div>
-		<p id = "notice">이메일을 입력해주세요.</p>
-		<button type="button" class="btn btn-primary" id="findPwdBtn" onclick="checkEmail()">비밀번호 찾기</button>
+		<p id="notice">이메일을 입력해주세요.</p>
+		<p id="notice2">존재하지 않는 이메일입니다.</p>
+		<p id="notice3">인증번호가 일치하지 않습니다.</p>
+		<p id="notice4">비밀번호를 입력해주세요.</p>
+		<p id="notice5">비밀번호는 공백을 포함할 수 없습니다.</p>
+		<p id="notice6">8자리 이상의 영어, 숫자, 특수문자의 조합이어야 합니다.</p>
+		<p id="notice7">비밀번호가 일치하지 않습니다.</p>
+		<div id="button_div">
+			<button type="button" class="btn btn-primary" id="findPwdBtn">비밀번호 찾기</button>
+		</div>
 		<span class="button_forgot" onclick="location.href='/member/login'">로그인으로</span>
 		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;">새 계정 만들기</span>
 	</div>
-	<script>
-		const email = $("#email");
-		const code = $("#code");
-		const pw = $("#pw");
-		const pw2 = $("#pw2");
-		const notice = $("#notice");
-		const findPwdBtn = $("#findPwdBtn");
-			
-		function checkEmail() {
-			if(email.val() == ''){
-				notice.show();
-				return;
-			}
-			
-			if(email.val() != ''){
-				email.val("");
-				email.hide();
-				notice.hide();
-				code.show();
-				findPwdBtn.attr("onclick","checkCode()");
-			}
-		}
-		
-		function checkCode() {
-			console.log("버튼: 비밀번호!");
-			code.val("");
-			code.hide();
-			pw.show();
-			pw2.show();
-			findPwdBtn.attr("onclick","changePwd()");
-		}
-		
-		function changePwd() {
-			if(pw.val() == pw2.val()){
-				console.log("비밀번호 변경완료!");
-			}
-		}
-	</script>
+	<script src="/resources/js/findpwdService.js"></script>
+	<script src="/resources/js/find_pwd.js"></script>
 </body>
 </html>
 
