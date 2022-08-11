@@ -1,18 +1,24 @@
 package com.hellobook.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.authentication.UserServiceBeanDefinitionParser;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.hellobook.auth.NaverLoginBO;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.service.MemberService;
 import com.hellobook.utility.Message;
@@ -24,6 +30,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MemberController {
 	
+	private NaverLoginBO naverLoginBO;
+	
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
+	
 	@Autowired
 	private BCryptPasswordEncoder pwencoder;
 	
@@ -31,8 +44,29 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@GetMapping("login")
-	public String login() {
+	public String login(Model model, HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizaionUrl(session);
+		model.addAttribute("naverUrl",naverAuthUrl);
+		
 		return "/member/login";
+	}
+	
+	@RequestMapping(value="/memberNaverLogin", method= {RequestMethod.GET,RequestMethod.POST})
+	public String memberNaverLogin(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws Exception{
+		OAuth2AccessToken oauthToken;
+		//로그인 사용자 정보를 읽어옴
+		oauthToken = naverLoginBO.getAccessToken(session, code, state);
+		
+		String apiResult = naverLoginBO.getUserProfile(oauthToken);
+		log.info("UserProfile 정보 : "+apiResult);
+		ObjectMapper objectMapper = new ObjectMapper();
+		Map<String, Object> apiJson = (Map<String, Object>)objectMapper.readValue(apiResult, Map.class).get("response");
+		log.info("UserProfile 정보222 : "+apiJson);
+		
+		model.addAttribute("result",apiJson);
+		
+		
+		return "/member/loginresult";
 	}
 	
 	@GetMapping("join")

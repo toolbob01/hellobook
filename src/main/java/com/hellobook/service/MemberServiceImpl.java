@@ -17,4 +17,16 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.insertMember(mvo);
 		memberMapper.insertAuth(mvo.getEmail());
 	}
+	
+	@Override
+	public MemberVO read(String email) {
+		MemberVO memberVO = memberMapper.read(email);
+		return memberVO;
+	}
+	
+	@Override
+	public MemberVO readByNickname(String nickname) {
+		MemberVO memberVO = memberMapper.readByNickname(nickname);
+		return memberVO;
+	}
 }

@@ -15,6 +15,6 @@ public class MemberVO {
 	private char language; 
 	private char sex;       
 	private String hobby;
-
+	private String intro;
 	private List<AuthVO> authList;
 }
