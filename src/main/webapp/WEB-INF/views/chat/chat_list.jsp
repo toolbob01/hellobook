@@ -573,6 +573,10 @@ button:focus {
     	  };
       };
       
+      //test중
+      const username = '<%=(String)session.getAttribute("username")%>';
+      let today = new Date(+new Date() + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, '');
+      
       $('#sendBtn').click(function() {
     	  sendMessage();
     	  $('message').val('');
@@ -582,17 +586,56 @@ button:focus {
       sock.onmessage = onMessage;
       sock.onclose = onClose;
       //메시지 전송
-      function sendMessage() {
-    	  sock.send($('#message').val());
+	  function sendMessage() {
+	      sock.send(
+	    	  username+":"+$('#message').val()
+          );
       }
       //서버로부터 메시지를 받았을 때
       function onMessage(msg) {
     	  var data = msg.data;
-    	  $('.msg_history').append(data + "<br/>");
+    	  var sessionId = null;
+    	  var message = null;
+    	  var arr = data.split(":");
+    	  
+    	  for(var i=0; i<arr.length; i++) {
+    		  console.log('arr['+i+']:'+arr[i]);
+    	  }
+    	  
+    	  var cur_session = username;
+    	  
+    	  //현재 세션에 로그인 한 사람
+    	  console.log("cur_session : " + cur_session);
+    	  sessionId = arr[0];
+    	  message = arr[1];
+    	  
+    	  console.log("sessionID : " + sessionId);
+    	  console.log("cur_session : " + cur_session);
+    	  
+    	  //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
+    	  if(sessionId == cur_session) {
+    		  var str = '<div class="outgoing_msg">';
+    		  str += '<div class="sent_msg">';
+    		  str += '<p>'+message+'</p>';
+    		  str += '<span class="time_date">'+today+'</span></div></div>';
+    		  $('.msg_history').append(str);
+    	  }
+    	  else {
+    		  var str = '<div class="incoming_msg">';
+   			  str += '<div class="incoming_msg_img">';
+   		  	  str += '<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>';
+   	 		  str += '<div class="received_msg">';
+  	  		  str += '<div class="received_withd_msg">';
+  	  		  str += '<p>'+message+'</p>';
+  	  		  str += '<span class="time_date">'+today+'</span></div></div></div>';
+  	  		  $('.msg_history').append(str);
+    	  }
+    	  
       }
       //서버와 연결을 끊었을 때
       function onClose(evt) {
     	  $('.msg_history').append("연결 끊김");
       }
    </script>
+
 <%@ include file="../footer.jsp" %>

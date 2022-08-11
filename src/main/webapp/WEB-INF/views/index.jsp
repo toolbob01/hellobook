@@ -13,7 +13,7 @@
 				<div class="row post-box">
 				  
 				  <c:choose>
-				  <c:when test="${post_list[0] == null}">
+				  <c:when test="${post_list[0] != null}">
 					<c:forEach var="postVO" items="${post_list}">
 					<article class="contents">
 						<!-- post 헤더 -->
