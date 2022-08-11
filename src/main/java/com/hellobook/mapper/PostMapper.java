@@ -18,9 +18,10 @@ public interface PostMapper {
 	
 	public int insertPost(PostVO postVO);
 	public int maxPno(String email);
-	public int insertPostFile(PostFileVO postVO);
+	public int insertPostFile(PostFileVO fileVO);
 	
-
+	public int deletePost(int pno);
+	public int deletePostFile(int fno);
 	
 
 }

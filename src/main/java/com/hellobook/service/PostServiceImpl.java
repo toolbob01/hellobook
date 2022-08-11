@@ -50,10 +50,18 @@ public class PostServiceImpl implements PostService {
 			return mapper.maxPno(email);
 		}
 	@Override
-	public int insertPostFile(PostFileVO postVO) {
-		return mapper.insertPostFile(postVO);
+	public int insertPostFile(PostFileVO fileVO) {
+		return mapper.insertPostFile(fileVO);
 	}
 	
+	@Override
+	public int deletePost(int pno) {
+		return mapper.deletePost(pno);
+	}
+	@Override
+	public int deletePostFile(int fno) {
+		return mapper.deletePostFile(fno);
+	}
 	
 
 	

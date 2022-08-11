@@ -11,8 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PostLikeVO {
 
+	// Member
+	private String email;
+	private String nickname;
+	private String profile;
+	private String language;
+	
 	// Like
 	private int pno;
-	private String email;
 	
 }

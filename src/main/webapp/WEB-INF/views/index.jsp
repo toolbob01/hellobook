@@ -7,6 +7,32 @@
 	<div class="container">
 		<div class="row post-main-view-row">
 		
+		
+		<div class="m-5 border border-2 border-dark" style="line-height: 1.5; font-size: 13px;">
+			<br><br>
+			<p style="font-family: 'Kosugi Maru';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Kosugi Maru AAA bbb CCC</p>
+			<p style="font-family: 'Sawarabi Gothic', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Sawarabi Gothic AAA bbb CCC</p>
+			<p style="font-family: 'Murecho', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Murecho', sans-serif AAA bbb CCC</p>
+			<p style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Nanum Gothic', sans-serif AAA bbb CCC</p>
+			<p style="font-family: 'Inconsolata';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Inconsolata AAA bbb CCC</p>
+			<p style="font-family: 'Nunito', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Nunito', sans-serif AAA bbb CCC</p>
+			<p style="font-family: 'Noto Sans KR';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Nunito', sans-serif AAA bbb CCC</p>
+			<br><br>
+			<span style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말</span>
+			<span style="font-family: 'Sawarabi Gothic', sans-serif;">日本語　ひらがな　カタカナ</span>
+			<span style="font-family: 'Sawarabi Gothic', sans-serif;"> english English AAA bbb CCC</span>
+			<br><br>
+			<span style="font-family: 'Noto Sans KR';">한국어 한글 우리나라말</span>
+			<br><br>
+			<span style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말</span>
+			<span style="font-family: 'Sawarabi Gothic', sans-serif;">日本語　ひらがな　カタカナ</span>
+			<span style="font-family: 'Nunito', sans-serif;"> english English AAA bbb CCC</span>
+			<br><br>
+			<span style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말</span>
+			<span style="font-family: 'Sawarabi Gothic', sans-serif;">日本語　ひらがな　カタカナ</span>
+			<span style="font-family: 'Noto Sans KR';"> english English AAA bbb CCC</span>
+			<br><br>
+		</div>
 			
 			<!-- post -->
 			<div class="col-lg-7">
@@ -14,19 +40,27 @@
 				  
 				  <c:choose>
 				  <c:when test="${post_list[0] != null}">
+				    <c:set var="idx" value="1"/> <!-- id 식별용 idx -->
 					<c:forEach var="postVO" items="${post_list}">
 					<article class="contents">
 						<!-- post 헤더 -->
 						<header class="top post-header">
 							<div class="user_container" onclick="location.href='#'">
 								<div class="profile_img">
-									<img src="/resources/imgs/thumb02.jpg" alt="프로필이미지">
+									<img src="/hello_img/member/${postVO.profile}" alt="프로필이미지">
 								</div>
 								<div class="profile_flag">
-									<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>
+									<c:choose>
+									  <c:when test="${postVO.language == 'j'}">
+									  	<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>
+									  </c:when>
+									  <c:otherwise>
+									    <img class="flag_icon" src="https://img.icons8.com/color/25/000000/south-korea-circular.png"/>
+									  </c:otherwise>
+									</c:choose>
 								</div>
 								<div class="user_name">
-									<div class="nick_name m_text">Hanulso</div>
+									<div class="nick_name m_text">${postVO.nickname}</div>
 									<div class="mt-1 s_text">東京, 日本</div>
 								</div>
 							</div>
@@ -47,23 +81,22 @@
 						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
 						<div class="img_section">
 							<div class="trans_inner">
-								<div id="carousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+								<div id="carousel${idx}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
 								  <div class="carousel-inner">
 								    <div class="carousel-item active">
-								      <img src="/resources/imgs/long.jpg" alt="...">
+								      <img src="/hello_img/post/${postVO.file_list[0].uuid}" alt="...">
 								    </div>
-								    <div class="carousel-item">
-								      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
-								    </div>
-								    <div class="carousel-item">
-								      <img src="/resources/imgs/thumb.jpeg" alt="...">
-								    </div>
+								    <c:forEach var="fileVO" items="${postVO.file_list}">
+									    <div class="carousel-item">
+									      <img src="/hello_img/post/${fileVO.uuid}" alt="...">
+									    </div>
+								    </c:forEach>
 								  </div>
-								  <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+								  <button class="carousel-control-prev" type="button" data-bs-target="#carousel${idx}" data-bs-slide="prev">
 								    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								    <span class="visually-hidden">Previous</span>
 								  </button>
-								  <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+								  <button class="carousel-control-next" type="button" data-bs-target="#carousel${idx}" data-bs-slide="next">
 								    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 								    <span class="visually-hidden">Next</span>
 								  </button>
@@ -74,8 +107,10 @@
 						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
 						<div class="bottom_icons">
 							<div class="left_icons">
-								<div class="sprite_heart_icon_outline on_cursor" name="39" data-name="heartbeat"></div>
-								<span class="heart-count on_cursor">39 명이 좋아합니다</span>
+								<div class="sprite_heart_icon_outline on_cursor" name="${idx}" data-name="heartbeat"></div>
+								<span class="heart-count on_cursor">
+									${postVO.like_cnt} 명이 좋아합니다
+								</span>
 							</div>
 							<div class="right_icon">
 <!-- 							<div class="sprite_bubble_icon"></div> -->
@@ -84,24 +119,34 @@
 						</div>
 
 						<div class="posting-master">
-							<p class="posting-master-name">Hanulso</p>
+							<p class="posting-master-name">${postVO.nickname}</p>
 							<div class="posting-master-content">
-								두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다 두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다 두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다  두줄 이상 잘린다
+								<c:out value="${postVO.content}"/>
 							</div>
 						</div>
 
-						<div class="timer">36분 전</div>
+						<div class="timer">
+							${postVO.timer}
+						</div>
 
 						<!-- post 댓글 div -->
 						<div class="comment_container">
 							<div class="comment">
-								<div class="nick_name">한국인유저</div>
+								<div class="nick_name">한En日ひ더미유저</div>
 								<div class="real_comment">
 									<span class="hashTag" onclick="location.href='#'">@PungDaengYee</span>
-									강아지가 너무 귀여워요!
+									더미 내용입니다. 日本語を打ったりwrite English~@#$%^&*()_+{}[] 
 								</div>
-							</div>
-							<div class="comment">
+							</div> 
+							<c:forEach var="replyVO" items="${postVO.reply_list}" begin="0" end="2">
+								<div class="comment">
+									<div class="nick_name">${replyVO.nickname}</div>
+									<div class="real_comment">
+										<c:out value="${replyVO.rcontent}"/>
+									</div>
+								</div>
+							</c:forEach>
+<!-- 							<div class="comment">
 								<div class="nick_name">日本人ユーザー</div>
 								<div class="real_comment">
 									尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 
@@ -110,35 +155,27 @@
 							<div class="comment">
 								<div class="nick_name">English User</div>
 								<div class="real_comment">
-									Only three comments visible. Click ... under here to see more comments
+									강아지가 너무 귀여워요! 12345 いちにさん四fiVeSIX
 								</div>
 							</div>
+							<div class="comment">
+								<div class="nick_name">한En日ひカ글</div>
+								<div class="real_comment">
+									한국어 쓰다가 日本語を打ったり can write English YEAHHHHHH ! ~ @ # $ % ^ & * ( ) _ + { } [ ] 
+								</div>
+							</div> -->
 							<div class="more-comment-div">
 								<span class="more-comment">...</span>
 							</div>
 						</div>
 					</article>
+					<c:set var="idx" value="${idx + 1}"/>
 					</c:forEach>
 				  </c:when>
 				  <c:otherwise>
 				  	<div class="text-center fs-3 mt-5">
 				  		No Post ...
 				  		<p class="fs-5 mt-3">(post 테이블에 더미데이터 있으면 더미갯수만큼 포스팅 보임)</p>
-				  		<p style="line-height: 1.5; text-align: left; font-size: 15px;">
-				  			<br><br><br><br><br><br>
-				  			January <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
-				  			February <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
-				  			March <span style="font-size: 12px;">한국어한국어한국어한국어한국어 한국어한국어한국어</span><br>
-				  			April <span style="font-size: 12px;">englishENGLISHenglish ENGLISHenglishENGLISH</span><br>
-				  			June <span style="font-size: 12px;">ENGLISHenglish ENGLISHenglishENGLISH</span><br>
-				  			July <span style="font-size: 12px;">englishENGLISHenglish ENGLISHenglishENGLISH</span><br>
-				  			October <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
-				  			September <span style="font-size: 12px;">漢字　ひらがなカタカナ漢字</span><br>
-				  			August <span style="font-size: 12px;">カタカナ漢字　ひらがなカタカナ漢字</span><br>
-				  			십일월 <span style="font-size: 12px;">한글한글한글</span><br>
-				  			십이월 <span style="font-size: 12px;">english english ENGLISH</span><br>
-				  			십삼월 <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
-				  		</p>
 				  	</div>
 				  </c:otherwise>
 				  </c:choose>
@@ -150,17 +187,6 @@
 
 			<div class="col-md-3" align="center">
 				<div class="side_box sticky-side my-5">
-				
-					<!-- 개인 프로필
-					<div class="user_profile">
-						<div class="profile_thumb">
-							<img src="imgs/thumb.jpeg" alt="프로필사진">
-						</div>
-						<div class="detail">
-							<div class="id m_text">Hellobook</div>
-							<div class="ko_name">헬로북</div>
-						</div>
-					</div> -->
 					
 					<article class="story">
 						<header class="story_header">
@@ -521,6 +547,27 @@
 <!-- /Modal Test -->
 
 <script type="text/javascript">
+
+	$(document).ready(function() {
+		var insert_post_result = "${insert_post_result}";
+		if( insert_post_result != null && insert_post_result != "" && !history.state ){
+			if( parseInt(insert_post_result) == 1 ){
+				alert('Insert Post Success ! ' + insert_post_result);
+			}else{
+				alert('Insert Post Fail ! ' + insert_post_result);
+			}
+		}
+		var insert_file_result = "${insert_file_result}";
+		if( insert_file_result != null && insert_file_result != "" && !history.state ){
+			if( parseInt(insert_file_result) == 1 ){
+				alert('Insert File Success ! ' + insert_file_result);
+			}else{
+				alert('Insert File Fail ! ' + insert_file_result);
+			}
+		}
+		history.replaceState({},null,null);
+	})
+
 	onclick = function deligationFunc(e) {
 		let elem = e.target;
 		if(elem.getAttribute('data-name') == null){

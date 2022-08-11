@@ -20,7 +20,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Kosugi+Maru&family=Noto+Sans+KR&family=Nunito:ital,wght@1,600&display=swap" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Kosugi+Maru&family=Montserrat:wght@600&family=Murecho&family=Nanum+Gothic&family=Noto+Sans+KR&family=Noto+Sans:wght@600&family=Nunito:wght@600&family=Roboto+Mono:wght@600&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/resources/css/hellobook.css">
 <link rel="stylesheet" href="/resources/css/reset.css">
