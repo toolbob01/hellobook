@@ -38,6 +38,15 @@
 		where m.email = #{email}
 
 	</select>
+	
+	<select id="readByNickname" resultMap="memberMap">
+		select m.email, password, nickname, language, birth, sex, hobby, auth
+		from member m
+		left outer join auth a
+		on m.email = a.email
+		where m.nickname = #{nickname}
+
+	</select>
   
 </mapper>
 
