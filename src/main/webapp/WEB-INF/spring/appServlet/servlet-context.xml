@@ -38,4 +38,35 @@
 	
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
 	<beans:bean id="naverLoginBO" class="com.hellobook.auth.NaverLoginBO" />
+	
+	<!-- google Class Bean설정 추가 -->
+	<beans:bean id="googleClientID" class="java.lang.String">
+	        <beans:constructor-arg value="189384727916-jhk88jubhceqdbko4esr9i4jl0otonlb.apps.googleusercontent.com" />
+	</beans:bean>
+	<beans:bean id="googleClientSecret" class="java.lang.String">
+	        <beans:constructor-arg value="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" />
+	</beans:bean>
+	<beans:bean id="googleRedirectUrl" class="java.lang.String">
+	        <beans:constructor-arg value="http://localhost:8080/member/memberGoogleLogin" />
+	</beans:bean>
+	    
+	<beans:bean id="googleSns" class="com.hellobook.auth.SnsValue">
+	        <beans:constructor-arg value="google" />
+	        <beans:constructor-arg ref="googleClientID" />
+	        <beans:constructor-arg ref="googleClientSecret" />
+	        <beans:constructor-arg ref="googleRedirectUrl" />
+	</beans:bean>
+		
+	<!-- 클라이언트ID와 보안비밀 세팅-->
+	<beans:bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg ref="googleClientID"/>
+		<beans:constructor-arg ref="googleClientSecret"/>
+	</beans:bean>
+	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope" value="profile email"/>
+		<beans:property name="redirectUri" ref="googleRedirectUrl"/>
+	</beans:bean>
+	
 </beans:beans>

@@ -152,7 +152,7 @@ a {
 </head>
 <div class="container register">
 		<img class="logo_hellobook" src="/resources/imgs/logo.png" alt="hellobook_logo">
-		<form class="validation-form" id="regForm" action="/member/join" method="post" novalidate>
+		<form class="validation-form" id="regForm" action="/member/socialJoin" method="post" novalidate>
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" >
 			<div class="input_div">
 				<label for="nickname">닉네임</label>
@@ -234,6 +234,26 @@ a {
 		</form>
 	</div>
 	<script>
+	var joinService = (function() {
+		function checkNickname(nickname,callback){
+			$.ajax({
+				type:"get",
+				url:"/member/checkNickname?nickname="+nickname,
+				success : function(result){
+					if(callback){
+						callback(result);
+					}
+				},error: function(xhr,status,er){
+					alert("서버오류로 회원가입을 진행할 수 없습니다.")
+					consol.log(er);
+					return
+				}
+			})
+		}
+		
+		return {checkNickname:checkNickname};
+	})();
+	
 	function checkOnlyOne(element) {
 		const checkboxes = document.getElementsByName("language");
 		checkboxes.forEach((cb)=> {
@@ -266,6 +286,20 @@ a {
 			nicknameNotice.css('display','flex')
 			return
 		}
+		
+		joinService.checkEmail(email.val(),function(result){
+			if(result == '1'){
+				email.val("");
+				emailNotice.html("이미 가입된 이메일입니다.")
+				emailNotice.css('display','flex')
+				return
+			}else{
+				emailNotice.html("사용하실 수 있는 이메일입니다.")
+				emailNotice.css('display','flex')
+				emailNotice.css('color','green')
+				return
+			}
+		})
 	})
 	
 	//유효성 검사
