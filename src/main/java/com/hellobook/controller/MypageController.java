@@ -17,16 +17,16 @@ public class MypageController {
 	@Autowired
 	private MemberService memberService;
 	
-	@GetMapping("/nonexistent")
-	public String nonexistent() {
-		return "/mypage/nonexistent";
+	@GetMapping("/unknown")
+	public String unknown() {
+		return "/mypage/unknown";
 	}
 	
 	@GetMapping("/profile/{nickname}")
 	public String profile(@PathVariable String nickname, Model model) {
 		MemberVO mvo = memberService.readByNickname(nickname);
 		if(mvo == null) {
-			return "/mypage/nonexistent";
+			return "/mypage/unknown";
 		} else {
 			model.addAttribute("mvo", mvo);
 			return "/mypage/profile";
