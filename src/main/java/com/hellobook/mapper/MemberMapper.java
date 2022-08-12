@@ -1,5 +1,7 @@
 package com.hellobook.mapper;
 
+import java.util.List;
+
 import com.hellobook.domain.MemberVO;
 
 public interface MemberMapper {
@@ -12,4 +14,6 @@ public interface MemberMapper {
 	public int checkEmail(String email);
 	public int checkNickname(String nickname);
 	
+	
+	public List<MemberVO> selectFriends(String email);
 }

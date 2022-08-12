@@ -67,6 +67,17 @@ public class PostServiceImpl implements PostService {
 		return mapper.deletePostFile(fno);
 	}
 	
-
+	@Override
+	public int countLike(int pno) {
+		return mapper.countLike(pno);
+	}
+	@Override
+	public int deleteLike(String email) {
+		return mapper.deleteLike(email);
+	}
+	@Override
+	public int addLike(PostLikeVO likeVO) {
+		return mapper.addLike(likeVO);
+	}
 	
 }

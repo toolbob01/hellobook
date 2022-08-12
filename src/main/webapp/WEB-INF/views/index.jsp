@@ -2,13 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
 
+<!-- <script type="text/javascript" src="/resources/js/index.js"></script> -->
+
 
 <div class="container-fluid">
 	<div class="container">
 		<div class="row post-main-view-row">
 		
 		
-		<div class="m-5 border border-2 border-dark" style="line-height: 1.5; font-size: 13px;">
+<!-- 		<div class="m-5 border border-2 border-dark" style="line-height: 1.5; font-size: 13px;">
 			<br><br>
 			<p style="font-family: 'Kosugi Maru';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Kosugi Maru AAA bbb CCC</p>
 			<p style="font-family: 'Sawarabi Gothic', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Sawarabi Gothic AAA bbb CCC</p>
@@ -32,7 +34,7 @@
 			<span style="font-family: 'Sawarabi Gothic', sans-serif;">日本語　ひらがな　カタカナ</span>
 			<span style="font-family: 'Noto Sans KR';"> english English AAA bbb CCC</span>
 			<br><br>
-		</div>
+		</div> -->
 			
 			<!-- post -->
 			<div class="col-lg-7">
@@ -109,20 +111,20 @@
 							<div class="left_icons">
 						        <c:set var="contain" value="n"/>
 						        <c:forEach var="like" items="${postVO.like_list}">
-						          <c:if test="${like.userid eq username}">
+						          <c:if test="${like.email eq username}">
 						            <c:set var="contain" value="y"/>
 						          </c:if>
 						        </c:forEach>
 						        <c:choose>
 						          <c:when test="${contain eq 'y'}">
-						            <div class="sprite_heart_icon_outline.on  on_cursor  heart-btn" data-heart="y" data-name="heartbeat"></div>
+						            <div class="sprite_heart_icon_outline on on_cursor heart-btn" data-heart="y" data-pno="${postVO.pno}" data-name="heartbeat"></div>
 						          </c:when>
 						          <c:otherwise>
-						            <div class="sprite_heart_icon_outline  on_cursor  heart-btn" data-heart="n" data-name="heartbeat"></div>
+						            <div class="sprite_heart_icon_outline on_cursor heart-btn" data-heart="n" data-pno="${postVO.pno}" data-name="heartbeat"></div>
 						          </c:otherwise>
 						        </c:choose>
 								
-								<span class="heart-count on_cursor">
+								<span class="heart-count on_cursor" id="heart-count${postVO.pno}">
 									${postVO.like_cnt} 명이 좋아합니다
 								</span>
 							</div>
@@ -145,13 +147,13 @@
 
 						<!-- post 댓글 div -->
 						<div class="comment_container">
-							<div class="comment">
-								<div class="nick_name">한En日ひ더미유저</div>
-								<div class="real_comment">
-									<span class="hashTag" onclick="location.href='#'">@PungDaengYee</span>
-									더미 내용입니다. 日本語を打ったりwrite English~@#$%^&*()_+{}[] 
-								</div>
-							</div> 
+<!-- 							<div class="comment"> -->
+<!-- 								<div class="nick_name">한En日ひ더미유저</div> -->
+<!-- 								<div class="real_comment"> -->
+<!-- 									<span class="hashTag" onclick="location.href='#'">@PungDaengYee</span> -->
+<!-- 									더미 내용입니다. 日本語を打ったりwrite English~@#$%^&*()_+{}[]  -->
+<!-- 								</div> -->
+<!-- 							</div>  -->
 							<c:forEach var="replyVO" items="${postVO.reply_list}" begin="0" end="2">
 								<div class="comment">
 									<div class="nick_name">${replyVO.nickname}</div>
@@ -160,27 +162,11 @@
 									</div>
 								</div>
 							</c:forEach>
-<!-- 							<div class="comment">
-								<div class="nick_name">日本人ユーザー</div>
-								<div class="real_comment">
-									尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 尻尾が長すぎ ! 
+							<c:if test="${postVO.reply_list[3] != null}">
+								<div class="more-comment-div">
+									<span class="more-comment">...</span>
 								</div>
-							</div>
-							<div class="comment">
-								<div class="nick_name">English User</div>
-								<div class="real_comment">
-									강아지가 너무 귀여워요! 12345 いちにさん四fiVeSIX
-								</div>
-							</div>
-							<div class="comment">
-								<div class="nick_name">한En日ひカ글</div>
-								<div class="real_comment">
-									한국어 쓰다가 日本語を打ったり can write English YEAHHHHHH ! ~ @ # $ % ^ & * ( ) _ + { } [ ] 
-								</div>
-							</div> -->
-							<div class="more-comment-div">
-								<span class="more-comment">...</span>
-							</div>
+							</c:if>
 						</div>
 					</article>
 					<c:set var="idx" value="${idx + 1}"/>
@@ -231,93 +217,54 @@
 							<div class="sprite_more_icon" data-name="more" onclick="location.href='/friend/list'"></div>
 						</header>
 
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb" onclick="location.href='#'">
-									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/></div>
-								</div>
-
-								<div class="detail">
-									<div class="id" onclick="location.href='#'">im_online</div>
-									<div class="time">
-										<div class="online-circle"></div>
-										<span class="time-status">온라인</span>
+					  <c:choose>
+						<c:when test="${friend_list[0] != null}">
+						<c:forEach var="friendVO" items="${friend_list}">
+							<div class="scroll_inner">
+							
+								<div class="thumb_user">
+									<div class="profile_thumb" onclick="location.href='#'">
+										<img class="profile_img_side" src="/hello_img/member/${friendVO.profile}" alt="프로필사진">
+										<c:choose>
+										  <c:when test="${friendVO.language == 'k'}">
+										    <div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/></div>
+										  </c:when>
+										  <c:otherwise>
+										    <div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
+										  </c:otherwise>
+										</c:choose>
+									</div>
+	
+									<div class="detail">
+										<div class="id" onclick="location.href='#'">${friendVO.nickname}</div>
+										<div class="time">
+											<div class="online-circle"></div>
+											<span class="time-status">온라인</span>
+<!-- 											<div class="offline-circle"></div> -->
+<!-- 											<span class="time-status">1시간 전</span> -->
+										</div>
+									</div>
+									
+									<div class="msg-link">
+										<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
 									</div>
 								</div>
-								
-								<div class="msg-link">
-									<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
-								</div>
 							</div>
-						</div>
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb" onclick="location.href='#'">
-									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
-								</div>
-
-								<div class="detail">
-									<div class="id" onclick="location.href='#'">im_online</div>
-									<div class="time">
-										<div class="online-circle"></div>
-										<span class="time-status">온라인</span>
-									</div>
-								</div>
-								
-								<div class="msg-link">
-									<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
-								</div>
+						</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<div class="no_friend">
+								<p>아직 친구가 없습니다</p>
 							</div>
-						</div>
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
-								</div>
-
-								<div class="detail">
-									<div class="id">offlineUser</div>
-									<div class="time">
-										<div class="offline-circle"></div>
-										<span class="time-status">1시간 전</span>
-									</div>
-								</div>
-								
-								<div class="msg-link">
-									<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
-								</div>
-							</div>
-						</div>
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
-								</div>
-
-								<div class="detail">
-									<div class="id">offlineUser</div>
-									<div class="time">
-										<div class="offline-circle"></div>
-										<span class="time-status">2시간 전</span>
-									</div>
-								</div>
-								
-								<div class="msg-link">
-									<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
-								</div>
-							</div>
-						</div>
+						</c:otherwise>
+					  </c:choose>
 					</article>
 
 					<article class="recommend">
 						<header class="reco_header">
 							<div>친구 추천</div>
 <!-- 							<div class="more">모두 보기</div> -->
-							<div class="sprite_more_icon" data-name="more" onclick="location.href='/'"></div>
+							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div>
 						</header>
 
 						<div class="scroll_inner">
@@ -328,50 +275,10 @@
 								</div>
 
 								<div class="detail">
-									<div class="id">im_online</div>
+									<div class="id">아직구현X</div>
 									<div class="time">
 										<div class="online-circle"></div>
 										<span class="time-status">온라인</span>
-									</div>
-								</div>
-								
-								<div class="msg-link">
-									<i class="bi bi-plus-lg" onclick="location.href='#'"></i>
-								</div>
-							</div>
-						</div>
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
-								</div>
-
-								<div class="detail">
-									<div class="id">offlineUser</div>
-									<div class="time">
-										<div class="offline-circle"></div>
-										<span class="time-status">3시간 전</span>
-									</div>
-								</div>
-								
-								<div class="msg-link">
-									<i class="bi bi-plus-lg" onclick="location.href='#'"></i>
-								</div>
-							</div>
-						</div>
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
-								</div>
-
-								<div class="detail">
-									<div class="id">offlineUser</div>
-									<div class="time">
-										<div class="offline-circle"></div>
-										<span class="time-status">3시간 전</span>
 									</div>
 								</div>
 								
@@ -563,6 +470,7 @@
 
 <script type="text/javascript">
 
+    // Post CRUD Alert Script
 	$(document).ready(function() {
 		var insert_post_result = "${insert_post_result}";
 		if( insert_post_result != null && insert_post_result != "" && !history.state ){
@@ -583,13 +491,13 @@
 		history.replaceState({},null,null);
 	})
 
+	// original Template Script
 	onclick = function deligationFunc(e) {
 		let elem = e.target;
 		if(elem.getAttribute('data-name') == null){
 			elem = null;
 			return;
 		}
-
 		if (elem.matches('[data-name="heartbeat"]')) {
 			console.log("하트");
 		} else if (elem.matches('[data-name="bookmark"]')) {
@@ -605,6 +513,40 @@
 
 		elem.classList.toggle('on');
 	}
+	
+	// Click heart-btn -> By status of data-heart, Adding or Removing user in like_list
+	$(".heart-btn").on("click", function(e){
+		var heart_stat = $(this).data("heart");
+		var heart_user = '${username}';
+		var heart_pno = $(this).data("pno");
+		if( heart_stat == 'y' ) {
+			$(this).data("heart", "n")
+			e.preventDefault();
+			$.ajax({
+				type:"get",
+				url:"/post/like_delete?email=" + heart_user + "&pno=" + heart_pno,
+				dataType:"json",
+				success:function(data){
+					$("#heart-count" + heart_pno).html(data + " 명이 좋아합니다");
+				}, error:function(){
+					alert("Error - Like Delete");
+				}
+			})
+		}else {
+			$(this).data("heart", "y")
+			e.preventDefault();
+			$.ajax({
+				type:"get",
+				url:"/post/like_add?email=" + heart_user + "&pno=" + heart_pno,
+				dataType:"json",
+				success:function(data){
+					$("#heart-count" + heart_pno).html(data + " 명이 좋아합니다");
+				}, error:function(){
+					alert("Error - Like Add");
+				}
+			})
+		}
+	})
 	
 	// Side Bar - Hover
 	$(".thumb_user").hover(function(){
@@ -627,14 +569,14 @@
 		}
 	});
 	
-	// 모달 안의 X 버튼에 이벤트를 건다.
+	// Click 'X' in Detail Modal to make display none
 	 $('.closeModalBtn').on('click', function(){
 		 $('.modal-background').css("display", "none");  
 	 });
 	
 	
 	// Infinity Scroll
- 	function YesScroll () {
+/*  	function YesScroll () {
 		const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
 		const fullContent = document.querySelector('.post-box'); // 전체를 둘러싼 컨텐츠 정보획득
 		const screenHeight = screen.height; // 화면 크기
@@ -671,6 +613,6 @@
 			xhr.responseType = "document";
 		}
 	}
-	YesScroll()
+	YesScroll() */
 </script>
 <%@ include file="footer.jsp"%>

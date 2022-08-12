@@ -84,4 +84,15 @@
 		DELETE FROM post_file WHERE fno=#{fno}
 	</delete>
 
+	<select id="countLike" resultType="int">
+		SELECT count(*) FROM post_like where pno = #{pno}
+	</select>
+	<delete id="deleteLike">
+		DELETE FROM post_like WHERE email=#{email}
+	</delete>
+	<insert id="addLike">
+		INSERT INTO post_like (pno,email)   
+		VALUES(#{pno},#{email})
+	</insert>
+
 </mapper>

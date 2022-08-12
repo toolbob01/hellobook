@@ -1,5 +1,6 @@
 package com.hellobook.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,12 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO readByNickname(String nickname) {
 		MemberVO memberVO = memberMapper.readByNickname(nickname);
 		return memberVO;
+	}
+
+
+
+	@Override
+	public List<MemberVO> selectFriends(String email){
+		return memberMapper.selectFriends(email);
 	}
 }

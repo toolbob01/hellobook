@@ -709,6 +709,7 @@ body{
 	justify-content: space-between;
 	align-items: center;
 	padding: 5px 20px;
+	margin-bottom: 30px;
 }
 
 .contents .comment_container .comment {
@@ -724,7 +725,6 @@ body{
 }
 .more-comment-div {
 	margin-top: 15px;
-	margin-bottom: 30px;
 }
 .more-comment { font-size: 20px; }
 .more-comment:hover{
@@ -880,6 +880,14 @@ body{
 	height: 56px;
 	overflow-x: hidden;
 	overflow-y: auto;
+}
+
+.no_friend {
+	margin-top: 25px;
+	margin-bottom: 30px;
+	font-size: 14px;
+	color: #999;
+	text-align: center;
 }
 
 /* 미디어 쿼리  */

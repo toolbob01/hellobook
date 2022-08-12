@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hellobook.domain.PostFileVO;
+import com.hellobook.domain.PostLikeVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.service.PostService;
 
@@ -91,6 +93,21 @@ public class PostController {
 		return "/post/post_update";
 	}
 	
+	@GetMapping("like_delete") 
+	@ResponseBody
+	public String deleteLike(String email, int pno) { 
+		post_service.deleteLike(email);
+		int result = post_service.countLike(pno);
+		return Integer.toString(result);
+	}
 	
+	@GetMapping("like_add") 
+	@ResponseBody
+	public String addLike(String email, int pno) { 
+		PostLikeVO likeVO = PostLikeVO.builder().email(email).pno(pno).build();
+		post_service.addLike(likeVO);
+		int result = post_service.countLike(pno);
+		return Integer.toString(result);
+	}
 	
 }
