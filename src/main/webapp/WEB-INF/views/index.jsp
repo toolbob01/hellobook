@@ -107,7 +107,21 @@
 						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
 						<div class="bottom_icons">
 							<div class="left_icons">
-								<div class="sprite_heart_icon_outline on_cursor" name="${idx}" data-name="heartbeat"></div>
+						        <c:set var="contain" value="n"/>
+						        <c:forEach var="like" items="${postVO.like_list}">
+						          <c:if test="${like.userid eq username}">
+						            <c:set var="contain" value="y"/>
+						          </c:if>
+						        </c:forEach>
+						        <c:choose>
+						          <c:when test="${contain eq 'y'}">
+						            <div class="sprite_heart_icon_outline.on  on_cursor  heart-btn" data-heart="y" data-name="heartbeat"></div>
+						          </c:when>
+						          <c:otherwise>
+						            <div class="sprite_heart_icon_outline  on_cursor  heart-btn" data-heart="n" data-name="heartbeat"></div>
+						          </c:otherwise>
+						        </c:choose>
+								
 								<span class="heart-count on_cursor">
 									${postVO.like_cnt} 명이 좋아합니다
 								</span>
@@ -575,7 +589,6 @@
 			elem = null;
 			return;
 		}
-
 
 		if (elem.matches('[data-name="heartbeat"]')) {
 			console.log("하트");
