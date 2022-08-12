@@ -155,24 +155,9 @@ a {
 		<form class="validation-form" id="regForm" action="/member/join" method="post" novalidate>
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" >
 			<div class="input_div">
-				<label for="email">이메일</label>
-				<input type="email" class="input_register" name="email" id="email" placeholder="이메일을 입력하세요.">
-				<div class="notice-bubble" id="email-notice"></div>
-			</div>
-			<div class="input_div">
 				<label for="nickname">닉네임</label>
-				<input type="text" class="input_register" name="nickname" id="nickname" placeholder="닉네임을 입력하세요.">
+				<input type="text" class="input_register" name="nickname" id="nickname" value="${mvo.nickname }" placeholder="닉네임을 입력하세요.">
 				<div class="notice-bubble" id="nickname-notice"></div>
-			</div>
-			<div class="input_div">
-				<label for="pw">비밀번호</label>
-				<input type="password" class="input_register" id="pw" name="pw" placeholder="" required>
-				<div class="notice-bubble" id="pw-notice"></div>
-			</div>
-			<div class="input_div">
-				<label for="email">비밀번호 확인</label>
-				<input type="password" class="input_register" id="pw2" name="pw2" placeholder="" required>
-				<div class="notice-bubble" id="pw2-notice"></div>
 			</div>
 			<div class="input_div">
 				<label for="language">모국어</label><br>
@@ -191,24 +176,6 @@ a {
 					</div>
 				</div>
 				<div class="notice-bubble" id="lan-notice">모국어를 선택해주세요.</div>
-			</div>
-			<div class="input_div">
-				<label for="birth">생년월일</label>
-				<input type="date" class="input_register" name="birth" id="birth" min="1900-01-01" >
-				<div class="notice-bubble" id="birth-notice"></div>
-			</div>
-			<div class="input_div" id="sex_input_div">
-				<label for="sex">성별</label><br>
-				<div class="row" id="sexCheckDiv">
-					<div class="form-check col-md-6">
-						<input class="form-check-input" type="radio" name="sex" id="male" value="M" checked>
-						<label class="form-check-label" for="male">남성</label>
-					</div>
-					<div class="form-check col-md-6">
-						<input class="form-check-input" type="radio" name="sex" id="female" value="F">
-						<label class="form-check-label" for="female">여성</label>
-					</div>
-				</div>
 			</div>
 			<div class="input_div">
 				<label for="hobbys">관심분야</label><br>
@@ -250,20 +217,98 @@ a {
 						<label class="form-check-label" for="animal">동물</label>
 					</div>
 				</div>
-				<div class="notice-bubble" id="lan-notice">모국어를 선택해주세요.</div>
 			</div>
 			<hr class="mb-4">
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" id="agreement" name="agreement" required>
+			<div class="custom-control custom-checkbox" style="display: none">
+				<input type="checkbox" class="custom-control-input" id="agreement" name="agreement" checked="checked" required>
 				<label class="custom-control-label" for="agreement">개인정보 수집 및 이용에 동의합니다.</label>
 			</div>
-			<button type="button" class="btn btn-sm btn-primary" id="btnregister" onclick="formCheck()">회원가입</button>
+			<button type="button" class="btn btn-sm btn-primary" id="btnregister" onclick="formCheck()">저장</button>
 			<a class="btn btn-block btn-cansle" href="/member/login">취소</a>
 			
 			<input type="hidden" name="hobby" id="hobby" value="">
-			<input type="hidden" name="password" id="password" value="">
+			<input type="hidden" name="password" id="socialPassword" value="${mvo.password }" readonly="readonly">
+			<input type="hidden" name="email" id="socialEmail" value="${mvo.email }" readonly="readonly">
+			<input type="hidden" name="birth" id="socialBirth" value="${mvo.birth }" readonly="readonly">
+			<input type="hidden" name="sex" id="socialSex" value="${mvo.sex }" readonly="readonly">
 		</form>
 	</div>
-	<script src="/resources/js/join.js"></script>
+	<script>
+	function checkOnlyOne(element) {
+		const checkboxes = document.getElementsByName("language");
+		checkboxes.forEach((cb)=> {
+			cb.checked = false;
+		})
+		
+		element.checked = true;
+	}
+	
+	const nickname = $("#nickname");
+	const language = document.getElementsByName("language");
+	const hobbys = document.getElementsByName("hobbys");
+	const hobby = $("#hobby");
+	
+	const nicknameNotice = $("#nickname-notice");
+	const lanNotice = $("#lan-notice");
+
+	//blur 이벤트
+	nickname.on("blur",function(){
+		nicknameNotice.css('display','none')
+		
+		if(nickname.val() == ''){
+			nicknameNotice.html("닉네임을 입력해주세요.");
+			nicknameNotice.css('display','flex')
+			return
+		}
+		
+		if(nickname.val().search(/\s/) != -1){
+			nicknameNotice.html("닉네임은 공백을 포함할 수 없습니다.");
+			nicknameNotice.css('display','flex')
+			return
+		}
+	})
+	
+	//유효성 검사
+	function formCheck(){
+		if(nickname.val() == ''){
+			alert("닉네임을 입력해주세요.");
+			nickname.focus();
+			return
+		}
+		
+		if(nickname.val().search(/\s/) != -1){
+			alert("닉네임은 공백을 포함할 수 없습니다.");
+			nickname.focus();
+			return
+		}
+		
+		var i=0;
+		
+		language.forEach((lan)=> {
+			if(lan.checked){
+				i++;
+			}
+		})
+		
+		if(i != 1){
+			alert("모국어를 선택해주세요.")
+			return
+		}
+		
+		var hb="";
+		
+		hobbys.forEach((arr)=> {
+			if(arr.checked){
+				hb += arr.value+','
+				arr.setAttribute('disabled','disabled');
+			}
+		})
+		
+		hb = hb.substr(0,hb.length-1);
+		
+		hobby.val(hb);
+		$("#regForm").submit();
+	}
+	</script>
 </body>
 </html>
