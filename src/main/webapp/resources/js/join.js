@@ -13,6 +13,42 @@
 		dateInput.val(today);
 	} */
 	
+	var joinService = (function() {
+		function checkEmail(email,callback){
+			$.ajax({
+				type:"get",
+				url:"/member/checkEmail?email="+email,
+				success : function(result){
+					if(callback){
+						callback(result);
+					}
+				},error: function(xhr,status,er){
+					alert("서버오류로 회원가입을 진행할 수 없습니다.")
+					consol.log(er);
+					return
+				}
+			})
+		}
+		
+		function checkNickname(nickname,callback){
+			$.ajax({
+				type:"get",
+				url:"/member/checkNickname?nickname="+nickname,
+				success : function(result){
+					if(callback){
+						callback(result);
+					}
+				},error: function(xhr,status,er){
+					alert("서버오류로 회원가입을 진행할 수 없습니다.")
+					consol.log(er);
+					return
+				}
+			})
+		}
+		
+		return {checkEmail:checkEmail, checkNickname:checkNickname};
+	})();
+	
 	function checkOnlyOne(element) {
 		const checkboxes = document.getElementsByName("language");
 		checkboxes.forEach((cb)=> {
@@ -47,16 +83,32 @@
 	//blur 이벤트
 	email.on("blur",function(){
 		emailNotice.css('display','none')
+		emailNotice.css('color','red')
 		
 		if(email.val() == ''){
 			emailNotice.html("이메일을 입력해주세요.")
 			emailNotice.css('display','flex')
 			return
 		}
+		
+		joinService.checkEmail(email.val(),function(result){
+			if(result == '1'){
+				email.val("");
+				emailNotice.html("이미 가입된 이메일입니다.")
+				emailNotice.css('display','flex')
+				return
+			}else{
+				emailNotice.html("사용하실 수 있는 이메일입니다.")
+				emailNotice.css('display','flex')
+				emailNotice.css('color','green')
+				return
+			}
+		})
 	})
 	
 	nickname.on("blur",function(){
 		nicknameNotice.css('display','none')
+		nicknameNotice.css('color','red')
 		
 		if(nickname.val() == ''){
 			nicknameNotice.html("닉네임을 입력해주세요.");
@@ -69,6 +121,20 @@
 			nicknameNotice.css('display','flex')
 			return
 		}
+		
+		joinService.checkNickname(nickname.val(),function(result){
+			if(result == '1'){
+				nickname.val("");
+				nicknameNotice.html("이미 사용중인 닉네임입니다.")
+				nicknameNotice.css('display','flex')
+				return
+			}else{
+				nicknameNotice.html("사용하실 수 있는 닉네임입니다.")
+				nicknameNotice.css('display','flex')
+				nicknameNotice.css('color','green')
+				return
+			}
+		})
 	})
 	
 	pw.on("blur",function(){

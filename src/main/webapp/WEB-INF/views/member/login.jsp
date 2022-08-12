@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" session="false"%>
 <%@ include file="../member/memberHeader.jsp"%>
-
 <style>
 @font-face {
 	font-family: 'Inconsolata';
@@ -74,7 +73,6 @@ img.logo_hellobook {
 	border: none;
 	border-radius: 3px;
 	font-size: 14px;
-	font-weight: 600;
 }
 
 #btn_login:disabled {
@@ -122,12 +120,26 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.btn-google{
-    margin-top: 13px;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
-.g-signin2{
+.btn-social:hover{
+	border: 1px solid #000;
+}
+
+#naverLoginBtn{
+	background:url(/resources/imgs/login/naver.jpg) no-repeat center center;
+	background-size:cover;
+	text-align: center;
+	color: #fff;
+}
+
+#googleLoginBtn{
+	background:url(/resources/imgs/login/google.jpg) no-repeat center center;
+	background-size:cover;
+	text-align: center;
+	color: #000;
 }
 </style>
 <body>
@@ -144,8 +156,8 @@ a {
 		</form>
 		<a class="btn btn-block btn-social btn-facebook" onclick="document.facebook.submit();">
 		<span class="fa fa-facebook"></span>Facebook으로 로그인</a>
-		<a class="btn btn-block btn-social btn-facebook" href="${naverUrl}">Naver으로 로그인</a>
-		<div class="g-signin2" data-onsuccess="onSignIn">Google으로 로그인</div>
+		<a class="btn btn-block btn-social btn-facebook" id="naverLoginBtn" href="${naverUrl}">Naver 로그인</a>
+		<a class="btn btn-block btn-social btn-facebook" id="googleLoginBtn" href="#">google 로그인</a>
 		<span class="button_forgot" onclick="location.href='/member/findpwd'">비밀번호 찾기</span>
 		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;">회원가입 하기</span>
 	</div>

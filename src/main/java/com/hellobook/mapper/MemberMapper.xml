@@ -30,6 +30,14 @@
 		values (#{email})
 	</insert>
 	
+	<select id="checkEmail" resultType="int">
+		select count(*) from member where email = #{email}
+	</select>
+	
+	<select id="checkNickname" resultType="int">
+		select count(*) from member where nickname = #{nickname}
+	</select>
+	
 	<select id="read" resultMap="memberMap">
 		select m.email, password, nickname, language, birth, sex, hobby, auth
 		from member m

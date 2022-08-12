@@ -1,6 +1,6 @@
 package com.hellobook.domain;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -11,7 +11,7 @@ public class MemberVO {
 	private String email;
 	private String nickname;
 	private String password;
-	private java.sql.Date birth;
+	private Date birth;
 	private char language; 
 	private char sex;       
 	private String hobby;

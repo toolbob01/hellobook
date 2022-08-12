@@ -176,6 +176,29 @@
 				  	<div class="text-center fs-3 mt-5">
 				  		No Post ...
 				  		<p class="fs-5 mt-3">(post 테이블에 더미데이터 있으면 더미갯수만큼 포스팅 보임)</p>
+<<<<<<< HEAD
+=======
+				  		<p style="line-height: 1.5; text-align: left; font-size: 15px;">
+				  			<br><br><br><br><br><br>
+				  			January <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
+				  			February <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
+				  			March <span style="font-size: 12px;">한국어한국어한국어한국어한국어 한국어한국어한국어</span><br>
+				  			April <span style="font-size: 12px;">englishENGLISHenglish ENGLISHenglishENGLISH</span><br>
+				  			June <span style="font-size: 12px;">ENGLISHenglish ENGLISHenglishENGLISH</span><br>
+				  			July <span style="font-size: 12px;">englishENGLISHenglish ENGLISHenglishENGLISH</span><br>
+				  			October <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
+				  			September <span style="font-size: 12px;">漢字　ひらがなカタカナ漢字</span><br>
+				  			August <span style="font-size: 12px;">カタカナ漢字　ひらがなカタカナ漢字</span><br>
+				  			십일월 <span style="font-size: 12px;">한글한글한글</span><br>
+				  			십이월 <span style="font-size: 12px;">english english ENGLISH</span><br>
+				  			십삼월 <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
+				  			<br><br><br>
+				  			로그인 된 유저 정보를 잘 받아오는가 확인
+				  			<sec:authentication property="principal"/><br>
+				  			<sec:authentication property="principal.Username"/><br>
+				  			${nickname }
+				  		</p>
+>>>>>>> dcd289eccb1d1972cd16be1c7af9f439f5442d72
 				  	</div>
 				  </c:otherwise>
 				  </c:choose>
