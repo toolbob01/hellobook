@@ -7,9 +7,6 @@
 	    <foreach collection="typeArr" item="type">
 		  <trim prefix="OR">
 			<choose>
-				<when test="type == 'E'.toString()">
-					lower(email) like '%'||lower(#{keyword})||'%'
-				</when>
 				<when test="type == 'N'.toString()">
 					lower(nickname) like '%'||lower(#{keyword})||'%'
 				</when>
@@ -24,7 +21,9 @@
 <!-- ===================================================================================== -->
 
 	<select id="selectPostCount" resultType="int">
-		SELECT count(*) FROM post WHERE   
+		SELECT /*+ index_desc(p post_pk)*/ count(p.email) AS count  
+		FROM post p, member m   
+		WHERE p.email = m.email AND   
 		<include refid="criteria"></include>   
 		<![CDATA[ pno > 0 ]]> 
 	</select>

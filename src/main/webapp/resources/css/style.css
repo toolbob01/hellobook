@@ -274,6 +274,11 @@ body::-webkit-scrollbar-track {
 	line-height: 1.4;
 	word-break: break-word;
 }
+.comment-depth .comment-content {
+	margin-top: 10px;
+	line-height: 1.4;
+	word-break: break-word;
+}
 .comment-depth {
 	margin-left: 40px;
 	margin-top: -10px;

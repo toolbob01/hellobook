@@ -49,8 +49,9 @@ body {
         </ul>
 
         <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-search">
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="get" action="/" id="headerSearchForm">
+            	<input type="hidden" name="type" value="NC" />
+                <input type="search" class="form-control" name="keyword" placeholder="Search..." aria-label="Search">
             </form>
         </ul>
 

@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="row post-main-view-row">
 		
-		
+
 <!-- 		<div class="m-5 border border-2 border-dark" style="line-height: 1.5; font-size: 13px;">
 			<br><br>
 			<p style="font-family: 'Kosugi Maru';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Kosugi Maru AAA bbb CCC</p>
@@ -176,8 +176,7 @@
 				  	<div class="text-center fs-3 mt-5">
 				  		No Post ...
 				  		<p class="fs-5 mt-3">(post 테이블에 더미데이터 있으면 더미갯수만큼 포스팅 보임)</p>
-<<<<<<< HEAD
-=======
+
 				  		<p style="line-height: 1.5; text-align: left; font-size: 15px;">
 				  			<br><br><br><br><br><br>
 				  			January <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
@@ -198,7 +197,7 @@
 				  			<sec:authentication property="principal.Username"/><br>
 				  			${nickname }
 				  		</p>
->>>>>>> dcd289eccb1d1972cd16be1c7af9f439f5442d72
+
 				  	</div>
 				  </c:otherwise>
 				  </c:choose>
@@ -318,60 +317,106 @@
 		<div class="container-fluid">
 			<div class="row">
 			
-				<div class="col-md-7" style="padding: 0px">
-				<div class="modal-detail-left d-flex flex-column">
-					<div class="trans_inner">
-						<div id="carousel-modal1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-						  <div class="carousel-inner">
-						    <div class="carousel-item active">
-						      <img src="/resources/imgs/long.jpg" alt="...">
-						    </div>
-						    <div class="carousel-item">
-						      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
-						    </div>
-						    <div class="carousel-item">
-						      <img src="/resources/imgs/logo.png" alt="...">
-						    </div>
-						    <div class="carousel-item">
-						      <img src="/resources/imgs/thumb.jpeg" alt="...">
-						    </div>
-						  </div>
-						  <button class="carousel-control-prev" type="button" data-bs-target="#carousel-modal1" data-bs-slide="prev">
-						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						    <span class="visually-hidden">Previous</span>
-						  </button>
-						  <button class="carousel-control-next" type="button" data-bs-target="#carousel-modal1" data-bs-slide="next">
-						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-						    <span class="visually-hidden">Next</span>
-						  </button>
+				<div class="col-md-7 p-0">
+					<div class="modal-detail-left d-flex flex-column">
+						<div class="trans_inner">
+							<div id="carousel-modal1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+							  <div class="carousel-inner">
+							    <div class="carousel-item active">
+							      <img src="/resources/imgs/long.jpg" alt="...">
+							    </div>
+							    <div class="carousel-item">
+							      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
+							    </div>
+							    <div class="carousel-item">
+							      <img src="/resources/imgs/logo.png" alt="...">
+							    </div>
+							    <div class="carousel-item">
+							      <img src="/resources/imgs/thumb.jpeg" alt="...">
+							    </div>
+							  </div>
+							  <button class="carousel-control-prev" type="button" data-bs-target="#carousel-modal1" data-bs-slide="prev">
+							    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							    <span class="visually-hidden">Previous</span>
+							  </button>
+							  <button class="carousel-control-next" type="button" data-bs-target="#carousel-modal1" data-bs-slide="next">
+							    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							    <span class="visually-hidden">Next</span>
+							  </button>
+							</div>
 						</div>
-					</div>
-					<div class="modal-detail-contents">
-						<div class="posting-master">
-							<div class="comment-profile d-flex">
-								<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-								<div class="comment-profile-flag">
-									<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
+						<div class="modal-detail-contents">
+							<div class="posting-master">
+								<div class="comment-profile d-flex">
+									<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+									<div class="comment-profile-flag">
+										<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
+									</div>
+									<div class="comment-name on_cursor align-self-center">Hanulso</div>
+									<div class="comment-time align-self-center mx-5">1시간 전</div>
+									
 								</div>
-								<div class="comment-name on_cursor align-self-center">Hanulso</div>
-								<div class="comment-time align-self-center mx-5">1시간 전</div>
 								
-							</div>
-							
-							<div class="modal-posting-master-content">
-								여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+								<div class="modal-posting-master-content">
+									여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				</div>
+				</div> <!-- / col-md-7 -->
 				
-				<div class="col-md-5" style="padding: 0;">
+				<div class="col-md-5 p-0">
 					<div class="modal-detail-right">
-						<div class="all-comment">				
-								
+						<div class="all-comment">		
 							<p class="fs-5 mb-3">댓글 리스트</p>
-							
+							<!-- c:forEach -->
+							<div class="comment-profile d-flex">
+								<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+								<div class="comment-profile-flag">
+									<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
+								</div>
+								<div class="comment-name on_cursor align-self-center">Hanulso</div>
+								<div class="comment-time align-self-center mx-5">17분전</div>
+								<div class="comment-cocoment align-self-center">답글 달기</div>
+							</div>
+							<div class="comment-content">
+								하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
+								<!-- c:if 대댓글 개수가 1 이상이면 -->
+								<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#haveToInputRno" aria-expanded="false">
+									<i class="bi bi-arrow-return-right fs-5"></i>
+									<span class="cocoment-open ms-3" data-oc="c">펼치기</span>
+								</div>
+								<div class="collapse" id="haveToInputRno">
+									<div class="comment-depth">
+										<div class="comment-profile d-flex">
+											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+											<div class="comment-profile-flag">
+												<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>
+											</div>
+											<div class="comment-name on_cursor align-self-center">Hanulso</div>
+											<div class="comment-time align-self-center mx-5">17분전</div>
+										</div>
+										<div class="comment-content">
+											<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>
+											장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
+										</div>
+									</div>
+									<div class="comment-depth">
+										<div class="comment-profile d-flex">
+											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+											<div class="comment-profile-flag">
+												<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
+											</div>
+											<div class="comment-name on_cursor align-self-center">Hanulso</div>
+											<div class="comment-time align-self-center mx-5">17분전</div>
+										</div>
+										<div class="comment-content">
+											<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>
+											장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
+										</div>
+									</div>
+								</div> <!-- / commment-depth-all -->
+							</div> <!-- / comment-content -->
 							
 							<div class="comment-profile d-flex">
 								<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
@@ -384,70 +429,43 @@
 							</div>
 							<div class="comment-content">
 								하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
-							</div>
-							<!-- c:if 대댓글 개수가 1 이상이면 -->
-							<div class="mt-3 ms-3 on_cursor">
-								<i class="bi bi-arrow-return-right fs-5"></i>
-								<span class="cocoment-open ms-3">펼치기 / 접기</span>
-							</div>
-							<div class="comment-depth">
-								<div class="comment-profile d-flex">
-									<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="comment-profile-flag">
-										<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>
+								<!-- c:if 대댓글 개수가 1 이상이면 -->
+								<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#haveToInputRno2" aria-expanded="false">
+									<i class="bi bi-arrow-return-right fs-5"></i>
+									<span class="cocoment-open ms-3" data-oc="c">펼치기</span>
+								</div>
+								<div class="collapse" id="haveToInputRno2">
+									<div class="comment-depth">
+										<div class="comment-profile d-flex">
+											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+											<div class="comment-profile-flag">
+												<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>
+											</div>
+											<div class="comment-name on_cursor align-self-center">Hanulso</div>
+											<div class="comment-time align-self-center mx-5">17분전</div>
+										</div>
+										<div class="comment-content">
+											<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>
+											장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
+										</div>
 									</div>
-									<div class="comment-name on_cursor align-self-center">Hanulso</div>
-									<div class="comment-time align-self-center mx-5">17분전</div>
-								</div>
-								<div class="comment-content">
-									<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
-								</div>
-							</div>
-							<div class="comment-depth">
-								<div class="comment-profile d-flex">
-									<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="comment-profile-flag">
-										<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
+									<div class="comment-depth">
+										<div class="comment-profile d-flex">
+											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+											<div class="comment-profile-flag">
+												<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
+											</div>
+											<div class="comment-name on_cursor align-self-center">Hanulso</div>
+											<div class="comment-time align-self-center mx-5">17분전</div>
+										</div>
+										<div class="comment-content">
+											<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>
+											장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
+										</div>
 									</div>
-									<div class="comment-name on_cursor align-self-center">Hanulso</div>
-									<div class="comment-time align-self-center mx-5">17분전</div>
-								</div>
-								<div class="comment-content">
-									<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
-								</div>
-							</div>
-							
-							<div class="comment-profile d-flex">
-								<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-								<div class="comment-profile-flag">
-									<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
-								</div>
-								<div class="comment-name on_cursor align-self-center">Hanulso</div>
-								<div class="comment-time align-self-center mx-5">17분전</div>
-								<div class="comment-cocoment align-self-center">답글 달기</div>
-							</div>
-							<div class="comment-content">
-								하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
-							</div>
-							<!-- c:if 대댓글 개수가 1 이상이면 -->
-							<div class="mt-3 ms-3 on_cursor">
-								<i class="bi bi-arrow-return-right fs-5"></i>
-								<span class="cocoment-open ms-3">펼치기 / 접기</span>
-							</div>
-							<div class="comment-depth">
-								<div class="comment-profile d-flex">
-									<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="comment-profile-flag">
-										<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
-									</div>
-									<div class="comment-name on_cursor align-self-center">Hanulso</div>
-									<div class="comment-time align-self-center mx-5">17분전</div>
-								</div>
-								<div class="comment-content">
-									<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
-								</div>
-							</div>
-						</div>
+								</div> <!-- / commment-depth-all -->
+							</div> <!-- / comment-content -->
+						</div> <!-- / all-comment -->
 						
 						<div class="comment-write-div">
 							<span class="fs-5 mb-3">댓글 작성</span>
@@ -460,7 +478,7 @@
 						</div>
 						
 					</div>
-				</div>
+				</div> <!-- / col-md-5 -->
 				
 			</div>
 		</div>
@@ -574,7 +592,17 @@
 		 $('.modal-background').css("display", "none");  
 	 });
 	
-	
+	// coComment Open Close
+	$(".cocoment-open").on("click", function() {
+		if( $(this).data("oc") == 'c' ){
+			$(this).data("oc", "o")
+			$(this).html("접기");
+		}else {
+			$(this).data("oc", "c")
+			$(this).html("펼치기");
+		}
+	})
+	o
 	// Infinity Scroll
 /*  	function YesScroll () {
 		const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
@@ -614,5 +642,7 @@
 		}
 	}
 	YesScroll() */
+	
+
 </script>
 <%@ include file="footer.jsp"%>
