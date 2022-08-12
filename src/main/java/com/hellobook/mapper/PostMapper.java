@@ -11,6 +11,8 @@ import com.hellobook.domain.PostVO;
 
 public interface PostMapper {
 
+	public int selectPostCount(Criteria cri);
+	
 	public List<PostVO> selectAllPost(Criteria cri);
 		public List<PostFileVO> selectFileByPno(int pno);
 		public List<ReplyVO> selectReplyByPno(int pno);

@@ -23,6 +23,12 @@
 	</sql>
 <!-- ===================================================================================== -->
 
+	<select id="selectPostCount" resultType="int">
+		SELECT count(*) FROM post WHERE   
+		<include refid="criteria"></include>   
+		<![CDATA[ pno > 0 ]]> 
+	</select>
+
 	<select id="selectAllPost" resultType="com.hellobook.domain.PostVO">
         <![CDATA[
  			SELECT pno, content, email, pdate, nickname, profile, language 

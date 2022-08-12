@@ -28,6 +28,10 @@ public class PostServiceImpl implements PostService {
 		return mapper.selectAllPost(cri);
 	}
 		@Override
+		public int selectPostCount(Criteria cri) {
+			return mapper.selectPostCount(cri);
+		}
+		@Override
 		public List<PostFileVO> selectFileByPno(int pno){
 			return mapper.selectFileByPno(pno);
 		}

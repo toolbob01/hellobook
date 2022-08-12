@@ -12,6 +12,8 @@ import com.hellobook.utility.Criteria;
 
 public interface PostService {
 
+	public int selectPostCount(Criteria cri);
+	
 	public List<PostVO> selectAllPost(Criteria cri);
 		public List<PostFileVO> selectFileByPno(int pno);
 		public List<ReplyVO> selectReplyByPno(int pno);
