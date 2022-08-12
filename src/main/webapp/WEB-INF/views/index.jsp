@@ -138,6 +138,11 @@
 				  			십일월 <span style="font-size: 12px;">한글한글한글</span><br>
 				  			십이월 <span style="font-size: 12px;">english english ENGLISH</span><br>
 				  			십삼월 <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
+				  			<br><br><br>
+				  			로그인 된 유저 정보를 잘 받아오는가 확인
+				  			<sec:authentication property="principal"/><br>
+				  			<sec:authentication property="principal.Username"/><br>
+				  			${nickname }
 				  		</p>
 				  	</div>
 				  </c:otherwise>

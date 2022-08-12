@@ -1,6 +1,5 @@
 var findPwdService = (function() {
 	function checkEmail(email, callback, err) {
-		console.log("되긴함?")
 		var data = {
 				email:email
 		} 
