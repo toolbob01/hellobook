@@ -82,7 +82,7 @@
 
 					<div class="mb-5">
 						<label for="content">내용</label>
-						<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" style="font-size: 25px;"></textarea>
+						<textarea class="form-control" rows="5" name="content" id="content" placeholder="post _ write 미완 (저장 X)" style="font-size: 25px;"></textarea>
 					</div>
 
 					<div>
@@ -155,11 +155,6 @@ function postingCheck(){
 		file_list.push($(item).val());
 	})
 	
-// 	var fileSize_list = new Array();
-// 	$("#file")[0].files[0].size.
-	
-	console.log('List 길이 : ' + file_list.length);
-	console.log('List 내용 : ' + file_list);
 
   	for( var i=0; i<file_list.length; i++ ){
 		var nowUpload = file_list[i];
@@ -176,7 +171,7 @@ function postingCheck(){
 				return false;
 			}
 		}
-		if( nowUpload != "" ){
+/* 		if( nowUpload != "" ){
 			var fileSize = nowUpload.files[0].size;
 			var maxSize = 3 * 1024 * 1024; 
 			if(fileSize > maxSize){
@@ -184,7 +179,7 @@ function postingCheck(){
 				nowUpload.value = "";
 				return false;
 			}
-		}
+		} */
 	}
 	
 // 	$("#postingForm").submit();
