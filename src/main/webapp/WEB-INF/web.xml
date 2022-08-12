@@ -26,6 +26,7 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+<<<<<<< HEAD
 		
 		<multipart-config>
 			<location>c:\\hello_img</location> <!-- c드라이브에 hello_img 임시 파일 하나 만들기 -->
@@ -33,6 +34,9 @@
 			<max-request-size>41943040</max-request-size>
 			<file-size-threshold>20971520</file-size-threshold>
 		</multipart-config>
+=======
+		  <async-supported>true</async-supported>
+>>>>>>> d78cc482e1fa4436901e1c04d8347018b5609069
 	</servlet>
 		
 	<servlet-mapping>
