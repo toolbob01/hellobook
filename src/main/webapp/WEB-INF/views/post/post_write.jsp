@@ -70,7 +70,7 @@
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3"">게시글 등록</h4>
-				<form class="validation-form" novalidate method="post" action="/post/post_write" enctype="multipart/form-data">
+				<form class="validation-form" novalidate   name="postingForm" method="post" action="/post/post_write" enctype="multipart/form-data">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="hidden" name="email" value="${username}" />
 					
@@ -82,24 +82,73 @@
 
 					<div class="mb-3">
 						<label for="content">내용</label>
-						<textarea class="form-control" rows="5" name="content"
-							id="content" placeholder="내용을 입력해 주세요" style="font-size: 25px;"></textarea>
+						<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" style="font-size: 25px;"></textarea>
 					</div>
 
 					<div class="mb-3">
-						<label for="uploadfile">사진</label> <input type="file"
-							class="form-control" name="uploadfile" id="uploadfile" placeholder="사진을 넣어주세요">
+						<label for="uploadfile">사진</label> <input type="file" class="form-control uploadfile" name="uploadfile" id="uploadfile" placeholder="사진을 넣어주세요">
 					</div>
 
 					<div>
 						<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
-						<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="">목록</button>
+						<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="return postingCheck()">목록</button>
 					</div>
 				</form>
 			</div>
 		</div>
 
 	</div>
+
+<script>
+
+var maxAppend = 1;
+
+$('.__add ._add').on('click',function(){ 
+   if(maxAppend >= 3){
+      alert("파일 업로드 최대 개수는 3개 입니다.");
+      return;
+   }else{
+       $('.__add').append('<li><input type="file"name="file_path" class="files"> <button type="button" class="_add" onclick="addDel(this);">삭제</button></li>'); 
+       maxAppend ++;
+   }
+   
+ });
+ 
+ function addDel(a){ 
+    $(a).closest('li').remove(); 
+    maxAppend --;
+ }
+
+function postingCheck(){
+	if( $("#content").val() == "" ) {
+		alert("내용을 입력해주세요");
+		$("#content").focus();
+	}
+
+	if($("#uploadfile").val() == "") {
+		alert("첨부파읠은 이미지만 업로드 가능합니다.");
+		$("#uploadfile").focus();
+		return false;
+	}
+	if($("#uploadfile").val() != ""){
+		var ext=$("#uploadfile").val().split('.').pop().toLowerCase();
+		if($.inArray(ext,['gif','jpg','png','jpeg']) == -1) { 
+			alert('(gif,jpg,png,jpeg) 이미지만 업로드 가능합니다.');
+			$("#uploadfile").val("");
+			return false;
+		}
+	}
+	if(document.getElementById("uploadfile").value != ""){
+		var fileSize = document.getElementById("uploadfile").files[0].size;
+		var maxSize = 3 * 1024 * 1024; //3mb
+		if(fileSize > maxSize){
+			alert('첨부파일 용량은 이미지당 3MB 이하만 업로드 가능합니다.');
+			document.getElementById("uploadfile").value = "";
+			return false;
+		}
+	}
+}
+</script>
 
 
 <%@ include file="../footer.jsp"%>

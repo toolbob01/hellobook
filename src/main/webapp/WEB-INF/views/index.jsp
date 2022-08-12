@@ -274,26 +274,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="scroll_inner">
-							<div class="thumb_user">
-								<div class="profile_thumb">
-									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
-								</div>
-
-								<div class="detail">
-									<div class="id">offlineUser</div>
-									<div class="time">
-										<div class="offline-circle"></div>
-										<span class="time-status">3시간 전</span>
-									</div>
-								</div>
-								
-								<div class="msg-link">
-									<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
-								</div>
-							</div>
-						</div>
 					</article>
 
 					<article class="recommend">
