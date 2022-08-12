@@ -99,7 +99,6 @@ body {
         </div>
     </div>
 </header>
-
 <script>
 	function logoutFN(){
 		$("#logoutFN").submit();

@@ -30,6 +30,10 @@
 		values (#{email})
 	</insert>
 	
+	<update id="changePwd">
+		update member set password=#{password} where email = #{email}
+	</update>
+	
 	<select id="checkEmail" resultType="int">
 		select count(*) from member where email = #{email}
 	</select>
@@ -53,7 +57,6 @@
 		left outer join auth a
 		on m.email = a.email
 		where m.nickname = #{nickname}
-
 	</select>
   
   	<select id="selectFriends" resultType="com.hellobook.domain.MemberVO">

@@ -1,8 +1,11 @@
 package com.hellobook.service;
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.Map;
 
+=======
+>>>>>>> a6220ef319325d4f6b0152f85b2f7fb67c23dc03
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +32,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int checkNickname(String nickname) {
 		return memberMapper.checkNickname(nickname);
+	}
+	
+	@Override
+	public void changePwd(MemberVO mvo) {
+		memberMapper.changePwd(mvo);
 	}
 	
 	@Override
