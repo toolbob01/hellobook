@@ -12,6 +12,7 @@ import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
 import com.hellobook.mapper.PostMapper;
 import com.hellobook.utility.Criteria;
+import com.hellobook.utility.Time;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -36,8 +37,8 @@ public class PostServiceImpl implements PostService {
 			return mapper.selectFileByPno(pno);
 		}
 		@Override
-		public List<ReplyVO> selectReplyByPno(int pno){
-			return mapper.selectReplyByPno(pno);
+		public List<ReplyVO> selectThreeReplyByPno(int pno){
+			return mapper.selectThreeReplyByPno(pno);
 		}
 		@Override
 		public List<PostLikeVO> selectLikeByPno(int pno){
@@ -80,4 +81,21 @@ public class PostServiceImpl implements PostService {
 		return mapper.addLike(likeVO);
 	}
 	
+	@Override
+	public PostVO postDetail(int pno) {
+		return mapper.postDetail(pno);
+	}
+	@Override
+	public List<ReplyVO> selectReplyByPno(int pno){
+		List<ReplyVO> reply_list = mapper.selectReplyByPno(pno);
+		for( ReplyVO replyVO : reply_list ) { // Reply List
+			replyVO.setCocomment_list(mapper.selectDepthByRno(replyVO.getRepno()));
+			List<ReplyVO> cocoment_list = replyVO.getCocomment_list();
+			for( ReplyVO cocoment : cocoment_list ) { // Cocoment List
+				cocoment.setTimer(Time.calculateTime(cocoment.getRepdate())); // cocoment's Timer
+			}
+		}
+		return reply_list;
+	}
+
 }

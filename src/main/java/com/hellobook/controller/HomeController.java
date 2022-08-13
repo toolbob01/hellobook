@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.hellobook.utility.PageVO;
 import com.hellobook.domain.PostLikeVO;
 import com.hellobook.domain.PostVO;
+import com.hellobook.domain.ReplyVO;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Criteria;
@@ -39,8 +40,12 @@ public class HomeController {
 		for( PostVO postVO : post_list ) {
 			int pno = postVO.getPno();
 			postVO.setFile_list(service.selectFileByPno(pno)); 	    // Image
-			postVO.setReply_list(service.selectReplyByPno(pno));    // Reply
-			postVO.setReply_cnt(postVO.getReply_list().size()); 	// Reply Count
+			postVO.setReply_list(service.selectThreeReplyByPno(pno));    // Reply
+			List<ReplyVO> relpy_list = postVO.getReply_list();
+			for( ReplyVO replyVO : relpy_list ) {
+				replyVO.setTimer(Time.calculateTime(replyVO.getRepdate())); // Reply's Timer
+			}
+			postVO.setReply_cnt(relpy_list.size()); 	// Reply Count
 			postVO.setLike_list(service.selectLikeByPno(pno)); 		// Like
 			postVO.setLike_cnt(postVO.getLike_list().size());   	// Like Count
 			postVO.setTimer(Time.calculateTime(postVO.getPdate())); // ex) 5분전 2시간전 3일전

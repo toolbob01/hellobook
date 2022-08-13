@@ -93,7 +93,7 @@ body::-webkit-scrollbar-track {
 	position: relative;
     width: 100%;
     overflow: auto;
-    height: 50vh;
+    height: 53vh;
 }
 .post-box .carousel-item img {
 	width: 100%;
@@ -173,7 +173,7 @@ body::-webkit-scrollbar-track {
 .modal-detail { z-index: 52;
 	max-width: 1000px;
 	width: 90vw;
-	height: 90vh;
+	height: 93vh;
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -201,7 +201,7 @@ body::-webkit-scrollbar-track {
 	position: relative;
     width: 100%;
     overflow: auto;
-    height: 50vh;
+    height: 55vh;
 }
 .modal-detail .carousel-item img {
 	width: 100%;
@@ -218,13 +218,13 @@ body::-webkit-scrollbar-track {
 	margin-bottom: 10px;
 }
 .modal-posting-master-content {
-	height: 30vh;
+	height: 25vh;
     font-size: 14px;
     font-weight: normal;
 	line-height: 1.5;
 	word-break:break-word;
 	overflow: auto;
-/* 	border: solid 1px black; */
+	margin-bottom: 10px;
 }
 
 .modal-detail-right {
@@ -233,7 +233,7 @@ body::-webkit-scrollbar-track {
 .all-comment {
 	height: 70vh;
 	padding: 20px;
-	border: solid 1px #ccc;
+	border-left: solid 1px #ccc;
 	overflow: auto;
 }
 
@@ -895,6 +895,30 @@ body{
 	text-align: center;
 }
 
+/* Post Write */
+.post_write_page .form-check-input:checked {
+	background-color: #9fd5ff;
+	border-color: #9fd5ff;
+}
+.post_write_page .input-form {
+	max-width: 680px;
+	margin-top: 80px;
+	padding: 32px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+}
+.post_write_page .form-control:focus {
+	color: #212529;
+	background-color: #fff;
+	border-color: #9fd5ff;
+	outline: 0;
+	box-shadow: 0 0 0 .25remrgba(13, 110, 253, .25);
+}
 /* 미디어 쿼리  */
 
 @media screen and (max-width:1000px) {

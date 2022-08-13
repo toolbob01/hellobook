@@ -42,10 +42,12 @@
  			WHERE rn > (#{pageNum}-1) * #{amount} 
          ]]> 
 	</select>
-	<select id="selectReplyByPno" resultType="com.hellobook.domain.ReplyVO">
-		SELECT /*+ index_desc(r reply_pk)*/ r.repno, r.pno, r.rcontent, r.depth, r.email, m.nickname, m.language, m.profile   
-		FROM reply r, member m   
-		WHERE r.pno = #{pno} AND r.email = m.email
+	<select id="selectThreeReplyByPno" resultType="com.hellobook.domain.ReplyVO">
+		<![CDATA[
+			SELECT /*+ index_desc(r reply_pk)*/ r.repno, r.pno, r.rcontent, r.repdate, r.email, m.nickname, m.language, m.profile   
+			FROM reply r, member m   
+			WHERE r.pno = #{pno} AND r.email = m.email AND r.depth = 1 AND rownum < 4
+		]]>
 	</select>
 	<select id="selectLikeByPno" resultType="com.hellobook.domain.PostLikeVO">
 		SELECT l.pno, l.email, m.nickname, m.language, m.profile    
@@ -93,5 +95,21 @@
 		INSERT INTO post_like (pno,email)   
 		VALUES(#{pno},#{email})
 	</insert>
+
+	<select id="postDetail" resultType="com.hellobook.domain.PostVO">
+		SELECT p.pno, p.content, p.email, p.pdate, m.nickname, m.language, m.profile   
+		FROM post p, member m   
+		WHERE p.pno = #{pno} AND p.email = m.email   
+	</select>
+		<select id="selectReplyByPno" resultType="com.hellobook.domain.ReplyVO">
+			SELECT /*+ index_desc(r reply_pk)*/ r.repno, r.pno, r.rcontent, r.depth, r.repdate, r.email, m.nickname, m.language, m.profile   
+			FROM reply r, member m   
+			WHERE r.pno = #{pno} AND r.email = m.email AND r.depth = 1   
+		</select>
+		<select id="selectDepthByRno" resultType="com.hellobook.domain.ReplyVO">
+			SELECT /*+ index_desc(r reply_pk)*/ r.repno, r.pno, r.rcontent, r.depth, r.repdate, r.email, m.nickname, m.language, m.profile   
+			FROM reply r, member m   
+			WHERE r.refno = #{repno} AND r.email = m.email AND r.depth = 2   
+		</select>
 
 </mapper>

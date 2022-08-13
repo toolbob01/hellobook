@@ -12,10 +12,11 @@ public class MemberVO {
 	private String nickname;
 	private String password;
 	private Date birth;
-	private char language; 
-	private char sex;       
+	private String language; 
+	private String sex;       
 	private String hobby;
 	private String intro;
+	private String profile;
 	private List<AuthVO> authList;
 	
 	// Friend
