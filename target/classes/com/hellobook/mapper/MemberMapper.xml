@@ -11,6 +11,7 @@
 		<result property="birth" column="birth"/>
 		<result property="sex" column="sex"/>
 		<result property="hobby" column="hobby"/>
+		<result property="intro" column="intro"/>
 		<collection property="authList" resultMap="authMap"/>
 	</resultMap>
 	
@@ -28,6 +29,7 @@
 		<result property="birth" column="birth"/>
 		<result property="sex" column="sex"/>
 		<result property="hobby" column="hobby"/>
+		<result property="intro" column="intro"/>
 		<collection property="authList" resultMap="authMap2"/>
 	</resultMap>
 	
@@ -60,7 +62,7 @@
 	</select>
 	
 	<select id="read" resultMap="sessionMap">
-		select m.email, password, nickname, language, birth, sex, hobby, auth
+		select m.email, password, nickname, language, birth, sex, hobby, m.intro, auth
 		from member m
 		left outer join auth a
 		on m.email = a.email
@@ -69,7 +71,7 @@
 	</select>
 	
 	<select id="readByNickname" resultMap="memberMap">
-		select m.email, password, nickname, language, birth, sex, hobby, auth
+		select m.email, password, nickname, language, birth, sex, hobby, m.intro, auth
 		from member m
 		left outer join auth a
 		on m.email = a.email
@@ -80,6 +82,10 @@
 		SELECT  f.frno, f.femail, m.nickname, m.language, m.birth, m.sex, m.hobby, m.intro, m.profile  
 		FROM friend f, member m   
 		WHERE f.femail = m.email AND f.email = #{email}
+	</select>
+	
+	<select id="friendRecommend">
+		SELECT * FROM ( SELECT * FROM member ORDER BY dbms_random.value)
 	</select>
   
 </mapper>
