@@ -12,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
@@ -35,6 +36,7 @@ import com.hellobook.auth.NaverLoginBO;
 import com.hellobook.auth.SNSLogin;
 import com.hellobook.auth.SnsValue;
 import com.hellobook.domain.MemberVO;
+import com.hellobook.domain.SessionVO;
 import com.hellobook.security.CustomUserDetailsService;
 import com.hellobook.service.MemberService;
 import com.hellobook.utility.Message;
@@ -133,6 +135,14 @@ public class MemberController {
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			securityContext.setAuthentication(autentication);
 			session = request.getSession(true);
+			
+			User user = (User)autentication.getPrincipal();
+			user.getUsername();
+			
+			SessionVO svo = memberService.read(user.getUsername());
+			
+			session.setAttribute("username", user.getUsername());
+			session.setAttribute("Nname", svo.getNickname());
 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
 			return "/index";
 		}
@@ -175,6 +185,15 @@ public class MemberController {
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			securityContext.setAuthentication(autentication);
 			session = request.getSession(true);
+			
+			User user = (User)autentication.getPrincipal();
+			user.getUsername();
+			
+			SessionVO svo = memberService.read(user.getUsername());
+			
+			session.setAttribute("username", user.getUsername());
+			session.setAttribute("Nname", svo.getNickname());
+			
 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
 			return "/index";
 		}

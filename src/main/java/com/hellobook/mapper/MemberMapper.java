@@ -8,11 +8,8 @@ import com.hellobook.domain.SessionVO;
 public interface MemberMapper {
 	public void insertMember(MemberVO mvo);
 	public void insertAuth(String email);
-	
 
 	public SessionVO read(String userid);
-	
-
 	public MemberVO readByNickname(String nickname);
 	
 	public int checkEmail(String email);
