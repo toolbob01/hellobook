@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
 <%@ include file="../member/memberHeader.jsp"%>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="189384727916-jhk88jubhceqdbko4esr9i4jl0otonlb.apps.googleusercontent.com">
 <style>
 @font-face {
 	font-family: 'Inconsolata';
@@ -154,10 +156,10 @@ a {
 			</c:if>
 			<button type="submit" class="btn btn-sm btn-primary" id="btnlogin" >로그인</button>
 		</form>
-		<a class="btn btn-block btn-social btn-facebook" onclick="document.facebook.submit();">
-		<span class="fa fa-facebook"></span>Facebook으로 로그인</a>
+		<!-- <a class="btn btn-block btn-social btn-facebook" onclick="document.facebook.submit();">
+		<span class="fa fa-facebook"></span>Facebook으로 로그인</a> -->
 		<a class="btn btn-block btn-social btn-facebook" id="naverLoginBtn" href="${naverUrl}">Naver 로그인</a>
-		<a class="btn btn-block btn-social btn-facebook" id="googleLoginBtn" href="#">google 로그인</a>
+		<a class="btn btn-block btn-social btn-facebook" id="googleLoginBtn" href="${googleUrl}">Google 로그인</a>
 		<span class="button_forgot" onclick="location.href='/member/findpwd'">비밀번호 찾기</span>
 		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;">회원가입 하기</span>
 	</div>

@@ -12,6 +12,8 @@ import com.hellobook.utility.Criteria;
 
 public interface PostService {
 
+	public int selectPostCount(Criteria cri);
+	
 	public List<PostVO> selectAllPost(Criteria cri);
 		public List<PostFileVO> selectFileByPno(int pno);
 		public List<ReplyVO> selectReplyByPno(int pno);
@@ -19,10 +21,14 @@ public interface PostService {
 	
 	public int insertPost(PostVO postVO);
 	public int maxPno(String email);
-	public int insertPostFile(PostFileVO postVO);
+	public int insertPostFile(PostFileVO fileVO);
 	
+	public int deletePost(int pno);
+	public int deletePostFile(int fno);
 	
-	
+	public int countLike(int pno);
+	public int deleteLike(String email);
+	public int addLike(PostLikeVO likeVO);
 
 	
 }

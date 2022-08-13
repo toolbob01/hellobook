@@ -52,8 +52,7 @@ public class NaverLoginBO {
 		/* 생성한 난수 값을 session에 저장 */
 		setSession(session,state);
 		
-		OAuth20Service oauthService = new ServiceBuilder()
-				.apiKey(CLIENT_ID)
+		OAuth20Service oauthService = new ServiceBuilder(CLIENT_ID)
 				.apiSecret(CLIENT_SECRET)
 				.callback(REDIRECT_URI)
 				.state(state)
@@ -67,8 +66,7 @@ public class NaverLoginBO {
 		System.out.println("sesssionState: "+sessionState);
 		System.out.println("state: "+state);
 		if(StringUtils.pathEquals(sessionState, state)) {
-			OAuth20Service oauthService = new ServiceBuilder()
-					.apiKey(CLIENT_ID)
+			OAuth20Service oauthService = new ServiceBuilder(CLIENT_ID)
 					.apiSecret(CLIENT_SECRET)
 					.callback(REDIRECT_URI)
 					.state(state)
@@ -80,14 +78,13 @@ public class NaverLoginBO {
 	}
 	
 	public String getUserProfile(OAuth2AccessToken oauthToken) throws Exception{
-		OAuth20Service oauthService = new ServiceBuilder()
-				.apiKey(CLIENT_ID)
+		OAuth20Service oauthService = new ServiceBuilder(CLIENT_ID)
 				.apiSecret(CLIENT_SECRET)
 				.callback(REDIRECT_URI)
 				.build(NaverLoginApi.instance());
-		OAuthRequest request = new OAuthRequest(Verb.GET,PROFILE_API_URL,oauthService);
+		OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL);
 		oauthService.signRequest(oauthToken, request);
-		Response response = request.send();
+		Response response = oauthService.execute(request);
 		return response.getBody();
 	}
 }

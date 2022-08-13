@@ -152,7 +152,7 @@ a {
 </head>
 <div class="container register">
 		<img class="logo_hellobook" src="/resources/imgs/logo.png" alt="hellobook_logo">
-		<form class="validation-form" id="regForm" action="/member/join" method="post" novalidate>
+		<form class="validation-form" id="regForm" action="/member/socialJoin" method="post" novalidate>
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" >
 			<div class="input_div">
 				<label for="nickname">닉네임</label>
@@ -160,22 +160,22 @@ a {
 				<div class="notice-bubble" id="nickname-notice"></div>
 			</div>
 			<div class="input_div">
-				<label for="language">모국어</label><br>
-				<div class="languageCheckBox">
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" name="language" id="korean" value="K" onclick="checkOnlyOne(this)">
-						<label class="form-check-label" for="korean">한국어</label>
+				<label for="birth">생년월일</label>
+				<input type="date" class="input_register" name="birth" id="birth" min="1900-01-01" >
+				<div class="notice-bubble" id="birth-notice"></div>
+			</div>
+			<div class="input_div" id="sex_input_div">
+				<label for="sex">성별</label><br>
+				<div class="row" id="sexCheckDiv">
+					<div class="form-check col-md-6">
+						<input class="form-check-input" type="radio" name="sex" id="male" value="M" checked>
+						<label class="form-check-label" for="male">남성</label>
 					</div>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" name="language" id="japanese" value="J" onclick="checkOnlyOne(this)">
-							<label class="form-check-label" for="japanese">일본어</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" name="language" id="etc" value="E" onclick="checkOnlyOne(this)">
-						<label class="form-check-label" for="etc">기타</label>
+					<div class="form-check col-md-6">
+						<input class="form-check-input" type="radio" name="sex" id="female" value="F">
+						<label class="form-check-label" for="female">여성</label>
 					</div>
 				</div>
-				<div class="notice-bubble" id="lan-notice">모국어를 선택해주세요.</div>
 			</div>
 			<div class="input_div">
 				<label for="hobbys">관심분야</label><br>
@@ -229,11 +229,31 @@ a {
 			<input type="hidden" name="hobby" id="hobby" value="">
 			<input type="hidden" name="password" id="socialPassword" value="${mvo.password }" readonly="readonly">
 			<input type="hidden" name="email" id="socialEmail" value="${mvo.email }" readonly="readonly">
-			<input type="hidden" name="birth" id="socialBirth" value="${mvo.birth }" readonly="readonly">
-			<input type="hidden" name="sex" id="socialSex" value="${mvo.sex }" readonly="readonly">
+			<input type="hidden" name="language" id="socialLanguage" value="${mvo.language }" readonly="readonly">
 		</form>
 	</div>
 	<script>
+	
+	var joinService = (function() {
+		function checkNickname(nickname,callback){
+			$.ajax({
+				type:"get",
+				url:"/member/checkNickname?nickname="+nickname,
+				success : function(result){
+					if(callback){
+						callback(result);
+					}
+				},error: function(xhr,status,er){
+					alert("서버오류로 회원가입을 진행할 수 없습니다.")
+					consol.log(er);
+					return
+				}
+			})
+		}
+		
+		return {checkNickname:checkNickname};
+	})();
+	
 	function checkOnlyOne(element) {
 		const checkboxes = document.getElementsByName("language");
 		checkboxes.forEach((cb)=> {
@@ -244,7 +264,8 @@ a {
 	}
 	
 	const nickname = $("#nickname");
-	const language = document.getElementsByName("language");
+	const birth = $("#birth");
+	const sex = $("#sex");
 	const hobbys = document.getElementsByName("hobbys");
 	const hobby = $("#hobby");
 	
@@ -266,6 +287,37 @@ a {
 			nicknameNotice.css('display','flex')
 			return
 		}
+		
+		joinService.checkEmail(email.val(),function(result){
+			if(result == '1'){
+				email.val("");
+				emailNotice.html("이미 가입된 이메일입니다.")
+				emailNotice.css('display','flex')
+				return
+			}else{
+				emailNotice.html("사용하실 수 있는 이메일입니다.")
+				emailNotice.css('display','flex')
+				emailNotice.css('color','green')
+				return
+			}
+		})
+	})
+	
+	birth.on("blur",function(){
+		birthNotice.css('display','none')
+		
+		if(birth.val() == ''){
+			birthNotice.html("생년월일을 입력해주세요.")
+			birthNotice.css('display','flex')
+			return
+		}
+		
+		if(birth.val().substr(0,4) < 1900){
+			birthNotice.html("1900년 미만은 입력하실 수 없습니다.")
+			birthNotice.css('display','flex')
+			birth.val("");
+			return
+		}
 	})
 	
 	//유효성 검사
@@ -282,16 +334,16 @@ a {
 			return
 		}
 		
-		var i=0;
+		if(birth.val() == ''){
+			alert("생년월일을 입력해주세요.")
+			birth.focus();
+			return
+		}
 		
-		language.forEach((lan)=> {
-			if(lan.checked){
-				i++;
-			}
-		})
-		
-		if(i != 1){
-			alert("모국어를 선택해주세요.")
+		if(birth.val().substr(0,4) < 1900){
+			alert("1900년 미만은 입력하실 수 없습니다.")
+			birth.val("");
+			birth.focus();
 			return
 		}
 		

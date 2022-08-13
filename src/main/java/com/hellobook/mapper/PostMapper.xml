@@ -7,9 +7,6 @@
 	    <foreach collection="typeArr" item="type">
 		  <trim prefix="OR">
 			<choose>
-				<when test="type == 'E'.toString()">
-					lower(email) like '%'||lower(#{keyword})||'%'
-				</when>
 				<when test="type == 'N'.toString()">
 					lower(nickname) like '%'||lower(#{keyword})||'%'
 				</when>
@@ -23,11 +20,19 @@
 	</sql>
 <!-- ===================================================================================== -->
 
+	<select id="selectPostCount" resultType="int">
+		SELECT /*+ index_desc(p post_pk)*/ count(p.email) AS count  
+		FROM post p, member m   
+		WHERE p.email = m.email AND   
+		<include refid="criteria"></include>   
+		<![CDATA[ pno > 0 ]]> 
+	</select>
+
 	<select id="selectAllPost" resultType="com.hellobook.domain.PostVO">
         <![CDATA[
  			SELECT pno, content, email, pdate, nickname, profile, language 
  			FROM (  
- 				SELECT /*+ index_desc(post post_pk)*/  rownum rn, p.pno, p.content, p.email, p.pdate, m.nickname, m.profile, m.language
+ 				SELECT /*+ index_desc(p post_pk)*/  rownum rn, p.pno, p.content, p.email, p.pdate, m.nickname, m.profile, m.language
  				FROM post p, member m   
  				WHERE p.email = m.email AND   
  		]]>
@@ -37,15 +42,19 @@
  			WHERE rn > (#{pageNum}-1) * #{amount} 
          ]]> 
 	</select>
-		<select id="selectFileByPno" resultType="com.hellobook.domain.PostFileVO">
-			SELECT * FROM post_file WHERE pno = #{pno}
-		</select>
-		<select id="selectReplyByPno" resultType="com.hellobook.domain.ReplyVO">
-			SELECT * FROM reply WHERE pno = #{pno}
-		</select>
-		<select id="selectLikeByPno" resultType="com.hellobook.domain.PostLikeVO">
-			SELECT * FROM post_like WHERE pno = #{pno}
-		</select>
+	<select id="selectReplyByPno" resultType="com.hellobook.domain.ReplyVO">
+		SELECT /*+ index_desc(r reply_pk)*/ r.repno, r.pno, r.rcontent, r.depth, r.email, m.nickname, m.language, m.profile   
+		FROM reply r, member m   
+		WHERE r.pno = #{pno} AND r.email = m.email
+	</select>
+	<select id="selectLikeByPno" resultType="com.hellobook.domain.PostLikeVO">
+		SELECT l.pno, l.email, m.nickname, m.language, m.profile    
+		FROM post_like l, member m   
+		WHERE l.pno = #{pno} AND l.email = m.email
+	</select>
+	<select id="selectFileByPno" resultType="com.hellobook.domain.PostFileVO">
+		SELECT * FROM post_file WHERE pno = #{pno}
+	</select>
 
 	<insert id="insertPost">
 		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
@@ -54,7 +63,6 @@
 		insert into post (pno,content,email,pdate) 
 		values(#{pno},#{content},#{email},sysdate)
 	</insert>
-
 	<select id="maxPno" resultType="int">
 		select max(pno) from post where email = #{email}
 	</select>
@@ -67,5 +75,23 @@
 		values(#{fno},#{email},#{pno},#{uuid})
 	</insert>
 
+	<delete id="deletePost">
+		DELETE FROM post WHERE pno=#{pno}
+	</delete>
+
+	<delete id="deletePostFile">
+		DELETE FROM post_file WHERE fno=#{fno}
+	</delete>
+
+	<select id="countLike" resultType="int">
+		SELECT count(*) FROM post_like where pno = #{pno}
+	</select>
+	<delete id="deleteLike">
+		DELETE FROM post_like WHERE email=#{email}
+	</delete>
+	<insert id="addLike">
+		INSERT INTO post_like (pno,email)   
+		VALUES(#{pno},#{email})
+	</insert>
 
 </mapper>

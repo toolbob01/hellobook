@@ -20,7 +20,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Kosugi+Maru&family=Noto+Sans+KR&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Kosugi+Maru&family=Noto+Sans+KR&family=Nunito:ital,wght@1,600&display=swap" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Kosugi+Maru&family=Montserrat:wght@600&family=Murecho&family=Nanum+Gothic&family=Noto+Sans+KR&family=Noto+Sans:wght@600&family=Nunito:wght@600&family=Roboto+Mono:wght@600&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/resources/css/hellobook.css">
 <link rel="stylesheet" href="/resources/css/reset.css">
@@ -47,8 +49,9 @@ body {
         </ul>
 
         <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-search">
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="get" action="/" id="headerSearchForm">
+            	<input type="hidden" name="type" value="NC" />
+                <input type="search" class="form-control" name="keyword" placeholder="Search..." aria-label="Search">
             </form>
         </ul>
 
@@ -97,7 +100,6 @@ body {
         </div>
     </div>
 </header>
-
 <script>
 	function logoutFN(){
 		$("#logoutFN").submit();
