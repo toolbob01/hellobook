@@ -1,12 +1,10 @@
 package com.hellobook.service;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 
 import java.util.Map;
 
->>>>>>> 2cb9d3a8478242b9acd7c37a4660fcae7eb8bd42
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +35,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+<<<<<<< HEAD
 	public SessionVO read(String email) {
 		SessionVO svo = memberMapper.read(email);
 		return svo;
+=======
+
+	public SessionVO read(String email) {
+		SessionVO svo = memberMapper.read(email);
+		return svo;
+	}
+>>>>>>> 4e4741e2340eda88c8105de05910c69936a004cd
 	public void changePwd(MemberVO mvo) {
 		memberMapper.changePwd(mvo);
 	}
