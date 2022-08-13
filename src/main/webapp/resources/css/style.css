@@ -1,15 +1,20 @@
 /* Language Fonts */
-@font-face {
+@font-face { /* KOR */
 	font-family: 'Noto Sans KR';
 	unicode-range: U+AC00-D7A3, 
 	U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 }
-@font-face {
-	font-family: 'Inconsolata';
+@font-face { /* ENG */
+/* 	font-family: 'Nunito', sans-serif; */
+/* 	font-family: 'Roboto Mono', monospace; */
+/* 	font-family: 'Inconsolata'; */
+/* 	font-family: 'Montserrat', sans-serif; */
+	font-family: 'Noto Sans KR';
 	unicode-range: U+0041-005A, U+0061-007A;
+/* 	font-style: normal; */
 }
-@font-face {
-	font-family: 'Kosugi Maru';
+@font-face { /* JAP */
+	font-family: 'Sawarabi Gothic', sans-serif;
 	unicode-range: U+3041-3096, U+309D, U+309E,
 				   U+30A1-30FA, U+30FC,
 	               U+F900-FA6D;
@@ -250,7 +255,7 @@ body::-webkit-scrollbar-track {
 }
 .comment-name {
 	font-size: 16px;
-	font-weight: bold;
+/* 	font-weight: bold; */
 }
 .comment-time, .comment-cocoment {
 	font-size: 12px;
@@ -266,6 +271,11 @@ body::-webkit-scrollbar-track {
 }
 .comment-content {
 	margin-top: 20px;
+	line-height: 1.4;
+	word-break: break-word;
+}
+.comment-depth .comment-content {
+	margin-top: 10px;
 	line-height: 1.4;
 	word-break: break-word;
 }
@@ -440,7 +450,7 @@ body::-webkit-scrollbar-track {
 
 .m_text{
     font-size: 17px;
-    font-weight: bold;
+/*     font-weight: bold; */
 }
 
 .s_text{
@@ -452,6 +462,7 @@ body::-webkit-scrollbar-track {
 
 body{
     background:#fafafa;
+    color:#555;
 }
 
 /* 헤더 */
@@ -684,7 +695,7 @@ body{
 }
 .posting-master-name {
     font-size: 20px;
-    font-weight: bold;
+	color: #000;
 	margin-bottom: 7px;
 }
 .posting-master-content {
@@ -703,6 +714,7 @@ body{
 	justify-content: space-between;
 	align-items: center;
 	padding: 5px 20px;
+	margin-bottom: 30px;
 }
 
 .contents .comment_container .comment {
@@ -713,12 +725,11 @@ body{
     overflow:hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
-    font-size: 12px;
-    margin-top: 1px;
+    font-size: 13px;
+    margin-top: 2px;
 }
 .more-comment-div {
 	margin-top: 15px;
-	margin-bottom: 30px;
 }
 .more-comment { font-size: 20px; }
 .more-comment:hover{
@@ -727,9 +738,11 @@ body{
 }
 
 .contents  .comment_container .comment .nick_name {
-	font-size: 15px;
+	font-size: 16px;
 	margin-right: 10px;
 	white-space:nowrap;
+	color: #000;
+/* 	font-weight: bold; */
 }
 
 .contents .timer {
@@ -821,7 +834,7 @@ body{
 	width: 291px;
 	font-size: 14px;
 	color: #262626;
-	font-weight: bold;
+/* 	font-weight: bold; */
 	background: white;
 	box-shadow: 5px 5px 5px #78787838;
 }
@@ -872,6 +885,14 @@ body{
 	height: 56px;
 	overflow-x: hidden;
 	overflow-y: auto;
+}
+
+.no_friend {
+	margin-top: 25px;
+	margin-bottom: 30px;
+	font-size: 14px;
+	color: #999;
+	text-align: center;
 }
 
 /* 미디어 쿼리  */

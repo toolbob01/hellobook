@@ -19,6 +19,23 @@
 		<result property="auth" column="auth"/>
 	</resultMap>
 	
+	<resultMap type="com.hellobook.domain.SessionVO" id="sessionMap">
+		<id property="email" column="email"/>
+		<result property="email" column="email"/>
+		<result property="password" column="password"/>
+		<result property="nickname" column="nickname"/>
+		<result property="language" column="language"/>
+		<result property="birth" column="birth"/>
+		<result property="sex" column="sex"/>
+		<result property="hobby" column="hobby"/>
+		<collection property="authList" resultMap="authMap2"/>
+	</resultMap>
+	
+	<resultMap type="com.hellobook.domain.AuthVO" id="authMap2">
+		<result property="email" column="email"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
 	
 	<insert id="insertMember">
 		insert into member (email, password, nickname, language, birth, sex, hobby)
@@ -30,7 +47,19 @@
 		values (#{email})
 	</insert>
 	
-	<select id="read" resultMap="memberMap">
+	<update id="changePwd">
+		update member set password=#{password} where email = #{email}
+	</update>
+	
+	<select id="checkEmail" resultType="int">
+		select count(*) from member where email = #{email}
+	</select>
+	
+	<select id="checkNickname" resultType="int">
+		select count(*) from member where nickname = #{nickname}
+	</select>
+	
+	<select id="read" resultMap="sessionMap">
 		select m.email, password, nickname, language, birth, sex, hobby, auth
 		from member m
 		left outer join auth a
@@ -45,7 +74,12 @@
 		left outer join auth a
 		on m.email = a.email
 		where m.nickname = #{nickname}
-
+	</select>
+  
+  	<select id="selectFriends" resultType="com.hellobook.domain.MemberVO">
+		SELECT  f.frno, f.femail, m.nickname, m.language, m.birth, m.sex, m.hobby, m.intro, m.profile  
+		FROM friend f, member m   
+		WHERE f.femail = m.email AND f.email = #{email}
 	</select>
   
 </mapper>

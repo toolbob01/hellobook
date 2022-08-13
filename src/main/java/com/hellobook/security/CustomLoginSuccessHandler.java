@@ -12,7 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import com.hellobook.domain.MemberVO;
+import com.hellobook.domain.SessionVO;
 import com.hellobook.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
@@ -30,11 +30,11 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 		User user = (User)auth.getPrincipal();
 		user.getUsername();
 		
-		MemberVO mvo = memberService.read(user.getUsername());
+		SessionVO svo = memberService.read(user.getUsername());
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("username", user.getUsername());
-		session.setAttribute("nickname", mvo.getNickname());
+		session.setAttribute("Nname", svo.getNickname());
 		
 		response.sendRedirect("/");
 	}

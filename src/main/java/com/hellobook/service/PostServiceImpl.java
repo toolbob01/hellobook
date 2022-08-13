@@ -28,6 +28,10 @@ public class PostServiceImpl implements PostService {
 		return mapper.selectAllPost(cri);
 	}
 		@Override
+		public int selectPostCount(Criteria cri) {
+			return mapper.selectPostCount(cri);
+		}
+		@Override
 		public List<PostFileVO> selectFileByPno(int pno){
 			return mapper.selectFileByPno(pno);
 		}
@@ -50,11 +54,30 @@ public class PostServiceImpl implements PostService {
 			return mapper.maxPno(email);
 		}
 	@Override
-	public int insertPostFile(PostFileVO postVO) {
-		return mapper.insertPostFile(postVO);
+	public int insertPostFile(PostFileVO fileVO) {
+		return mapper.insertPostFile(fileVO);
 	}
 	
+	@Override
+	public int deletePost(int pno) {
+		return mapper.deletePost(pno);
+	}
+	@Override
+	public int deletePostFile(int fno) {
+		return mapper.deletePostFile(fno);
+	}
 	
-
+	@Override
+	public int countLike(int pno) {
+		return mapper.countLike(pno);
+	}
+	@Override
+	public int deleteLike(String email) {
+		return mapper.deleteLike(email);
+	}
+	@Override
+	public int addLike(PostLikeVO likeVO) {
+		return mapper.addLike(likeVO);
+	}
 	
 }

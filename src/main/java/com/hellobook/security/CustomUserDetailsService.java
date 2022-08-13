@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.hellobook.domain.MemberVO;
+import com.hellobook.domain.SessionVO;
 import com.hellobook.mapper.MemberMapper;
 import com.hellobook.security.domain.CustomUser;
 
@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String userName)throws UsernameNotFoundException{
 		log.warn("Load User By UserName : "+userName);
 		
-		MemberVO vo = memberMapper.read(userName);
+		SessionVO vo = memberMapper.read(userName);
 		
 		
 		log.warn("queried by member mapper : "+vo);
