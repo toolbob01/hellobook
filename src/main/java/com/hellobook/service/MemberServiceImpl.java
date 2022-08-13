@@ -37,20 +37,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-<<<<<<< HEAD
 	public SessionVO read(String email) {
 		SessionVO svo = memberMapper.read(email);
 		return svo;
-=======
 	public void changePwd(MemberVO mvo) {
 		memberMapper.changePwd(mvo);
-	}
-	
-	@Override
-	public MemberVO read(String email) {
-		MemberVO memberVO = memberMapper.read(email);
-		return memberVO;
->>>>>>> 2cb9d3a8478242b9acd7c37a4660fcae7eb8bd42
 	}
 	
 	@Override
