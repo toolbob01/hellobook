@@ -22,4 +22,6 @@ public interface MemberMapper {
 	
 	
 	public List<MemberVO> selectFriends(String email);
+	
+	public List<MemberVO> friendRecommend(); 
 }

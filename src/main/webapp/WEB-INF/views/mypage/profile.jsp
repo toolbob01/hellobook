@@ -73,7 +73,7 @@
 					<div class="mypage_nickname_a">
 						<p style="font-weight:700;">자기소개</p><br>
 						<span class="mypage_nickname_b py-3">
-							내 이름은 코난 탐정이죵~
+							${mvo.intro}
 						</span>
 						<br>
 					</div>
