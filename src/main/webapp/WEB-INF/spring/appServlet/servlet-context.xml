@@ -50,7 +50,7 @@
 	        <beans:constructor-arg value="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" />
 	</beans:bean>
 	<beans:bean id="googleRedirectUrl" class="java.lang.String">
-	        <beans:constructor-arg value="http://localhost:8080/member/memberGoogleLogin" />
+	        <beans:constructor-arg value="http://localhost:8088/member/memberGoogleLogin" />
 	</beans:bean>
 	    
 	<beans:bean id="googleSns" class="com.hellobook.auth.SnsValue">
