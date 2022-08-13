@@ -30,7 +30,7 @@ public class ChatController {
 //		CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //		
 //		
-//		log.info("==================================");
+//		log.info("=================================");
 //		log.info("@ChatController, GET Chat / Username : " + user.getUsername());
 //		
 //		model.addAttribute("userid", user.getUsername());
