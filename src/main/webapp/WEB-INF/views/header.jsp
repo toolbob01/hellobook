@@ -81,7 +81,7 @@ body {
                     <img src="https://img.icons8.com/ios-glyphs/30/000000/small-icons.png"/>
                 </a>
                 <ul class="dropdown-menu text-small text-center" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="/mypage/profile/${nickname}">프로필</a></li>
+                    <li><a class="dropdown-item" href="/mypage/profile/${Nname}">프로필</a></li>
                     <li><a class="dropdown-item" href="/mypage/setting/">설정</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
