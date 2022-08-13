@@ -59,26 +59,26 @@
 					<ul class="mypage_info_a">
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							<a href="#nav-tabContent" style="text-decoration: none;color:#333;">게시물</a>
+							<a href="#nav-tabContent" style="text-decoration: none;color:#000;">게시물</a>
 							<span class="mypage_info_d">0</span>
 							</div>
 						</li>
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							<a href="/friend/list" style="text-decoration: none;color:#333;">친구</a>
+							<a href="/friend/list" style="text-decoration: none;color:#000;">친구</a>
 							<span class="mypage_info_d">0</span>
 							</div>
 						</li>
 					</ul>
 					<div class="mypage_nickname_a">
-						<p style="font-weight:700;">자기소개</p><br>
+						<p style="color: #000;">자기소개</p><br>
 						<span class="mypage_nickname_b py-3">
 							${mvo.intro}
 						</span>
 						<br>
 					</div>
 					<div class="mypage_nickname_a py-3">
-						<p style="font-weight:700;">관심분야</p><br>
+						<p style="color: #000;">관심분야</p><br>
 						<span class="mypage_nickname_b py-3">
 							<c:if test = "${fn:contains(mvo.hobby,1)}">
 								<span class="badge bg-primary text-white">여행</span>
