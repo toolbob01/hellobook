@@ -1,11 +1,10 @@
 package com.hellobook.service;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hellobook.domain.MemberVO;
+import com.hellobook.domain.SessionVO;
 import com.hellobook.mapper.MemberMapper;
 
 @Service
@@ -31,9 +30,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public MemberVO read(String email) {
-		MemberVO memberVO = memberMapper.read(email);
-		return memberVO;
+	public SessionVO read(String email) {
+		SessionVO svo = memberMapper.read(email);
+		return svo;
 	}
 	
 	@Override
