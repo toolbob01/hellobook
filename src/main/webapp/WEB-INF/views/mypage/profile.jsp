@@ -362,13 +362,16 @@
 		        </div>
 		
 		      </a>
-		      <a href="/member/logout" class="list-group-item list-group-item-action py-3 lh-sm">
+		      <form action="/member/logout" method="post">
+		      <sec:csrfInput/>
+		      <button class="list-group-item list-group-item-action py-3 lh-sm mp-logout">
 		        <div class="d-flex w-100 align-items-center justify-content-between">
 		          <strong class="mb-1" style="margin:auto;">로그아웃</strong>
 		
 		        </div>
 		
-		      </a>
+		      </button>
+		      </form>
 		      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
 		        <div class="d-flex w-100 align-items-center justify-content-between">
 		          <strong class="mb-1" style="margin:auto;">취소</strong>
@@ -563,6 +566,10 @@
 	 $('#thumbnail_update').attr("action","/mypage/thumbnailUpdate");
 	 $('#thumbnail_update').attr("method","post");
 	 $('#thumbnail_update').submit();
+ });
+ 
+ $('.mp-logout').on("click",function() {
+	 
  });
  
 </script>
