@@ -10,19 +10,35 @@
 					<div class="mypage_thumbnail_b">
 						<div class="mypage_thumbnail_c">
 							<c:if test="${mvo.email == username}">
+							<c:if test="${mvo.profile==null}">
 							<button class="mypage_thumbnail_d" title="프로필 사진 추가">
-								<img alt="프로필 사진 추가" class="mypage_thumbnail_e" src="/resources/imgs/img_section/img02.jpg">
+									<img class="mypage_thumbnail_e" src="/resources/imgs/unknown_thumbnail.jpg">
 							</button>
+							</c:if>
+							<c:if test="${mvo.profile!=null}">
+							<button class="mypage_thumbnail_d" title="프로필 사진 수정">
+									<img class="mypage_thumbnail_e" src="/hello_img/${mvo.profile}">
+							</button>
+							</c:if>
 							<div>
-								<form>
-									<input accept="image/jpeg,image/png" class="mypage_thumbnail_f" type="file" name="image">
+								<form id="thumbnail_update" enctype="multipart/form-data">
+									<input type="hidden" name="nickname" value="${Nname}">
+									<sec:csrfInput/>
+									<input accept="image/jpeg,image/png,image/gif,image/jpg" class="mypage_thumbnail_f" type="file" name="profile">
 								</form>
 							</div>
 							</c:if>
 							<c:if test="${mvo.email != username}">
+							<c:if test="${mvo.profile==null}">
 							<div class="mypage_thumbnail_d_2">
-								<img alt="프로필 사진 추가" class="mypage_thumbnail_e" src="/resources/imgs/img_section/img02.jpg">
+								<img class="mypage_thumbnail_e" src="/resources/imgs/unknown_thumbnail.jpg">
 							</div>
+							</c:if>
+							<c:if test="${mvo.profile==null}">
+							<div class="mypage_thumbnail_d_2">
+								<img class="mypage_thumbnail_e" src="/hello_img/${mvo.profile}">
+							</div>
+							</c:if>
 							<div>
 								<form>
 									<input accept="image/jpeg,image/png" class="mypage_thumbnail_f" type="file" name="image">
@@ -543,6 +559,11 @@
 	 $('#postmodal').modal('show');
  });
  
+ $('.mypage_thumbnail_f').on("change",function() {
+	 $('#thumbnail_update').attr("action","/mypage/thumbnailUpdate");
+	 $('#thumbnail_update').attr("method","post");
+	 $('#thumbnail_update').submit();
+ });
  
 </script>
 <%@ include file="../footer.jsp" %>
