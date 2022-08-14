@@ -50,4 +50,9 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> selectFriends(String email){
 		return memberMapper.selectFriends(email);
 	}
+	
+	@Override
+	public void updateThumbnailByNickname(MemberVO mvo) {
+		memberMapper.updateThumbnailByNickname(mvo);
+	}
 }

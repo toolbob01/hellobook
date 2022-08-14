@@ -582,7 +582,7 @@ button:focus {
     	  $('message').val('');
       });
       
-      let sock = new SockJS("http://localhost:8080/chat/chat/");
+      let sock = new SockJS("http://localhost:8088/chat/chat/");
       sock.onmessage = onMessage;
       sock.onclose = onClose;
       //메시지 전송

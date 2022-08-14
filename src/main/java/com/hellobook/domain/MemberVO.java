@@ -16,6 +16,7 @@ public class MemberVO {
 	private String sex;       
 	private String hobby;
 	private String intro;
+	private String profile;
 	private List<AuthVO> authList;
 	
 	// Friend

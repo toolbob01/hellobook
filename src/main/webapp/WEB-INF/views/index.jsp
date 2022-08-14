@@ -53,7 +53,7 @@
 								</div>
 								<div class="profile_flag">
 									<c:choose>
-									  <c:when test="${postVO.language == 'j'}">
+									  <c:when test="${postVO.language eq 'J'}">
 									  	<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>
 									  </c:when>
 									  <c:otherwise>
@@ -88,7 +88,7 @@
 								    <div class="carousel-item active">
 								      <img src="/hello_img/post/${postVO.file_list[0].uuid}" alt="...">
 								    </div>
-								    <c:forEach var="fileVO" items="${postVO.file_list}">
+								    <c:forEach var="fileVO" items="${postVO.file_list}" begin="1">
 									    <div class="carousel-item">
 									      <img src="/hello_img/post/${fileVO.uuid}" alt="...">
 									    </div>
@@ -162,11 +162,11 @@
 									</div>
 								</div>
 							</c:forEach>
-							<c:if test="${postVO.reply_list[3] != null}">
+<%-- 							<c:if test="${postVO.reply_list[3] != null}"> --%>
 								<div class="more-comment-div">
-									<span class="more-comment">...</span>
+									<span class="more-comment" data-pno="${postVO.pno}">...</span>
 								</div>
-							</c:if>
+<%-- 							</c:if> --%>
 						</div>
 					</article>
 					<c:set var="idx" value="${idx + 1}"/>
@@ -220,16 +220,15 @@
 						<c:when test="${friend_list[0] != null}">
 						<c:forEach var="friendVO" items="${friend_list}">
 							<div class="scroll_inner">
-							
 								<div class="thumb_user">
 									<div class="profile_thumb" onclick="location.href='#'">
 										<img class="profile_img_side" src="/hello_img/member/${friendVO.profile}" alt="프로필사진">
 										<c:choose>
-										  <c:when test="${friendVO.language == 'k'}">
-										    <div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/></div>
+										  <c:when test="${friendVO.language eq 'J'}">
+										    <div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
 										  </c:when>
 										  <c:otherwise>
-										    <div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
+										    <div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/></div>
 										  </c:otherwise>
 										</c:choose>
 									</div>
@@ -354,7 +353,6 @@
 									</div>
 									<div class="comment-name on_cursor align-self-center">Hanulso</div>
 									<div class="comment-time align-self-center mx-5">1시간 전</div>
-									
 								</div>
 								
 								<div class="modal-posting-master-content">
@@ -417,54 +415,6 @@
 									</div>
 								</div> <!-- / commment-depth-all -->
 							</div> <!-- / comment-content -->
-							
-							<div class="comment-profile d-flex">
-								<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-								<div class="comment-profile-flag">
-									<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
-								</div>
-								<div class="comment-name on_cursor align-self-center">Hanulso</div>
-								<div class="comment-time align-self-center mx-5">17분전</div>
-								<div class="comment-cocoment align-self-center">답글 달기</div>
-							</div>
-							<div class="comment-content">
-								하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
-								<!-- c:if 대댓글 개수가 1 이상이면 -->
-								<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#haveToInputRno2" aria-expanded="false">
-									<i class="bi bi-arrow-return-right fs-5"></i>
-									<span class="cocoment-open ms-3" data-oc="c">펼치기</span>
-								</div>
-								<div class="collapse" id="haveToInputRno2">
-									<div class="comment-depth">
-										<div class="comment-profile d-flex">
-											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-											<div class="comment-profile-flag">
-												<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>
-											</div>
-											<div class="comment-name on_cursor align-self-center">Hanulso</div>
-											<div class="comment-time align-self-center mx-5">17분전</div>
-										</div>
-										<div class="comment-content">
-											<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>
-											장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
-										</div>
-									</div>
-									<div class="comment-depth">
-										<div class="comment-profile d-flex">
-											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-											<div class="comment-profile-flag">
-												<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
-											</div>
-											<div class="comment-name on_cursor align-self-center">Hanulso</div>
-											<div class="comment-time align-self-center mx-5">17분전</div>
-										</div>
-										<div class="comment-content">
-											<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>
-											장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
-										</div>
-									</div>
-								</div> <!-- / commment-depth-all -->
-							</div> <!-- / comment-content -->
 						</div> <!-- / all-comment -->
 						
 						<div class="comment-write-div">
@@ -493,17 +443,16 @@
 		var insert_post_result = "${insert_post_result}";
 		if( insert_post_result != null && insert_post_result != "" && !history.state ){
 			if( parseInt(insert_post_result) == 1 ){
-				alert('Insert Post Success ! ' + insert_post_result);
+				alert('Insert Post Success ! ');
 			}else{
-				alert('Insert Post Fail ! ' + insert_post_result);
+				alert('Insert Post Fail ! ');
 			}
 		}
+		var request_file_count = "${request_file_count}";
 		var insert_file_result = "${insert_file_result}";
-		if( insert_file_result != null && insert_file_result != "" && !history.state ){
-			if( parseInt(insert_file_result) == 1 ){
-				alert('Insert File Success ! ' + insert_file_result);
-			}else{
-				alert('Insert File Fail ! ' + insert_file_result);
+		if( request_file_count != null && request_file_count != "" && insert_file_result != null && insert_file_result != "" && !history.state ){
+			if( parseInt(request_file_count) != parseInt(insert_file_result) ){
+				alert('Insert File Fail ! ( ' + insert_file_result + ' / ' + request_file_count + ' )');
 			}
 		}
 		history.replaceState({},null,null);
@@ -576,7 +525,20 @@
 	})
 	
 	// Modal - Detail
-	$(".more-comment").on("click", function(){
+	$(".more-comment").on("click", function(e){
+		var nowPno = $(this).data("pno");
+		e.preventDefault();
+		// AJAX action
+/* 		$.ajax({
+			type:"get",
+			url:"/post/post_detail_modal?pno=" + nowPno,
+			dataType:"json",
+			success:function(data){
+				$("#heart-count" + heart_pno).html(data + " 명이 좋아합니다");
+			}, error:function(){
+				alert("Error - Post Detail Up");
+			}
+		}) */
 		$(".modal-background").css("display","block");
 	})
 	
@@ -602,7 +564,7 @@
 			$(this).html("펼치기");
 		}
 	})
-	o
+
 	// Infinity Scroll
 /*  	function YesScroll () {
 		const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득

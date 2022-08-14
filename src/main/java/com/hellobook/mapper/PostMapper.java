@@ -15,7 +15,7 @@ public interface PostMapper {
 	
 	public List<PostVO> selectAllPost(Criteria cri);
 		public List<PostFileVO> selectFileByPno(int pno);
-		public List<ReplyVO> selectReplyByPno(int pno);
+		public List<ReplyVO> selectThreeReplyByPno(int pno);
 		public List<PostLikeVO> selectLikeByPno(int pno);
 	
 	public int insertPost(PostVO postVO);
@@ -28,5 +28,10 @@ public interface PostMapper {
 	public int countLike(int pno);
 	public int deleteLike(String email);
 	public int addLike(PostLikeVO likeVO);
+
+	public PostVO postDetail(int pno);
+	public List<ReplyVO> selectReplyByPno(int pno);
+	public List<ReplyVO> selectDepthByRno(int repno);
+	
 
 }

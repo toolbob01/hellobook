@@ -1,5 +1,8 @@
 package com.hellobook.domain;
 
+import java.util.Date;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,9 +22,13 @@ public class ReplyVO {
 	
 	// Reply
 	private int repno;
+	private int refno;
 	private int pno;
 	private String rcontent;
-	private char depth;   // '1': 댓글 '2': 대댓글
-
+	private String depth;   // '1': 댓글 '2': 대댓글
+	private Date repdate;
+	private String timer;
 	
+	// List by refno
+	private List<ReplyVO> cocomment_list;
 }

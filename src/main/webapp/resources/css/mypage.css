@@ -125,7 +125,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-weight: bold;
+    color: #000;
     font-size: 28px;
     line-height: 28px;
     margin: -5px 0 -6px;
@@ -158,7 +158,7 @@
     position: relative;
     background-color: #9fd5ff;
     border-radius: 10px;
-    font-weight: bold;
+    color: #000;
 }
 
 .mypage_profile_f:hover {
@@ -218,7 +218,7 @@
 
 .mypage_info_c {
 	display: block;
-	font-weight: bold;
+	color: #000;
 	margin: 0;
     border: 0;
     padding: 0;
@@ -256,7 +256,6 @@
 .mypage_nickname_b {
 	display: inline!important;
     margin: 0!important;
-    font-weight: semibold;
     border: 0;
     padding: 0;
     vertical-align: baseline;
@@ -409,7 +408,6 @@
 	text-align:center; 
 	transition:all 0.9s, color 0.3s;
 	color: #000;
-    font-weight: 600;
     vertical-align:middle;
     line-height: 1px;
 }

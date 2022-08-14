@@ -13,8 +13,9 @@
 								<img alt="프로필 사진 추가" class="mypage_thumbnail_e" src="/resources/imgs/img_section/img02.jpg">
 							</button>
 							<div>
-								<form>
-									<input accept="image/jpeg,image/png" class="mypage_thumbnail_f" type="file" name="image">
+								<form id="thumbnail_update" enctype="multipart/form-data">
+									<input type="hidden" name="nickname" value="${Nname}">
+									<input accept="image/jpeg,image/png,image/gif,image/jpg" class="mypage_thumbnail_f" type="file" name="profile">
 								</form>
 							</div>
 							
@@ -23,7 +24,7 @@
 				</div>
 				<section class="mypage_profile_a">
 					<div class="mypage_profile_b">
-						<h2 class="mypage_profile_c" tabidex="-1">hellobook</h2>
+						<h2 class="mypage_profile_c" tabindex="-1">hellobook</h2>
 						<div class="mypage_profile_d">
 							<div class="mypage_profile_e">
 								<a class="btn btn-primary" href="/mypage/setting/editprofile">프로필 수정</a>
@@ -491,6 +492,12 @@
  
  $('.go_post').on('click', function(){
 	 $('#postmodal').modal('show');
+ });
+ 
+ $('.mypage_thumbnail_f').on("change",function() {
+	 $('#thumbnail_update').attr("action","/mypage/thumbnailUpdate");
+	 $('#thumbnail_update').attr("method","post");
+	 $('#thumbnail_update').submit();
  });
  
  
