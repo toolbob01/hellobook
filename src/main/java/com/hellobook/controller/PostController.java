@@ -1,7 +1,9 @@
 package com.hellobook.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,10 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostFileVO;
 import com.hellobook.domain.PostLikeVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
+import com.hellobook.domain.SessionVO;
+import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Time;
 
@@ -32,6 +37,7 @@ import lombok.extern.log4j.Log4j;
 public class PostController {
 	
 	private PostService post_service;
+	private MemberService member_service;
 	
 	@GetMapping("post_write")
 	public String postWrite() {
@@ -114,7 +120,7 @@ public class PostController {
 	
 	@GetMapping("post_detail_modal") 
 	@ResponseBody
-	public String postDetailModal(int pno) { 
+	public Map<String, Object> postDetailModal(int pno) { 
 		
 		PostVO postVO = post_service.postDetail(pno);
 		
@@ -130,8 +136,28 @@ public class PostController {
 		postVO.setLike_cnt(postVO.getLike_list().size());   	// Like Count
 		postVO.setTimer(Time.calculateTime(postVO.getPdate())); // ex) 5분전 2시간전 3일전
 		
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("postVO", postVO);
+		return data;
+	}
+	
+	@PostMapping("comment_insert")
+	@ResponseBody
+	public Map<String, Object> commentInsert(ReplyVO replyVO) {
 		
-		return null;
+		/* 조건에 따라 Depth 바꾸기 + Refno 참조 */ replyVO.setDepth("1");
+		int insert_result = post_service.insertComment(replyVO);
+		ReplyVO rVO = post_service.recentCommentByEmail(replyVO.getEmail());
+		rVO.setTimer(Time.calculateTime(rVO.getRepdate()));
+
+		if( insert_result != 1 ) {
+			return null;
+		}else {
+			Map<String, Object> data = new HashMap<String, Object>();
+			data.put("replyVO", rVO);
+			return data;
+		}
+
 	}
 	
 }

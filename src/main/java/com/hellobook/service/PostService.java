@@ -33,4 +33,7 @@ public interface PostService {
 	public PostVO postDetail(int pno);
 	public List<ReplyVO> selectReplyByPno(int pno);
 	
+	public int insertComment(ReplyVO replyVO);
+	public ReplyVO recentCommentByEmail(String email);
+	
 }
