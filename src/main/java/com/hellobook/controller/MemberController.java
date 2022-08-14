@@ -104,12 +104,11 @@ public class MemberController {
 		String birthYear = apiJson.get("birthyear").toString();
 		String birthday = apiJson.get("birthday").toString();
 		String date = birthYear+"-"+birthday;
-		String gender = apiJson.get("gender").toString();
 		
 		String id = apiJson.get("id").toString();
 		String nickName = apiJson.get("nickname").toString();
 		String email = apiJson.get("email").toString();
-		char sex = gender.charAt(0);
+		String sex = apiJson.get("gender").toString();
 		Date birth = Date.valueOf(date);
 		
 		mvo.setEmail(email);
@@ -158,10 +157,11 @@ public class MemberController {
 		//3. DB 유저 존재 체크
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode rootNode = mapper.readTree(profile);
+		
 		String password = rootNode.get("id").asText();
 		String email = rootNode.get("email").asText();
 		String nickname = rootNode.get("given_name").asText()+rootNode.get("family_name").asText();
-		char language = rootNode.get("locale").asText().toUpperCase().charAt(0);
+		String language = Character.toString(rootNode.get("locale").asText().toUpperCase().charAt(0));
 		
 		MemberVO mvo = new MemberVO();
 		mvo.setEmail(email);
