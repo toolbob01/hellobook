@@ -10,19 +10,35 @@
 					<div class="mypage_thumbnail_b">
 						<div class="mypage_thumbnail_c">
 							<c:if test="${mvo.email == username}">
+							<c:if test="${mvo.profile==null}">
 							<button class="mypage_thumbnail_d" title="프로필 사진 추가">
-								<img alt="프로필 사진 추가" class="mypage_thumbnail_e" src="/resources/imgs/img_section/img02.jpg">
+									<img class="mypage_thumbnail_e" src="/resources/imgs/unknown_thumbnail.jpg">
 							</button>
+							</c:if>
+							<c:if test="${mvo.profile!=null}">
+							<button class="mypage_thumbnail_d" title="프로필 사진 수정">
+									<img class="mypage_thumbnail_e" src="/hello_img/member/${mvo.profile}">
+							</button>
+							</c:if>
 							<div>
-								<form>
-									<input accept="image/jpeg,image/png" class="mypage_thumbnail_f" type="file" name="image">
+								<form id="thumbnail_update" enctype="multipart/form-data">
+									<input type="hidden" name="nickname" value="${Nname}">
+									<sec:csrfInput/>
+									<input accept="image/jpeg,image/png,image/gif,image/jpg" class="mypage_thumbnail_f" type="file" name="profile">
 								</form>
 							</div>
 							</c:if>
 							<c:if test="${mvo.email != username}">
+							<c:if test="${mvo.profile==null}">
 							<div class="mypage_thumbnail_d_2">
-								<img alt="프로필 사진 추가" class="mypage_thumbnail_e" src="/resources/imgs/img_section/img02.jpg">
+								<img class="mypage_thumbnail_e" src="/resources/imgs/unknown_thumbnail.jpg">
 							</div>
+							</c:if>
+							<c:if test="${mvo.profile==null}">
+							<div class="mypage_thumbnail_d_2">
+								<img class="mypage_thumbnail_e" src="/hello_img/member/${mvo.profile}">
+							</div>
+							</c:if>
 							<div>
 								<form>
 									<input accept="image/jpeg,image/png" class="mypage_thumbnail_f" type="file" name="image">
@@ -59,26 +75,26 @@
 					<ul class="mypage_info_a">
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							<a href="#nav-tabContent" style="text-decoration: none;color:#333;">게시물</a>
+							<a href="#nav-tabContent" style="text-decoration: none;color:#000;">게시물</a>
 							<span class="mypage_info_d">0</span>
 							</div>
 						</li>
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							<a href="/friend/list" style="text-decoration: none;color:#333;">친구</a>
+							<a href="/friend/list" style="text-decoration: none;color:#000;">친구</a>
 							<span class="mypage_info_d">0</span>
 							</div>
 						</li>
 					</ul>
 					<div class="mypage_nickname_a">
-						<p style="font-weight:700;">자기소개</p><br>
+						<p style="color: #000;">자기소개</p><br>
 						<span class="mypage_nickname_b py-3">
-							내 이름은 코난 탐정이죵~
+							${mvo.intro}
 						</span>
 						<br>
 					</div>
 					<div class="mypage_nickname_a py-3">
-						<p style="font-weight:700;">관심분야</p><br>
+						<p style="color: #000;">관심분야</p><br>
 						<span class="mypage_nickname_b py-3">
 							<c:if test = "${fn:contains(mvo.hobby,1)}">
 								<span class="badge bg-primary text-white">여행</span>
@@ -543,6 +559,11 @@
 	 $('#postmodal').modal('show');
  });
  
+ $('.mypage_thumbnail_f').on("change",function() {
+	 $('#thumbnail_update').attr("action","/mypage/thumbnailUpdate");
+	 $('#thumbnail_update').attr("method","post");
+	 $('#thumbnail_update').submit();
+ });
  
 </script>
 <%@ include file="../footer.jsp" %>

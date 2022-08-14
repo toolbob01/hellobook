@@ -18,7 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.hellobook.domain.PostFileVO;
 import com.hellobook.domain.PostLikeVO;
 import com.hellobook.domain.PostVO;
+import com.hellobook.domain.ReplyVO;
 import com.hellobook.service.PostService;
+import com.hellobook.utility.Time;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -108,6 +110,27 @@ public class PostController {
 		post_service.addLike(likeVO);
 		int result = post_service.countLike(pno);
 		return Integer.toString(result);
+	}
+	
+	@GetMapping("post_detail_modal") 
+	@ResponseBody
+	public String postDetailModal(int pno) { 
+		
+		PostVO postVO = post_service.postDetail(pno);
+		
+		
+		postVO.setFile_list(post_service.selectFileByPno(pno)); 	    // Image
+		postVO.setReply_list(post_service.selectReplyByPno(pno));    // Reply
+		List<ReplyVO> relpy_list = postVO.getReply_list();
+		for( ReplyVO replyVO : relpy_list ) {
+			replyVO.setTimer(Time.calculateTime(replyVO.getRepdate())); // Reply's Timer
+		}
+		postVO.setReply_cnt(postVO.getReply_list().size()); 	// Reply Count
+		postVO.setLike_list(post_service.selectLikeByPno(pno)); 		// Like
+		postVO.setLike_cnt(postVO.getLike_list().size());   	// Like Count
+		postVO.setTimer(Time.calculateTime(postVO.getPdate())); // ex) 5분전 2시간전 3일전
+		
+		return null;
 	}
 	
 }
