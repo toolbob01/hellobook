@@ -123,12 +123,13 @@ public class PostController {
 		postVO.setReply_list(post_service.selectReplyByPno(pno));    // Reply
 		List<ReplyVO> relpy_list = postVO.getReply_list();
 		for( ReplyVO replyVO : relpy_list ) {
-			replyVO.setTimer(Time.calculateTime(replyVO.getRepdate())); // Reply's Timer
+			replyVO.setTimer(Time.calculateTime(replyVO.getRepdate())); // Reply's Timer // coComent's Timer implemented in PostServiceImpl.java
 		}
 		postVO.setReply_cnt(postVO.getReply_list().size()); 	// Reply Count
 		postVO.setLike_list(post_service.selectLikeByPno(pno)); 		// Like
 		postVO.setLike_cnt(postVO.getLike_list().size());   	// Like Count
 		postVO.setTimer(Time.calculateTime(postVO.getPdate())); // ex) 5분전 2시간전 3일전
+		
 		
 		return null;
 	}

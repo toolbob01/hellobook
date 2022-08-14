@@ -56,8 +56,7 @@ public class HomeController {
 		model.addAttribute("pageVO" , new PageVO(cri, count));
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("username");
-		List<MemberVO> friend_list = member_service.selectFriends(email);
-		System.out.println(" friend_list Size : " + friend_list.size());
+		List<MemberVO> friend_list = member_service.selectFriends(email); // Friend List
 		model.addAttribute("friend_list", friend_list);
 		
 		return "index";
