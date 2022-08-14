@@ -76,7 +76,7 @@ public class MypageController {
 		//업로드하는 경로와 파일 객체 생성
 		File uploadSaveFile = new File(uploadFolder, uuidFileName); // c:/hello_img/member/aaa.jpg
 		// 첨부파일 업로드 폴더에 저장하기
-		String uploadUrl = uploadSaveFile.toString().substring(13);
+		String uploadUrl = uploadSaveFile.toString().substring(20);
 		try {
 			profile.transferTo(uploadSaveFile); // 파일 실제로 전송
 			mvo.setProfile(uploadUrl);

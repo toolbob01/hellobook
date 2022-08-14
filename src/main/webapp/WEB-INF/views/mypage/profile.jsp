@@ -17,7 +17,7 @@
 							</c:if>
 							<c:if test="${mvo.profile!=null}">
 							<button class="mypage_thumbnail_d" title="프로필 사진 수정">
-									<img class="mypage_thumbnail_e" src="/hello_img/${mvo.profile}">
+									<img class="mypage_thumbnail_e" src="/hello_img/member/${mvo.profile}">
 							</button>
 							</c:if>
 							<div>
@@ -36,7 +36,7 @@
 							</c:if>
 							<c:if test="${mvo.profile==null}">
 							<div class="mypage_thumbnail_d_2">
-								<img class="mypage_thumbnail_e" src="/hello_img/${mvo.profile}">
+								<img class="mypage_thumbnail_e" src="/hello_img/member/${mvo.profile}">
 							</div>
 							</c:if>
 							<div>
