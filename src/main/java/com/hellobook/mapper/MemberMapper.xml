@@ -78,10 +78,18 @@
 		where m.nickname = #{nickname}
 	</select>
   
+<!--   	<select id="selectFriends" resultType="com.hellobook.domain.MemberVO"> -->
+<!-- 		SELECT  f.frno, f.femail, m.nickname, m.language, m.birth, m.sex, m.hobby, m.intro, m.profile   -->
+<!-- 		FROM friend f, member m    -->
+<!-- 		WHERE f.femail = m.email AND f.email = #{email} -->
+<!-- 	</select> -->
+
   	<select id="selectFriends" resultType="com.hellobook.domain.MemberVO">
 		SELECT  f.frno, f.femail, m.nickname, m.language, m.birth, m.sex, m.hobby, m.intro, m.profile  
-		FROM friend f, member m   
-		WHERE f.femail = m.email AND f.email = #{email}
+		FROM friend f   
+		LEFT OUTER JOIN member m   
+		ON f.femail = m.email  
+		WHERE f.email = #{email}
 	</select>
 	
 	<select id="friendRecommend">

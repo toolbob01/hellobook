@@ -109,7 +109,9 @@ public class MemberController {
 		String id = apiJson.get("id").toString();
 		String nickName = apiJson.get("nickname").toString();
 		String email = apiJson.get("email").toString();
-		char sex = gender.charAt(0);
+		char sex_ex = gender.charAt(0);
+		String sex = "";
+		sex += sex_ex;
 		Date birth = Date.valueOf(date);
 		
 		mvo.setEmail(email);
@@ -161,7 +163,9 @@ public class MemberController {
 		String password = rootNode.get("id").asText();
 		String email = rootNode.get("email").asText();
 		String nickname = rootNode.get("given_name").asText()+rootNode.get("family_name").asText();
-		char language = rootNode.get("locale").asText().toUpperCase().charAt(0);
+		char language_ex = rootNode.get("locale").asText().toUpperCase().charAt(0);
+		String language = "";
+		language += language_ex;
 		
 		MemberVO mvo = new MemberVO();
 		mvo.setEmail(email);

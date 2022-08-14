@@ -220,7 +220,6 @@
 						<c:when test="${friend_list[0] != null}">
 						<c:forEach var="friendVO" items="${friend_list}">
 							<div class="scroll_inner">
-							
 								<div class="thumb_user">
 									<div class="profile_thumb" onclick="location.href='#'">
 										<img class="profile_img_side" src="/hello_img/member/${friendVO.profile}" alt="프로필사진">
@@ -530,7 +529,7 @@
 		var nowPno = $(this).data("pno");
 		e.preventDefault();
 		// AJAX action
-		$.ajax({
+/* 		$.ajax({
 			type:"get",
 			url:"/post/post_detail_modal?pno=" + nowPno,
 			dataType:"json",
@@ -539,7 +538,7 @@
 			}, error:function(){
 				alert("Error - Post Detail Up");
 			}
-		})
+		}) */
 		$(".modal-background").css("display","block");
 	})
 	

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hellobook.utility.PageVO;
+import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostLikeVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
@@ -55,7 +56,10 @@ public class HomeController {
 		model.addAttribute("pageVO" , new PageVO(cri, count));
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("username");
-		model.addAttribute("friend_list", member_service.selectFriends(email));
+		List<MemberVO> friend_list = member_service.selectFriends(email);
+		System.out.println(" friend_list Size : " + friend_list.size());
+		model.addAttribute("friend_list", friend_list);
+		
 		return "index";
 	}
 	
