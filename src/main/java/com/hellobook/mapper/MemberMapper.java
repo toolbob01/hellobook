@@ -9,7 +9,7 @@ public interface MemberMapper {
 	public void insertMember(MemberVO mvo);
 	public void insertAuth(String email);
 
-	public SessionVO read(String userid);
+	public SessionVO read(String userid); //for security(session)
 	public MemberVO readByNickname(String nickname);
 	
 	public int checkEmail(String email);
@@ -20,5 +20,7 @@ public interface MemberMapper {
 	
 	public List<MemberVO> selectFriends(String email);
 	
-	public List<MemberVO> friendRecommend(); 
+	public List<MemberVO> friendRecommend();
+	
+	public void updateThumbnailByNickname(MemberVO mvo); //프로필 사진 수정
 }

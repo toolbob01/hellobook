@@ -11,11 +11,18 @@
 						<div class="mypage_thumbnail_c">
 							<c:if test="${mvo.email == username}">
 							<button class="mypage_thumbnail_d" title="프로필 사진 추가">
-								<img alt="프로필 사진 추가" class="mypage_thumbnail_e" src="/resources/imgs/img_section/img02.jpg">
+								<c:if test="${mvo.profile==null}">
+									<img alt="프로필 사진 추가" class="mypage_thumbnail_e" src="/resources/imgs/img_section/img02.jpg">
+								</c:if>
+								<c:if test="${mvo.profile!=null}">
+									<img alt="프로필 사진 수정" class="mypage_thumbnail_e" src="/hello_img/${mvo.profile}">
+								</c:if>
 							</button>
 							<div>
-								<form>
-									<input accept="image/jpeg,image/png" class="mypage_thumbnail_f" type="file" name="image">
+								<form id="thumbnail_update" enctype="multipart/form-data">
+									<input type="hidden" name="nickname" value="${Nname}">
+									<sec:csrfInput/>
+									<input accept="image/jpeg,image/png,image/gif,image/jpg" class="mypage_thumbnail_f" type="file" name="profile">
 								</form>
 							</div>
 							</c:if>
@@ -543,6 +550,11 @@
 	 $('#postmodal').modal('show');
  });
  
+ $('.mypage_thumbnail_f').on("change",function() {
+	 $('#thumbnail_update').attr("action","/mypage/thumbnailUpdate");
+	 $('#thumbnail_update').attr("method","post");
+	 $('#thumbnail_update').submit();
+ });
  
 </script>
 <%@ include file="../footer.jsp" %>
