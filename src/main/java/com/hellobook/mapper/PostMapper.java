@@ -33,5 +33,7 @@ public interface PostMapper {
 	public List<ReplyVO> selectReplyByPno(int pno);
 	public List<ReplyVO> selectDepthByRno(int repno);
 	
+	public List<PostVO> selectMypost(String nickname);
+	
 
 }

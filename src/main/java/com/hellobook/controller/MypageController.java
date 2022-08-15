@@ -1,6 +1,7 @@
 package com.hellobook.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hellobook.domain.MemberVO;
-import com.hellobook.domain.PostFileVO;
+import com.hellobook.domain.PostVO;
+import com.hellobook.domain.ReplyVO;
 import com.hellobook.service.MemberService;
+import com.hellobook.service.PostService;
+import com.hellobook.utility.Time;
 
 @Controller
 @RequestMapping("/mypage/*")
@@ -23,6 +27,9 @@ public class MypageController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private PostService postService;
 	
 	@GetMapping("/unknown")
 	public String unknown() {
@@ -32,10 +39,26 @@ public class MypageController {
 	@GetMapping("/profile/{nickname}")
 	public String profile(@PathVariable String nickname, Model model) {
 		MemberVO mvo = memberService.readByNickname(nickname);
+		List<PostVO> pvoList = postService.selectMypost(nickname);
 		if(mvo == null) {
 			return "/mypage/unknown";
 		} else {
+			
+			for( PostVO postVO : pvoList ) {
+				int pno = postVO.getPno();
+				postVO.setFile_list(postService.selectFileByPno(pno)); 	    // Image
+				postVO.setReply_list(postService.selectThreeReplyByPno(pno));    // Reply
+				List<ReplyVO> relpy_list = postVO.getReply_list();
+				for( ReplyVO replyVO : relpy_list ) {
+					replyVO.setTimer(Time.calculateTime(replyVO.getRepdate())); // Reply's Timer
+				}
+				postVO.setReply_cnt(relpy_list.size()); 	// Reply Count
+				postVO.setLike_list(postService.selectLikeByPno(pno)); 		// Like
+				postVO.setLike_cnt(postVO.getLike_list().size());   	// Like Count
+				postVO.setTimer(Time.calculateTime(postVO.getPdate())); // ex) 5분전 2시간전 3일전
+			}
 			model.addAttribute("mvo", mvo);
+			model.addAttribute("pvoList", pvoList);
 			return "/mypage/profile";
 		}
 		

@@ -97,5 +97,11 @@ public class PostServiceImpl implements PostService {
 		}
 		return reply_list;
 	}
+	
+	@Override
+	public List<PostVO> selectMypost(String nickname) {
+		List<PostVO> pvo = mapper.selectMypost(nickname);
+		return pvo;
+	}
 
 }
