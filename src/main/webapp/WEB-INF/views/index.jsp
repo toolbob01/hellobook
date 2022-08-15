@@ -151,13 +151,6 @@
 
 						<!-- post 댓글 div -->
 						<div class="comment_container">
-<!-- 							<div class="comment"> -->
-<!-- 								<div class="nick_name">한En日ひ더미유저</div> -->
-<!-- 								<div class="real_comment"> -->
-<!-- 									<span class="hashTag" onclick="location.href='#'">@PungDaengYee</span> -->
-<!-- 									더미 내용입니다. 日本語を打ったりwrite English~@#$%^&*()_+{}[]  -->
-<!-- 								</div> -->
-<!-- 							</div>  -->
 							<c:forEach var="replyVO" items="${postVO.reply_list}" begin="0" end="2">
 								<div class="comment">
 									<div class="nick_name">${replyVO.nickname}</div>
@@ -179,7 +172,7 @@
 				  <c:otherwise>
 				  	<div class="text-center fs-3 mt-5">
 				  		No Post ...
-				  		<p class="fs-5 mt-3">(post 테이블에 더미데이터 있으면 더미갯수만큼 포스팅 보임)</p>
+				  		<p class="fs-5 mt-3">(post_write -> 포스팅 추가 -> Index에서 확인 가능 -> ... 클릭시 모달 작동)</p>
 
 				  		<p style="line-height: 1.5; text-align: left; font-size: 15px;">
 				  			<br><br><br><br><br><br>
@@ -417,7 +410,7 @@
 						
 						<div class="comment-write-div">
 							<span class="fs-5 mb-3">댓글 작성</span>
-		                    <button class="msg_send_btn float-end" type="button" data-pno="85">
+		                    <button class="msg_send_btn float-end" type="button" data-pno="">
 		                       <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		                    </button>
 							<div class="form-floating">
@@ -632,6 +625,9 @@
 						} */
 					}) // each
 				} // reply_list[0] else
+				
+				// Comment Write Div's data-pno
+				$(".comment-write-div .msg_send_btn").data("pno", postVO.pno);
 				// Display Block
 				$(".modal-background").css("display","block");
 			}, error:function(){
@@ -674,6 +670,10 @@
 			alert('댓글 내용을 작성해주세요.');
 		}else {
 			// AJAX action
+			if( !confirm('댓글을 작성하시겠습니까?') ) {
+				$("#commentInsert").val(""); 
+				return ; 
+			}
 			$.ajax({
 				type:"post",
 				url:"/post/comment_insert",
@@ -688,9 +688,32 @@
 				},
 				success:function(data){
 					if( data.depth == '2' ) {
+						console.log(data);
 						alert('This is Depth 2 coment !!!');
 					}else {
-						alert('Come here ~ !');
+						// if depth : 1
+						$(".all-comment > p").remove();
+ 		 				$(".all-comment").prepend('<p class="fs-5 mb-3">댓글 리스트</p>' + 
+ 		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
+		 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
+						if( data.language == 'J' ) {
+							$(".all-comment #comment-profile"+data.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+																	  '<div class="comment-profile-flag">' + 
+																	      '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
+															    	  '</div>' + 
+															    	  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
+															    	  '<div class="comment-time align-self-center mx-5">' + data.timer + '</div>' + 
+															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+						}else {
+							$(".all-comment #comment-profile"+data.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+																	  '<div class="comment-profile-flag">' + 
+																	      '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
+															    	  '</div>' + 
+															    	  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
+															    	  '<div class="comment-time align-self-center mx-5">' + data.timer + '</div>' + 
+															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+						}
+						$(".all-comment #comment-content"+data.repno).html(data.rcontent);
 					}
 					$("#commentInsert").val("");
 				}, error:function(){

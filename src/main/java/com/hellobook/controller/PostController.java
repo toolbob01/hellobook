@@ -143,7 +143,7 @@ public class PostController {
 	
 	@PostMapping("comment_insert")
 	@ResponseBody
-	public Map<String, Object> commentInsert(ReplyVO replyVO) {
+	public ReplyVO commentInsert(ReplyVO replyVO) {
 		
 		/* 조건에 따라 Depth 바꾸기 + Refno 참조 */ replyVO.setDepth("1");
 		int insert_result = post_service.insertComment(replyVO);
@@ -153,9 +153,9 @@ public class PostController {
 		if( insert_result != 1 ) {
 			return null;
 		}else {
-			Map<String, Object> data = new HashMap<String, Object>();
-			data.put("replyVO", rVO);
-			return data;
+//			Map<String, Object> data = new HashMap<String, Object>();
+//			data.put("replyVO", rVO);
+			return rVO;
 		}
 
 	}
