@@ -120,7 +120,7 @@ public class PostController {
 	
 	@GetMapping("post_detail_modal") 
 	@ResponseBody
-	public Map<String, Object> postDetailModal(int pno) { 
+	public PostVO postDetailModal(int pno) { 
 		
 		PostVO postVO = post_service.postDetail(pno);
 		
@@ -136,9 +136,9 @@ public class PostController {
 		postVO.setLike_cnt(postVO.getLike_list().size());   	// Like Count
 		postVO.setTimer(Time.calculateTime(postVO.getPdate())); // ex) 5분전 2시간전 3일전
 		
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("postVO", postVO);
-		return data;
+//		Map<String, Object> data = new HashMap<String, Object>();
+//		data.put("postVO", postVO);
+		return postVO;
 	}
 	
 	@PostMapping("comment_insert")
