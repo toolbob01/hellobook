@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
 
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+
 <!-- <script type="text/javascript" src="/resources/js/index.js"></script> -->
+
 
 
 <div class="container-fluid">
@@ -320,19 +324,13 @@
 					<div class="modal-detail-left d-flex flex-column">
 						<div class="trans_inner">
 							<div id="carousel-modal1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-							  <div class="carousel-inner">
-							    <div class="carousel-item active">
-							      <img src="/resources/imgs/long.jpg" alt="...">
-							    </div>
-							    <div class="carousel-item">
-							      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
-							    </div>
-							    <div class="carousel-item">
-							      <img src="/resources/imgs/logo.png" alt="...">
-							    </div>
-							    <div class="carousel-item">
-							      <img src="/resources/imgs/thumb.jpeg" alt="...">
-							    </div>
+							  <div class="carousel-inner" id="carousel-inner">
+<!-- 							    <div class="carousel-item active"> -->
+<!-- 							      <img src="/resources/imgs/long.jpg" alt="..."> -->
+<!-- 							    </div> -->
+<!-- 							    <div class="carousel-item"> -->
+<!-- 							      <img src="/resources/imgs/img_section/img01.jpg" alt="..."> -->
+<!-- 							    </div> -->
 							  </div>
 							  <button class="carousel-control-prev" type="button" data-bs-target="#carousel-modal1" data-bs-slide="prev">
 							    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -347,16 +345,16 @@
 						<div class="modal-detail-contents">
 							<div class="posting-master">
 								<div class="comment-profile d-flex">
-									<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-									<div class="comment-profile-flag">
-										<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
-									</div>
-									<div class="comment-name on_cursor align-self-center">Hanulso</div>
-									<div class="comment-time align-self-center mx-5">1시간 전</div>
+<!-- 									<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진"> -->
+<!-- 									<div class="comment-profile-flag"> -->
+<!-- 										<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/> -->
+<!-- 									</div> -->
+<!-- 									<div class="comment-name on_cursor align-self-center">Hanulso</div> -->
+<!-- 									<div class="comment-time align-self-center mx-5">1시간 전</div> -->
 								</div>
 								
 								<div class="modal-posting-master-content">
-									여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+<!-- 									 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 								</div>
 							</div>
 						</div>
@@ -366,8 +364,8 @@
 				<div class="col-md-5 p-0">
 					<div class="modal-detail-right">
 						<div class="all-comment">		
-							<p class="fs-5 mb-3">댓글 리스트</p>
-							<!-- c:forEach -->
+							<!-- <p class="fs-5 mb-3">댓글 리스트</p>
+
 							<div class="comment-profile d-flex">
 								<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
 								<div class="comment-profile-flag">
@@ -379,7 +377,7 @@
 							</div>
 							<div class="comment-content">
 								하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
-								<!-- c:if 대댓글 개수가 1 이상이면 -->
+
 								<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#haveToInputRno" aria-expanded="false">
 									<i class="bi bi-arrow-return-right fs-5"></i>
 									<span class="cocoment-open ms-3" data-oc="c">펼치기</span>
@@ -412,18 +410,18 @@
 											<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>
 											장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
 										</div>
-									</div>
-								</div> <!-- / commment-depth-all -->
-							</div> <!-- / comment-content -->
+									</div> -->
+								<!-- </div> --> <!-- / commment-depth-all -->
+							<!-- </div> --> <!-- / comment-content -->
 						</div> <!-- / all-comment -->
 						
 						<div class="comment-write-div">
 							<span class="fs-5 mb-3">댓글 작성</span>
-		                    <button class="msg_send_btn float-end" type="button">
-		                       <i class="fa fa-paper-plane-o"  aria-hidden="true"></i>
+		                    <button class="msg_send_btn float-end" type="button" data-pno="85">
+		                       <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		                    </button>
 							<div class="form-floating">
-							  <textarea class="form-control" placeholder="Leave a comment here"></textarea>
+							  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert"></textarea>
 							</div>
 						</div>
 						
@@ -436,8 +434,8 @@
 </div>
 <!-- /Modal Test -->
 
-<script type="text/javascript">
-
+<script>
+ 
     // Post CRUD Alert Script
 	$(document).ready(function() {
 		var insert_post_result = "${insert_post_result}";
@@ -529,30 +527,179 @@
 		var nowPno = $(this).data("pno");
 		e.preventDefault();
 		// AJAX action
-/* 		$.ajax({
+		$.ajax({
 			type:"get",
 			url:"/post/post_detail_modal?pno=" + nowPno,
 			dataType:"json",
-			success:function(data){
-				$("#heart-count" + heart_pno).html(data + " 명이 좋아합니다");
+			success:function(postVO){
+				console.log(postVO);
+				console.log(postVO.file_list);
+				// carousel main
+				$("#carousel-inner").append('<div class="carousel-item active">' + 
+														      			'<img src="/hello_img/post/' + postVO.file_list[0].uuid + '" alt="...">' + 
+															    	'</div>');
+				// carousel each from index 1 ~
+				if( postVO.file_list[1] != null ) {
+					$.each(postVO.file_list, function(i, fileVO){
+						if(i>0) {
+							$("#carousel-inner").append('<div class="carousel-item">' + 
+								      						'<img src="/hello_img/post/' + fileVO.uuid + '" alt="...">' + 
+								    					'</div>');
+						}
+					})
+				}
+				// Profile    
+				if( postVO.language == 'J' ){
+					$(".modal-detail-contents .comment-profile").append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진">' + 
+																		'<div class="comment-profile-flag">' + 
+																			'<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' +  
+																		'</div>' + 
+																		'<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>' + 
+																		'<div class="comment-time align-self-center mx-5">' + postVO.timer + '</div>');
+				}else {
+					$(".modal-detail-contents .comment-profile").append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진">' + 
+																		'<div class="comment-profile-flag">' + 
+																			'<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
+																		'</div>' + 
+																		'<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>' + 
+																		'<div class="comment-time align-self-center mx-5">' + postVO.timer + '</div>');
+				}
+				// Post Content
+				$(".modal-posting-master-content").html(postVO.content);
+				// Comment List
+ 				$(".all-comment").append('<p class="fs-5 mb-3">댓글 리스트</p>');
+				if( postVO.reply_list[0] == null ) {
+					$(".all-comment").append('<p class="fs-6 text-center mt-5">아직 댓글이 없습니다.</p>');
+				}else {
+					$.each(postVO.reply_list, function(i, replyVO){
+		 				$(".all-comment").append('<div class="comment-profile d-flex" id="comment-profile' + replyVO.repno + '"></div>' + 
+	    				 						 '<div class="comment-content" id="comment-content' + replyVO.repno + '"></div>');
+						if( replyVO.language == 'J' ) {
+							$(".all-comment #comment-profile"+replyVO.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
+																	  '<div class="comment-profile-flag">' + 
+																	      '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
+															    	  '</div>' + 
+															    	  '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
+															    	  '<div class="comment-time align-self-center mx-5">' + replyVO.timer + '</div>' + 
+															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+						}else {
+							$(".all-comment #comment-profile"+replyVO.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
+																	  '<div class="comment-profile-flag">' + 
+																	      '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
+															    	  '</div>' + 
+															    	  '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
+															    	  '<div class="comment-time align-self-center mx-5">' + replyVO.timer + '</div>' + 
+															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+						}
+						$(".all-comment #comment-content"+replyVO.repno).html(replyVO.rcontent);
+	/* 					if( replyVO.cocoment_list[0] != null ){
+							$(".all-comment .comment-content").append('<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#' + replyVO.repno + '" aria-expanded="false">' + 
+																	      '<i class="bi bi-arrow-return-right fs-5"></i>' + 
+																	      '<span class="cocoment-open ms-3" data-oc="c">펼치기</span>' + 
+																      '</div>');
+							$(".all-comment .comment-content").append('<div class="collapse" id="' + replyVO.repno + '"></div>');
+							$.each(replyVO.cocoment_list, function(k, cocomentVO) {
+								if( cocomentVO.language == 'J' ){
+									$(".all-comment #" + replyVO.repno).append('<div class="comment-depth">' + 
+																			     '<div class="comment-profile d-flex">' + 
+																			       '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocomentVO.profile + '" alt="프로필사진">' + 
+																			       '<div class="comment-profile-flag">' + 
+																		             '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
+																			       '</div>' + 
+																			       '<div class="comment-name on_cursor align-self-center">' + cocomentVO.nickname + '</div>' + 
+																			       '<div class="comment-time align-self-center mx-5">' + cocomentVO.timer + '</div>' + 
+																			     '</div>' + 
+																			     '<div class="comment-content">' + 
+																					cocomentVO.rcontent +
+																			     '</div>' + 
+																			   '</div>');
+								}else {
+									$(".all-comment #" + replyVO.repno).append('<div class="comment-depth">' + 
+																			     '<div class="comment-profile d-flex">' + 
+																			       '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocomentVO.profile + '" alt="프로필사진">' + 
+																			       '<div class="comment-profile-flag">' + 
+																		             '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
+																			       '</div>' + 
+																			       '<div class="comment-name on_cursor align-self-center">' + cocomentVO.nickname + '</div>' + 
+																			       '<div class="comment-time align-self-center mx-5">' + cocomentVO.timer + '</div>' + 
+																			     '</div>' + 
+																			     '<div class="comment-content">' + 
+																					cocomentVO.rcontent +
+																			     '</div>' + 
+																			   '</div>');
+								}
+							}
+						} */
+					}) // each
+				} // reply_list[0] else
+				// Display Block
+				$(".modal-background").css("display","block");
 			}, error:function(){
 				alert("Error - Post Detail Up");
 			}
-		}) */
-		$(".modal-background").css("display","block");
+		})
 	})
 	
+	// Click 'background' to make display none
 	$(document).mouseup(function (e){
 		var modal = $(".modal-background");
 		if( modal.has(e.target).length === 0){
 			$(".modal-background").css('display','none');
+			$("#carousel-inner").empty();
+			$(".modal-detail-contents .comment-profile").empty();
+			$(".modal-posting-master-content").html("");
+			$(".all-comment").empty();
 		}
 	});
 	
 	// Click 'X' in Detail Modal to make display none
 	 $('.closeModalBtn').on('click', function(){
 		 $('.modal-background').css("display", "none");  
+		 $("#carousel-inner").empty();
+		 $(".modal-detail-contents .comment-profile").empty();
+		 $(".modal-posting-master-content").html("");
+		 $(".all-comment").empty();
 	 });
+	
+	
+	// Coment Insert
+	$(".msg_send_btn").on("click", function(e){		
+		e.preventDefault();
+		var pno = $(this).data("pno");
+		var email = '${username}';
+		var rcontent = $("#commentInsert").val();
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		if( rcontent == "" ) {
+			alert('댓글 내용을 작성해주세요.');
+		}else {
+			// AJAX action
+			$.ajax({
+				type:"post",
+				url:"/post/comment_insert",
+				dataType:"json",
+				data : {
+					pno : pno,
+					email : email,
+					rcontent : rcontent
+				},
+				beforeSend : function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
+				success:function(data){
+					if( data.depth == '2' ) {
+						alert('This is Depth 2 coment !!!');
+					}else {
+						alert('Come here ~ !');
+					}
+					$("#commentInsert").val("");
+				}, error:function(){
+					alert("Error - Comment Insert ! ");
+				}
+			})
+		}
+	})
+	
 	
 	// coComment Open Close
 	$(".cocoment-open").on("click", function() {
@@ -605,6 +752,7 @@
 	}
 	YesScroll() */
 	
-
+ 
 </script>
+
 <%@ include file="footer.jsp"%>

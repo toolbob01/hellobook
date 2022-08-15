@@ -1,20 +1,22 @@
-
+/**
+ * 
+ */
+ 
     // Post CRUD Alert Script
 	$(document).ready(function() {
 		var insert_post_result = "${insert_post_result}";
 		if( insert_post_result != null && insert_post_result != "" && !history.state ){
 			if( parseInt(insert_post_result) == 1 ){
-				alert('Insert Post Success ! ' + insert_post_result);
+				alert('Insert Post Success ! ');
 			}else{
-				alert('Insert Post Fail ! ' + insert_post_result);
+				alert('Insert Post Fail ! ');
 			}
 		}
+		var request_file_count = "${request_file_count}";
 		var insert_file_result = "${insert_file_result}";
-		if( insert_file_result != null && insert_file_result != "" && !history.state ){
-			if( parseInt(insert_file_result) == 1 ){
-				alert('Insert File Success ! ' + insert_file_result);
-			}else{
-				alert('Insert File Fail ! ' + insert_file_result);
+		if( request_file_count != null && request_file_count != "" && insert_file_result != null && insert_file_result != "" && !history.state ){
+			if( parseInt(request_file_count) != parseInt(insert_file_result) ){
+				alert('Insert File Fail ! ( ' + insert_file_result + ' / ' + request_file_count + ' )');
 			}
 		}
 		history.replaceState({},null,null);
@@ -49,25 +51,27 @@
 		var heart_user = '${username}';
 		var heart_pno = $(this).data("pno");
 		if( heart_stat == 'y' ) {
+			$(this).data("heart", "n")
 			e.preventDefault();
 			$.ajax({
 				type:"get",
 				url:"/post/like_delete?email=" + heart_user + "&pno=" + heart_pno,
 				dataType:"json",
 				success:function(data){
-					$(".heart-count ???").html(data);
+					$("#heart-count" + heart_pno).html(data + " 명이 좋아합니다");
 				}, error:function(){
 					alert("Error - Like Delete");
 				}
 			})
 		}else {
+			$(this).data("heart", "y")
 			e.preventDefault();
 			$.ajax({
 				type:"get",
-				url:"/post/add_delete?email=" + heart_user + "&pno=" + heart_pno,
+				url:"/post/like_add?email=" + heart_user + "&pno=" + heart_pno,
 				dataType:"json",
 				success:function(data){
-					$(".heart-count ???").html(data);
+					$("#heart-count" + heart_pno).html(data + " 명이 좋아합니다");
 				}, error:function(){
 					alert("Error - Like Add");
 				}
@@ -85,10 +89,61 @@
 	})
 	
 	// Modal - Detail
-	$(".more-comment").on("click", function(){
+	$(".more-comment").on("click", function(e){
+		var nowPno = $(this).data("pno");
+		e.preventDefault();
+		// AJAX action
+		$.ajax({
+			type:"get",
+			url:"/post/post_detail_modal?pno=" + nowPno,
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+			}, error:function(){
+				alert("Error - Post Detail Up");
+			}
+		})
 		$(".modal-background").css("display","block");
 	})
 	
+	// Coment Insert
+	$(".msg_send_btn").on("click", function(e){		
+		e.preventDefault();
+		var pno = $(this).data("pno");
+		var email = '${username}';
+		var rcontent = $("#commentInsert").val();
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		if( rcontent == "" ) {
+			alert('댓글 내용을 작성해주세요.');
+		}else {
+			// AJAX action
+			$.ajax({
+				type:"post",
+				url:"/post/comment_insert",
+				dataType:"json",
+				data : {
+					pno : pno,
+					email : email,
+					rcontent : rcontent
+				},
+				beforeSend : function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
+				success:function(data){
+					if( data.depth == '2' ) {
+						alert('This is Depth 2 coment !!!');
+					}else {
+						alert('Come here ~ !');
+					}
+				}, error:function(){
+					alert("Error - Comment Insert ! ");
+				}
+			})
+		}
+	})
+	
+	// Click 'background' to make display none
 	$(document).mouseup(function (e){
 		var modal = $(".modal-background");
 		if( modal.has(e.target).length === 0){
@@ -101,9 +156,19 @@
 		 $('.modal-background').css("display", "none");  
 	 });
 	
-	
+	// coComment Open Close
+	$(".cocoment-open").on("click", function() {
+		if( $(this).data("oc") == 'c' ){
+			$(this).data("oc", "o")
+			$(this).html("접기");
+		}else {
+			$(this).data("oc", "c")
+			$(this).html("펼치기");
+		}
+	})
+
 	// Infinity Scroll
- 	function YesScroll () {
+/*  	function YesScroll () {
 		const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
 		const fullContent = document.querySelector('.post-box'); // 전체를 둘러싼 컨텐츠 정보획득
 		const screenHeight = screen.height; // 화면 크기
@@ -140,4 +205,6 @@
 			xhr.responseType = "document";
 		}
 	}
-	YesScroll()
+	YesScroll() */
+	
+ 

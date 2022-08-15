@@ -106,7 +106,7 @@
 			FROM reply r, member m   
 			WHERE r.pno = #{pno} AND r.email = m.email AND r.depth = 1   
 		</select>
-		<select id="selectDepthByRno" resultType="com.hellobook.domain.ReplyVO">
+		<select id="selectDepthByRepno" resultType="com.hellobook.domain.ReplyVO">
 			SELECT /*+ index_desc(r reply_pk)*/ r.repno, r.pno, r.rcontent, r.depth, r.repdate, r.email, m.nickname, m.language, m.profile   
 			FROM reply r, member m   
 			WHERE r.refno = #{repno} AND r.email = m.email AND r.depth = 2   
@@ -121,6 +121,23 @@
  				WHERE p.email = m.email)  
  			WHERE nickname=#{nickname}
          ]]>
+	</select>
+
+	<insert id="insertComment">
+		<selectKey keyProperty="repno" order="BEFORE" resultType="int">
+			SELECT reply_seq.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO reply (repno, pno, rcontent, depth, email, refno) 
+		values(#{repno}, #{pno}, #{rcontent}, #{depth}, #{email}, #{refno})
+	</insert>
+	<select id="recentCommentByEmail" resultType="com.hellobook.domain.ReplyVO">
+		SELECT *  
+		FROM (  
+			SELECT r.repno, r.pno, r.rcontent, r.depth, r.email, r.refno, r.repdate, m.nickname, m.language, m.profile   
+			FROM reply r, member m   
+			WHERE r.email = #{email} AND r.email = m.email   
+			ORDER BY r.repno DESC )
+		WHERE ROWNUM = 1		
 	</select>
 
 </mapper>
