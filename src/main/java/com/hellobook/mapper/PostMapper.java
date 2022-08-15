@@ -37,10 +37,7 @@ public interface PostMapper {
 	public ReplyVO recentCommentByEmail(String email);
 	
 	
-<<<<<<< HEAD
-=======
-	public List<PostVO> selectMypost(String nickname);
-	
 
->>>>>>> 267e59b3383968d502ea9e74c8b75fc97b26280b
+	public List<PostVO> selectMypost(String nickname);
+
 }
