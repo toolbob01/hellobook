@@ -33,7 +33,11 @@ public interface PostService {
 	public PostVO postDetail(int pno);
 	public List<ReplyVO> selectReplyByPno(int pno);
 	
+<<<<<<< HEAD
 	public int insertComment(ReplyVO replyVO);
 	public ReplyVO recentCommentByEmail(String email);
 	
+=======
+	public List<PostVO> selectMypost(String nickname);
+>>>>>>> 267e59b3383968d502ea9e74c8b75fc97b26280b
 }

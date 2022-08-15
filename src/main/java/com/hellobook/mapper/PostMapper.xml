@@ -111,6 +111,17 @@
 			FROM reply r, member m   
 			WHERE r.refno = #{repno} AND r.email = m.email AND r.depth = 2   
 		</select>
+		
+	<select id="selectMypost" resultType="com.hellobook.domain.PostVO">
+		<![CDATA[
+ 			SELECT pno, content, email, pdate, nickname, profile, language 
+ 			FROM (  
+ 				SELECT /*+ index_desc(p post_pk)*/ p.pno, p.content, p.email, p.pdate, m.nickname, m.profile, m.language
+ 				FROM post p, member m   
+ 				WHERE p.email = m.email)  
+ 			WHERE nickname=#{nickname}
+         ]]>
+	</select>
 
 	<insert id="insertComment">
 		<selectKey keyProperty="repno" order="BEFORE" resultType="int">
