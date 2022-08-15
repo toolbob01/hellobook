@@ -64,8 +64,12 @@ public class PostServiceImpl implements PostService {
 		return mapper.deletePost(pno);
 	}
 	@Override
-	public int deletePostFile(int fno) {
-		return mapper.deletePostFile(fno);
+	public int deletePostFileByFno(int fno) {
+		return mapper.deletePostFileByFno(fno);
+	}
+	@Override
+	public int deletePostFileByPno(int pno) {
+		return mapper.deletePostFileByPno(pno);
 	}
 	
 	@Override
@@ -73,8 +77,8 @@ public class PostServiceImpl implements PostService {
 		return mapper.countLike(pno);
 	}
 	@Override
-	public int deleteLike(String email) {
-		return mapper.deleteLike(email);
+	public int deleteLike(PostLikeVO likeVO) {
+		return mapper.deleteLike(likeVO);
 	}
 	@Override
 	public int addLike(PostLikeVO likeVO) {
