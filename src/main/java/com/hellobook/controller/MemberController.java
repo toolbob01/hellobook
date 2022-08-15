@@ -74,7 +74,12 @@ public class MemberController {
 	private CustomUserDetailsService cuds;
 	
 	@GetMapping("login")
-	public String login(Model model, HttpSession session) {
+	public String login(String error, Model model, HttpSession session) {
+		//로그인에 실패했을 때 안내문 출력
+		if(error != null) {
+			model.addAttribute("error", "error");
+		}
+		
 		//naver로그인 url 생성
 		String naverAuthUrl = naverLoginBO.getAuthorizaionUrl(session);
 		model.addAttribute("naverUrl",naverAuthUrl);
@@ -108,13 +113,7 @@ public class MemberController {
 		String id = apiJson.get("id").toString();
 		String nickName = apiJson.get("nickname").toString();
 		String email = apiJson.get("email").toString();
-<<<<<<< HEAD
 		String sex = apiJson.get("gender").toString();
-=======
-		char sex_ex = gender.charAt(0);
-		String sex = "";
-		sex += sex_ex;
->>>>>>> eacdf04ef31b632445a43b441a8b517801558072
 		Date birth = Date.valueOf(date);
 		
 		mvo.setEmail(email);
@@ -167,13 +166,7 @@ public class MemberController {
 		String password = rootNode.get("id").asText();
 		String email = rootNode.get("email").asText();
 		String nickname = rootNode.get("given_name").asText()+rootNode.get("family_name").asText();
-<<<<<<< HEAD
 		String language = Character.toString(rootNode.get("locale").asText().toUpperCase().charAt(0));
-=======
-		char language_ex = rootNode.get("locale").asText().toUpperCase().charAt(0);
-		String language = "";
-		language += language_ex;
->>>>>>> eacdf04ef31b632445a43b441a8b517801558072
 		
 		MemberVO mvo = new MemberVO();
 		mvo.setEmail(email);
@@ -246,6 +239,13 @@ public class MemberController {
 		SecurityContext securityContext = SecurityContextHolder.getContext();
 		securityContext.setAuthentication(autentication);
 		session = request.getSession(true);
+		User user = (User)autentication.getPrincipal();
+		user.getUsername();
+		
+		SessionVO svo = memberService.read(user.getUsername());
+		
+		session.setAttribute("username", user.getUsername());
+		session.setAttribute("Nname", svo.getNickname());
 		session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
 		
 		//mav는 메세지 전송 객체
