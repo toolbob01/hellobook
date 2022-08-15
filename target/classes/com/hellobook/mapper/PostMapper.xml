@@ -55,7 +55,7 @@
 		WHERE l.pno = #{pno} AND l.email = m.email
 	</select>
 	<select id="selectFileByPno" resultType="com.hellobook.domain.PostFileVO">
-		SELECT * FROM post_file WHERE pno = #{pno}
+		SELECT * FROM post_file WHERE pno = #{pno} 
 	</select>
 
 	<insert id="insertPost">
@@ -81,15 +81,19 @@
 		DELETE FROM post WHERE pno=#{pno}
 	</delete>
 
-	<delete id="deletePostFile">
+	<delete id="deletePostFileByFno">
 		DELETE FROM post_file WHERE fno=#{fno}
+	</delete>
+	
+	<delete id="deletePostFileByPno">
+		DELETE FROM post_file WHERE pno=#{pno}
 	</delete>
 
 	<select id="countLike" resultType="int">
 		SELECT count(*) FROM post_like where pno = #{pno}
 	</select>
 	<delete id="deleteLike">
-		DELETE FROM post_like WHERE email=#{email}
+		DELETE FROM post_like WHERE email=#{email} AND pno=#{pno}
 	</delete>
 	<insert id="addLike">
 		INSERT INTO post_like (pno,email)   
@@ -106,10 +110,40 @@
 			FROM reply r, member m   
 			WHERE r.pno = #{pno} AND r.email = m.email AND r.depth = 1   
 		</select>
-		<select id="selectDepthByRno" resultType="com.hellobook.domain.ReplyVO">
+		<select id="selectDepthByRepno" resultType="com.hellobook.domain.ReplyVO">
 			SELECT /*+ index_desc(r reply_pk)*/ r.repno, r.pno, r.rcontent, r.depth, r.repdate, r.email, m.nickname, m.language, m.profile   
 			FROM reply r, member m   
 			WHERE r.refno = #{repno} AND r.email = m.email AND r.depth = 2   
 		</select>
+		
+	<select id="selectMypost" resultType="com.hellobook.domain.PostVO">
+		<![CDATA[
+ 			SELECT pno, content, email, pdate, nickname, profile, language 
+ 			FROM (  
+ 				SELECT /*+ index_desc(p post_pk)*/ p.pno, p.content, p.email, p.pdate, m.nickname, m.profile, m.language
+ 				FROM post p, member m   
+ 				WHERE p.email = m.email)  
+ 			WHERE nickname=#{nickname}
+         ]]>
+	</select>
+
+	<insert id="insertComment">
+		<selectKey keyProperty="repno" order="BEFORE" resultType="int">
+			SELECT reply_seq.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO reply (repno, pno, rcontent, depth, email, refno) 
+		values(#{repno}, #{pno}, #{rcontent}, #{depth}, #{email}, #{refno})
+	</insert>
+	<select id="recentCommentByEmail" resultType="com.hellobook.domain.ReplyVO">
+		SELECT *  
+		FROM (  
+			SELECT r.repno, r.pno, r.rcontent, r.depth, r.email, r.refno, r.repdate, m.nickname, m.language, m.profile   
+			FROM reply r, member m   
+			WHERE r.email = #{email} AND r.email = m.email   
+			ORDER BY r.repno DESC )
+		WHERE ROWNUM = 1		
+	</select>
+
+
 
 </mapper>

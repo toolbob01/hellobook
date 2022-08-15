@@ -260,13 +260,14 @@ body::-webkit-scrollbar-track {
 .comment-time, .comment-cocoment {
 	font-size: 12px;
 	color: grey;
-	padding: 5px;
+/* 	padding: 5px; */
 }
 .comment-cocoment:hover {
-	font-size: 16px;
-	color: black;
+	font-size: 12px;
+	color: white;
 	background-color: #9fd5ff;
 	border-radius: 5px;
+    padding: 2px;
 	cursor: pointer;
 }
 .comment-content {
