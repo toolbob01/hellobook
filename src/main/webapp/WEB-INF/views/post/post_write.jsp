@@ -3,8 +3,13 @@
 <%@ include file="../header.jsp"%>
 
 <style>
-	.mb-3px { margin-bottom: 3px; }
+	.mt-50px { margin-top: 50px; }
 </style>
+
+	<div class="m-5">
+		<p class="ppp">ppppppppppp</p>
+		<div class="ddd">dddddddddddddddddddddddd</div>
+	</div>
 
 	<div class="container post_write_page">
 		<div class="input-form-backgroud row">
@@ -30,14 +35,13 @@
 					<table class="table __add mb-3"> 
 					  <tr>
 					    <td>
-					<div class="mb-4 text-center">
-						<img style="width: 500px; height: 500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
-						<input type="file" class="form-control uploadfile " name="uploadfile" id="uploadfile" onchange="fileCheck(this)">
-					</div>
-					  	  
+						  <div class="mb-4 text-center">
+							<img style="width: 500px; height: 500px;" class="preview-image" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
+							<input type="file" class="form-control uploadfile " name="uploadfile" onchange="fileCheck(this)">
+						  </div>
 					    </td>
 					    <td>
-					      <button type="button" class="_add btn btn-primary mb-3px">추가</button>
+					      <button type="button" class="_add btn btn-primary mt-50px">추가</button>
 					    </td>
 					  </tr> 
 					</table>
@@ -54,6 +58,10 @@
 
 <script>
 
+$(".ddd").on("click", function() {
+	$(this).closest('.m-5').children('.ppp').html("changed ppp");
+})
+
 // Add File Input
 var uploadfileCnt = 1;
 
@@ -63,11 +71,14 @@ $('.__add ._add').on('click',function(){
       return;
    }else{
        $('.__add').append('<tr>' + 
+					    	'<td>' + 
+						  	  '<div class="mb-4 text-center">' + 
+							    '<img style="width: 500px; height: 500px;" class="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">' + 
+							    '<input type="file" class="form-control uploadfile " name="uploadfile" onchange="fileCheck(this)">' + 
+						  	  '</div>' + 
+							'</td>' +  
 		    			    '<td>' + 
-		    			      '<input type="file" class="form-control uploadfile" name="uploadfile" id="uploadfile" onchange="fileCheck(this)">' +
-		    			    '</td>' + 
-		    			    '<td>' + 
-		    			      '<button type="button" class="btn btn-secondary mb-3px" onclick="addDel(this);">삭제</button>' + 
+		    			      '<button type="button" class="btn btn-secondary mt-50px" onclick="addDel(this);">삭제</button>' + 
 		    			    '</td>' +
 		    			  '</tr>' ); 
        uploadfileCnt ++;
@@ -80,15 +91,29 @@ function addDel(a){
 }
 
 //File Image Preview
-$(".uploadfile").on("change", function(event) {
-    var file = event.target.files[0];
-    var reader = new FileReader(); 
-    reader.onload = function(e) {
-        $("#preview-image").attr("src", e.target.result);
-    }
-    reader.readAsDataURL(file);
+// $(".uploadfile").on("change", function(event) {
+// 	var uploadfile = $(this)
+//     var file = event.target.files[0]; console.log(file); console.log(uploadfile.files); 
+//     var reader = new FileReader(); 
+//     reader.onload = function(e) {
+//     	uploadfile.closest('.text-center').children('.preview-image').attr("src", e.target.result);
+//     }
+//     reader.readAsDataURL(file);
+// });
+$('.uploadfile').change(function(){
+	console.log('SSSiBal');
+    setImageFromFile(this, $(this));
 });
-
+function setImageFromFile(input, uploadfile) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function (e) {
+// 			uploadfile.closest('.text-center').children('.preview-image').attr('src', e.target.result);
+			$("#preview-image").attr('src', e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
+}
 
 // File Size Check
 function fileCheck(file) {
