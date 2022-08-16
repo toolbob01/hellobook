@@ -163,10 +163,17 @@ public class MemberController {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode rootNode = mapper.readTree(profile);
 		
+		String locale=Character.toString(rootNode.get("locale").asText().toUpperCase().charAt(0));
+		
 		String password = rootNode.get("id").asText();
 		String email = rootNode.get("email").asText();
 		String nickname = rootNode.get("given_name").asText()+rootNode.get("family_name").asText();
-		String language = Character.toString(rootNode.get("locale").asText().toUpperCase().charAt(0));
+		String language = null;
+		if(locale.equals("K") || locale.equals("J")) {
+			language = locale;
+		}else {
+			language = "E";
+		}
 		
 		MemberVO mvo = new MemberVO();
 		mvo.setEmail(email);
@@ -218,7 +225,7 @@ public class MemberController {
 		memberService.insertMember(mvo);
 		
 		//mav는 메세지 전송 객체
-		mav.addObject("data", new Message("회원가입에 성공하셨습니다.", "/"));
+		mav.addObject("data", new Message("1", "/"));
 		//data를 보낼곳 "Message.jsp"지정
 		mav.setViewName("Message");
 		return mav;
@@ -249,7 +256,7 @@ public class MemberController {
 		session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
 		
 		//mav는 메세지 전송 객체
-		mav.addObject("data", new Message("소셜로그인에 성공하셨습니다.", "/index"));
+		mav.addObject("data", new Message("2", "/"));
 		//data를 보낼곳 "Message.jsp"지정
 		mav.setViewName("Message");
 		return mav;

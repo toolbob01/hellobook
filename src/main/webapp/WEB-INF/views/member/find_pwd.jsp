@@ -121,26 +121,132 @@ p {
 		<img class="logo_hellobook" src="/resources/imgs/logo.png"
 			alt="hellobook_logo">
 		<div class="find_pwd_div">
-			<input type="text" class="input_login" name="email" id="email" placeholder="회원가입한 이메일을 입력하세요.">
-			<input type="text" class="input_login" name="code" id="code" placeholder="인증번호를 입력하세요." style="display: none"> 
-			<input type="password" class="input_login" name="pw" id="pw" placeholder="새 비밀번호" style="display: none"> 
-			<input type="password" class="input_login" name="pw2" id="pw2" placeholder="비밀번호 확인" style="display: none">
+			<input type="text" class="input_login" name="email" id="email" placeholder="<spring:message code="pwd.emailPlaceholder"/>">
+			<input type="text" class="input_login" name="code" id="code" placeholder="<spring:message code="pwd.codePlaceholder"/>" style="display: none"> 
+			<input type="password" class="input_login" name="pw" id="pw" placeholder="<spring:message code="pwd.pwPlaceholder"/>" style="display: none"> 
+			<input type="password" class="input_login" name="pw2" id="pw2" placeholder="<spring:message code="pwd.pw2Placeholder"/>" style="display: none">
 		</div>
-		<p id="notice">이메일을 입력해주세요.</p>
-		<p id="notice2">존재하지 않는 이메일입니다.</p>
-		<p id="notice3">인증번호가 일치하지 않습니다.</p>
-		<p id="notice4">비밀번호를 입력해주세요.</p>
-		<p id="notice5">비밀번호는 공백을 포함할 수 없습니다.</p>
-		<p id="notice6">8자리 이상의 영어, 숫자, 특수문자의 조합이어야 합니다.</p>
-		<p id="notice7">비밀번호가 일치하지 않습니다.</p>
+		<p id="notice"><spring:message code="pwd.notice1"/></p>
+		<p id="notice2"><spring:message code="pwd.notice2"/></p>
+		<p id="notice3"><spring:message code="pwd.notice3"/></p>
+		<p id="notice4"><spring:message code="pwd.notice4"/></p>
+		<p id="notice5"><spring:message code="pwd.notice5"/></p>
+		<p id="notice6"><spring:message code="pwd.notice6"/></p>
+		<p id="notice7"><spring:message code="pwd.notice7"/></p>
 		<div id="button_div">
-			<button type="button" class="btn btn-primary" id="findPwdBtn">비밀번호 찾기</button>
+			<button type="button" class="btn btn-primary" id="findPwdBtn"><spring:message code="pwd.findPwdBtn"/></button>
 		</div>
-		<span class="button_forgot" onclick="location.href='/member/login'">로그인으로</span>
-		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;">새 계정 만들기</span>
+		<span class="button_forgot" onclick="location.href='/member/login'"><spring:message code="pwd.gotologinBtn"/></span>
+		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;"><spring:message code="pwd.gotojoinBtn"/></span>
 	</div>
 	<script src="/resources/js/findpwdService.js"></script>
-	<script src="/resources/js/find_pwd.js"></script>
+	<script>
+		$(function() {
+			const email = $("#email");
+			const code = $("#code");
+			const pw = $("#pw");
+			const pw2 = $("#pw2");
+			const button_div = $("#button_div");
+			var setCode = '';
+			
+			button_div.on("click","button#findPwdBtn",function(){
+				if (email.val() == '') {
+					$("#notice2").hide();
+					$("#notice").show();
+					return;
+				}
+				
+				if (email.val() != '') {
+					findPwdService.checkEmail(email.val(), function(data) {
+						findPwdService.getCode(email.val(),function(result){
+							alert('<spring:message code="pwd.checkMailAlert"/>')
+							setCode = result;
+							email.hide();
+							$("#notice").hide();
+							$("#notice2").hide();
+							code.show();
+							button_div.html('<button type="button" class="btn btn-primary" id="checkCodeBtn"><spring:message code="pwd.checkCodeBtn"/></button>');
+						 },function(){
+							alert("Server Error");
+							$("#notice").hide();
+							$("#notice2").hide();
+						})
+					},function(){
+						$("#notice").hide();
+						$("#notice2").show();
+						return;
+					});
+				}
+			})
+			
+			button_div.on("click","button#checkCodeBtn",function(){
+				if(code.val() == '' || code.val() != setCode || setCode == ''){
+					$("#notice3").show();
+					return;
+				}
+				
+				if(code.val() == setCode){
+					$("#notice3").hide();
+					alert('<spring:message code="pwd.checkCodeAlert"/>')
+					code.val("");
+					code.hide();
+					pw.show();
+					pw2.show();
+					button_div.html('<button type="button" class="btn btn-primary" id="changePwdBtn"><spring:message code="pwd.changePwdBtn"/></button>');
+				}
+			})
+	
+			button_div.on("click","button#changePwdBtn",function(){
+				var pwCheck = /^(?=.*?[a-zA-Z0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+				
+				$("#notice4").hide();
+				$("#notice5").hide();
+				$("#notice6").hide();
+				$("#notice7").hide();
+				
+				if(pw.val() == ''){
+					$("#notice4").show();
+					return
+				}
+				
+				if(pw.val().search(/\s/) != -1){
+					$("#notice5").show();
+					return
+				}
+				
+				if(pw.val().length < 8 || !pwCheck.test(pw.val())){
+					$("#notice6").show();
+					return
+				}
+				
+				if(pw2.val() != pw.val()){
+					$("#notice7").show();
+					return
+				}
+				
+				if(pw2.val() == pw.val()){
+					var userData = {
+							email:email.val(),
+							password:pw.val()
+					}
+					
+					findPwdService.changePwd(userData,function(data){
+						email.val("");
+						pw.val("");
+						pw2.val("");
+						pw.hide();
+						pw2.hide();
+						email.show();
+						button_div.html('<button type="button" class="btn btn-primary" id="findPwdBtn"><spring:message code="pwd.findPwdBtn"/></button>');
+						alert('<spring:message code="pwd.changePwdAlert"/>');
+						location.href = '/member/login';
+					},function(){
+						alert("Server Error");
+					});
+				}
+			})
+		})
+	</script>
 </body>
 </html>
 
