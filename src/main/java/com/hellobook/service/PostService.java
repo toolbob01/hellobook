@@ -28,7 +28,9 @@ public interface PostService {
 	public int deletePostFileByPno(int pno);
 	
 	public int countLike(int pno);
+
 	public int deleteLike(PostLikeVO likeVO);
+
 	public int addLike(PostLikeVO likeVO);
 
 	public PostVO postDetail(int pno);
@@ -40,5 +42,6 @@ public interface PostService {
 	
 
 	public List<PostVO> selectMypost(String nickname);
+	public List<PostVO> selectMyLikepost(String email);
 
 }

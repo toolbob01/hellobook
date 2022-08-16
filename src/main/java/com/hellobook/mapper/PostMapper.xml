@@ -126,6 +126,18 @@
  			WHERE nickname=#{nickname}
          ]]>
 	</select>
+	
+	<select id="selectMyLikepost" resultType="com.hellobook.domain.PostVO">
+		<![CDATA[
+ 			select l.pno, l.content, l.writer, l.pdate, m.nickname, m.profile, m.language
+				from
+				    member m, (select /*+ index_desc(p post_pk)*/ pl.pno, content, p.email writer, pl.email liker, p.pdate
+				    from post_like pl, post p
+				    where pl.pno=p.pno and pl.email=#{email}) l
+				where m.email=l.writer
+				order by l.pno desc
+         ]]>
+	</select>
 
 	<insert id="insertComment">
 		<selectKey keyProperty="repno" order="BEFORE" resultType="int">

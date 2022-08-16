@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,9 +40,14 @@ public class MypageController {
 	}
 	
 	@GetMapping("/profile/{nickname}")
-	public String profile(@PathVariable String nickname, Model model) {
+	public String profile(@PathVariable String nickname, HttpServletRequest request, Model model) {
 		MemberVO mvo = memberService.readByNickname(nickname);
+		
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("username");
+		
 		List<PostVO> pvoList = postService.selectMypost(nickname);
+		List<PostVO> likeList = postService.selectMyLikepost(email);
 		if(mvo == null) {
 			return "/mypage/unknown";
 		} else {
@@ -57,8 +65,24 @@ public class MypageController {
 				postVO.setLike_cnt(postVO.getLike_list().size());   	// Like Count
 				postVO.setTimer(Time.calculateTime(postVO.getPdate())); // ex) 5분전 2시간전 3일전
 			}
+			
+			for( PostVO LikeVO : likeList ) {
+				int pno = LikeVO.getPno();
+				LikeVO.setFile_list(postService.selectFileByPno(pno)); 	    // Image
+				LikeVO.setReply_list(postService.selectThreeReplyByPno(pno));    // Reply
+				List<ReplyVO> relpy_list = LikeVO.getReply_list();
+				for( ReplyVO replyVO : relpy_list ) {
+					replyVO.setTimer(Time.calculateTime(replyVO.getRepdate())); // Reply's Timer
+				}
+				LikeVO.setReply_cnt(relpy_list.size()); 	// Reply Count
+				LikeVO.setLike_list(postService.selectLikeByPno(pno)); 		// Like
+				LikeVO.setLike_cnt(LikeVO.getLike_list().size());   	// Like Count
+				LikeVO.setTimer(Time.calculateTime(LikeVO.getPdate())); // ex) 5분전 2시간전 3일전
+			}
+			
 			model.addAttribute("mvo", mvo);
 			model.addAttribute("pvoList", pvoList);
+			model.addAttribute("likeList", likeList);
 			return "/mypage/profile";
 		}
 		
