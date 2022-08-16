@@ -55,4 +55,17 @@ public class MemberServiceImpl implements MemberService {
 	public void updateThumbnailByNickname(MemberVO mvo) {
 		memberMapper.updateThumbnailByNickname(mvo);
 	}
+	
+	@Override
+	public void quitMember(MemberVO mvo) {
+		memberMapper.quitMember(mvo);		
+		
+	}
+	
+	@Override
+	public int modify(MemberVO mvo) {
+	
+		 return memberMapper.modify(mvo);
+		 
+	}
 }

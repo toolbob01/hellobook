@@ -64,8 +64,12 @@ public class PostServiceImpl implements PostService {
 		return mapper.deletePost(pno);
 	}
 	@Override
-	public int deletePostFile(int fno) {
-		return mapper.deletePostFile(fno);
+	public int deletePostFileByFno(int fno) {
+		return mapper.deletePostFileByFno(fno);
+	}
+	@Override
+	public int deletePostFileByPno(int pno) {
+		return mapper.deletePostFileByPno(pno);
 	}
 	
 	@Override
@@ -73,8 +77,10 @@ public class PostServiceImpl implements PostService {
 		return mapper.countLike(pno);
 	}
 	@Override
-	public int deleteLike(String email) {
-		return mapper.deleteLike(email);
+
+	public int deleteLike(PostLikeVO likeVO) {
+		return mapper.deleteLike(likeVO);
+
 	}
 	@Override
 	public int addLike(PostLikeVO likeVO) {
@@ -89,7 +95,7 @@ public class PostServiceImpl implements PostService {
 	public List<ReplyVO> selectReplyByPno(int pno){
 		List<ReplyVO> reply_list = mapper.selectReplyByPno(pno);
 		for( ReplyVO replyVO : reply_list ) { // Reply List
-			replyVO.setCocomment_list(mapper.selectDepthByRno(replyVO.getRepno()));
+			replyVO.setCocomment_list(mapper.selectDepthByRepno(replyVO.getRepno()));
 			List<ReplyVO> cocoment_list = replyVO.getCocomment_list();
 			for( ReplyVO cocoment : cocoment_list ) { // Cocoment List
 				cocoment.setTimer(Time.calculateTime(cocoment.getRepdate())); // cocoment's Timer
@@ -97,5 +103,27 @@ public class PostServiceImpl implements PostService {
 		}
 		return reply_list;
 	}
+	
+	@Override
+	public List<PostVO> selectMypost(String nickname) {
+		List<PostVO> pvo = mapper.selectMypost(nickname);
+		return pvo;
+	}
+	
+	@Override
+	public List<PostVO> selectMyLikepost(String email) {
+		List<PostVO> pvo = mapper.selectMyLikepost(email);
+		return pvo;
+	}
 
+	@Override
+	public int insertComment(ReplyVO replyVO) {
+		return mapper.insertComment(replyVO);
+	}
+	@Override
+	public ReplyVO recentCommentByEmail(String email) {
+		return mapper.recentCommentByEmail(email);
+	}
+	
+	
 }

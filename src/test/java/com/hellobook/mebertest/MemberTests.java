@@ -34,9 +34,9 @@ public class MemberTests {
 			mvo.setEmail("member"+i+"@test.com");
 			mvo.setPassword(encodepw);
 			mvo.setBirth(today);
-			mvo.setLanguage('K');
+			mvo.setLanguage("K");
 			mvo.setNickname("member"+i);
-			mvo.setSex('M');
+			mvo.setSex("M");
 			mvo.setHobby("");
 			
 			memberService.insertMember(mvo);

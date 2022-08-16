@@ -21,6 +21,7 @@
 
 	<!-- C드라이브의 hello_img 파일 -->
 	<resources mapping="/hello_img/**" location="file:///c:/hello_img/" />
+	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -72,4 +73,10 @@
 		<beans:property name="redirectUri" ref="googleRedirectUrl"/>
 	</beans:bean>
 	
+	<!-- 언어를 변경하기 위한 인터셉터 -->
+	<interceptors>
+    <beans:bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <beans:property name="paramName" value="lang" />
+    </beans:bean>
+</interceptors>
 </beans:beans>

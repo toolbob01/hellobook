@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 
 <div class="container-fluid">
 	<div class="container">
@@ -146,168 +148,48 @@
 				<div class="tab-pane fade show active mypage_content_a current" id="nav-home" role="tabpanel" aria-labelledby="nav-post-tab" tabindex="0">
 					<div class="mypage_content_b">
 						<div class="mypage_content_c">
-							<div class="mypage_like_a">
+							<c:if test="${pvoList.size()==0}">
+								<div class="mypage_like_a">
+									<div class="mypage_like_b">
+										<h1>내가 등록한 게시물</h1>
+										<p>내가 등록한 게시물 리스트를 보여줍니다.</p>
+										<span>현재 내가 등록한 게시물이 없습니다.</span>
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${pvoList.size()!=0}">
+								<div class="mypage_like_a">
 								<div class="mypage_content_d">
 								<div class="mypage_content_e">
 								<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-							        <div class="col">
-							          <div class="card shadow-sm posted">
-							            
-										<img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post9" style="z-index: 0;">
-
+							        
+							        
+							        <c:forEach var="PostVO" items="${pvoList}">
+							        	<div class="col">
+								          <div class="card shadow-sm posted">
+								            <img src="/hello_img/post/${PostVO.file_list[0].uuid}" alt="..." width="100%" height="225">
 											<div class="mypage_post_btn" style="position: relative;">
-												<c:if test="${mvo.email == username}">
-												<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-												</c:if>
-												<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
-												<c:if test="${mvo.email == username}">
-								       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-								       			</c:if>
-								          		
-								          	</div>
-							          </div>
-							          
-							        </div>
-							        <div class="col">
-							          <div class="card shadow-sm posted">
-							            <img src="/resources/imgs/img_section/img02.jpg" alt="..." width="100%" height="225" id="post8">
-							
-							            <div class="mypage_post_btn" style="position: relative;">
-												<c:if test="${mvo.email == username}">
-												<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-												</c:if>
-												<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
-												<c:if test="${mvo.email == username}">
-								       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-								       			</c:if>
-								          		
-								          	</div>
-							          </div>
-							          
-							        </div>
-							        <div class="col">
-							          <div class="card shadow-sm posted">
-							            <img src="/resources/imgs/img_section/img03.jpg" alt="..." width="100%" height="225" id="post7">
-										<div class="mypage_post_btn" style="position: relative;">
-												<c:if test="${mvo.email == username}">
-												<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-												</c:if>
-												<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
-												<c:if test="${mvo.email == username}">
-								       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-								       			</c:if>
-								          		
-								          	</div>
-							            
-							          </div>
-							          
-							        </div>
-							        <div class="col">
-							          <div class="card shadow-sm posted">
-							            <img src="/resources/imgs/img_section/img04.jpg" alt="..." width="100%" height="225" id="post6">
-										<div class="mypage_post_btn" style="position: relative;">
-												<c:if test="${mvo.email == username}">
-												<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-												</c:if>
-												<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
-												<c:if test="${mvo.email == username}">
-								       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-								       			</c:if>
-								          		
-								          	</div>
-							            
-							          </div>
-							          
-							        </div>
-							        <div class="col">
-							          <div class="card shadow-sm posted">
-							            <img src="/resources/imgs/img_section/img05.jpg" alt="..." width="100%" height="225" id="post5">
-										<div class="mypage_post_btn" style="position: relative;">
-												<c:if test="${mvo.email == username}">
-												<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-												</c:if>
-												<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
-												<c:if test="${mvo.email == username}">
-								       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-								       			</c:if>
-								          		
-								          	</div>
-							            
-							          </div>
-							          
-							        </div>
-							        <div class="col">
-							          <div class="card shadow-sm posted">
-							            <img src="/resources/imgs/thumb.jpeg" alt="..." width="100%" height="225" id="post4">
-										<div class="mypage_post_btn" style="position: relative;">
-												<c:if test="${mvo.email == username}">
-												<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-												</c:if>
-												<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
-												<c:if test="${mvo.email == username}">
-								       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-								       			</c:if>
-								          		
-								          	</div>
-							            
-							          </div>
-							          
-							        </div>
-							        <div class="col">
-							          <div class="card shadow-sm posted">
-							            <img src="/resources/imgs/logo.png" alt="..." width="100%" height="225" id="post3">
-										<div class="mypage_post_btn" style="position: relative;">
-												<c:if test="${mvo.email == username}">
-												<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-												</c:if>
-												<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
-												<c:if test="${mvo.email == username}">
-								       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-								       			</c:if>
-								          		
-								          	</div>
-							            
-							          </div>
-							          
-							        </div>
-							        <div class="col">
-							          <div class="card shadow-sm posted">
-							            <img src="/resources/imgs/img_section/img01.jpg" alt="..." width="100%" height="225" id="post2">
-										<div class="mypage_post_btn" style="position: relative;">
-												<c:if test="${mvo.email == username}">
-												<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-												</c:if>
-												<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
-												<c:if test="${mvo.email == username}">
-								       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-								       			</c:if>
-								          		
-								          	</div>
-							            
-							          </div>
-							          
-							        </div>
-							        <div class="col">
-							          <div class="card shadow-sm posted">
-							            <img src="/resources/imgs/img_section/img02.jpg" alt="..." width="100%" height="225" id="post1">
-										<div class="mypage_post_btn" style="position: relative;">
-												<c:if test="${mvo.email == username}">
-												<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-												</c:if>
-												<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;"/></a>
-												<c:if test="${mvo.email == username}">
-								       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-								       			</c:if>
-								          		
-								          	</div>
-							            
-							          </div>
-							          
-							        </div>
+													<c:if test="${mvo.email == username}">
+													<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+													</c:if>
+													<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;" data-pno="${PostVO.pno}"/></a>
+													<c:if test="${mvo.email == username}">
+									       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+									       			</c:if>
+									          		
+									          	</div>
+								            
+								          </div>
+								          
+								        </div>
+							        </c:forEach>
+							        
 							      </div>
 							      </div>
 							  	</div>
 						      </div>
+							</c:if>
+							
 						</div>
 					</div>
 				</div>
@@ -316,13 +198,48 @@
 				<div class="tab-pane fade mypage_content_a" id="nav-contact" role="tabpanel" aria-labelledby="nav-like-tab" tabindex="0">
 					<div class="mypage_content_b">
 						<div class="mypage_content_c">
-							<div class="mypage_like_a">
-								<div class="mypage_like_b">
-									<h1>좋아요한 게시물</h1>
-									<p>내가 좋아요한 게시물 리스트를 보여줍니다.</p>
-									<span>현재 내가 좋아요한 게시물이 없습니다.</span>
+							<c:if test="${likeList.size()==0}">
+								<div class="mypage_like_a">
+									<div class="mypage_like_b">
+										<h1>좋아요한 게시물</h1>
+										<p>내가 좋아요한 게시물 리스트를 보여줍니다.</p>
+										<span>현재 내가 좋아요한 게시물이 없습니다.</span>
+									</div>
 								</div>
-							</div>
+							</c:if>
+							<c:if test="${likeList.size()!=0}">
+								<div class="mypage_like_a">
+								<div class="mypage_content_d">
+								<div class="mypage_content_e">
+								<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+							        
+							        
+							        <c:forEach var="LikeVO" items="${likeList}">
+							        	<div class="col">
+								          <div class="card shadow-sm posted">
+								            <img src="/hello_img/post/${LikeVO.file_list[0].uuid}" alt="..." width="100%" height="225">
+											<div class="mypage_post_btn" style="position: relative;">
+													<c:if test="${mvo.email == username}">
+													<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+													</c:if>
+													<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;" data-pno="${LikeVO.pno}"/></a>
+													<c:if test="${mvo.email == username}">
+									       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+									       			</c:if>
+									          		
+									          	</div>
+								            
+								          </div>
+								          
+								        </div>
+							        </c:forEach>
+							        
+							      </div>
+							      </div>
+							  	</div>
+						      </div>
+							</c:if>
+							
 						</div>
 					</div>
 				</div>
@@ -362,13 +279,16 @@
 		        </div>
 		
 		      </a>
-		      <a href="/member/logout" class="list-group-item list-group-item-action py-3 lh-sm">
+		      <form action="/member/logout" method="post">
+		      <sec:csrfInput/>
+		      <button class="list-group-item list-group-item-action py-3 lh-sm mp-logout">
 		        <div class="d-flex w-100 align-items-center justify-content-between">
 		          <strong class="mb-1" style="margin:auto;">로그아웃</strong>
 		
 		        </div>
 		
-		      </a>
+		      </button>
+		      </form>
 		      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
 		        <div class="d-flex w-100 align-items-center justify-content-between">
 		          <strong class="mb-1" style="margin:auto;">취소</strong>
@@ -385,28 +305,25 @@
 </div>
 
 <!-- Post Modal -->
-<div class="modal modal-hide fade py-5" tabindex="-1" role="dialog" id="postmodal" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-body p-5">
-      	<div class="modal-detail">
-		<div class="container-fluid">
-			<div class="row">
-			
-							<div class="col-md-7" style="padding: 0px">
+<div class="modal-background" id="postmodal">
+	<div class="closeModalBtnDiv">
+		<span class="closeModalBtn fs-5 text-white on_cursor">X</span>
+	</div>
+      		<div class="modal-detail">
+				<div class="container-fluid">
+					<div class="row">
+					
+						<div class="col-md-7 p-0">
 							<div class="modal-detail-left d-flex flex-column">
 								<div class="trans_inner">
 									<div id="carousel-modal1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-									  <div class="carousel-inner">
-									    <div class="carousel-item active">
-									      <img src="/resources/imgs/img_section/img01.jpg" alt="...">
-									    </div>
-									    <div class="carousel-item">
-									      <img src="/resources/imgs/logo.png" alt="...">
-									    </div>
-									    <div class="carousel-item">
-									      <img src="/resources/imgs/thumb.jpeg" alt="...">
-									    </div>
+									  <div class="carousel-inner" id="carousel-inner">
+		<!-- 							    <div class="carousel-item active"> -->
+		<!-- 							      <img src="/resources/imgs/long.jpg" alt="..."> -->
+		<!-- 							    </div> -->
+		<!-- 							    <div class="carousel-item"> -->
+		<!-- 							      <img src="/resources/imgs/img_section/img01.jpg" alt="..."> -->
+		<!-- 							    </div> -->
 									  </div>
 									  <button class="carousel-control-prev" type="button" data-bs-target="#carousel-modal1" data-bs-slide="prev">
 									    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -421,118 +338,93 @@
 								<div class="modal-detail-contents">
 									<div class="posting-master">
 										<div class="comment-profile d-flex">
-											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-											<div class="comment-profile-flag">
-												<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
-											</div>
-											<div class="comment-name on_cursor align-self-center">Hanulso</div>
-											<div class="comment-time align-self-center mx-5">1시간 전</div>
+		<!-- 									<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진"> -->
+		<!-- 									<div class="comment-profile-flag"> -->
+		<!-- 										<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/> -->
+		<!-- 									</div> -->
+		<!-- 									<div class="comment-name on_cursor align-self-center">Hanulso</div> -->
+		<!-- 									<div class="comment-time align-self-center mx-5">1시간 전</div> -->
 										</div>
+										
 										<div class="modal-posting-master-content">
-											여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+		<!-- 									 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 										</div>
 									</div>
 								</div>
 							</div>
-							</div>
-							
-							<div class="col-md-5" style="padding: 0;">
-								<div class="modal-detail-right">
-									<div class="all-comment">
-										<p class="fs-5 mb-3">댓글 리스트</p>
-										
-										<div class="comment-profile d-flex">
-											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-											<div class="comment-profile-flag">
-												<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
-											</div>
-											<div class="comment-name on_cursor align-self-center">Hanulso</div>
-											<div class="comment-time align-self-center mx-5">17분전</div>
-											<div class="comment-cocoment align-self-center">답글 달기</div>
-										</div>
-										<div class="comment-content">
-											하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
-										</div>
-										<!-- c:if 대댓글 개수가 1 이상이면 -->
-										<div class="mt-3 ms-3 on_cursor">
-											<i class="bi bi-arrow-return-right fs-5"></i>
-											<span class="cocoment-open ms-3">펼치기 / 접기</span>
-										</div>
-										<div class="comment-depth">
-											<div class="comment-profile d-flex">
-												<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-												<div class="comment-profile-flag">
-													<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>
-												</div>
-												<div class="comment-name on_cursor align-self-center">Hanulso</div>
-												<div class="comment-time align-self-center mx-5">17분전</div>
-											</div>
-											<div class="comment-content">
-												<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
-											</div>
-										</div>
-										<div class="comment-depth">
-											<div class="comment-profile d-flex">
-												<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-												<div class="comment-profile-flag">
-													<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
-												</div>
-												<div class="comment-name on_cursor align-self-center">Hanulso</div>
-												<div class="comment-time align-self-center mx-5">17분전</div>
-											</div>
-											<div class="comment-content">
-												<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
-											</div>
-										</div>
-										
-										<div class="comment-profile d-flex">
-											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-											<div class="comment-profile-flag">
-												<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
-											</div>
-											<div class="comment-name on_cursor align-self-center">Hanulso</div>
-											<div class="comment-time align-self-center mx-5">17분전</div>
-											<div class="comment-cocoment align-self-center">답글 달기</div>
-										</div>
-										<div class="comment-content">
-											하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
-										</div>
-										<!-- c:if 대댓글 개수가 1 이상이면 -->
-										<div class="comment-depth">
-											<div class="comment-profile d-flex">
-												<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-												<div class="comment-profile-flag">
-													<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
-												</div>
-												<div class="comment-name on_cursor align-self-center">Hanulso</div>
-												<div class="comment-time align-self-center mx-5">17분전</div>
-											</div>
-											<div class="comment-content">
-												<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
-											</div>
-										</div>
-									</div>
+						</div> <!-- / col-md-7 -->
 						
-									<div class="comment-write-div">
-										<span class="fs-5 mb-3">댓글 작성</span>
-		                			    <button class="msg_send_btn float-end" type="button">
-		                 			      <i class="fa fa-paper-plane-o"  aria-hidden="true"></i>
-		                 			   </button>
-										<div class="form-floating">
-										  <textarea class="form-control" placeholder="Leave a comment here"></textarea>
-										</div>
-									</div>
-						
-								</div>
-							</div>
-				
-						</div>
+	<div class="col-md-5 p-0">
+		<div class="modal-detail-right">
+			<div class="all-comment">		
+				<!-- <p class="fs-5 mb-3">댓글 리스트</p>
+
+				<div class="comment-profile d-flex">
+					<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+					<div class="comment-profile-flag">
+						<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
 					</div>
+					<div class="comment-name on_cursor align-self-center">Hanulso</div>
+					<div class="comment-time align-self-center mx-5">17분전</div>
+					<div class="comment-cocoment align-self-center">답글 달기</div>
 				</div>
-   			 </div>
-  		</div>
+				<div class="comment-content">
+					하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
+
+					<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#haveToInputRno" aria-expanded="false">
+						<i class="bi bi-arrow-return-right fs-5"></i>
+						<span class="cocoment-open ms-3" data-oc="c">펼치기</span>
+					</div>
+					<div class="collapse" id="haveToInputRno">
+						<div class="comment-depth">
+							<div class="comment-profile d-flex">
+								<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+								<div class="comment-profile-flag">
+									<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>
+								</div>
+								<div class="comment-name on_cursor align-self-center">Hanulso</div>
+								<div class="comment-time align-self-center mx-5">17분전</div>
+							</div>
+							<div class="comment-content">
+								<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>
+								장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
+							</div>
+						</div>
+						<div class="comment-depth">
+							<div class="comment-profile d-flex">
+								<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
+								<div class="comment-profile-flag">
+									<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
+								</div>
+								<div class="comment-name on_cursor align-self-center">Hanulso</div>
+								<div class="comment-time align-self-center mx-5">17분전</div>
+							</div>
+							<div class="comment-content">
+								<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>
+								장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
+							</div>
+						</div> -->
+					<!-- </div> --> <!-- / commment-depth-all -->
+				<!-- </div> --> <!-- / comment-content -->
+			</div> <!-- / all-comment -->
+								
+			<div class="comment-write-div">
+				<span class="fs-5 mb-3">댓글 작성</span>
+                   <button class="msg_send_btn float-end" type="button" data-pno="">
+                      <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                   </button>
+				<div class="form-floating">
+				  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert"></textarea>
+				</div>
+			</div>								
+		  </div>
+		</div> <!-- / col-md-5 -->		
+	  </div>
 	</div>
+  </div>
 </div>
+
+
 
 <script>
  $(document).ready(function() {
@@ -555,14 +447,194 @@
 	 $('#mypagemodal').modal('hide');  
  });
  
- $('.go_post').on('click', function(){
-	 $('#postmodal').modal('show');
+ $('.go_post').on('click', function(e){
+		var nowPno = $(this).data("pno");
+		e.preventDefault();
+		// AJAX action
+		$.ajax({
+			type:"get",
+			url:"/post/post_detail_modal?pno=" + nowPno,
+			dataType:"json",
+			success:function(PostVO){
+				// carousel main
+				$("#carousel-inner").append('<div class="carousel-item active">' + 
+							      			'<img src="/hello_img/post/' + PostVO.file_list[0].uuid + '" alt="...">' + 
+									    	'</div>');
+				// carousel each from index 1 ~
+				if( PostVO.file_list[1] != null ) {
+					$.each(PostVO.file_list, function(i, fileVO){
+						if(i>0) {
+							$("#carousel-inner").append('<div class="carousel-item">' + 
+								      						'<img src="/hello_img/post/' + fileVO.uuid + '" alt="...">' + 
+								    					'</div>');
+						}
+					});
+				}
+				// Profile    
+				if( PostVO.language == 'J' ){
+					$(".modal-detail-contents .comment-profile").append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + PostVO.profile + '" alt="프로필사진">' + 
+																		'<div class="comment-profile-flag">' + 
+																		'<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' +  
+																		'</div>' + 
+																		'<div class="comment-name on_cursor align-self-center">' + PostVO.nickname + '</div>' + 
+																		'<div class="comment-time align-self-center mx-5">' + PostVO.timer + '</div>');
+				}else {
+					$(".modal-detail-contents .comment-profile").append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + PostVO.profile + '" alt="프로필사진">' + 
+																		'<div class="comment-profile-flag">' + 
+																		'<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
+																		'</div>' + 
+																		'<div class="comment-name on_cursor align-self-center">' + PostVO.nickname + '</div>' + 
+																		'<div class="comment-time align-self-center mx-5">' + PostVO.timer + '</div>');
+				}
+				// Post Content
+				$(".modal-posting-master-content").html(PostVO.content);
+				// Comment List
+ 				$(".all-comment").append('<p class="fs-5 mb-3">댓글 리스트</p>');
+				if( PostVO.reply_list[0] == null ) {
+					$(".all-comment").append('<p class="fs-6 text-center mt-5">아직 댓글이 없습니다.</p>');
+				}else {
+					$.each(PostVO.reply_list, function(i, replyVO){
+		 				$(".all-comment").append('<div class="comment-profile d-flex" id="comment-profile' + replyVO.repno + '"></div>' + 
+	    				 						 '<div class="comment-content" id="comment-content' + replyVO.repno + '"></div>');
+						if( replyVO.language == 'J' ) {
+							$(".all-comment #comment-profile"+replyVO.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
+																	  '<div class="comment-profile-flag">' + 
+																	      '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
+															    	  '</div>' + 
+															    	  '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
+															    	  '<div class="comment-time align-self-center mx-5">' + replyVO.timer + '</div>' + 
+															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+						}else {
+							$(".all-comment #comment-profile"+replyVO.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
+																	  '<div class="comment-profile-flag">' + 
+																	      '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
+															    	  '</div>' + 
+															    	  '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
+															    	  '<div class="comment-time align-self-center mx-5">' + replyVO.timer + '</div>' + 
+															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+						}
+						$(".all-comment #comment-content"+replyVO.repno).html(replyVO.rcontent);					
+					}); // each
+				} // reply_list[0] else
+				
+				// Comment Write Div's data-pno
+				$(".comment-write-div .msg_send_btn").data("pno", PostVO.pno);
+				// Display Block
+				 $('#postmodal').css("display","block");
+			}, error:function(){
+				alert("Error - Post Detail Up");
+			}
+		});
+		
+		// Click 'background' to make display none
+		$(document).mouseup(function (e){
+			var modal = $(".modal-background");
+			if( modal.has(e.target).length === 0){
+				$(".modal-background").css('display','none');
+				$("#carousel-inner").empty();
+				$(".modal-detail-contents .comment-profile").empty();
+				$(".modal-posting-master-content").html("");
+				$(".all-comment").empty();
+			}
+		});
+		
+		// Click 'X' in Detail Modal to make display none
+		 $('.closeModalBtn').on('click', function(){
+			 $('.modal-background').css("display", "none");  
+			 $("#carousel-inner").empty();
+			 $(".modal-detail-contents .comment-profile").empty();
+			 $(".modal-posting-master-content").html("");
+			 $(".all-comment").empty();
+		 });
+		
+		
+		// Coment Insert
+		$(".msg_send_btn").on("click", function(e){		
+			e.preventDefault();
+			var pno = $(this).data("pno");
+			var email = '${username}';
+			var rcontent = $("#commentInsert").val();
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			if( rcontent == "" ) {
+				alert('댓글 내용을 작성해주세요.');
+			}else {
+				// AJAX action
+				if( !confirm('댓글을 작성하시겠습니까?') ) {
+					$("#commentInsert").val(""); 
+					return ; 
+				}
+				$.ajax({
+					type:"post",
+					url:"/post/comment_insert",
+					dataType:"json",
+					data : {
+						pno : pno,
+						email : email,
+						rcontent : rcontent
+					},
+					beforeSend : function(xhr){
+						xhr.setRequestHeader(header, token);
+					},
+					success : function(data){
+						if( data.depth == '2' ) {
+							console.log(data);
+							alert('This is Depth 2 coment !!!');
+						} else {
+							// if depth : 1
+							$(".all-comment > p").remove();
+	 		 				$(".all-comment").prepend('<p class="fs-5 mb-3">댓글 리스트</p>' + 
+	 		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
+			 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
+							if( data.language == 'J' ) {
+								$(".all-comment #comment-profile"+data.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+																		  '<div class="comment-profile-flag">' + 
+																		      '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
+																    	  '</div>' + 
+																    	  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
+																    	  '<div class="comment-time align-self-center mx-5">' + data.timer + '</div>' + 
+																    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							}else {
+								$(".all-comment #comment-profile"+data.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+																		  '<div class="comment-profile-flag">' + 
+																		      '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
+																    	  '</div>' + 
+																    	  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
+																    	  '<div class="comment-time align-self-center mx-5">' + data.timer + '</div>' + 
+																    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							}
+							$(".all-comment #comment-content"+data.repno).html(data.rcontent);
+						}
+						$("#commentInsert").val("");
+					}, error:function(){
+						alert("Error - Comment Insert ! ");
+					}
+				});
+			}
+		});
+		
+		
+		// coComment Open Close
+		$(".cocoment-open").on("click", function() {
+			if( $(this).data("oc") == 'c' ){
+				$(this).data("oc", "o")
+				$(this).html("접기");
+			}else {
+				$(this).data("oc", "c")
+				$(this).html("펼치기");
+			}
+		});
+	
  });
  
  $('.mypage_thumbnail_f').on("change",function() {
 	 $('#thumbnail_update').attr("action","/mypage/thumbnailUpdate");
 	 $('#thumbnail_update').attr("method","post");
 	 $('#thumbnail_update').submit();
+ });
+ 
+ $('.mp-logout').on("click",function() {
+	 
  });
  
 </script>

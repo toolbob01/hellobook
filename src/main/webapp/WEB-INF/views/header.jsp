@@ -32,7 +32,7 @@
 
 <style>
 body {
-	font-family: 'Inconsolata', 'Kosugi Maru', 'Noto Sans KR';
+	font-family: 'Inconsolata', 'Kosugi Maru', 'Noto Sans KR', 'Sawarabi Gothic';
 }
 </style>
 
