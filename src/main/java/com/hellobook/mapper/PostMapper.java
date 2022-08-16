@@ -27,7 +27,9 @@ public interface PostMapper {
 	public int deletePostFileByPno(int pno);
 	
 	public int countLike(int pno);
+
 	public int deleteLike(PostLikeVO likeVO);
+
 	public int addLike(PostLikeVO likeVO);
 
 	public PostVO postDetail(int pno);
@@ -39,5 +41,6 @@ public interface PostMapper {
 	
 
 	public List<PostVO> selectMypost(String nickname);
+	public List<PostVO> selectMyLikepost(String email);
 
 }
