@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
+	pageEncoding="UTF-8"%>
 <%@ include file="../member/memberHeader.jsp"%>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="189384727916-jhk88jubhceqdbko4esr9i4jl0otonlb.apps.googleusercontent.com">
 <style>
 @font-face {
 	font-family: 'Inconsolata';
@@ -37,6 +35,13 @@
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	font-family: 'Inconsolata', 'Kosugi Maru', 'Noto Sans KR';
+	align-items: center;
+}
+
+#login_form {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 img.logo_hellobook {
@@ -67,7 +72,7 @@ img.logo_hellobook {
 	outline: none;
 }
 
-#btnlogin {
+#loginBtn {
 	width: 268px;
 	height: 30px;
 	margin: 13px auto;
@@ -144,24 +149,22 @@ a {
 	color: #000;
 }
 </style>
-<body>
 	<div class="container login">
 		<img class="logo_hellobook" src="/resources/imgs/logo.png" alt="hellobook_logo">
-		<form action="/login" method="post">
+		<form action="/login" method="post" id="login_form">
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" >
-			<input type="text" class="input_login" name="email" id="email" placeholder="이메일을 입력하세요.">
-			<input type="password" class="input_login" name="password" id="password" placeholder="비밀번호를 입력하세요.">
-			<c:if test="${error == '1'}">
-				<p id="loginErrorNotice">아이디 또는 비밀번호가 일치하지 않습니다.</p>
+			<input type="text" class="input_login" name="email" id="email" placeholder="<spring:message code="login.emailPlaceholder"/>">
+			<input type="password" class="input_login" name="password" id="password" placeholder="<spring:message code="login.passwordPlaceholder"/>">
+			<c:if test="${error.equals('error')}">
+				<p id="loginErrorNotice"><spring:message code="login.errorNotice"/></p>
 			</c:if>
-			<button type="submit" class="btn btn-sm btn-primary" id="btnlogin" >로그인</button>
+			<button type="submit" class="btn btn-sm btn-primary" id="loginBtn"><spring:message code="login.loginBtn"/></button>
 		</form>
-		<!-- <a class="btn btn-block btn-social btn-facebook" onclick="document.facebook.submit();">
-		<span class="fa fa-facebook"></span>Facebook으로 로그인</a> -->
-		<a class="btn btn-block btn-social btn-facebook" id="naverLoginBtn" href="${naverUrl}">Naver 로그인</a>
-		<a class="btn btn-block btn-social btn-facebook" id="googleLoginBtn" href="${googleUrl}">Google 로그인</a>
-		<span class="button_forgot" onclick="location.href='/member/findpwd'">비밀번호 찾기</span>
-		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;">회원가입 하기</span>
+		<a class="btn btn-block btn-social btn-facebook" id="naverLoginBtn" href="${naverUrl}"><spring:message code="login.naverLoginBtn"/></a>
+		<a class="btn btn-block btn-social btn-facebook" id="googleLoginBtn" href="${googleUrl}"><spring:message code="login.googleLoginBtn"/></a>
+		<span class="button_forgot" onclick="location.href='/member/findpwd'" id="findPwdBtn"><spring:message code="login.findPwdBtn"/></span>
+		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;" id="signUpBtn"><spring:message code="login.signUpBtn"/></span>
 	</div>
+
 </body>
 </html>

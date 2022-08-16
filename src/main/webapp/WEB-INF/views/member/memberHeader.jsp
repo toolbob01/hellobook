@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,4 +43,33 @@
 	$(document).ajaxSend(function(e, xhr, options) {
 		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
 	});
+</script>
+
+<style>
+#changeLang {
+    display: flex;
+    flex-direction: row-reverse;
+    width: auto;
+}
+</style>
+<body>
+<div id="changeLang">
+	<select class="form-control" onchange="changLang(this.value)" name="lang" style="width: auto;">
+	  <option value=""><spring:message code="header.setlanguage"/>
+	  <option value="en">English</option>
+	  <option value="ja">日本語</option>
+	  <option value="ko">한국어</option>
+	</select>
+</div>
+<script>
+	function changLang(lang){
+		var protocol = window.location.protocol;
+		var host = window.location.host;
+		var path = window.location.pathname;
+		
+		var link = path+"?lang="+lang
+		console.log(link);
+		
+		location.replace(link);
+	}
 </script>

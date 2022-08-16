@@ -23,10 +23,15 @@ public interface PostMapper {
 	public int insertPostFile(PostFileVO fileVO);
 	
 	public int deletePost(int pno);
-	public int deletePostFile(int fno);
+	public int deletePostFileByFno(int fno);
+	public int deletePostFileByPno(int pno);
 	
 	public int countLike(int pno);
+<<<<<<< HEAD
 	public int deleteLike(int pno);
+=======
+	public int deleteLike(PostLikeVO likeVO);
+>>>>>>> 95d3a8d828f60be7abdd5c3a5050a8cfda53a145
 	public int addLike(PostLikeVO likeVO);
 
 	public PostVO postDetail(int pno);
@@ -35,7 +40,6 @@ public interface PostMapper {
 	
 	public int insertComment(ReplyVO replyVO);
 	public ReplyVO recentCommentByEmail(String email);
-	
 	
 
 	public List<PostVO> selectMypost(String nickname);

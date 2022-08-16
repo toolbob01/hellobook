@@ -55,7 +55,7 @@
 		WHERE l.pno = #{pno} AND l.email = m.email
 	</select>
 	<select id="selectFileByPno" resultType="com.hellobook.domain.PostFileVO">
-		SELECT * FROM post_file WHERE pno = #{pno}
+		SELECT * FROM post_file WHERE pno = #{pno} 
 	</select>
 
 	<insert id="insertPost">
@@ -81,15 +81,23 @@
 		DELETE FROM post WHERE pno=#{pno}
 	</delete>
 
-	<delete id="deletePostFile">
+	<delete id="deletePostFileByFno">
 		DELETE FROM post_file WHERE fno=#{fno}
+	</delete>
+	
+	<delete id="deletePostFileByPno">
+		DELETE FROM post_file WHERE pno=#{pno}
 	</delete>
 
 	<select id="countLike" resultType="int">
 		SELECT count(*) FROM post_like where pno = #{pno}
 	</select>
 	<delete id="deleteLike">
+<<<<<<< HEAD
 		DELETE FROM post_like WHERE pno=#{pno}
+=======
+		DELETE FROM post_like WHERE email=#{email} AND pno=#{pno}
+>>>>>>> 95d3a8d828f60be7abdd5c3a5050a8cfda53a145
 	</delete>
 	<insert id="addLike">
 		INSERT INTO post_like (pno,email)   
@@ -139,5 +147,7 @@
 			ORDER BY r.repno DESC )
 		WHERE ROWNUM = 1		
 	</select>
+
+
 
 </mapper>

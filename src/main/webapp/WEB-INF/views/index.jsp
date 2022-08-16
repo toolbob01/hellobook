@@ -12,7 +12,7 @@
 <div class="container-fluid">
 	<div class="container">
 		<div class="row post-main-view-row">
-		
+
 
 <!-- 		<div class="m-5 border border-2 border-dark" style="line-height: 1.5; font-size: 13px;">
 			<br><br>
@@ -77,7 +77,7 @@
 											<span class="updateDeleteContent">
 												<span class="updateLink" onclick="location.href='/post/post_update'">게시물 수정</span>
 												| 
-												<span class="deleteLink" onclick="location.href='/post/post_delete'">게시물 삭제</span>
+												<span class="deleteLink" data-pno="${postVO.pno}">게시물 삭제</span>
 											</span>
 										</div>
 								     </c:if>
@@ -172,10 +172,26 @@
 				  <c:otherwise>
 				  	<div class="text-center fs-3 mt-5">
 				  		No Post ...
-				  		<p class="fs-5 mt-3">(post_write -> 포스팅 추가 -> Index에서 확인 가능 -> ... 클릭시 모달 작동)</p>
+				  		<p class="fs-5 mt-3" style="line-height: 1.5;">
+				  			-> post_write -> 포스팅 추가 <br>
+				  			-> Index에서 방금 작성한 포스팅 확인 <br>
+				  			<br>
+				  			... 버튼 클릭시 모달 작동 <br>
+				  			-> 댓글 입력 후 모달댓글창에 추가되는지 확인<br>
+				  			-> 오라클에서 depth 값 2로 입력해서 더미 대댓글 추가<br>
+				  			-> 모달창 대댓글 펼치기/접기 버튼 확인 <br>
+				  		</p>
 
 				  		<p style="line-height: 1.5; text-align: left; font-size: 15px;">
-				  			<br><br><br><br><br><br>
+				  			<br><br><br><br>
+			  				로그인 된 유저 정보를 잘 받아오는가 확인<br>
+			  				==================================================================<br>
+				  			<sec:authentication property="principal"/><br>
+				  			==================================================================<br>
+				  			principal.Username = <sec:authentication property="principal.Username"/><br>
+				  			$Nname = ${Nname }<br>
+				  			$username = ${username }<br>
+				  			<br><br>
 				  			January <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
 				  			February <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
 				  			March <span style="font-size: 12px;">한국어한국어한국어한국어한국어 한국어한국어한국어</span><br>
@@ -189,10 +205,6 @@
 				  			십이월 <span style="font-size: 12px;">english english ENGLISH</span><br>
 				  			십삼월 <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
 				  			<br><br><br>
-				  			로그인 된 유저 정보를 잘 받아오는가 확인
-				  			<sec:authentication property="principal"/><br>
-				  			<sec:authentication property="principal.Username"/><br>
-				  			${nickname }
 				  		</p>
 
 				  	</div>
@@ -347,7 +359,7 @@
 								</div>
 								
 								<div class="modal-posting-master-content">
-<!-- 									 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+									<!-- Post Content 내용 -->
 								</div>
 							</div>
 						</div>
@@ -444,6 +456,15 @@
 		if( request_file_count != null && request_file_count != "" && insert_file_result != null && insert_file_result != "" && !history.state ){
 			if( parseInt(request_file_count) != parseInt(insert_file_result) ){
 				alert('Insert File Fail ! ( ' + insert_file_result + ' / ' + request_file_count + ' )');
+			}
+		}
+		var delete_result = "${delete_result}";
+		var delete_pno = "${delete_pno}";
+		if( delete_result != null && delete_result != "" && delete_pno != null && delete_pno != "" && !history.state ){
+			if( parseInt(delete_result) == 1 ) {
+				alert('Delete Post Success ! ( ' + delete_pno + ' 번 게시글 )');
+			}else {
+				alert('Delete Post Fail ! ( ' + delete_pno + ' 번 게시글 )');
 			}
 		}
 		history.replaceState({},null,null);
@@ -585,44 +606,45 @@
 															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
 						}
 						$(".all-comment #comment-content"+replyVO.repno).html(replyVO.rcontent);
-	/* 					if( replyVO.cocoment_list[0] != null ){
-							$(".all-comment .comment-content").append('<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#' + replyVO.repno + '" aria-expanded="false">' + 
-																	      '<i class="bi bi-arrow-return-right fs-5"></i>' + 
-																	      '<span class="cocoment-open ms-3" data-oc="c">펼치기</span>' + 
-																      '</div>');
-							$(".all-comment .comment-content").append('<div class="collapse" id="' + replyVO.repno + '"></div>');
-							$.each(replyVO.cocoment_list, function(k, cocomentVO) {
-								if( cocomentVO.language == 'J' ){
-									$(".all-comment #" + replyVO.repno).append('<div class="comment-depth">' + 
-																			     '<div class="comment-profile d-flex">' + 
-																			       '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocomentVO.profile + '" alt="프로필사진">' + 
-																			       '<div class="comment-profile-flag">' + 
-																		             '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
-																			       '</div>' + 
-																			       '<div class="comment-name on_cursor align-self-center">' + cocomentVO.nickname + '</div>' + 
-																			       '<div class="comment-time align-self-center mx-5">' + cocomentVO.timer + '</div>' + 
-																			     '</div>' + 
-																			     '<div class="comment-content">' + 
-																					cocomentVO.rcontent +
-																			     '</div>' + 
-																			   '</div>');
+						// Open&Close coComent script use id="collapse + replyVO.repno"
+  	 					if( replyVO.cocomment_list[0] != null ){
+							$(".all-comment #comment-content"+replyVO.repno).append('<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#collapse' + replyVO.repno + '" aria-expanded="false">' + 
+																	      				'<i class="bi bi-arrow-return-right fs-5"></i>' + 
+																	      				'<span class="cocoment-open ms-3" data-oc="c">펼치기</span>' + 
+																      				'</div>');
+							$(".all-comment #comment-content"+replyVO.repno).append('<div class="collapse" id="collapse' + replyVO.repno + '"></div>');
+ 							$.each(replyVO.cocomment_list, function(k, cocommentVO) {
+								if( cocommentVO.language == 'J' ){
+									$(".all-comment #collapse" + replyVO.repno).append('<div class="comment-depth">' + 
+																				         '<div class="comment-profile d-flex">' + 
+																				           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
+																				           '<div class="comment-profile-flag">' + 
+																			                 '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
+																				           '</div>' + 
+																				           '<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>' + 
+																				           '<div class="comment-time align-self-center mx-5">' + cocommentVO.timer + '</div>' + 
+																				         '</div>' + 
+																				         '<div class="comment-content">' + 
+																				         	cocommentVO.rcontent +
+																				         '</div>' + 
+																				       '</div>');
 								}else {
-									$(".all-comment #" + replyVO.repno).append('<div class="comment-depth">' + 
+									$(".all-comment #collapse" + replyVO.repno).append('<div class="comment-depth">' + 
 																			     '<div class="comment-profile d-flex">' + 
-																			       '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocomentVO.profile + '" alt="프로필사진">' + 
+																			       '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
 																			       '<div class="comment-profile-flag">' + 
 																		             '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
 																			       '</div>' + 
-																			       '<div class="comment-name on_cursor align-self-center">' + cocomentVO.nickname + '</div>' + 
-																			       '<div class="comment-time align-self-center mx-5">' + cocomentVO.timer + '</div>' + 
+																			       '<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>' + 
+																			       '<div class="comment-time align-self-center mx-5">' + cocommentVO.timer + '</div>' + 
 																			     '</div>' + 
 																			     '<div class="comment-content">' + 
-																					cocomentVO.rcontent +
+																			     	cocommentVO.rcontent +
 																			     '</div>' + 
 																			   '</div>');
 								}
-							}
-						} */
+ 							})
+						}  
 					}) // each
 				} // reply_list[0] else
 				
@@ -723,7 +745,6 @@
 		}
 	})
 	
-	
 	// coComment Open Close
 	$(".cocoment-open").on("click", function() {
 		if( $(this).data("oc") == 'c' ){
@@ -735,6 +756,14 @@
 		}
 	})
 
+	// Post Delete
+	$(".deleteLink").on("click", function() { 
+		var deletePno = $(this).data("pno");
+		if( confirm("게시물을 삭제하시겠습니까?") ) {
+			location.href = '/post/post_delete?pno=' + deletePno;
+		}
+	})
+	
 	// Infinity Scroll
 /*  	function YesScroll () {
 		const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
