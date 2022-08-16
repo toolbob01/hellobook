@@ -462,7 +462,7 @@
 									    	'</div>');
 				// carousel each from index 1 ~
 				if( PostVO.file_list[1] != null ) {
-					$.each(pvo.file_list, function(i, fileVO){
+					$.each(PostVO.file_list, function(i, fileVO){
 						if(i>0) {
 							$("#carousel-inner").append('<div class="carousel-item">' + 
 								      						'<img src="/hello_img/post/' + fileVO.uuid + '" alt="...">' + 
