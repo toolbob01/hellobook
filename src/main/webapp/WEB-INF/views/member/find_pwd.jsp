@@ -151,6 +151,7 @@ p {
 			
 			button_div.on("click","button#findPwdBtn",function(){
 				if (email.val() == '') {
+					$("#notice2").hide();
 					$("#notice").show();
 					return;
 				}
@@ -171,6 +172,7 @@ p {
 							$("#notice2").hide();
 						})
 					},function(){
+						$("#notice").hide();
 						$("#notice2").show();
 						return;
 					});
