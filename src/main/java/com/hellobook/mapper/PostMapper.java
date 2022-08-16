@@ -26,7 +26,7 @@ public interface PostMapper {
 	public int deletePostFile(int fno);
 	
 	public int countLike(int pno);
-	public int deleteLike(String email);
+	public int deleteLike(int pno);
 	public int addLike(PostLikeVO likeVO);
 
 	public PostVO postDetail(int pno);

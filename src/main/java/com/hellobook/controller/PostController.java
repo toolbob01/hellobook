@@ -104,7 +104,7 @@ public class PostController {
 	@GetMapping("like_delete") 
 	@ResponseBody
 	public String deleteLike(String email, int pno) { 
-		post_service.deleteLike(email);
+		post_service.deleteLike(pno);
 		int result = post_service.countLike(pno);
 		return Integer.toString(result);
 	}

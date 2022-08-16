@@ -89,7 +89,7 @@
 		SELECT count(*) FROM post_like where pno = #{pno}
 	</select>
 	<delete id="deleteLike">
-		DELETE FROM post_like WHERE email=#{email}
+		DELETE FROM post_like WHERE pno=#{pno}
 	</delete>
 	<insert id="addLike">
 		INSERT INTO post_like (pno,email)   
