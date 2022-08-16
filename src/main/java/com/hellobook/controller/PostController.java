@@ -105,42 +105,40 @@ public class PostController {
 	
 	@GetMapping("post_delete")
 	public String postDelete(int pno, RedirectAttributes rttr) {
+
+		List<PostFileVO> file_list = post_service.selectFileByPno(pno);
 		
-//		int delete_file_result = post_service.deletePostFileByPno(pno);
-//		if( delete_file_result > 0 ) {
-//			
-//			List<PostFileVO> file_list = post_service.selectFileByPno(pno);
-//			for( PostFileVO fileVO : file_list ) {
-//			    String srcFileName = URLDecoder.decode(fileVO.getUuid(),"UTF-8"); // UUID가 포함된 파일이름을 디코딩해줍니다.
-//			    String uploadPath = "c:\\hello_img" + File.separator + "post" ;
-//		        try{
-//		            File file = new File(uploadPath + File.separator + srcFileName);
-//		            boolean result = false;
-//		            if( file.exists() ) {
-//			            result = file.delete();
-//			            System.out.println("Delete uploadFile Result : " + result);
-//			            if( !result ) { // result가 false일 때, 파일 삭제 실패로 간주하여 / 로 돌아감.
-//			    			rttr.addFlashAttribute("delete_result", 0);
-//			    			rttr.addFlashAttribute("delete_pno", pno);
-//			            	return "redirect:/";
-//			            }
-//		            }
-//		            int real_delete_result = post_service.deletePostFileByFno(pno)
-//		            System.out.println("Delete Product In DB Result : " + real_delete_result);
-//		        }catch (UnsupportedEncodingException e){
-//		            e.printStackTrace();
-//		        }
-//			}
-//			int delete_result = post_service.deletePost(pno);
-//			rttr.addFlashAttribute("delete_result", delete_result);
-//			rttr.addFlashAttribute("delete_pno", pno);
-//			return "redirect:/";
-//		}else {
-//			System.out.println("Error - Post File Delete Fail !!! ( pno : " + pno + " )");
-//			rttr.addFlashAttribute("delete_result", 0);
-//			rttr.addFlashAttribute("delete_pno", pno);
-//			return "redirect:/";
-//		}
+		for( PostFileVO fileVO : file_list ) {
+			if( post_service.deletePostFileByFno(fileVO.getFno()) == 1 ) {
+		        try{
+				    String srcFileName = URLDecoder.decode(fileVO.getUuid(),"UTF-8"); // UUID가 포함된 파일이름을 디코딩해줍니다.
+				    String uploadPath = "c:\\hello_img" + File.separator + "post" ;
+		            File file = new File(uploadPath + File.separator + srcFileName);
+		            boolean result = false;
+		            if( file.exists() ) {
+			            result = file.delete();
+			            System.out.println("Delete uploadFile Result : " + result);
+			            if( !result ) { // result가 false일 때, 파일 삭제 실패로 간주하여 / 로 돌아감.
+			            	System.out.println("Error - Post File Delete in Folder !!! ( pno : " + pno + ", fno : " + fileVO.getFno() + " )");
+			    			rttr.addFlashAttribute("delete_result", 0);
+			    			rttr.addFlashAttribute("delete_pno", pno);
+			            	return "redirect:/";
+			            }
+		            }
+		        }catch (UnsupportedEncodingException e){
+		            e.printStackTrace();
+		        }
+			}else {
+				System.out.println("Error - Post File Delete in DB Fail !!! ( pno : " + pno + ", fno : " + fileVO.getFno() + " )");
+				rttr.addFlashAttribute("delete_result", 0);
+				rttr.addFlashAttribute("delete_pno", pno);
+				return "redirect:/";
+			}
+		} 
+
+		int delete_result = post_service.deletePost(pno);
+		rttr.addFlashAttribute("delete_result", delete_result);
+		rttr.addFlashAttribute("delete_pno", pno);
 		return "redirect:/";
 	}
 	
