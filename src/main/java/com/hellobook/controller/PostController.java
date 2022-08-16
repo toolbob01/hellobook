@@ -104,8 +104,8 @@ public class PostController {
 	}
 	
 	@GetMapping("post_delete")
-	@PreAuthorize("principal.username == #email")
-	public String postDelete(int pno, RedirectAttributes rttr) {
+	@PreAuthorize("isAuthenticated() and ( principal.username == #email )")
+	public String postDelete(int pno, String email, RedirectAttributes rttr) {
 
 		List<PostFileVO> file_list = post_service.selectFileByPno(pno);
 		

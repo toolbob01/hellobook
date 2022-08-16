@@ -759,8 +759,9 @@
 	// Post Delete
 	$(".deleteLink").on("click", function() { 
 		var deletePno = $(this).data("pno");
+		var deleteUser = '${username}';
 		if( confirm(deletePno + " 번 게시물을 삭제하시겠습니까?") ) {
-			location.href = '/post/post_delete?pno=' + deletePno;
+			location.href = '/post/post_delete?pno=' + deletePno + '&email=' + deleteUser;
 		}
 	})
 	
