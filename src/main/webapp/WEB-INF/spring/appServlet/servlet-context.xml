@@ -21,6 +21,7 @@
 
 	<!-- C드라이브의 hello_img 파일 -->
 	<resources mapping="/hello_img/**" location="file:///c:/hello_img/" />
+	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
