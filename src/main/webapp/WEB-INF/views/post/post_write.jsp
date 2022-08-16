@@ -23,14 +23,18 @@
 					    <label class="fs-3 mb-2" for="uploadfile">사진</label>
 					</div>
 
-					<div class="mb-4 text-center">
+<!-- 					<div class="mb-4 text-center">
 						<img style="width: 500px; height: 500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
-					</div>
+					</div> -->
 
 					<table class="table __add mb-3"> 
 					  <tr>
 					    <td>
-					  	  <input type="file" class="form-control uploadfile " name="uploadfile" id="uploadfile" onchange="fileCheck(this)">
+					<div class="mb-4 text-center">
+						<img style="width: 500px; height: 500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
+						<input type="file" class="form-control uploadfile " name="uploadfile" id="uploadfile" onchange="fileCheck(this)">
+					</div>
+					  	  
 					    </td>
 					    <td>
 					      <button type="button" class="_add btn btn-primary mb-3px">추가</button>
