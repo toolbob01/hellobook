@@ -75,7 +75,7 @@
 								     <c:if test="${postVO.email eq username}">
 										<div class="updateDeleteDiv">
 											<span class="updateDeleteContent">
-												<span class="updateLink" onclick="location.href='/post/post_update'">게시물 수정</span>
+												<span class="updateLink" data-pno="${postVO.pno}">게시물 수정</span>
 												| 
 												<span class="deleteLink" data-pno="${postVO.pno}">게시물 삭제</span>
 											</span>
@@ -756,6 +756,14 @@
 		}
 	})
 
+	// Post Update
+	$(".updateLink").on("click", function() { 
+		var updatePno = $(this).data("pno");
+		var updateUser = '${username}';
+		if( confirm(deletePno + " 번 게시물을 수정하시겠습니까?") ) {
+			location.href = '/post/post_update?pno=' + updatePno + '&email=' + updateUser;
+		}
+	})
 	// Post Delete
 	$(".deleteLink").on("click", function() { 
 		var deletePno = $(this).data("pno");

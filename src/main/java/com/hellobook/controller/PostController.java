@@ -99,7 +99,13 @@ public class PostController {
 	
 	
 	@GetMapping("post_update")
-	public String postUpdate() {
+	@PreAuthorize("isAuthenticated() and ( principal.username == #email )")
+	public String postUpdate(Model model, int pno, String email) {
+		
+		PostVO postVO = post_service.postDetail(pno);
+		postVO.setFile_list(post_service.selectFileByPno(pno));
+		
+		model.addAttribute("postVO", postVO);
 		return "/post/post_update";
 	}
 	
@@ -146,9 +152,6 @@ public class PostController {
 	@GetMapping("like_delete") 
 	@ResponseBody
 	public String deleteLike(String email, int pno) { 
-
-
- 
 		PostLikeVO likeVO = PostLikeVO.builder().pno(pno).email(email).build();
 		post_service.deleteLike(likeVO);
 
@@ -170,8 +173,7 @@ public class PostController {
 	public PostVO postDetailModal(int pno) { 
 		
 		PostVO postVO = post_service.postDetail(pno);
-		
-		
+
 		postVO.setFile_list(post_service.selectFileByPno(pno)); 	    // Image
 		postVO.setReply_list(post_service.selectReplyByPno(pno));    // Reply
 		List<ReplyVO> relpy_list = postVO.getReply_list();
@@ -183,8 +185,6 @@ public class PostController {
 		postVO.setLike_cnt(postVO.getLike_list().size());   	// Like Count
 		postVO.setTimer(Time.calculateTime(postVO.getPdate())); // ex) 5분전 2시간전 3일전
 		
-//		Map<String, Object> data = new HashMap<String, Object>();
-//		data.put("postVO", postVO);
 		return postVO;
 	}
 	
@@ -200,8 +200,6 @@ public class PostController {
 		if( insert_result != 1 ) {
 			return null;
 		}else {
-//			Map<String, Object> data = new HashMap<String, Object>();
-//			data.put("replyVO", rVO);
 			return rVO;
 		}
 

@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
+<style>
+	.mb-3px { margin-bottom: 3px; }
+</style>
 
 	<div class="container post_write_page">
 		<div class="input-form-backgroud row">
@@ -20,13 +23,17 @@
 					    <label class="fs-3 mb-2" for="uploadfile">사진</label>
 					</div>
 
+					<div class="mb-4 text-center">
+						<img style="width: 500px; height: 500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
+					</div>
+
 					<table class="table __add mb-3"> 
 					  <tr>
 					    <td>
 					  	  <input type="file" class="form-control uploadfile " name="uploadfile" id="uploadfile" onchange="fileCheck(this)">
 					    </td>
 					    <td>
-					      <button type="button" class="_add btn btn-primary ">추가</button>
+					      <button type="button" class="_add btn btn-primary mb-3px">추가</button>
 					    </td>
 					  </tr> 
 					</table>
@@ -56,18 +63,28 @@ $('.__add ._add').on('click',function(){
 		    			      '<input type="file" class="form-control uploadfile" name="uploadfile" id="uploadfile" onchange="fileCheck(this)">' +
 		    			    '</td>' + 
 		    			    '<td>' + 
-		    			      '<button type="button" class="btn btn-secondary" onclick="addDel(this);">삭제</button>' + 
+		    			      '<button type="button" class="btn btn-secondary mb-3px" onclick="addDel(this);">삭제</button>' + 
 		    			    '</td>' +
 		    			  '</tr>' ); 
        uploadfileCnt ++;
    }
 });
-
-// Delete File Input
+//Delete File Input
 function addDel(a){ 
 	$(a).closest('tr').remove(); 
     uploadfileCnt --;
 }
+
+//File Image Preview
+$(".uploadfile").on("change", function(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader(); 
+    reader.onload = function(e) {
+        $("#preview-image").attr("src", e.target.result);
+    }
+    reader.readAsDataURL(file);
+});
+
 
 // File Size Check
 function fileCheck(file) {
@@ -112,7 +129,11 @@ function postingCheck(){
 		}
 	}
 	
- 	$("#postingForm").submit();
+	if( confirm('게시물을 작성하시겠습니까?') ) {
+		$("#postingForm").submit();
+	}else {
+		return;
+	}
 }
 </script>
 
