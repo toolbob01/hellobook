@@ -93,11 +93,7 @@
 		SELECT count(*) FROM post_like where pno = #{pno}
 	</select>
 	<delete id="deleteLike">
-<<<<<<< HEAD
-		DELETE FROM post_like WHERE pno=#{pno}
-=======
 		DELETE FROM post_like WHERE email=#{email} AND pno=#{pno}
->>>>>>> 95d3a8d828f60be7abdd5c3a5050a8cfda53a145
 	</delete>
 	<insert id="addLike">
 		INSERT INTO post_like (pno,email)   
@@ -128,6 +124,18 @@
  				FROM post p, member m   
  				WHERE p.email = m.email)  
  			WHERE nickname=#{nickname}
+         ]]>
+	</select>
+	
+	<select id="selectMyLikepost" resultType="com.hellobook.domain.PostVO">
+		<![CDATA[
+ 			select l.pno, l.content, l.writer, l.pdate, m.nickname, m.profile, m.language
+				from
+				    member m, (select /*+ index_desc(p post_pk)*/ pl.pno, content, p.email writer, pl.email liker, p.pdate
+				    from post_like pl, post p
+				    where pl.pno=p.pno and pl.email=#{email}) l
+				where m.email=l.writer
+				order by l.pno desc
          ]]>
 	</select>
 

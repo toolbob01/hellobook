@@ -198,13 +198,48 @@
 				<div class="tab-pane fade mypage_content_a" id="nav-contact" role="tabpanel" aria-labelledby="nav-like-tab" tabindex="0">
 					<div class="mypage_content_b">
 						<div class="mypage_content_c">
-							<div class="mypage_like_a">
-								<div class="mypage_like_b">
-									<h1>좋아요한 게시물</h1>
-									<p>내가 좋아요한 게시물 리스트를 보여줍니다.</p>
-									<span>현재 내가 좋아요한 게시물이 없습니다.</span>
+							<c:if test="${likeList.size()==0}">
+								<div class="mypage_like_a">
+									<div class="mypage_like_b">
+										<h1>좋아요한 게시물</h1>
+										<p>내가 좋아요한 게시물 리스트를 보여줍니다.</p>
+										<span>현재 내가 좋아요한 게시물이 없습니다.</span>
+									</div>
 								</div>
-							</div>
+							</c:if>
+							<c:if test="${likeList.size()!=0}">
+								<div class="mypage_like_a">
+								<div class="mypage_content_d">
+								<div class="mypage_content_e">
+								<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+							        
+							        
+							        <c:forEach var="LikeVO" items="${likeList}">
+							        	<div class="col">
+								          <div class="card shadow-sm posted">
+								            <img src="/hello_img/post/${LikeVO.file_list[0].uuid}" alt="..." width="100%" height="225">
+											<div class="mypage_post_btn" style="position: relative;">
+													<c:if test="${mvo.email == username}">
+													<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+													</c:if>
+													<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;" data-pno="${LikeVO.pno}"/></a>
+													<c:if test="${mvo.email == username}">
+									       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+									       			</c:if>
+									          		
+									          	</div>
+								            
+								          </div>
+								          
+								        </div>
+							        </c:forEach>
+							        
+							      </div>
+							      </div>
+							  	</div>
+						      </div>
+							</c:if>
+							
 						</div>
 					</div>
 				</div>

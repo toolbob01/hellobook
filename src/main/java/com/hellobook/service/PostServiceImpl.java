@@ -77,13 +77,10 @@ public class PostServiceImpl implements PostService {
 		return mapper.countLike(pno);
 	}
 	@Override
-<<<<<<< HEAD
-	public int deleteLike(int pno) {
-		return mapper.deleteLike(pno);
-=======
+
 	public int deleteLike(PostLikeVO likeVO) {
 		return mapper.deleteLike(likeVO);
->>>>>>> 95d3a8d828f60be7abdd5c3a5050a8cfda53a145
+
 	}
 	@Override
 	public int addLike(PostLikeVO likeVO) {
@@ -112,6 +109,12 @@ public class PostServiceImpl implements PostService {
 		List<PostVO> pvo = mapper.selectMypost(nickname);
 		return pvo;
 	}
+	
+	@Override
+	public List<PostVO> selectMyLikepost(String email) {
+		List<PostVO> pvo = mapper.selectMyLikepost(email);
+		return pvo;
+	}
 
 	@Override
 	public int insertComment(ReplyVO replyVO) {
@@ -121,4 +124,6 @@ public class PostServiceImpl implements PostService {
 	public ReplyVO recentCommentByEmail(String email) {
 		return mapper.recentCommentByEmail(email);
 	}
+	
+	
 }
