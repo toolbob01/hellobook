@@ -197,7 +197,7 @@ body {
       		<h4 id="conf_pw">비밀번호 재확인</h4>
 			<div class="row" id="pw_input_group">
 				<div class="col-md-12 mb-3" id="input_div">
-					<input type="text" class="form-control" id="userid" value="userid" readonly="readonly" required="">
+					<input class="form-control" type="text" id="email" name="email" value="${member.email}" readonly="readonly"/>
 				</div>
 				<div class="col-md-12 mb-3" id="input_div">
 					<input type="password" class="form-control" id="userpw" placeholder="비밀번호를 입력해주세요" required="">
@@ -240,6 +240,8 @@ body {
 			$(this).prev().focus();
 		}
 	})
+	
+		
 	
 	//비밀번호 확인
 	$('#confQuitBtn').on("click",function(e){
