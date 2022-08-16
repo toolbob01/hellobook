@@ -188,6 +188,11 @@ a {
     font-size: 14px;
     font-weight: 600;
 }
+
+hr:not([size]) {
+    width: 100%;
+    height: 1px;
+}
 </style>
 </head>
 <div class="container register">
@@ -291,7 +296,7 @@ a {
 					</div>
 				</div>
 			</div>
-			<hr/>
+			<hr class="mb-4">
 			<div class="custom-control custom-checkbox">
 				<input type="checkbox" class="custom-control-input" id="agreement" name="agreement" required>
 				<label class="custom-control-label" for="agreement" id="label_agr"><spring:message code="join.agreement"/></label>
@@ -301,6 +306,8 @@ a {
 			
 			<input type="hidden" name="hobby" id="hobby" value="">
 			<input type="hidden" name="password" id="password" value="">
+			<input type="hidden" id="emailCheck" disabled="disabled">
+			<input type="hidden" id="nickCheck" disabled="disabled">
 		</form>
 	</div>
 	<script src="/resources/js/join.js"></script>
@@ -318,14 +325,17 @@ a {
 		
 		joinService.checkEmail(email.val(),function(result){
 			if(result == '1'){
-				email.val("");
 				emailNotice.html('<spring:message code="join.emailNotice2"/>')
 				emailNotice.css('display','flex')
+				$("input[id=emailCheck]").attr("disabled", false);
+				$("input[id=emailCheck]").val('1');
 				return
 			}else{
 				emailNotice.html('<spring:message code="join.emailNotice3"/>')
 				emailNotice.css('display','flex')
 				emailNotice.css('color','green')
+				$("input[id=emailCheck]").attr("disabled", true);
+				$("input[id=emailCheck]").val('');
 				return
 			}
 		})
@@ -349,14 +359,17 @@ a {
 		
 		joinService.checkNickname(nickname.val(),function(result){
 			if(result == '1'){
-				nickname.val("");
 				nicknameNotice.html('<spring:message code="join.nicknameNotice3"/>')
 				nicknameNotice.css('display','flex')
+				$("input[id=nickCheck]").attr("disabled", false);
+			    $("input[id=nickCheck]").val('1');
 				return
 			}else{
 				nicknameNotice.html('<spring:message code="join.nicknameNotice4"/>')
 				nicknameNotice.css('display','flex')
 				nicknameNotice.css('color','green')
+				$("input[id=nickCheck]").attr("disabled", true);
+				$("input[id=nickCheck]").val('');
 				return
 			}
 		})
@@ -412,7 +425,6 @@ a {
 		if(birth.val().substr(0,4) < 1900){
 			birthNotice.html('<spring:message code="join.birthNotice2"/>')
 			birthNotice.css('display','flex')
-			birth.val("");
 			return
 		}
 	})
@@ -431,6 +443,12 @@ a {
 			return
 		}
 		
+		if($("input[id=emailCheck]").val() != ''){
+			alert('<spring:message code="join.nicknameNotice3"/>');
+			nickname.focus();
+			return
+		}
+		
 		if(nickname.val() == ''){
 			alert('<spring:message code="join.alert.nickname1"/>');
 			nickname.focus();
@@ -439,6 +457,12 @@ a {
 		
 		if(nickname.val().search(/\s/) != -1){
 			alert('<spring:message code="join.alert.nickname2"/>');
+			nickname.focus();
+			return
+		}
+		
+		if($("input[id=nickCheck]").val() != ''){
+			alert('<spring:message code="join.nicknameNotice3"/>');
 			nickname.focus();
 			return
 		}
@@ -494,7 +518,6 @@ a {
 		
 		if(birth.val().substr(0,4) < 1900){
 			alert('<spring:message code="join.alert.birth2"/>')
-			birth.val("");
 			birth.focus();
 			return
 		}
