@@ -89,6 +89,13 @@
 		DELETE FROM post_file WHERE pno=#{pno}
 	</delete>
 
+	<update id="updatePost">
+		UPDATE post SET   
+			content=#{content},
+			pdate=sysdate   
+		WHERE pno=#{pno}
+	</update>
+
 	<select id="countLike" resultType="int">
 		SELECT count(*) FROM post_like where pno = #{pno}
 	</select>

@@ -34,7 +34,7 @@
 
 					<div class="mb-5">
 						<label class="fs-3 mb-2" for="content">내용</label>
-						<textarea class="form-control mt-3" rows="5" name="content" id="content" placeholder="포스트 내용을 입력해주세요."></textarea>
+						<textarea class="form-control mt-3 hello-scroll" rows="5" name="content" id="content" placeholder="포스트 내용을 입력해주세요."></textarea>
 					</div>
 
 					<div>

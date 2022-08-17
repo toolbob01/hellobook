@@ -3,9 +3,7 @@ package com.hellobook.controller;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -79,10 +77,10 @@ public class PostController {
 						  .build();
 				try {
 					uploadfile.transferTo(uploadSaveFile); // 파일 실제로 전송
-					insert_file_result += post_service.insertPostFile(fileVO);
+					insert_file_result += post_service.insertPostFile(fileVO); // 파일 DB에 저장
 				} catch (Exception e) {
 					e.printStackTrace();
-					System.out.println("Error : Multipartfile - " + uploadFileName + " 's Transfering Fail ! ! !");
+					System.out.println("Error : Multipartfile - " + uploadFileName + " 's Transfering Fail ( pno : " + nowPno + " )");
 				}
 			} // for
 		}else {
@@ -106,6 +104,17 @@ public class PostController {
 		
 		model.addAttribute("postVO", postVO);
 		return "/post/post_update";
+	}
+	
+	@PostMapping("post_update")
+	@PreAuthorize("isAuthenticated() and ( principal.username == #email )")
+	public String postUpdatePost(Model model, PostVO postVO, RedirectAttributes rttr, @RequestParam("uploadfile") List<MultipartFile> file_list) {
+		
+		// 기존에 있던 ( Local Images + DB file ) 삭제
+		
+		// Post Update
+		
+		return "redirect:/";
 	}
 	
 	@GetMapping("post_delete")
@@ -199,12 +208,7 @@ public class PostController {
 		ReplyVO rVO = post_service.recentCommentByEmail(replyVO.getEmail());
 		rVO.setTimer(Time.calculateTime(rVO.getRepdate()));
 
-		if( insert_result != 1 ) {
-			return null;
-		}else {
-			return rVO;
-		}
-
+		return insert_result != 1 ? null : rVO;
 	}
 	
 }
