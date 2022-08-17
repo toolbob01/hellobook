@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8"); 
+%>
 <%@ include file="../header.jsp" %>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
@@ -36,7 +39,7 @@
 								<img class="mypage_thumbnail_e" src="/resources/imgs/unknown_thumbnail.jpg">
 							</div>
 							</c:if>
-							<c:if test="${mvo.profile==null}">
+							<c:if test="${mvo.profile!=null}">
 							<div class="mypage_thumbnail_d_2">
 								<img class="mypage_thumbnail_e" src="/hello_img/member/${mvo.profile}">
 							</div>
@@ -628,7 +631,8 @@
  });
  
  $('.mypage_thumbnail_f').on("change",function() {
-	 $('#thumbnail_update').attr("action","/mypage/thumbnailUpdate");
+	 var nickname = '<%=(String)session.getAttribute("Nname")%>'
+	 $('#thumbnail_update').attr("action","/mypage/thumbnailUpdate/"+nickname);
 	 $('#thumbnail_update').attr("method","post");
 	 $('#thumbnail_update').submit();
  });

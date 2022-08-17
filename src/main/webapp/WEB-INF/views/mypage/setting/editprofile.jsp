@@ -98,8 +98,9 @@ body {
 				<div class="row">
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
-							<label for="nickname">닉네임</label> <input type="text"
-								class="form-control" id="nickname" name="nickname" placeholder="">
+							<label for="nickname">닉네임</label> 
+							<input type="text"
+								class="form-control" id="nickname" name="nickname" value="${svo.nickname}" placeholder="">
 							<div class="notice-bubble" id="nickname-notice"></div>
 						</div>
 					</div>
@@ -217,8 +218,6 @@ function checkOnlyOne(element) {
 function checkForm(){
 	console.log("유효성 검사");
 }
-
-
 
 const nickname = $("#nickname");
 const language = document.getElementsByName("language");
