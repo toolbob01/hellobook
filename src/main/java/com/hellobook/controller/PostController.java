@@ -19,12 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostFileVO;
 import com.hellobook.domain.PostLikeVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
-import com.hellobook.domain.SessionVO;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Time;
@@ -48,11 +46,7 @@ public class PostController {
 	
 	
 	@PostMapping("post_write")
-<<<<<<< HEAD
 	@PreAuthorize("isAuthenticated() and ( principal.username == #postVO.email )")
-=======
-	@PreAuthorize("#postVO.email == principal.username")
->>>>>>> 25c2a0565408e6af364882990347d70f2bab302a
 	public String postWriteUpload(Model model, PostVO postVO, RedirectAttributes rttr, @RequestParam("uploadfile") List<MultipartFile> file_list) {
 		
 		int insert_post_result = post_service.insertPost(postVO);
