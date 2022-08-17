@@ -15,7 +15,9 @@
 	<c:if test="${data.message != '' }">
 		<script>
 			var message = '${data.message}';
-			if(message == '1'){
+			if(message == '0'){
+				
+			}else if(message == '1'){
 				top.alert('<spring:message code="message.alert1"/>'+'\n'+'<spring:message code="message.welcome"/>');
 			}else if(message == '2'){
 				top.alert('<spring:message code="message.alert2"/>'+'\n'+'<spring:message code="message.welcome"/>');
