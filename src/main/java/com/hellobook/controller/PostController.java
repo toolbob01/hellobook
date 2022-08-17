@@ -48,7 +48,7 @@ public class PostController {
 	
 	
 	@PostMapping("post_write")
-	@PreAuthorize("principal.username == #postVO.email")
+	@PreAuthorize("isAuthenticated() and ( principal.username == #postVO.email )")
 	public String postWriteUpload(Model model, PostVO postVO, RedirectAttributes rttr, @RequestParam("uploadfile") List<MultipartFile> file_list) {
 		
 		int insert_post_result = post_service.insertPost(postVO);
@@ -59,6 +59,7 @@ public class PostController {
 		
 		if( insert_post_result == 1 ) {
 			for( MultipartFile uploadfile : file_list ) {
+
 				String uploadFileName = uploadfile.getOriginalFilename();
 				uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1); 
 				log.info("uploadFileName : " + uploadFileName);
@@ -150,6 +151,7 @@ public class PostController {
 	}
 	
 	@GetMapping("like_delete") 
+	@PreAuthorize("isAuthenticated() and ( principal.username == #email )")
 	@ResponseBody
 	public String deleteLike(String email, int pno) { 
 		PostLikeVO likeVO = PostLikeVO.builder().pno(pno).email(email).build();
@@ -160,6 +162,7 @@ public class PostController {
 	}
 	
 	@GetMapping("like_add") 
+	@PreAuthorize("isAuthenticated() and ( principal.username == #email )")
 	@ResponseBody
 	public String addLike(String email, int pno) { 
 		PostLikeVO likeVO = PostLikeVO.builder().email(email).pno(pno).build();
@@ -189,6 +192,7 @@ public class PostController {
 	}
 	
 	@PostMapping("comment_insert")
+	@PreAuthorize("isAuthenticated() and ( principal.username == #replyVO.email )")
 	@ResponseBody
 	public ReplyVO commentInsert(ReplyVO replyVO) {
 		

@@ -17,6 +17,8 @@
 						<textarea class="form-control" rows="5" name="content" id="content" placeholder="포스트 내용을 입력해주세요."><c:out value="${postVO.content}"/></textarea>
 					</div>
 
+					<div class="fs-5 text-center border">게시글 수정 페이지 미완성 / 게시글 작성 페이지 (完)</div>
+						
 					<div>
 					    <label class="fs-3 mb-2" for="uploadfile">사진</label>
 					</div>

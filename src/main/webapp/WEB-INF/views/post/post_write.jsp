@@ -4,12 +4,25 @@
 
 <style>
 	.mt-50px { margin-top: 50px; }
+	
+	.mb-3px { margin-bottom: 3px; }
+	
+	.carousel-inner {
+		position: relative;
+	    width: 100%;
+	    overflow: auto;
+	    height: 55vh;
+	}
+	
+	.carousel-item img {
+		width: 100%;
+	    height: 100%;
+	    margin: 0;
+	    padding: 0;
+	}
 </style>
 
-	<div class="m-5">
-		<p class="ppp">ppppppppppp</p>
-		<div class="ddd">dddddddddddddddddddddddd</div>
-	</div>
+
 
 	<div class="container post_write_page">
 		<div class="input-form-backgroud row">
@@ -21,27 +34,41 @@
 
 					<div class="mb-5">
 						<label class="fs-3 mb-2" for="content">내용</label>
-						<textarea class="form-control" rows="5" name="content" id="content" placeholder="포스트 내용을 입력해주세요."></textarea>
+						<textarea class="form-control mt-3" rows="5" name="content" id="content" placeholder="포스트 내용을 입력해주세요."></textarea>
 					</div>
 
 					<div>
-					    <label class="fs-3 mb-2" for="uploadfile">사진</label>
+					    <label class="fs-3 mb-3" for="uploadfile">사진</label>
 					</div>
 
-<!-- 					<div class="mb-4 text-center">
-						<img style="width: 500px; height: 500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
-					</div> -->
+					<!-- Carousel -->
+					<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+					  <div class="carousel-inner">
+					    <div class="carousel-item active uploadfile0">
+					      <img src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image" class="d-block w-100" alt="...">
+					    </div>
+					  </div>
+					  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Previous</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Next</span>
+					  </button>
+					</div>
 
-					<table class="table __add mb-3"> 
+
+					<table class="table __add mt-5 mb-2"> 
 					  <tr>
 					    <td>
 						  <div class="mb-4 text-center">
-							<img style="width: 500px; height: 500px;" class="preview-image" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
-							<input type="file" class="form-control uploadfile " name="uploadfile" onchange="fileCheck(this)">
+<!-- 							<img style="width: 500px; height: 500px;" class="preview-image" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image"> -->
+							<input type="file" class="form-control uploadfile" id="uploadfile0" name="uploadfile" onchange="fileCheck(this)">
 						  </div>
 					    </td>
 					    <td>
-					      <button type="button" class="_add btn btn-primary mt-50px">추가</button>
+					      <button type="button" class="_add btn btn-primary mb-3px btnBtn" data-idx="uploadfile0">추가</button>
 					    </td>
 					  </tr> 
 					</table>
@@ -58,36 +85,62 @@
 
 <script>
 
-$(".ddd").on("click", function() {
-	$(this).closest('.m-5').children('.ppp').html("changed ppp");
-})
-
 // Add File Input
-var uploadfileCnt = 1;
+var uploadfileCnt = 0;
 
 $('.__add ._add').on('click',function(){ 
-   if(uploadfileCnt >= 5){
-      alert("파일 업로드 최대 개수는 5개 입니다.");
-      return;
-   }else{
-       $('.__add').append('<tr>' + 
+	if(uploadfileCnt >= 4){
+		alert("파일 업로드 최대 개수는 5개 입니다.");
+		return;
+	}else{
+		uploadfileCnt ++;
+		$('.__add').append('<tr>' + 
 					    	'<td>' + 
-						  	  '<div class="mb-4 text-center">' + 
-							    '<img style="width: 500px; height: 500px;" class="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">' + 
-							    '<input type="file" class="form-control uploadfile " name="uploadfile" onchange="fileCheck(this)">' + 
+						  	  '<div class="mb-3 text-center">' + 
+							    '<input type="file" class="form-control uploadfile" id="uploadfile" name="uploadfile" onchange="fileCheck(this)">' + 
 						  	  '</div>' + 
 							'</td>' +  
 		    			    '<td>' + 
-		    			      '<button type="button" class="btn btn-secondary mt-50px" onclick="addDel(this);">삭제</button>' + 
+		    			      '<button type="button" class="btn btn-secondary mb-3px btnBtn" data-idx="uploadfile1234" onclick="addDel(this);">삭제</button>' + 
 		    			    '</td>' +
 		    			  '</tr>' ); 
-       uploadfileCnt ++;
+		$('.carousel-inner').append('<div class="carousel-item">' + 
+	      						     '<img src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image" class="d-block w-100" alt="...">' + 
+		    					   '</div>');
+       
+		$(".uploadfile").each(function(index, upload_item){ // input -> id : uploadfile 0 ~ 4
+			$(upload_item).attr('id', 'uploadfile' + index);
+		})
+		$(".btnBtn").each(function(index, btn_item){ // btn -> data-idx : uploadfile 0 ~ 4
+			$(btn_item).attr('data-idx', 'uploadfile' + index);
+		})
+		$(".carousel-item").each(function(index, img_item){ // img -> class : uploadfile 0 ~ 4
+			$(img_item).attr('class', 'carousel-item  uploadfile' + index);
+			if( index == 0 ) { 
+				 $(img_item).addClass('active');
+			}
+		})
    }
 });
 //Delete File Input
 function addDel(a){ 
-	$(a).closest('tr').remove(); 
-    uploadfileCnt --;
+	uploadfileCnt --;
+	$(a).closest('tr').remove(); // input + btn delete
+	var data_idx = $(a).data('idx'); 
+	$('.' + data_idx).remove(); // img delete
+	
+	$(".uploadfile").each(function(index, upload_item){ // input -> id : uploadfile 0 ~ 4
+		$(upload_item).attr('id', 'uploadfile' + index);
+	})
+	$(".btnBtn").each(function(index, btn_item){ // btn -> data-idx : uploadfile 0 ~ 4
+		$(btn_item).attr('data-idx', 'uploadfile' + index);
+	})
+	$(".carousel-item").each(function(index, img_item){ // img -> class : uploadfile 0 ~ 4
+		$(img_item).attr('class', 'carousel-item  uploadfile' + index);
+		if( index == 0 ) { 
+			 $(img_item).addClass('active');
+		}
+	})
 }
 
 //File Image Preview
@@ -100,35 +153,69 @@ function addDel(a){
 //     }
 //     reader.readAsDataURL(file);
 // });
-$('.uploadfile').change(function(){
-	console.log('SSSiBal');
+/*$('.uploadfile').change(function() {
+	console.log('uploadfile change'); //
+	console.log(this); // <input>
+	console.log($(this)); // jQuery.fn.init
     setImageFromFile(this, $(this));
 });
 function setImageFromFile(input, uploadfile) {
 	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function (e) {
-// 			uploadfile.closest('.text-center').children('.preview-image').attr('src', e.target.result);
-			$("#preview-image").attr('src', e.target.result);
+		var changeId = uploadfile.attr('id');
+		var changeIdNum = parseInt(changeId.substring(10));
+		var reader_list = new Array();
+		for ( i=0; i<changeIdNum+1; i++ ) {
+			reader_list.push( new FileReader() );
 		}
-		reader.readAsDataURL(input.files[0]);
+		reader_list[changeIdNum].onload = function (e) {
+			$("." + changeId).children('img').attr('src', e.target.result); 
+		}
+		reader_list[changeIdNum].readAsDataURL(input.files[0]);
+// 		var reader = new FileReader();
+// 		reader.onload = function (e) {
+// 			$("." + changeId).children('img').attr('src', e.target.result);
+// 		}
+// 		reader.readAsDataURL(input.files[0]);
+		console.log(input.files[0]); // File {name: 'asdf.jpg', lastModified: ~ }
 	}
-}
+}*/
 
-// File Size Check
+
+
+// File Size Check + Ext Check + Preview
 function fileCheck(file) {
     var maxSize  = 3 * 1024 * 1024; 
     var fileSize = 0;
     fileSize = file.files[0].size;
     if(fileSize > maxSize)
     {
-        alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.    ");
+        alert("첨부파일 사이즈는 3 MB 이내로 등록 가능합니다. ");
         file.value = "";
         return;
     }
+    var name = file.files[0].name;
+	if( name != "" ){
+		var ext = name.split('.').pop().toLowerCase();
+		if( $.inArray(ext,['gif','jpg','png','jpeg']) == -1 ) { 
+			alert('첨부파일은 (gif,jpg,png,jpeg) 이미지만 업로드 가능합니다.');
+			file.value = "";
+			return false;
+		}
+	}
+	//File Image Preview
+	if (file.files && file.files[0]) {
+		var changeId = file.id;
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			$("." + changeId).children('img').attr('src', e.target.result);
+		}
+		reader.readAsDataURL(file.files[0]);
+	}
 }
 
-// Form Submit Script
+
+
+// Submit Script
 function postingCheck(){
 	if( $("#content").val() == "" ) {
 		alert("내용을 입력해주세요");
@@ -147,14 +234,6 @@ function postingCheck(){
 		if( nowUpload == "" ) {
 			alert("이미지를 첨부해주세요.");
 			return false;
-		}
-		if( nowUpload != "" ){
-			var ext = nowUpload.split('.').pop().toLowerCase();
-			if( $.inArray(ext,['gif','jpg','png','jpeg']) == -1 ) { 
-				alert('첨부파일은 (gif,jpg,png,jpeg) 이미지만 업로드 가능합니다.');
-				nowUpload.value = "";
-				return false;
-			}
 		}
 	}
 	

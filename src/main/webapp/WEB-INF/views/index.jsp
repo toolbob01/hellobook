@@ -760,7 +760,7 @@
 	$(".updateLink").on("click", function() { 
 		var updatePno = $(this).data("pno");
 		var updateUser = '${username}';
-		if( confirm(deletePno + " 번 게시물을 수정하시겠습니까?") ) {
+		if( confirm(updatePno + " 번 게시물을 수정하시겠습니까?") ) {
 			location.href = '/post/post_update?pno=' + updatePno + '&email=' + updateUser;
 		}
 	})
