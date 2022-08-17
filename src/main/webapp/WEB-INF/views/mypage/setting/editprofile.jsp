@@ -99,7 +99,7 @@ body {
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
 							<label for="nickname">닉네임</label> <input type="text"
-								class="form-control" id="nickname" name="nickname" placeholder="">
+								class="form-control" id="nickname" name="nickname" placeholder="" value="${svo.nickname}">
 							<div class="notice-bubble" id="nickname-notice"></div>
 						</div>
 					</div>
