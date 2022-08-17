@@ -48,7 +48,7 @@ public class PostController {
 	
 	
 	@PostMapping("post_write")
-	@PreAuthorize("principal.username == #postVO.email")
+	@PreAuthorize("#postVO.email == principal.username")
 	public String postWriteUpload(Model model, PostVO postVO, RedirectAttributes rttr, @RequestParam("uploadfile") List<MultipartFile> file_list) {
 		
 		int insert_post_result = post_service.insertPost(postVO);

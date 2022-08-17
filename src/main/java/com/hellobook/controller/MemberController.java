@@ -1,6 +1,8 @@
 package com.hellobook.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -222,10 +224,12 @@ public class MemberController {
 		log.info(mvo);
 		String encPw = pwencoder.encode(mvo.getPassword());
 		mvo.setPassword(encPw);
+		//default profile 주입
+		mvo.setProfile("resources/imgs/unknown_thumbnail.jpg");
 		memberService.insertMember(mvo);
 		
 		//mav는 메세지 전송 객체
-		mav.addObject("data", new Message("1", "/"));
+		mav.addObject("data", new Message("1", "/member/login"));
 		//data를 보낼곳 "Message.jsp"지정
 		mav.setViewName("Message");
 		return mav;
@@ -236,6 +240,8 @@ public class MemberController {
 		log.info(mvo);
 		String encPw = pwencoder.encode(mvo.getPassword());
 		mvo.setPassword(encPw);
+		//default profile 주입
+		mvo.setProfile("resources/imgs/unknown_thumbnail.jpg");
 		memberService.insertMember(mvo);
 		HttpSession session;
 		//로그인 절차를 1번으로 줄여야 한다.

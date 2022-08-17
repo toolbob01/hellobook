@@ -12,8 +12,8 @@ public class SessionVO {
 	private String nickname;
 	private String password;
 	private Date birth;
-	private char language; 
-	private char sex;       
+	private String language; 
+	private String sex;       
 	private String hobby;
 	private String intro;
 	private String profile;

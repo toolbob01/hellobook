@@ -42,8 +42,8 @@
 	
 	
 	<insert id="insertMember">
-		insert into member (email, password, nickname, language, birth, sex, hobby)
-		values (#{email}, #{password}, #{nickname}, #{language}, #{birth}, #{sex}, #{hobby})
+		insert into member (email, password, nickname, language, birth, sex, hobby, profile)
+		values (#{email}, #{password}, #{nickname}, #{language}, #{birth}, #{sex}, #{hobby}, #{profile})
 	</insert>
 	
 	<insert id="insertAuth">
