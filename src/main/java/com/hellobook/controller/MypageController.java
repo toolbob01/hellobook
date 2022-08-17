@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -91,6 +92,7 @@ public class MypageController {
 		
 	}
 	
+<<<<<<< HEAD
 	@GetMapping({"/setting/","/setting/editprofile"})
 	public String editprofile(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -100,16 +102,110 @@ public class MypageController {
 		model.addAttribute("svo", svo);
 		return "/mypage/setting/editprofile";
 	}
+=======
+>>>>>>> 233d79aeb227191a148d37ac29f3302300956df6
 	
-	@GetMapping("/setting/changepwd")
-	public String changepwd() {
-		return "/mypage/setting/changepwd";
-	}
+
 	
-	@GetMapping("/setting/quit")
-	public String quit() {
-		return "/mypage/setting/quit";
-	}
+//	@GetMapping({"/setting/","/setting/editprofile"})
+//	public String editprofile() {
+//		return "/mypage/setting/editprofile";
+//	}
+//	
+//	
+//
+//	
+//	
+//	@GetMapping("/setting/changepwd")
+//	public String changepwd() {
+//		return "/mypage/setting/changepwd";
+//	}
+	
+//	@GetMapping("/setting/quit")
+//	public String quit() {
+//		return "/mypage/setting/quit";
+//	}
+	
+	
+	@RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.GET)
+    public String editAccount() {
+        return  "/mypage/setting/editprofile";
+    }
+   
+    @RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.POST)
+    public String editAccount(MemberVO mvo, HttpSession session) throws Exception {
+        MemberVO loginUser = (MemberVO) session.getAttribute("check");
+        String email = loginUser.getEmail(); //세션에 저장된 사용자 정보로부터 이메일을 알아낸다.
+       
+        if (mvo.getNickname() == null) {
+            mvo.setNickname(loginUser.getNickname());
+        }
+        if (mvo.getBirth() == null) {
+            mvo.setBirth(loginUser.getBirth());
+        }
+        
+        if (mvo.getLanguage() == null) {
+            mvo.setLanguage(loginUser.getLanguage());
+        }
+        
+        if (mvo.getSex() == null) {
+            mvo.setSex(loginUser.getSex());
+        }
+        
+        if (mvo.getHobby() == null) {
+            mvo.setHobby(loginUser.getHobby());
+        }
+        
+              
+        mvo.setEmail(email);
+        int check = memberService.modify(mvo);
+        if (check == 1) {
+            session.setAttribute("check",mvo);
+        }
+       
+        return "/mypage/setting/changepwd";
+       
+    }
+   
+    @RequestMapping(value="/setting/changepwd", method=RequestMethod.GET)
+    public String changePasswd() {
+        return "/mypage/setting/changepwd";
+    }
+   
+    @RequestMapping(value="/setting/changepwd", method=RequestMethod.POST)
+    public String changePasswd(String password, HttpSession session) throws Exception {
+        String email = ((MemberVO)session.getAttribute("check")).getEmail();
+       
+        MemberVO mvo = new MemberVO();
+        mvo.setEmail(email);
+        mvo.setPassword(password);
+       
+        memberService.changePwd(mvo);
+       
+        return "/mypage/setting/changepwd";
+    }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	  @RequestMapping(value="/setting/quit", method=RequestMethod.GET)
+	    public String quit(HttpSession session) {
+		  MemberVO mvo = (MemberVO)session.getAttribute("check");
+	        memberService.quitMember(mvo);
+	        session.invalidate();
+	       
+	        return "/mypage/setting/quit";
+	    }
+
+
+	
+	
+	
 	
 	@GetMapping("/setting/report")
 	public String report() {

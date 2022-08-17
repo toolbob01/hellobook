@@ -19,12 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostFileVO;
 import com.hellobook.domain.PostLikeVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
-import com.hellobook.domain.SessionVO;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Time;
@@ -48,7 +46,7 @@ public class PostController {
 	
 	
 	@PostMapping("post_write")
-	@PreAuthorize("principal.username == #postVO.email")
+	@PreAuthorize("isAuthenticated() and ( principal.username == #postVO.email )")
 	public String postWriteUpload(Model model, PostVO postVO, RedirectAttributes rttr, @RequestParam("uploadfile") List<MultipartFile> file_list) {
 		
 		int insert_post_result = post_service.insertPost(postVO);
@@ -59,6 +57,7 @@ public class PostController {
 		
 		if( insert_post_result == 1 ) {
 			for( MultipartFile uploadfile : file_list ) {
+
 				String uploadFileName = uploadfile.getOriginalFilename();
 				uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1); 
 				log.info("uploadFileName : " + uploadFileName);
@@ -99,7 +98,13 @@ public class PostController {
 	
 	
 	@GetMapping("post_update")
-	public String postUpdate() {
+	@PreAuthorize("isAuthenticated() and ( principal.username == #email )")
+	public String postUpdate(Model model, int pno, String email) {
+		
+		PostVO postVO = post_service.postDetail(pno);
+		postVO.setFile_list(post_service.selectFileByPno(pno));
+		
+		model.addAttribute("postVO", postVO);
 		return "/post/post_update";
 	}
 	
@@ -144,11 +149,9 @@ public class PostController {
 	}
 	
 	@GetMapping("like_delete") 
+	@PreAuthorize("isAuthenticated() and ( principal.username == #email )")
 	@ResponseBody
 	public String deleteLike(String email, int pno) { 
-
-
- 
 		PostLikeVO likeVO = PostLikeVO.builder().pno(pno).email(email).build();
 		post_service.deleteLike(likeVO);
 
@@ -157,6 +160,7 @@ public class PostController {
 	}
 	
 	@GetMapping("like_add") 
+	@PreAuthorize("isAuthenticated() and ( principal.username == #email )")
 	@ResponseBody
 	public String addLike(String email, int pno) { 
 		PostLikeVO likeVO = PostLikeVO.builder().email(email).pno(pno).build();
@@ -170,8 +174,7 @@ public class PostController {
 	public PostVO postDetailModal(int pno) { 
 		
 		PostVO postVO = post_service.postDetail(pno);
-		
-		
+
 		postVO.setFile_list(post_service.selectFileByPno(pno)); 	    // Image
 		postVO.setReply_list(post_service.selectReplyByPno(pno));    // Reply
 		List<ReplyVO> relpy_list = postVO.getReply_list();
@@ -183,12 +186,11 @@ public class PostController {
 		postVO.setLike_cnt(postVO.getLike_list().size());   	// Like Count
 		postVO.setTimer(Time.calculateTime(postVO.getPdate())); // ex) 5분전 2시간전 3일전
 		
-//		Map<String, Object> data = new HashMap<String, Object>();
-//		data.put("postVO", postVO);
 		return postVO;
 	}
 	
 	@PostMapping("comment_insert")
+	@PreAuthorize("isAuthenticated() and ( principal.username == #replyVO.email )")
 	@ResponseBody
 	public ReplyVO commentInsert(ReplyVO replyVO) {
 		
@@ -200,8 +202,6 @@ public class PostController {
 		if( insert_result != 1 ) {
 			return null;
 		}else {
-//			Map<String, Object> data = new HashMap<String, Object>();
-//			data.put("replyVO", rVO);
 			return rVO;
 		}
 

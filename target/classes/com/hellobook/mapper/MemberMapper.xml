@@ -42,8 +42,8 @@
 	
 	
 	<insert id="insertMember">
-		insert into member (email, password, nickname, language, birth, sex, hobby)
-		values (#{email}, #{password}, #{nickname}, #{language}, #{birth}, #{sex}, #{hobby})
+		insert into member (email, password, nickname, language, birth, sex, hobby, profile)
+		values (#{email}, #{password}, #{nickname}, #{language}, #{birth}, #{sex}, #{hobby}, #{profile})
 	</insert>
 	
 	<insert id="insertAuth">
@@ -51,9 +51,19 @@
 		values (#{email})
 	</insert>
 	
+	  <update id="modify">
+        UPDATE member SET nickname = #{nickname}, birth = #{birth}, language = #{language}, sex = #{sex}, hobby = #{hobby}
+        WHERE email = #{email} AND password = #{password}
+    </update>
+	
+	
 	<update id="changePwd">
 		update member set password=#{password} where email = #{email}
 	</update>
+	
+	 <delete id="quitMember">
+        delete from member where email = #{email}
+    </delete>
 	
 	<select id="checkEmail" resultType="int">
 		select count(*) from member where email = #{email}
@@ -101,6 +111,9 @@
 	<update id="updateThumbnailByNickname">
 		update member set profile=#{profile} where nickname=#{nickname}
 	</update>
+	
+	
+
   
 </mapper>
 

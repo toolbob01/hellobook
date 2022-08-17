@@ -229,11 +229,12 @@ body::-webkit-scrollbar-track {
 
 .modal-detail-right {
 	height: 90vh;
+	border-left: solid 1px #ccc;
 }
 .all-comment {
 	height: 70vh;
 	padding: 20px;
-	border-left: solid 1px #ccc;
+/* 	border-left: solid 1px #ccc; */
 	overflow: auto;
 }
 
@@ -292,7 +293,7 @@ body::-webkit-scrollbar-track {
 
 .comment-write-div {
 	padding: 20px;
-	border-left: solid 1px #ccc;
+	border-top: solid 1px #ccc;
 }
 .comment-write-div .form-control {
 	height: 7vh;
