@@ -98,8 +98,14 @@ body {
 				<div class="row">
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
+<<<<<<< HEAD
 							<label for="nickname">닉네임</label> <input type="text"
-								class="form-control" id="nickname" name="nickname" placeholder="">
+								class="form-control" id="nickname" name="nickname" placeholder="" value="${svo.nickname}">
+=======
+							<label for="nickname">닉네임</label> 
+							<input type="text"
+								class="form-control" id="nickname" name="nickname" value="${svo.nickname}" placeholder="">
+>>>>>>> e0179c259fb13be0930a0ecd98efe4b1e611b8cf
 							<div class="notice-bubble" id="nickname-notice"></div>
 						</div>
 					</div>
@@ -217,8 +223,6 @@ function checkOnlyOne(element) {
 function checkForm(){
 	console.log("유효성 검사");
 }
-
-
 
 const nickname = $("#nickname");
 const language = document.getElementsByName("language");

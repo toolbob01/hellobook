@@ -95,7 +95,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/memberNaverLogin", method= {RequestMethod.GET,RequestMethod.POST})
-	public String memberNaverLogin(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request) throws Exception{
+	public ModelAndView memberNaverLogin(ModelAndView mav, Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request) throws Exception{
 		OAuth2AccessToken oauthToken;
 		//로그인 사용자 정보를 읽어옴
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
@@ -129,8 +129,11 @@ public class MemberController {
 		log.info("mvo: "+mvo);
 		
 		if(checkMember == 0){
-			model.addAttribute("mvo",mvo);
-			return "/member/naverJoin";
+			//mav는 메세지 전송 객체
+			mav.addObject("mvo", mvo);
+			//data를 보낼곳 "Message.jsp"지정
+			mav.setViewName("/member/naverJoin");
+			return mav;
 		}else {
 			mvo.setPassword(pwencoder.encode(id));
 			memberService.changePwd(mvo);
@@ -150,12 +153,17 @@ public class MemberController {
 			session.setAttribute("username", user.getUsername());
 			session.setAttribute("Nname", svo.getNickname());
 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-			return "/index";
+			
+			//mav는 메세지 전송 객체
+			mav.addObject("data", new Message("0", "/"));
+			//data를 보낼곳 "Message.jsp"지정
+			mav.setViewName("Message");
+			return mav;
 		}
 	}
 	
 	@RequestMapping(value="/memberGoogleLogin", method= {RequestMethod.GET,RequestMethod.POST})
-	public String memberGoogleLogin(Model model, @RequestParam(value="code") String code, HttpSession session,HttpServletRequest request) throws Exception{
+	public ModelAndView memberGoogleLogin(ModelAndView mav, Model model, @RequestParam(value="code") String code, HttpSession session,HttpServletRequest request) throws Exception{
 		//1. code를 이용해서 access_token 받기
 		//2. access_token을 이용해서 사용자 profile 정보 가져오기
 		SNSLogin snsLogin = new SNSLogin(googleSns);
@@ -187,8 +195,11 @@ public class MemberController {
 		int checkMember = memberService.checkEmail(email);
 		
 		if(checkMember == 0){
-			model.addAttribute("mvo",mvo);
-			return "/member/googleJoin";
+			//mav는 메세지 전송 객체
+			mav.addObject("mvo", mvo);
+			//data를 보낼곳 "Message.jsp"지정
+			mav.setViewName("/member/googleJoin");
+			return mav;
 		}else {
 			mvo.setPassword(pwencoder.encode(password));
 			memberService.changePwd(mvo);
@@ -209,7 +220,12 @@ public class MemberController {
 			session.setAttribute("Nname", svo.getNickname());
 			
 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-			return "/index";
+			
+			//mav는 메세지 전송 객체
+			mav.addObject("data", new Message("0", "/"));
+			//data를 보낼곳 "Message.jsp"지정
+			mav.setViewName("Message");
+			return mav;
 		}
 	}
 	

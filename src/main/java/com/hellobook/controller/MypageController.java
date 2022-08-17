@@ -1,6 +1,8 @@
 package com.hellobook.controller;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
+import com.hellobook.domain.SessionVO;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Time;
@@ -89,6 +92,18 @@ public class MypageController {
 		
 	}
 	
+<<<<<<< HEAD
+	@GetMapping({"/setting/","/setting/editprofile"})
+	public String editprofile(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("username");
+		
+		SessionVO svo = memberService.read(email);
+		model.addAttribute("svo", svo);
+		return "/mypage/setting/editprofile";
+	}
+=======
+>>>>>>> 233d79aeb227191a148d37ac29f3302300956df6
 	
 
 	
@@ -113,7 +128,13 @@ public class MypageController {
 	
 	
 	@RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.GET)
-    public String editAccount() {
+    public String editprofile(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("username");
+		SessionVO svo = memberService.read(email);
+		model.addAttribute("svo", svo);
+		
         return  "/mypage/setting/editprofile";
     }
    
@@ -153,7 +174,13 @@ public class MypageController {
     }
    
     @RequestMapping(value="/setting/changepwd", method=RequestMethod.GET)
-    public String changePasswd() {
+    public String changePasswd(HttpServletRequest request, Model model) {
+    	
+    	HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("username");
+		SessionVO svo = memberService.read(email);
+		model.addAttribute("svo", svo);
+    	
         return "/mypage/setting/changepwd";
     }
    
@@ -179,10 +206,11 @@ public class MypageController {
 	
 	
 	  @RequestMapping(value="/setting/quit", method=RequestMethod.GET)
-	    public String quit(HttpSession session) {
-		  MemberVO mvo = (MemberVO)session.getAttribute("check");
-	        memberService.quitMember(mvo);
-	        session.invalidate();
+	    public String quit(HttpServletRequest request, Model model) {
+		  HttpSession session = request.getSession();
+			String email = (String) session.getAttribute("username");
+			SessionVO svo = memberService.read(email);
+			model.addAttribute("svo", svo);
 	       
 	        return "/mypage/setting/quit";
 	    }
@@ -197,8 +225,8 @@ public class MypageController {
 		return "/mypage/setting/report";
 	}
 	
-	@PostMapping("/thumbnailUpdate")
-	public String thumbnailUpdate(MemberVO mvo, @RequestParam("profile") MultipartFile profile, String nickname) {
+	@PostMapping("/thumbnailUpdate/{nickname}")
+	public String thumbnailUpdate(MemberVO mvo, @RequestParam("profile") MultipartFile profile, @PathVariable String nickname) throws UnsupportedEncodingException {
 		String uploadFileName = profile.getOriginalFilename();
 		uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
 
@@ -222,7 +250,9 @@ public class MypageController {
 			System.out.println("Error : Multipartfile - " + uploadFileName + " 's Transfering Fail ! ! !");
 		}
 		
-		return "redirect:/mypage/profile/"+nickname;
+		String encodedParam = URLEncoder.encode(nickname, "UTF-8");
+		
+		return "redirect:/mypage/profile/"+encodedParam;
 	}
 
 }
