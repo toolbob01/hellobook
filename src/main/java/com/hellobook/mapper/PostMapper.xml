@@ -55,7 +55,7 @@
 		WHERE l.pno = #{pno} AND l.email = m.email
 	</select>
 	<select id="selectFileByPno" resultType="com.hellobook.domain.PostFileVO">
-		SELECT * FROM post_file WHERE pno = #{pno} 
+		SELECT * FROM post_file WHERE pno = #{pno} ORDER BY fno ASC
 	</select>
 
 	<insert id="insertPost">

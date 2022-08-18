@@ -40,7 +40,7 @@
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-5 text-center fs-1">게시글 수정</h4>
-				<form class="validation-form" novalidate id="postUpdateForm" name="postingForm" method="post" action="/post/post_update" enctype="multipart/form-data">
+				<form id="postUpdateForm" method="post" action="/post/post_update" enctype="multipart/form-data">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="hidden" name="pno" value="${postVO.pno}" />
 					<input type="hidden" name="email" value="${username}" />
@@ -101,7 +101,7 @@
 					  <tr>
 					    <td>
 						  <div class="mb-4 text-center">
-							<input type="file" class="form-control uploadfile" id="uploadfile0" name="uploadfile" onchange="fileCheck(this)">
+							<input type="file" class="form-control uploadfile" id="uploadfile1" name="uploadfile" onchange="fileCheck(this)">
 						  </div>
 					    </td>
 					    <td>
@@ -122,31 +122,44 @@
 
 <script>
 
-var totalCnt = 0;
-var uploadfileCnt = 0;
-
-// #existing-file-div 에서 기존파일이 삭제될 때 마다 change 감지하여 totalCnt 계산하는 함수도 만들어야함.
-
+var existingCnt = 0;
+var uploadfileCnt = 1;
 
 // Calculating count of ExistingFile & Uploadfile
 $(document).ready(function(){
-	if( $("#existing-file-div").find('.d-flex').length == 5 ) {
-		$("#preview-div").css('display', 'none');
+	existingCnt = $("#existing-file-div").find('.d-flex').length;
+	if( existingCnt == 5 ) {
+		$("#preview-div").empty();
+		$("#preview-div").append('<p class="text-center fs-5 my-5">사진은 최대 5개까지 첨부 가능합니다.</p>');
+		uploadfileCnt = 0;
 	}
+	console.log("existing : " + existingCnt); //
+	console.log("uploadfile : " + uploadfileCnt); //
 });
 
-// btn-delete to Delete Existing Image
+// Delete Existing Image
 $(".btn-delete").on("click", function() {
-	$(this).closest('.d-flex').remove();
-	if( $("#existing-file-div").find('.d-flex').length == 0 ) {
-		$("#existing-file-div").append('<p class="text-center fs-5 my-5">기존의 이미지 파일을 전부 삭제하였습니다.</p>');
+	if( existingCnt == 5 ) {
+		$(this).closest('.d-flex').remove();
+		existingCnt = 4;
+		uploadfileCnt = 1;
+		$("#preview-div").empty();
+		$("#preview-div").append('<!-- Carousel --><div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false"><div class="carousel-inner"><div class="carousel-item active uploadfile0"><img src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image" class="d-block w-100" alt="..."></div></div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div><table class="table __add mt-5 mb-2"><tr><td><div class="mb-4 text-center"><input type="file" class="form-control uploadfile" id="uploadfile1" name="uploadfile" onchange="fileCheck(this)"></div></td><td><button type="button" class="_add btn btn-primary mb-3px btnBtn" data-idx="uploadfile0">추가</button></td></tr></table>');
+	}else {
+		$(this).closest('.d-flex').remove();
+		existingCnt = $("#existing-file-div").find('.d-flex').length;
+		if( existingCnt == 0 ) {
+			$("#existing-file-div").append('<p class="text-center fs-5 my-5">기존의 이미지 파일을 전부 삭제하였습니다.</p>');
+		}
 	}
+	console.log("existing : " + existingCnt); //
+	console.log("uploadfile : " + uploadfileCnt); //
 })
 
 // Add File Input
-$('.__add ._add').on('click',function(){ 
-	if(uploadfileCnt >= 4){
-		alert("파일 업로드 최대 개수는 5개 입니다.");
+$(document).on("click",".__add ._add",function() {
+	if( existingCnt + uploadfileCnt >= 5){
+		alert("최대 업로드 수는 5개 입니다 (기존 이미지 포함)");
 		return;
 	}else{
 		uploadfileCnt ++;
@@ -234,7 +247,7 @@ function fileCheck(file) {
 
 
 // Submit Script
-function postingCheck(){
+function postUpdateCheck(){
 	if( $("#content").val() == "" ) {
 		alert("내용을 입력해주세요");
 		$("#content").focus();
