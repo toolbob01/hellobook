@@ -92,7 +92,7 @@ public class MypageController {
 		
 	}
 	
-<<<<<<< HEAD
+
 	@GetMapping({"/setting/","/setting/editprofile"})
 	public String editprofile(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -102,8 +102,6 @@ public class MypageController {
 		model.addAttribute("svo", svo);
 		return "/mypage/setting/editprofile";
 	}
-=======
->>>>>>> 233d79aeb227191a148d37ac29f3302300956df6
 	
 
 	
@@ -125,12 +123,6 @@ public class MypageController {
 //	public String quit() {
 //		return "/mypage/setting/quit";
 //	}
-	
-	
-	@RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.GET)
-    public String editAccount() {
-        return  "/mypage/setting/editprofile";
-    }
    
     @RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.POST)
     public String editAccount(MemberVO mvo, HttpSession session) throws Exception {
