@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +52,7 @@ body {
         <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-search">
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="get" action="/" id="headerSearchForm">
             	<input type="hidden" name="type" value="NC" />
-                <input type="search" class="form-control" name="keyword" placeholder="Search..." aria-label="Search">
+                <input type="search" class="form-control" name="keyword" placeholder="<spring:message code="header.search"/>" aria-label="Search">
             </form>
         </ul>
 
@@ -81,25 +82,66 @@ body {
                     <img src="https://img.icons8.com/ios-glyphs/30/000000/small-icons.png"/>
                 </a>
                 <ul class="dropdown-menu text-small text-center" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="/mypage/profile/${Nname}">프로필</a></li>
-                    <li><a class="dropdown-item" href="/mypage/setting/">설정</a></li>
+                    <li><a class="dropdown-item" href="/mypage/profile/${Nname}"><spring:message code="header.profile"/></a></li>
+                    <li><a class="dropdown-item" href="/mypage/setting/"><spring:message code="header.setting"/></a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
                     	<form class="dropdown-item on_cursor" id="logoutFN" method="post" action="/member/logout" onclick="logoutFN()">
                     		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     		<div class="d-flex">
 	                    		<img class="" src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>
-	                    		<span class="mt-1 ms-3">로그아웃</span>	
+	                    		<span class="mt-1 ms-3"><spring:message code="header.logout"/></span>	
                     		</div>
                     	</form>
                     </li>
                 </ul>
             </div>
         </div>
-
+		<div id="changeLang">
+			<select class="form-control" onchange="changLang(this.value)" name="lang" style="width: auto;">
+			  <option value=""><spring:message code="header.setlanguage"/>
+			  <option value="en">English</option>
+			  <option value="ja">日本語</option>
+			  <option value="ko">한국어</option>
+			</select>
+		</div>
         </div>
+        	
     </div>
+    
 </header>
+
+<script>
+	var csrfHeanderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
+	});
+</script>
+
+<style>
+#changeLang {
+    display: flex;
+    flex-direction: row-reverse;
+    width: auto;
+}
+</style>
+
+
+<script>
+	function changLang(lang){
+		var protocol = window.location.protocol;
+		var host = window.location.host;
+		var path = window.location.pathname;
+		
+		var link = path+"?lang="+lang
+		console.log(link);
+		
+		location.replace(link);
+	}
+</script>
+
 <script>
 	function logoutFN(){
 		$("#logoutFN").submit();
