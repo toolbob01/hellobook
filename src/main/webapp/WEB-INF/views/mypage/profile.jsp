@@ -552,7 +552,7 @@
 		
 		
 		// Coment Insert
-		$(".msg_send_btn").on("click", function(e){		
+		$(".msg_send_btn").off().on("click", function(e){		
 			e.preventDefault();
 			var pno = $(this).data("pno");
 			var email = '${username}';
@@ -565,7 +565,7 @@
 				// AJAX action
 				if( !confirm('댓글을 작성하시겠습니까?') ) {
 					$("#commentInsert").val(""); 
-					return ; 
+					return true; 
 				}
 				$.ajax({
 					type:"post",

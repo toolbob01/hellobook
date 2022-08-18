@@ -92,6 +92,7 @@ public class MypageController {
 		
 	}
 	
+<<<<<<< HEAD
 //	@GetMapping({"/setting/","/setting/editprofile"})
 //	public String editprofile(HttpServletRequest request, Model model) {
 //		HttpSession session = request.getSession();
@@ -104,6 +105,8 @@ public class MypageController {
 	
 
 	
+=======
+>>>>>>> a74b714390f69e476d35f3755c47d406dde7a3a7
 //	@GetMapping({"/setting/","/setting/editprofile"})
 //	public String editprofile() {
 //		return "/mypage/setting/editprofile";
@@ -122,8 +125,7 @@ public class MypageController {
 //	public String quit() {
 //		return "/mypage/setting/quit";
 //	}
-	
-	
+
 	@RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.GET)
     public String editprofile(HttpServletRequest request, Model model) {
 		
@@ -134,7 +136,7 @@ public class MypageController {
 		
         return  "/mypage/setting/editprofile";
     }
-   
+	
     @RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.POST)
     public String editAccount(MemberVO mvo, HttpSession session) throws Exception {
         MemberVO loginUser = (MemberVO) session.getAttribute("check");
