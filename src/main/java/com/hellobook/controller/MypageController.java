@@ -123,6 +123,21 @@ public class MypageController {
 //	public String quit() {
 //		return "/mypage/setting/quit";
 //	}
+<<<<<<< HEAD
+=======
+	
+	
+	@RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.GET)
+    public String editprofile(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("username");
+		SessionVO svo = memberService.read(email);
+		model.addAttribute("svo", svo);
+		
+        return  "/mypage/setting/editprofile";
+    }
+>>>>>>> 4b3cad87577ab2765979d748267ebfb78a3dca6b
    
     @RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.POST)
     public String editAccount(MemberVO mvo, HttpSession session) throws Exception {
@@ -160,7 +175,13 @@ public class MypageController {
     }
    
     @RequestMapping(value="/setting/changepwd", method=RequestMethod.GET)
-    public String changePasswd() {
+    public String changePasswd(HttpServletRequest request, Model model) {
+    	
+    	HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("username");
+		SessionVO svo = memberService.read(email);
+		model.addAttribute("svo", svo);
+    	
         return "/mypage/setting/changepwd";
     }
    
@@ -186,10 +207,11 @@ public class MypageController {
 	
 	
 	  @RequestMapping(value="/setting/quit", method=RequestMethod.GET)
-	    public String quit(HttpSession session) {
-		  MemberVO mvo = (MemberVO)session.getAttribute("check");
-	        memberService.quitMember(mvo);
-	        session.invalidate();
+	    public String quit(HttpServletRequest request, Model model) {
+		  HttpSession session = request.getSession();
+			String email = (String) session.getAttribute("username");
+			SessionVO svo = memberService.read(email);
+			model.addAttribute("svo", svo);
 	       
 	        return "/mypage/setting/quit";
 	    }
