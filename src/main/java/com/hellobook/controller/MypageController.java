@@ -92,18 +92,15 @@ public class MypageController {
 		
 	}
 	
-<<<<<<< HEAD
-	@GetMapping({"/setting/","/setting/editprofile"})
-	public String editprofile(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession();
-		String email = (String) session.getAttribute("username");
-		
-		SessionVO svo = memberService.read(email);
-		model.addAttribute("svo", svo);
-		return "/mypage/setting/editprofile";
-	}
-=======
->>>>>>> 233d79aeb227191a148d37ac29f3302300956df6
+//	@GetMapping({"/setting/","/setting/editprofile"})
+//	public String editprofile(HttpServletRequest request, Model model) {
+//		HttpSession session = request.getSession();
+//		String email = (String) session.getAttribute("username");
+//		
+//		SessionVO svo = memberService.read(email);
+//		model.addAttribute("svo", svo);
+//		return "/mypage/setting/editprofile";
+//	}
 	
 
 	

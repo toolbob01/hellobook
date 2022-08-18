@@ -3,6 +3,7 @@ package com.hellobook.controller;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -107,11 +108,19 @@ public class PostController {
 	}
 	
 	@PostMapping("post_update")
-	@PreAuthorize("isAuthenticated() and ( principal.username == #email )")
-	public String postUpdatePost(Model model, PostVO postVO, RedirectAttributes rttr, @RequestParam("uploadfile") List<MultipartFile> file_list) {
+	@PreAuthorize("isAuthenticated() and ( principal.username == #postVO.email )")
+	public String postUpdatePost( @RequestParam(name = "uploadfile", required = false) List<MultipartFile> file_list, 
+							      @RequestParam(name = "existingFile", required = false) List<Integer> existing_list, // null pointer 방지용 -1 들어있음.
+								  Model model, RedirectAttributes rttr, PostVO postVO ) {
 		
 		// 기존에 있던 ( Local Images + DB file ) 삭제
-		
+		List<PostFileVO> fileVO_list = post_service.selectFileByPno(postVO.getPno());
+		for( PostFileVO fileVO : fileVO_list ) {
+			if( !existing_list.contains(fileVO.getFno()) ) {
+				System.out.println("삭제해야 합니다 !  fno: " + fileVO.getFno());
+			}
+		}
+		System.out.println("---------------------------------------------------");
 		// Post Update
 		
 		return "redirect:/";

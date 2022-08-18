@@ -667,6 +667,7 @@
 			$(".modal-detail-contents .comment-profile").empty();
 			$(".modal-posting-master-content").html("");
 			$(".all-comment").empty();
+			$("#commentInsert").val("");
 		}
 	});
 	
@@ -677,6 +678,7 @@
 		 $(".modal-detail-contents .comment-profile").empty();
 		 $(".modal-posting-master-content").html("");
 		 $(".all-comment").empty();
+		 $("#commentInsert").val("");
 	 });
 	
 	
