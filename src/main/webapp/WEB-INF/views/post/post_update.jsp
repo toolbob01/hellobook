@@ -101,7 +101,7 @@
 					  <tr>
 					    <td>
 						  <div class="mb-4 text-center">
-							<input type="file" class="form-control uploadfile" id="uploadfile1" name="uploadfile" onchange="fileCheck(this)">
+							<input type="file" class="form-control uploadfile" id="uploadfile0" name="uploadfile" onchange="fileCheck(this)">
 						  </div>
 					    </td>
 					    <td>
@@ -144,7 +144,7 @@ $(".btn-delete").on("click", function() {
 		existingCnt = 4;
 		uploadfileCnt = 1;
 		$("#preview-div").empty();
-		$("#preview-div").append('<!-- Carousel --><div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false"><div class="carousel-inner"><div class="carousel-item active uploadfile0"><img src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image" class="d-block w-100" alt="..."></div></div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div><table class="table __add mt-5 mb-2"><tr><td><div class="mb-4 text-center"><input type="file" class="form-control uploadfile" id="uploadfile1" name="uploadfile" onchange="fileCheck(this)"></div></td><td><button type="button" class="_add btn btn-primary mb-3px btnBtn" data-idx="uploadfile0">추가</button></td></tr></table>');
+		$("#preview-div").append('<!-- Carousel --><div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false"><div class="carousel-inner"><div class="carousel-item active uploadfile0"><img src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image" class="d-block w-100" alt="..."></div></div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div><table class="table __add mt-5 mb-2"><tr><td><div class="mb-4 text-center"><input type="file" class="form-control uploadfile" id="uploadfile0" name="uploadfile" onchange="fileCheck(this)"></div></td><td><button type="button" class="_add btn btn-primary mb-3px btnBtn" data-idx="uploadfile0">추가</button></td></tr></table>');
 	}else {
 		$(this).closest('.d-flex').remove();
 		existingCnt = $("#existing-file-div").find('.d-flex').length;
