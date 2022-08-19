@@ -60,7 +60,7 @@
 						<c:if test="${mvo.email == username}">
 						<div class="mypage_profile_d">
 							<div class="mypage_profile_e">
-								<a class="btn btn-primary" href="/mypage/setting/editprofile">프로필 수정</a>
+								<a class="btn btn-primary" href="/mypage/setting/editprofile"><spring:message code="profile.editProfileBtn"/></a>
 							</div>
 						</div>
 						<div class="mypage_profile_g">
@@ -80,53 +80,53 @@
 					<ul class="mypage_info_a">
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							<a href="#nav-tabContent" style="text-decoration: none;color:#000;">게시물</a>
+							<a href="#nav-tabContent" style="text-decoration: none;color:#000;"><spring:message code="profile.post"/></a>
 							<span class="mypage_info_d">0</span>
 							</div>
 						</li>
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							<a href="/friend/list" style="text-decoration: none;color:#000;">친구</a>
+							<a href="/friend/list" style="text-decoration: none;color:#000;"><spring:message code="profile.friend"/></a>
 							<span class="mypage_info_d">0</span>
 							</div>
 						</li>
 					</ul>
 					<div class="mypage_nickname_a">
-						<p style="color: #000;">자기소개</p><br>
+						<p style="color: #000;"><spring:message code="profile.introduce"/></p><br>
 						<span class="mypage_nickname_b py-3">
 							${mvo.intro}
 						</span>
 						<br>
 					</div>
 					<div class="mypage_nickname_a py-3">
-						<p style="color: #000;">관심분야</p><br>
+						<p style="color: #000;"><spring:message code="profile.hobby"/></p><br>
 						<span class="mypage_nickname_b py-3">
 							<c:if test = "${fn:contains(mvo.hobby,1)}">
-								<span class="badge bg-primary text-white">여행</span>
+								<span class="badge bg-primary text-white"><spring:message code="profile.hobby.tour"/></span>
 							</c:if>
 							<c:if test = "${fn:contains(mvo.hobby,2)}">
-								<span class="badge bg-secondary text-white">음식</span>
+								<span class="badge bg-secondary text-white"><spring:message code="profile.hobby.food"/></span>
 							</c:if>
 							<c:if test = "${fn:contains(mvo.hobby,3)}">
-								<span class="badge bg-success text-white">언어</span>
+								<span class="badge bg-success text-white"><spring:message code="profile.hobby.lang"/></span>
 							</c:if>
 							<c:if test = "${fn:contains(mvo.hobby,4)}">
-								<span class="badge bg-danger text-white">악기</span>
+								<span class="badge bg-danger text-white"><spring:message code="profile.hobby.inst"/></span>
 							</c:if>
 							<c:if test = "${fn:contains(mvo.hobby,5)}">
-								<span class="badge bg-warning text-dark">독서</span>
+								<span class="badge bg-warning text-dark"><spring:message code="profile.hobby.read"/></span>
 							</c:if>
 							<c:if test = "${fn:contains(mvo.hobby,6)}">
-								<span class="badge bg-info text-dark">운동</span>
+								<span class="badge bg-info text-dark"><spring:message code="profile.hobby.workout"/></span>
 							</c:if>
 							<c:if test = "${fn:contains(mvo.hobby,7)}">
-								<span class="badge bg-dark text-white">사진</span>
+								<span class="badge bg-dark text-white"><spring:message code="profile.hobby.photo"/></span>
 							</c:if>
 							<c:if test = "${fn:contains(mvo.hobby,8)}">
-								<span class="badge bg-primary text-white">음악</span>
+								<span class="badge bg-primary text-white"><spring:message code="profile.hobby.music"/></span>
 							</c:if>
 							<c:if test = "${fn:contains(mvo.hobby,9)}">
-								<span class="badge bg-secondary text-white">동물</span>
+								<span class="badge bg-secondary text-white"><spring:message code="profile.hobby.animal"/></span>
 							</c:if>
 						</span>
 						<br>
@@ -136,13 +136,13 @@
 			<div class="nav nav-tabs mypage_tablist_a" id="nav-tab" role="tablist">
 				<button class="mypage_tablist_b" id="nav-post-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-post" aria-selected="true">
 					<div class="mypage_tablist_c">
-						<img src="https://img.icons8.com/ios-glyphs/30/000000/keypad.png"/>게시물
+						<img src="https://img.icons8.com/ios-glyphs/30/000000/keypad.png"/><spring:message code="profile.mypost"/>
 					</div>
 				</button>
 				<c:if test="${mvo.email == username}">
 				<button class="mypage_tablist_b" id="nav-like-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-like" aria-selected="false">
 					<div class="mypage_tablist_c">
-						<img src="https://img.icons8.com/ios-glyphs/30/000000/filled-like.png"/>좋아요
+						<img src="https://img.icons8.com/ios-glyphs/30/000000/filled-like.png"/><spring:message code="profile.mylike"/>
 					</div>
 				</button>
 				</c:if>
