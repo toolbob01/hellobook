@@ -34,7 +34,7 @@
 
 					<div class="mb-5">
 						<label class="fs-3 mb-2" for="content">내용</label>
-						<textarea class="form-control mt-3" rows="5" name="content" id="content" placeholder="포스트 내용을 입력해주세요."></textarea>
+						<textarea class="form-control mt-3 hello-scroll" rows="5" name="content" id="content" placeholder="포스트 내용을 입력해주세요."></textarea>
 					</div>
 
 					<div>
@@ -58,12 +58,10 @@
 					  </button>
 					</div>
 
-
 					<table class="table __add mt-5 mb-2"> 
 					  <tr>
 					    <td>
 						  <div class="mb-4 text-center">
-<!-- 							<img style="width: 500px; height: 500px;" class="preview-image" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image"> -->
 							<input type="file" class="form-control uploadfile" id="uploadfile0" name="uploadfile" onchange="fileCheck(this)">
 						  </div>
 					    </td>
@@ -142,44 +140,6 @@ function addDel(a){
 		}
 	})
 }
-
-//File Image Preview
-// $(".uploadfile").on("change", function(event) {
-// 	var uploadfile = $(this)
-//     var file = event.target.files[0]; console.log(file); console.log(uploadfile.files); 
-//     var reader = new FileReader(); 
-//     reader.onload = function(e) {
-//     	uploadfile.closest('.text-center').children('.preview-image').attr("src", e.target.result);
-//     }
-//     reader.readAsDataURL(file);
-// });
-/*$('.uploadfile').change(function() {
-	console.log('uploadfile change'); //
-	console.log(this); // <input>
-	console.log($(this)); // jQuery.fn.init
-    setImageFromFile(this, $(this));
-});
-function setImageFromFile(input, uploadfile) {
-	if (input.files && input.files[0]) {
-		var changeId = uploadfile.attr('id');
-		var changeIdNum = parseInt(changeId.substring(10));
-		var reader_list = new Array();
-		for ( i=0; i<changeIdNum+1; i++ ) {
-			reader_list.push( new FileReader() );
-		}
-		reader_list[changeIdNum].onload = function (e) {
-			$("." + changeId).children('img').attr('src', e.target.result); 
-		}
-		reader_list[changeIdNum].readAsDataURL(input.files[0]);
-// 		var reader = new FileReader();
-// 		reader.onload = function (e) {
-// 			$("." + changeId).children('img').attr('src', e.target.result);
-// 		}
-// 		reader.readAsDataURL(input.files[0]);
-		console.log(input.files[0]); // File {name: 'asdf.jpg', lastModified: ~ }
-	}
-}*/
-
 
 
 // File Size Check + Ext Check + Preview

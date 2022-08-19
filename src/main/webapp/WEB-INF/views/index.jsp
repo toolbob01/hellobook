@@ -444,9 +444,10 @@
     // Post CRUD Alert Script
 	$(document).ready(function() {
 		var insert_post_result = "${insert_post_result}";
+		var insert_pno = "${insert_pno}";
 		if( insert_post_result != null && insert_post_result != "" && !history.state ){
 			if( parseInt(insert_post_result) == 1 ){
-				alert('Insert Post Success ! ');
+				alert('Insert Post Success ! ( ' + insert_pno + ' 번 게시글 )');
 			}else{
 				alert('Insert Post Fail ! ');
 			}
@@ -455,7 +456,7 @@
 		var insert_file_result = "${insert_file_result}";
 		if( request_file_count != null && request_file_count != "" && insert_file_result != null && insert_file_result != "" && !history.state ){
 			if( parseInt(request_file_count) != parseInt(insert_file_result) ){
-				alert('Insert File Fail ! ( ' + insert_file_result + ' / ' + request_file_count + ' )');
+				alert('Insert Image file Fail ! ( ' + insert_file_result + ' / ' + request_file_count + ' )');
 			}
 		}
 		var delete_result = "${delete_result}";
@@ -465,6 +466,15 @@
 				alert('Delete Post Success ! ( ' + delete_pno + ' 번 게시글 )');
 			}else {
 				alert('Delete Post Fail ! ( ' + delete_pno + ' 번 게시글 )');
+			}
+		}
+		var update_result = "${update_result}";
+		var update_pno = "${update_pno}";
+		if( update_result != null && update_result != "" && update_pno != null && update_pno != "" && !history.state ){
+			if( parseInt(update_result) == 1 ) {
+				alert('Update Post Success ! ( ' + update_pno + ' 번 게시글 )');
+			}else {
+				alert('Update Post Fail ! ( ' + update_pno + ' 번 게시글 )');
 			}
 		}
 		history.replaceState({},null,null);
@@ -667,6 +677,7 @@
 			$(".modal-detail-contents .comment-profile").empty();
 			$(".modal-posting-master-content").html("");
 			$(".all-comment").empty();
+			$("#commentInsert").val("");
 		}
 	});
 	
@@ -677,6 +688,7 @@
 		 $(".modal-detail-contents .comment-profile").empty();
 		 $(".modal-posting-master-content").html("");
 		 $(".all-comment").empty();
+		 $("#commentInsert").val("");
 	 });
 	
 	

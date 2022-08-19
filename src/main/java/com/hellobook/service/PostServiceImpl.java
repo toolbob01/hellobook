@@ -73,6 +73,11 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
+	public int updatePost(PostVO postVO) {
+		return mapper.updatePost(postVO);
+	}
+	
+	@Override
 	public int countLike(int pno) {
 		return mapper.countLike(pno);
 	}

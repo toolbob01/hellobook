@@ -26,6 +26,8 @@ public interface PostMapper {
 	public int deletePostFileByFno(int fno);
 	public int deletePostFileByPno(int pno);
 	
+	public int updatePost(PostVO postVO);
+	
 	public int countLike(int pno);
 
 	public int deleteLike(PostLikeVO likeVO);

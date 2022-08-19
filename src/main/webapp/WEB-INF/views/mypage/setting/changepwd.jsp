@@ -106,7 +106,7 @@ body {
 						<div class="row" id="pw_input_group">
 							<div class="col-md-12 mb-3" id="input_div">
 								<input type="password" class="form-control" id="now_pw" placeholder="현재 비밀번호" required="">
-								<i class="fa-solid fa-eye"></i>
+								<i class="fa-solid fa-eye" value="${svo.password}"></i>
 							</div>
 							<div class="col-md-12 mb-3" id="input_div">
 								<input type="password" class="form-control" id="new_pw" placeholder="새 비밀번호" required="">
