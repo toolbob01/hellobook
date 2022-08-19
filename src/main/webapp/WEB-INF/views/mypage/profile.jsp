@@ -154,9 +154,9 @@
 							<c:if test="${pvoList.size()==0}">
 								<div class="mypage_like_a">
 									<div class="mypage_like_b">
-										<h1>내가 등록한 게시물</h1>
-										<p>내가 등록한 게시물 리스트를 보여줍니다.</p>
-										<span>현재 내가 등록한 게시물이 없습니다.</span>
+										<h1><spring:message code="profile.empty.post1"/></h1>
+										<p><spring:message code="profile.empty.post2"/></p>
+										<span><spring:message code="profile.empty.post3"/></span>
 									</div>
 								</div>
 							</c:if>
@@ -204,9 +204,9 @@
 							<c:if test="${likeList.size()==0}">
 								<div class="mypage_like_a">
 									<div class="mypage_like_b">
-										<h1>좋아요한 게시물</h1>
-										<p>내가 좋아요한 게시물 리스트를 보여줍니다.</p>
-										<span>현재 내가 좋아요한 게시물이 없습니다.</span>
+										<h1><spring:message code="profile.empty.like1"/></h1>
+										<p><spring:message code="profile.empty.like2"/></p>
+										<span><spring:message code="profile.empty.like3"/></span>
 									</div>
 								</div>
 							</c:if>
@@ -261,23 +261,23 @@
 		    <div class="list-group list-group-flush border-bottom scrollarea mp-st-sidebar_b">
 		      <a href="/mypage/setting/editprofile" class="list-group-item list-group-item-action py-3 lh-sm">
 		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;">프로필 수정</strong>
+		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.editProfile"/></strong>
 		        </div>
 		      </a>
 		      <a href="/mypage/setting/changepwd" class="list-group-item list-group-item-action py-3 lh-sm">
 		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;">비밀번호 변경</strong>
+		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.changePwd"/></strong>
 		        </div>
 		      </a>
 		      <a href="/mypage/setting/quit" class="list-group-item list-group-item-action py-3 lh-sm">
 		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;">회원탈퇴</strong>
+		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.quit"/></strong>
 		        </div>
 		      </a>
 		
 		      <a href="/mypage/setting/report" class="list-group-item list-group-item-action py-3 lh-sm">
 		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;">문제 신고</strong>
+		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.report"/></strong>
 		
 		        </div>
 		
@@ -286,7 +286,7 @@
 		      <sec:csrfInput/>
 		      <button class="list-group-item list-group-item-action py-3 lh-sm mp-logout">
 		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;">로그아웃</strong>
+		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.logout"/></strong>
 		
 		        </div>
 		
@@ -294,7 +294,7 @@
 		      </form>
 		      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
 		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;">취소</strong>
+		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.cancel"/></strong>
 		
 		        </div>
 		
