@@ -16,7 +16,7 @@ public interface MemberMapper {
 	public int checkNickname(String nickname);
 
 	public void changePwd(MemberVO mvo);
-	public void quitMember(MemberVO mvo); //회원 탈퇴
+	public void quitMember(String email); //회원 탈퇴
 	public int modify(MemberVO mvo); 
 	
 	public List<MemberVO> selectFriends(String email);
