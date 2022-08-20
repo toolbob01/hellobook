@@ -230,6 +230,7 @@ public class MypageController {
 		  String putInPwd = mvo.getPassword();
 		  SessionVO svo = memberService.read(mvo.getEmail());
 		  
+		  //입력받은 비밀번호(인코딩x)와 기존 비밀번호(인코딩o)를 비교
 		  if(pwencoder.matches(putInPwd, svo.getPassword())) {
 			  memberService.quitMember(mvo.getEmail());
 			  
@@ -237,7 +238,7 @@ public class MypageController {
 		  }else{
 			  result = new ResponseEntity<String>("1",HttpStatus.OK);
 		  }
-//		  
+		  
 		  return result != null? result : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	  }
 
