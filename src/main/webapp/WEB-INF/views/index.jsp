@@ -299,16 +299,16 @@
 			</div> <!-- col-md-3 -->
 
 
-<!-- Pagination -->
-<div class="pagination">
-    <a class="prevPage" href="/?pageNum=${pageVO.cri.pageNum - 1}&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 
-
-    <c:forEach var="num" begin="${pageVO.startPage}" end="${pageVO.endPage}">
-	  <a href="/?pageNum=${num}&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 			
-    </c:forEach>
-  
-    <a class="nextPage" href="/?pageNum=${pageVO.cri.pageNum + 1}&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 
-</div>
+			<!-- Pagination -->
+			<div class="pagination">
+			    <a class="prevPage" href="/?pageNum=${pageVO.cri.pageNum - 1}&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 
+			
+			    <c:forEach var="num" begin="${pageVO.startPage}" end="${pageVO.endPage}">
+				  <a href="/?pageNum=${num}&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 			
+			    </c:forEach>
+			  
+			    <a class="nextPage" href="/?pageNum=${pageVO.cri.pageNum + 1}&amount=${pageVO.cri.amount}&type=${pageVO.cri.type}&keyword=${pageVO.cri.keyword}"></a> 
+			</div>
 
 
 		</div> <!-- post-main-view-row -->
@@ -443,6 +443,20 @@
  
     // Post CRUD Alert Script
 	$(document).ready(function() {
+		
+		var totalRow = parseInt('${pageVO.cri.total}');
+		var nextPage = parseInt('${pageVO.cri.pageNum}') + 1;
+		var realEnd = parseInt('${pageVO.cri.realEnd}');
+		var amount = parseInt('${pageVO.cri.amount}'); 
+		var type = '${pageVO.cri.type}'; 
+		var keyword = '${pageVO.cri.keyword}'; 
+		console.log("total : " + totalRow);
+		console.log("nextPage : " + nextPage);
+		console.log("realEnd : " + realEnd);
+		console.log("amount : " + amount);
+		console.log("type : " + type);
+		console.log("keyword : " + keyword);
+		
 		var insert_post_result = "${insert_post_result}";
 		var insert_pno = "${insert_pno}";
 		if( insert_post_result != null && insert_post_result != "" && !history.state ){
@@ -786,6 +800,16 @@
 	})
 	
 	// Infinity Scroll
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// Infinity Scroll
 /*  	function YesScroll () {
 		const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
 		const fullContent = document.querySelector('.post-box'); // 전체를 둘러싼 컨텐츠 정보획득
@@ -797,6 +821,7 @@
 	    	const scrollPosition = pageYOffset; // 스크롤 위치
 	    	if (fullHeight-screenHeight/2 <= scrollPosition && !oneTime) { // 만약 전체높이-화면높이/2가 스크롤포지션보다 작아진다면, 그리고 oneTime 변수가 거짓이라면
 				oneTime = true; // oneTime 변수를 true로 변경해주고,
+				console.log('인피니티 스클로 감지 !!!');
 	      		madeBox(); // 컨텐츠를 추가하는 함수를 불러온다.
 	    	}
 	  	}
@@ -823,7 +848,7 @@
 			xhr.responseType = "document";
 		}
 	}
-	YesScroll() */
+	YesScroll();*/
 	
  
 </script>
