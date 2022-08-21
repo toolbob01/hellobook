@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostFileVO;
 import com.hellobook.domain.PostLikeVO;
 import com.hellobook.domain.PostVO;
@@ -275,6 +279,28 @@ public class PostController {
 		rVO.setTimer(Time.calculateTime(rVO.getRepdate()));
 
 		return insert_result != 1 ? null : rVO;
+	}
+	
+	@GetMapping("like_user_list") 
+	@ResponseBody
+	public List<PostLikeVO> like_user_list(int pno, HttpServletRequest request) { 
+		
+		// friendYN !!!
+		List<PostLikeVO> like_list = post_service.selectLikeByPno(pno);
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("username");
+		List<MemberVO> friend_list = member_service.selectFriends(email);
+		
+		for( PostLikeVO likeVO : like_list ) {
+			for( MemberVO friendVO : friend_list ) {
+				if( likeVO.getEmail().equals(friendVO.getEmail()) ) {
+					likeVO.setFriendYN("Y");
+					break;
+				}
+			}
+		}
+		
+		return like_list;
 	}
 	
 }

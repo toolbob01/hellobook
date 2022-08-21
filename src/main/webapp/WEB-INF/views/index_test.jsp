@@ -75,6 +75,40 @@
     }
 </style>
 
+			<div class="row">
+				<div class="col-md-12">
+					
+					<div id="like-user-list">
+						<p class="text-center fs-3 my-4">ハート</p>
+						<div id="like-user-list-detail">
+						
+							<div class="d-flex justify-content-between align-items-center luld">
+								<div class="top post-header ms-5">
+									<div class="user_container" onclick="location.href='#'">
+										<div class="profile_img">
+											<img src="/hello_img/member/lego_worker.jpg" alt="프로필이미지">
+										</div>
+										<div class="profile_flag">
+											<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>
+	<!-- 									<img class="flag_icon" src="https://img.icons8.com/color/25/000000/south-korea-circular.png"/> -->
+										</div>
+										<div class="user_name">
+											<div class="nick_name m_text">Hello_User</div>
+											<div class="mt-1 s_text">東京, 日本</div>
+										</div>
+									</div>
+								</div>
+								<div class="me-5">
+									<button type="button" class="btn btn-outline-info">친구 추가</button>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
 	<div class="fs-3 border border-3 border-dark m-3 text-center" id="btn-test">
 		Test Button
 	</div>

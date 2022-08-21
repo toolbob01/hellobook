@@ -445,9 +445,36 @@
 	<div class="modal-detail2">
 		<div class="container-fluid">
 			<div class="row">
-				
-				좋아요를 누른 회원 리스트
-
+				<div class="col-md-12">
+					
+					<div id="like-user-list" class="like-user-list hello-scroll">
+						<p class="text-center fs-3 my-4">ハート</p>
+						<div id="like-user-list-detail">
+						
+<!-- 							<div class="d-flex justify-content-between align-items-center luld">
+								<div class="top post-header ms-5">
+									<div class="user_container" onclick="location.href='#'">
+										<div class="profile_img">
+											<img src="/hello_img/member/lego_worker.jpg" alt="프로필이미지">
+										</div>
+										<div class="profile_flag">
+											<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>
+										</div>
+										<div class="user_name">
+											<div class="nick_name m_text">Hello_User</div>
+											<div class="mt-1 s_text">東京, 日本</div>
+										</div>
+									</div>
+								</div>
+								<div class="me-5">
+									<button type="button" class="btn btn-outline-info">친구 추가</button>
+								</div>
+							</div> -->
+							
+						</div>
+					</div>
+					
+				</div>
 			</div>
 		</div>
 	</div>
@@ -553,6 +580,76 @@
 				}
 			})
 		}
+	})
+	
+	// Like User List on Modal
+	$(document).on("click", ".heart-count", function() {
+		var lul_pno = $(this).data("pno");
+		$(".modal-background2").css("display", "block");
+		$.ajax({
+			type:"get",
+			url:"/post/like_user_list?pno=" + lul_pno,
+			dataType:"json",
+			success:function(like_list){
+				if( like_list[0] == null ) {
+					let luld = '<p class="mt-5 text-center fs-5">まだ、誰もハートを押していません。</p>';
+					$("#like-user-list-detail").append(luld);
+				}else {
+					$.each(like_list, function(luld_i, likeVO){
+						let luld = 
+							'<div class="d-flex justify-content-between align-items-center luld">' + 
+								'<div class="top post-header ms-5">' + 
+									'<div class="user_container" onclick="location.href=\'#\'">' + 
+										'<div class="profile_img">' + 
+											'<img src="/hello_img/member/' + likeVO.profile + '" alt="프로필이미지">' + 
+										'</div>' + 
+										'<div class="profile_flag">';
+									if( likeVO.language == 'J' ) {
+										luld += 
+											'<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>';
+									}else {
+										luld += 
+											'<img class="flag_icon" src="https://img.icons8.com/color/25/000000/south-korea-circular.png"/>'; 
+									}
+									luld += 
+										'</div>' + 
+										'<div class="user_name">' + 
+											'<div class="nick_name m_text">' + likeVO.nickname + '</div>' + 
+											'<div class="mt-1 s_text">東京, 日本</div>' + 
+										'</div>' + 
+									'</div>' + 
+								'</div>' + 
+								'<div class="me-5">';							
+									if( '${username}' == likeVO.email ) {
+										luld += 
+									'<div></div>'
+									}else {
+										if( likeVO.friendYN == 'Y' ) {
+											luld += 
+									'<button type="button" class="btn btn-outline-secondary">친구 삭제</button>';
+										}else {
+											luld += 
+									'<button type="button" class="btn btn-outline-info">친구 추가</button>';
+										}	
+									}
+									luld += 
+								'</div>' + 
+							'</div>';
+							$("#like-user-list-detail").append(luld);
+					})
+				}
+			}, error:function(){
+				alert("Error - Like User List ! ");
+			}
+		})
+	})
+	
+	// Like User List - Hover
+// 	$(document).on("hover", "#like-user-list-detail .luld", function() {
+	$(".luld").hover(function(){
+		$(this).css("background-color", "rgb(204 204 204 / 19%)");
+	},function(){
+		$(this).css("background-color", "#ffffff");
 	})
 	
 	// Side Bar - Hover
@@ -698,6 +795,13 @@
 			$("#commentInsert").val("");
 		}
 	});
+	$(document).mouseup(function (e){
+		var modal2 = $(".modal-background2");
+		if( modal2.has(e.target).length === 0){
+			$(".modal-background2").css('display','none');
+// 			$("#like-user-list-detail").empty();
+		}
+	});
 	
 	// Click 'X' in Detail Modal to make display none
 	 $('.closeModalBtn').on('click', function(){
@@ -708,7 +812,10 @@
 		 $(".all-comment").empty();
 		 $("#commentInsert").val("");
 	 });
-	
+	 $('.closeModalBtn2').on('click', function(){
+		 $('.modal-background2').css("display", "none");  
+// 		 $("#like-user-list-detail").empty();
+	 });
 	
 	// Coment Insert
 	$(".msg_send_btn").on("click", function(e){		
@@ -828,14 +935,14 @@
 			success:function(post_list){
 				var contain = 'n';
 				$.each(post_list, function(postVO_i, postVO){
-					const nextArticle = document.createElement("article");
-					nextArticle.classList.add("fs-1");
+/*					const nextArticle = document.createElement("article");
+ 					nextArticle.classList.add("fs-1");
 					let p_div = document.createElement("p");
 					p_div.textContent = "zaco zaco zaco";
 					nextArticle.append( p_div );
-				    $("#post-box").append(nextArticle);
+				    $("#post-box").append(nextArticle); */
 					console.log( postVO_i + '. article 생성 완료');
-/* 					let nextArticle = 
+ 					let nextArticle = 
 '<article class="contents post-fade-in">' + 
 	'<!-- post 헤더 -->' + 
 	'<header class="top post-header">' + 
@@ -918,7 +1025,7 @@
 					}
 					contain = 'n';
 					nextArticle += 			
-			'<span class="heart-count on_cursor" id="heart-count' + postVO.pno + '">' + 
+			'<span class="heart-count on_cursor" id="heart-count' + postVO.pno + '" data-pno="' + postVO.pno + '">' + 
 				postVO.like_cnt + ' 명이 좋아합니다' + 
 			'</span>' + 
 		'</div>' + 
@@ -952,9 +1059,9 @@
 			'<span class="more-comment" data-pno="' + postVO.pno + '">...</span>' + 
 		'</div>' + 
 	'</div>' + 
-'</article>'; */
-// 				    $("#post-box").append(nextArticle);
-// 					console.log( postVO_i + '. article 생성 완료');
+'</article>'; 
+				    $("#post-box").append(nextArticle);
+					console.log( postVO_i + '. article 생성 완료');
 				})
 			}, error:function(){
 				alert("Error - Next Page's Data ! ");
@@ -967,9 +1074,13 @@
 
         const listChildren = document.querySelectorAll(".post-box article");
         const listParent = document.querySelectorAll(".post-box")
+        console.log("------- '.post-box' ");
 		console.log(document.querySelectorAll(".post-box"));
-		console.log(document.querySelectorAll("article"));
+		console.log("------- 'listChildren' ");
         console.log(listChildren);
+		console.log("------- 'article' ");
+		console.log(document.querySelectorAll("article"));
+		console.log("------- '$(post-box article)' ");
         console.log($(".post-box article"));
         listChildren.forEach(ea => { // ea : End Article
             if (!ea.nextElementSibling && pageNum < realEnd) { 

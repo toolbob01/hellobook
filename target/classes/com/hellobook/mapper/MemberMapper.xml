@@ -97,7 +97,7 @@
 <!-- 	</select> -->
 
   	<select id="selectFriends" resultType="com.hellobook.domain.MemberVO">
-		SELECT  f.frno, f.femail, m.nickname, m.language, m.birth, m.sex, m.hobby, m.intro, m.profile  
+		SELECT  f.frno, m.email, m.nickname, m.language, m.birth, m.sex, m.hobby, m.intro, m.profile  
 		FROM friend f   
 		LEFT OUTER JOIN member m   
 		ON f.femail = m.email  
