@@ -212,7 +212,6 @@ body::-webkit-scrollbar-track {
 	top:0; left: 0; bottom: 0; right: 0;
 	background: rgb(0 0 0 / 63%);
 }
-
 .modal-detail { z-index: 52;
 	max-width: 1000px;
 	width: 90vw;
@@ -227,7 +226,6 @@ body::-webkit-scrollbar-track {
 	box-shadow: 2px 2px 3px #78787838;
 	background-color: white;
 }
-
 .closeModalBtnDiv {
 	position: relative;
 }
@@ -236,6 +234,36 @@ body::-webkit-scrollbar-track {
     top: 20px;
     right: 30px
 }
+
+.modal-background2 { z-index: 51;
+	display: none;
+	position: fixed;
+	top:0; left: 0; bottom: 0; right: 0;
+	background: rgb(0 0 0 / 63%);
+}
+.modal-detail2 { z-index: 52;
+	max-width: 1000px;
+	width: 90vw;
+	height: 93vh;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+/* 	margin-top: 30px; */
+	transform: translate(-50%, -50%);
+	border: 5px outset #9fd5ff;
+	border-radius: 5px;
+	box-shadow: 2px 2px 3px #78787838;
+	background-color: white;
+}
+.closeModalBtnDiv2 {
+	position: relative;
+}
+.closeModalBtn2 {
+	position: absolute;
+    top: 20px;
+    right: 30px
+}
+
 
 .modal-detail-left {
 	height: 90vh;

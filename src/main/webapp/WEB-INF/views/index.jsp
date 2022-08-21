@@ -44,13 +44,13 @@
 			<div class="col-lg-7">
 				<div class="row post-box" id="post-box">
 				  
-				  <c:choose>
+<%-- 				  <c:choose>
 				  <c:when test="${post_list[0] != null}">
 				    <c:set var="idx" value="1"/> <!-- id 식별용 idx -->
 					<c:forEach var="postVO" items="${post_list}">
-					<article class="contents">
+					<article class="contents"> --%>
 						<!-- post 헤더 -->
-						<header class="top post-header">
+<%-- 						<header class="top post-header">
 							<div class="user_container" onclick="location.href='#'">
 								<div class="profile_img">
 									<img src="/hello_img/member/${postVO.profile}" alt="프로필이미지">
@@ -69,9 +69,9 @@
 									<div class="nick_name m_text">${postVO.nickname}</div>
 									<div class="mt-1 s_text">東京, 日本</div>
 								</div>
-							</div>
+							</div> --%>
 <!-- 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div> -->
-								<sec:authorize access="isAuthenticated()">
+<%-- 								<sec:authorize access="isAuthenticated()">
 								     <c:if test="${postVO.email eq username}">
 										<div class="updateDeleteDiv">
 											<span class="updateDeleteContent">
@@ -82,10 +82,10 @@
 										</div>
 								     </c:if>
 								</sec:authorize>
-						</header>
+						</header> --%>
 
 						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
-						<div class="img_section">
+<%-- 						<div class="img_section">
 							<div class="trans_inner">
 								<div id="carousel${postVO.pno}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
 								  <div class="carousel-inner">
@@ -108,10 +108,10 @@
 								  </button>
 								</div>
 							</div>
-						</div>
+						</div> --%>
 
 						<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->
-						<div class="bottom_icons">
+<%-- 						<div class="bottom_icons">
 							<div class="left_icons">
 						        <c:set var="contain" value="n"/>
 						        <c:forEach var="like" items="${postVO.like_list}">
@@ -147,10 +147,10 @@
 
 						<div class="timer">
 							${postVO.timer}
-						</div>
+						</div> --%>
 
 						<!-- post 댓글 div -->
-						<div class="comment_container">
+<%-- 						<div class="comment_container">
 							<c:forEach var="replyVO" items="${postVO.reply_list}" begin="0" end="2">
 								<div class="comment">
 									<div class="nick_name">${replyVO.nickname}</div>
@@ -163,8 +163,8 @@
 								<span class="more-comment" data-pno="${postVO.pno}">...</span>
 							</div>
 						</div>
-					</article>
-					<c:set var="idx" value="${idx + 1}"/>
+					</article> --%>
+<%-- 					<c:set var="idx" value="${idx + 1}"/>
 					</c:forEach>
 				  </c:when>
 				  <c:otherwise>
@@ -207,7 +207,7 @@
 
 				  	</div>
 				  </c:otherwise>
-				  </c:choose>
+				  </c:choose> --%>
 
 				</div> <!-- // post-box -->
 				<p id="msg-loading">....... 次のデータをローディング中 .......</p>
@@ -828,7 +828,14 @@
 			success:function(post_list){
 				var contain = 'n';
 				$.each(post_list, function(postVO_i, postVO){
-					let nextArticle = 
+					const nextArticle = document.createElement("article");
+					nextArticle.classList.add("fs-1");
+					let p_div = document.createElement("p");
+					p_div.textContent = "zaco zaco zaco";
+					nextArticle.append( p_div );
+				    $("#post-box").append(nextArticle);
+					console.log( postVO_i + '. article 생성 완료');
+/* 					let nextArticle = 
 '<article class="contents post-fade-in">' + 
 	'<!-- post 헤더 -->' + 
 	'<header class="top post-header">' + 
@@ -945,9 +952,9 @@
 			'<span class="more-comment" data-pno="' + postVO.pno + '">...</span>' + 
 		'</div>' + 
 	'</div>' + 
-'</article>';
-				    $("#post-box").append(nextArticle);
-					console.log( postVO_i + '. article 생성 완료');
+'</article>'; */
+// 				    $("#post-box").append(nextArticle);
+// 					console.log( postVO_i + '. article 생성 완료');
 				})
 			}, error:function(){
 				alert("Error - Next Page's Data ! ");
@@ -959,6 +966,11 @@
     function observeLastChild(intersectionObserver) {
 
         const listChildren = document.querySelectorAll(".post-box article");
+        const listParent = document.querySelectorAll(".post-box")
+		console.log(document.querySelectorAll(".post-box"));
+		console.log(document.querySelectorAll("article"));
+        console.log(listChildren);
+        console.log($(".post-box article"));
         listChildren.forEach(ea => { // ea : End Article
             if (!ea.nextElementSibling && pageNum < realEnd) { 
                 intersectionObserver.observe(ea) // ea에 대하여 관측 시작
@@ -996,16 +1008,12 @@
     }, observerOption)
 
     // 초기 데이터 생성
-    //addData(pageNum) // 데이터 추가 함수  ///// *currentPage
+    addData(pageNum) // 데이터 추가 함수  ///// *currentPage
     observeLastChild(io) // IntersectionObserver 갱신 함수
-	
-	
-	
-	
-	
-	
-	
-	
+
+    
+    
+    
 	// Infinity Scroll
 /*  	function YesScroll () {
 		const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
