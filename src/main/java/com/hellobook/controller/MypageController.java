@@ -101,39 +101,6 @@ public class MypageController {
 		}
 		
 	}
-	
-
-//	@GetMapping({"/setting/","/setting/editprofile"})
-//	public String editprofile(HttpServletRequest request, Model model) {
-//		HttpSession session = request.getSession();
-//		String email = (String) session.getAttribute("username");
-//		
-//		SessionVO svo = memberService.read(email);
-//		model.addAttribute("svo", svo);
-//		return "/mypage/setting/editprofile";
-//	}
-	
-
-	
-
-//	@GetMapping({"/setting/","/setting/editprofile"})
-//	public String editprofile() {
-//		return "/mypage/setting/editprofile";
-//	}
-//	
-//	
-//
-//	
-//	
-//	@GetMapping("/setting/changepwd")
-//	public String changepwd() {
-//		return "/mypage/setting/changepwd";
-//	}
-	
-//	@GetMapping("/setting/quit")
-//	public String quit() {
-//		return "/mypage/setting/quit";
-//	}
 
 	@RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.GET)
     public String editprofile(HttpServletRequest request, Model model) {
@@ -146,38 +113,16 @@ public class MypageController {
         return  "/mypage/setting/editprofile";
     }
 	
-    @RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.POST)
-    public String editAccount(MemberVO mvo, HttpSession session) throws Exception {
-        MemberVO loginUser = (MemberVO) session.getAttribute("check");
-        String email = loginUser.getEmail(); //세션에 저장된 사용자 정보로부터 이메일을 알아낸다.
-       
-        if (mvo.getNickname() == null) {
-            mvo.setNickname(loginUser.getNickname());
-        }
-        if (mvo.getBirth() == null) {
-            mvo.setBirth(loginUser.getBirth());
-        }
-        
-        if (mvo.getLanguage() == null) {
-            mvo.setLanguage(loginUser.getLanguage());
-        }
-        
-        if (mvo.getSex() == null) {
-            mvo.setSex(loginUser.getSex());
-        }
-        
-        if (mvo.getHobby() == null) {
-            mvo.setHobby(loginUser.getHobby());
-        }
-        
-              
+    @RequestMapping(value="/setting/editprofile", method=RequestMethod.POST)
+    public String editAccount(MemberVO mvo, HttpSession session) {
+        String email = (String) session.getAttribute("username");
+        String password = (String) session.getAttribute("password");
         mvo.setEmail(email);
-        int check = memberService.modify(mvo);
-        if (check == 1) {
-            session.setAttribute("check",mvo);
-        }
-       
-        return "/mypage/setting/changepwd";
+        mvo.setPassword(password);
+        System.out.println(mvo.toString());
+        memberService.modify(mvo);
+        
+        return "redirect:/mypage/setting/editprofile";
        
     }
    
@@ -202,7 +147,7 @@ public class MypageController {
        
         memberService.changePwd(mvo);
        
-        return "/mypage/setting/changepwd";
+        return "redirect:/mypage/setting/changepwd";
     }
 
 	
