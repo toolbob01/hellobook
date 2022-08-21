@@ -57,8 +57,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void quitMember(MemberVO mvo) {
-		memberMapper.quitMember(mvo);		
+	public void quitMember(String email) {
+		memberMapper.quitMember(email);		
 		
 	}
 	

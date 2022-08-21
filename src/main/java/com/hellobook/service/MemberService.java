@@ -15,7 +15,7 @@ public interface MemberService {
 	public int checkNickname(String nickname);
 	public int modify(MemberVO mvo);
 	public void changePwd(MemberVO mvo);
-	public void quitMember(MemberVO mvo); //회원 탈퇴
+	public void quitMember(String email); //회원 탈퇴
 	public SessionVO read(String email);
 	public MemberVO readByNickname(String nickname);
 

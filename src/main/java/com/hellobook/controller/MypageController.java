@@ -10,20 +10,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.deser.DataFormatReaders.Match;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
 import com.hellobook.domain.SessionVO;
+import com.hellobook.mapper.MemberMapper;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Time;
@@ -37,6 +44,9 @@ public class MypageController {
 	
 	@Autowired
 	private PostService postService;
+	
+	@Autowired
+	private BCryptPasswordEncoder pwencoder;
 	
 	@GetMapping("/unknown")
 	public String unknown() {
@@ -91,39 +101,6 @@ public class MypageController {
 		}
 		
 	}
-	
-
-//	@GetMapping({"/setting/","/setting/editprofile"})
-//	public String editprofile(HttpServletRequest request, Model model) {
-//		HttpSession session = request.getSession();
-//		String email = (String) session.getAttribute("username");
-//		
-//		SessionVO svo = memberService.read(email);
-//		model.addAttribute("svo", svo);
-//		return "/mypage/setting/editprofile";
-//	}
-	
-
-	
-
-//	@GetMapping({"/setting/","/setting/editprofile"})
-//	public String editprofile() {
-//		return "/mypage/setting/editprofile";
-//	}
-//	
-//	
-//
-//	
-//	
-//	@GetMapping("/setting/changepwd")
-//	public String changepwd() {
-//		return "/mypage/setting/changepwd";
-//	}
-	
-//	@GetMapping("/setting/quit")
-//	public String quit() {
-//		return "/mypage/setting/quit";
-//	}
 
 	@RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.GET)
     public String editprofile(HttpServletRequest request, Model model) {
@@ -136,38 +113,16 @@ public class MypageController {
         return  "/mypage/setting/editprofile";
     }
 	
-    @RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.POST)
-    public String editAccount(MemberVO mvo, HttpSession session) throws Exception {
-        MemberVO loginUser = (MemberVO) session.getAttribute("check");
-        String email = loginUser.getEmail(); //세션에 저장된 사용자 정보로부터 이메일을 알아낸다.
-       
-        if (mvo.getNickname() == null) {
-            mvo.setNickname(loginUser.getNickname());
-        }
-        if (mvo.getBirth() == null) {
-            mvo.setBirth(loginUser.getBirth());
-        }
-        
-        if (mvo.getLanguage() == null) {
-            mvo.setLanguage(loginUser.getLanguage());
-        }
-        
-        if (mvo.getSex() == null) {
-            mvo.setSex(loginUser.getSex());
-        }
-        
-        if (mvo.getHobby() == null) {
-            mvo.setHobby(loginUser.getHobby());
-        }
-        
-              
+    @RequestMapping(value="/setting/editprofile", method=RequestMethod.POST)
+    public String editAccount(MemberVO mvo, HttpSession session) {
+        String email = (String) session.getAttribute("username");
+        String password = (String) session.getAttribute("password");
         mvo.setEmail(email);
-        int check = memberService.modify(mvo);
-        if (check == 1) {
-            session.setAttribute("check",mvo);
-        }
-       
-        return "/mypage/setting/changepwd";
+        mvo.setPassword(password);
+        System.out.println(mvo.toString());
+        memberService.modify(mvo);
+        
+        return "redirect:/mypage/setting/editprofile";
        
     }
    
@@ -192,7 +147,7 @@ public class MypageController {
        
         memberService.changePwd(mvo);
        
-        return "/mypage/setting/changepwd";
+        return "redirect:/mypage/setting/changepwd";
     }
 
 	
@@ -212,11 +167,26 @@ public class MypageController {
 	       
 	        return "/mypage/setting/quit";
 	    }
+	  
+	  @PostMapping(value="/setting/quit", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	  public ResponseEntity<String> removeEmail(@RequestBody MemberVO mvo) {
+		  ResponseEntity<String> result = null;
+		  
+		  String putInPwd = mvo.getPassword();
+		  SessionVO svo = memberService.read(mvo.getEmail());
+		  
+		  //입력받은 비밀번호(인코딩x)와 기존 비밀번호(인코딩o)를 비교
+		  if(pwencoder.matches(putInPwd, svo.getPassword())) {
+			  memberService.quitMember(mvo.getEmail());
+			  
+			  result = new ResponseEntity<String>("0",HttpStatus.OK);
+		  }else{
+			  result = new ResponseEntity<String>("1",HttpStatus.OK);
+		  }
+		  
+		  return result != null? result : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+	  }
 
-
-	
-	
-	
 	
 	@GetMapping("/setting/report")
 	public String report() {

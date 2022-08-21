@@ -10,7 +10,7 @@ body {
 }
 
 .input-form {
-	max-width: 680px;
+	max-width: 580px;
 	margin-top: 80px;
 	padding: 32px;
 	background: #fff;
@@ -112,7 +112,7 @@ body {
     border-bottom: 6px double #ced4da;
 }
 
-#cancleBtn{
+#cancelBtn{
     background: white;
 }
 
@@ -147,25 +147,25 @@ body {
 			<div class="col-9">
 				<div class="input-form col-md-12 mx-auto">
 					<div id="notice">
-						<h4 class="mb-3">탈퇴 안내<small>회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해 주세요.</small></h4><hr />
-						<p>· <strong>탈퇴 후 회원정보 및 개인형 서비스 이용기록은 모두 삭제됩니다.</strong></p>
+						<h4 class="mb-3"><spring:message code="setting.quit.title"/><small><spring:message code="setting.quit.notice1"/></small></h4><hr />
+						<p>· <strong><spring:message code="setting.quit.notice2"/></strong></p>
 						<table id="notice_table">
 							<tr>
-								<th>채팅</th>
-								<td>채팅 계정 및 보관 중인 채팅 삭제</td>
+								<th><spring:message code="setting.quit.notice.table.title1"/></th>
+								<td><spring:message code="setting.quit.notice.table.notice1"/></td>
 							</tr>
 							<tr>
-								<th>포스트</th>
-								<td>포스트 계정 및 게시물 삭제</td>
+								<th><spring:message code="setting.quit.notice.table.title2"/></th>
+								<td><spring:message code="setting.quit.notice.table.notice2"/></td>
 							</tr>
 							<tr>
-								<th>친구 목록</th>
-								<td>저장된 친구 목록 삭제</td>
+								<th><spring:message code="setting.quit.notice.table.title3"/></th>
+								<td><spring:message code="setting.quit.notice.table.notice3"/></td>
 							</tr>
 						</table>
 						<hr />
 						<br />
-						<p style="color: red;">탈퇴 후에는 아이디와 데이터는 복구할 수 없습니다.</p>
+						<p style="color: red;"><spring:message code="setting.quit.notice3"/></p>
 						<br />
 					</div>
 
@@ -173,11 +173,11 @@ body {
 						<form class="validation-form" novalidate="">
 							<div id="checkbox_div">
 								<input type="checkbox" id="conf_quit">
-								<strong>안내 사항을 모두 확인하였으며, 이에 동의합니다.</strong>
+								<strong><spring:message code="setting.quit.agreement"/></strong>
 							</div>
 							<br/>
 							<div id="button_div">
-								<button class="btn btn-primary btn-lg btn-block" id="quitBtn" type="button">탈퇴</button>
+								<button class="btn btn-primary btn-lg btn-block" id="quitBtn" type="button"><spring:message code="setting.quit.quitBtn"/></button>
 							</div>
 						</form>
 					</div>
@@ -194,19 +194,19 @@ body {
     <div class="modal-content rounded-4 shadow">
       <div class="modal-body p-5">
       	<form class="validation-form" novalidate="">
-      		<h4 id="conf_pw">비밀번호 재확인</h4>
+      		<h4 id="conf_pw"><spring:message code="setting.quit.modal.confirm.title"/></h4>
 			<div class="row" id="pw_input_group">
 				<div class="col-md-12 mb-3" id="input_div">
 					<input class="form-control" type="text" id="email" name="email" value="${svo.email}" readonly="readonly"/>
 				</div>
 				<div class="col-md-12 mb-3" id="input_div">
-					<input type="password" class="form-control" id="userpw" placeholder="비밀번호를 입력해주세요" required="">
+					<input type="password" class="form-control" id="userpw" placeholder="<spring:message code="setting.quit.modal.confirm.placeholder"/>" required="">
 					<i class="fa-solid fa-eye"></i>
 				</div>
 			</div>
 			<div id="button_div">
-				<button class="btn btn-helloblue btn-lg btn-block" id="confQuitBtn" type="submit">탈퇴</button>
-				<button class="btn btn-helloblue btn-lg btn-block" id="cancleBtn" type="button">취소</button>
+				<button class="btn btn-helloblue btn-lg btn-block" id="confQuitBtn" type="button"><spring:message code="setting.quit.quitBtn"/></button>
+				<button class="btn btn-helloblue btn-lg btn-block" id="cancelBtn" type="button"><spring:message code="setting.quit.cancelBtn"/></button>
 			</div>
 		</form>
       </div>
@@ -218,7 +218,7 @@ body {
 <script>
 	$('#quitBtn').on("click",function(){
 		if(!$('#conf_quit').is(":checked")){
-			alert("탈퇴 안내를 확인하고 동의해 주세요.")
+			alert('<spring:message code="setting.quit.alert1"/>')
 			return;
 		}
 		
@@ -241,27 +241,61 @@ body {
 		}
 	})
 	
+	var quitService = (function() {
+		function quitUser(email, password, callback, err) {
+			var data = {
+					email:email,
+					password:password
+			} 
+			$.ajax({
+				type:"post",
+				url:"/mypage/setting/quit",
+				data:JSON.stringify(data),
+				contentType:'application/json; charset = utf-8',
+				success: function(result,status,xhr) {
+					if(callback){
+						callback(result);
+					}
+				},error: function(xhr,status,er){
+					if(err){
+						err();
+					}
+				}
+			})
+		}
 		
+		return {quitUser:quitUser};
+	})()
 	
 	//비밀번호 확인
 	$('#confQuitBtn').on("click",function(e){
-		//ajax로 비밀번호 넘겨서 받아오기
-		var pw = '1234';
-		if($('#userpw').val() != pw){
-			//비밀번호가 틀렸을 시
-			alert("비밀번호가 일치하지않습니다.")
-			return false;
-		}else{
-			if(confirm("탈퇴한 아이디는 복구하실 수 없습니다.\n정말 탈퇴하시겠습니까?")){
-				return true;
-			}
-			
-			return false;
+		var email = $('#email').val();
+		var password = $('#userpw').val();
+		
+		if(password == ""){
+			alert("")
+			return;
+		}
+		
+		if(confirm('<spring:message code="setting.quit.confirm1"/>\n<spring:message code="setting.quit.confirm2"/>')){
+		//ajax로 비밀번호 넘겨서 결과 받아오기
+			quitService.quitUser(email, password, function(result){
+				console.log(result);
+				if(result == 0){
+					alert('<spring:message code="setting.quit.alert3"/>\n<spring:message code="setting.quit.alert4"/>')
+					logoutFN();
+					return;
+				}else if(result == 1){
+					//비밀번호가 틀렸을 시
+					alert('<spring:message code="setting.quit.alert5"/>')
+					return false;
+				} 
+			});
 		}
 	})
 	
 	// 모달 안의 취소 버튼에 이벤트를 건다.
-	$('#cancleBtn').on('click', function(){
+	$('#cancelBtn').on('click', function(){
 		$('#quitModal').modal('hide');
 		$('#userpw').val('');
 	});
