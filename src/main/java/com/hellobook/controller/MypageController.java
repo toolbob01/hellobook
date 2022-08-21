@@ -226,11 +226,5 @@ public class MypageController {
 		
 		return "redirect:/mypage/profile/"+encodedParam;
 	}
-	
-	@PostMapping("/setting/nicknameCheck")
-	public @ResponseBody int nicknameCheck(@RequestParam("nickname") String nickname) {
-		int result = memberService.checkEmail(nickname);
-		return result;
-	}
 
 }
