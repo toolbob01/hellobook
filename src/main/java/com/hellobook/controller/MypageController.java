@@ -23,14 +23,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.databind.deser.DataFormatReaders.Match;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
 import com.hellobook.domain.SessionVO;
-import com.hellobook.mapper.MemberMapper;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Time;
@@ -101,39 +100,6 @@ public class MypageController {
 		}
 		
 	}
-	
-
-//	@GetMapping({"/setting/","/setting/editprofile"})
-//	public String editprofile(HttpServletRequest request, Model model) {
-//		HttpSession session = request.getSession();
-//		String email = (String) session.getAttribute("username");
-//		
-//		SessionVO svo = memberService.read(email);
-//		model.addAttribute("svo", svo);
-//		return "/mypage/setting/editprofile";
-//	}
-	
-
-	
-
-//	@GetMapping({"/setting/","/setting/editprofile"})
-//	public String editprofile() {
-//		return "/mypage/setting/editprofile";
-//	}
-//	
-//	
-//
-//	
-//	
-//	@GetMapping("/setting/changepwd")
-//	public String changepwd() {
-//		return "/mypage/setting/changepwd";
-//	}
-	
-//	@GetMapping("/setting/quit")
-//	public String quit() {
-//		return "/mypage/setting/quit";
-//	}
 
 	@RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.GET)
     public String editprofile(HttpServletRequest request, Model model) {
@@ -146,38 +112,21 @@ public class MypageController {
         return  "/mypage/setting/editprofile";
     }
 	
-    @RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.POST)
-    public String editAccount(MemberVO mvo, HttpSession session) throws Exception {
-        MemberVO loginUser = (MemberVO) session.getAttribute("check");
-        String email = loginUser.getEmail(); //세션에 저장된 사용자 정보로부터 이메일을 알아낸다.
-       
-        if (mvo.getNickname() == null) {
-            mvo.setNickname(loginUser.getNickname());
-        }
-        if (mvo.getBirth() == null) {
-            mvo.setBirth(loginUser.getBirth());
-        }
-        
-        if (mvo.getLanguage() == null) {
-            mvo.setLanguage(loginUser.getLanguage());
-        }
-        
-        if (mvo.getSex() == null) {
-            mvo.setSex(loginUser.getSex());
-        }
-        
-        if (mvo.getHobby() == null) {
-            mvo.setHobby(loginUser.getHobby());
-        }
-        
-              
+    @RequestMapping(value="/setting/editprofile", method=RequestMethod.POST)
+    public String editAccount(MemberVO mvo, HttpSession session) throws UnsupportedEncodingException {
+        String email = (String) session.getAttribute("username");
         mvo.setEmail(email);
-        int check = memberService.modify(mvo);
-        if (check == 1) {
-            session.setAttribute("check",mvo);
-        }
-       
-        return "/mypage/setting/changepwd";
+        System.out.println(mvo.toString());
+        
+        memberService.modify(mvo);
+        
+        SessionVO svo = new SessionVO();
+        svo.setNickname(mvo.getNickname());
+        session.setAttribute("Nname", svo.getNickname());
+        
+        String encodedParam = URLEncoder.encode(svo.getNickname(), "UTF-8");
+        
+        return "redirect:/mypage/profile/"+encodedParam;
        
     }
    
@@ -202,7 +151,7 @@ public class MypageController {
        
         memberService.changePwd(mvo);
        
-        return "/mypage/setting/changepwd";
+        return "redirect:/mypage/setting/changepwd";
     }
 
 	
@@ -276,6 +225,12 @@ public class MypageController {
 		String encodedParam = URLEncoder.encode(nickname, "UTF-8");
 		
 		return "redirect:/mypage/profile/"+encodedParam;
+	}
+	
+	@PostMapping("/setting/nicknameCheck")
+	public @ResponseBody int nicknameCheck(@RequestParam("nickname") String nickname) {
+		int result = memberService.checkEmail(nickname);
+		return result;
 	}
 
 }

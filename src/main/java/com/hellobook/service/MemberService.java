@@ -19,10 +19,6 @@ public interface MemberService {
 	public SessionVO read(String email);
 	public MemberVO readByNickname(String nickname);
 
-	
-	
-	
-	
 	public List<MemberVO> selectFriends(String email);
 	public void updateThumbnailByNickname(MemberVO mvo); //프로필 사진 수정
 }

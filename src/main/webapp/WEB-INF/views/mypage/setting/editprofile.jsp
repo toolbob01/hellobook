@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../header.jsp" %>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <style>
 body {
 	
@@ -94,7 +96,8 @@ body {
 				<div id="notice">
 					<h4 class="mb-3">프로필 수정</h4>
 				</div>
-				<form class="validation-form" id="regForm" action="regtest" method="post" novalidate>
+				<form class="validation-form" id="regForm" action="/mypage/setting/editprofile" method="post" novalidate>
+				<sec:csrfInput/>
 				<div class="row">
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
@@ -102,6 +105,17 @@ body {
 							<label for="nickname">닉네임</label> 
 							<input type="text"
 								class="form-control" id="nickname" name="nickname" value="${svo.nickname}" placeholder="">
+
+							<div class="notice-bubble" id="nickname-notice"></div>
+						</div>
+					</div>
+					
+					<div class="col-md-12 mb-3">
+						<div class="input_div">
+
+							<label for="nickname">자기소개</label> 
+							<input type="text"
+								class="form-control" id="nickname" name="intro" value="${svo.intro}" placeholder="">
 
 							<div class="notice-bubble" id="nickname-notice"></div>
 						</div>
@@ -128,7 +142,7 @@ body {
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
 							<label for="birth">생년월일</label>
-							<input type="date" class="form-control" name="birth" id="birth" min="1900-01-01" style="width: 50%; min-width: 10px;" >
+							<input type="date" class="form-control" name="birth" id="birth" min="1900-01-01" value="${svo.birth}" style="width: 50%; min-width: 10px;" >
 							<div class="notice-bubble" id="birth-notice"></div>
 						</div>
 					</div>
@@ -190,13 +204,9 @@ body {
 					</div>
 				</div>
 
-				<hr class="mb-4">
-				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input" id="agreement" name="agreement" required>
-					<label class="custom-control-label" for="agreement">개인정보 수집 및 이용에 동의합니다.</label>
-				</div>
+				
 				<div class="mb-4"></div>
-				<button class="btn btn-primary btn-lg btn-block" type="button" onclick="formCheck()">가입
+				<button class="btn btn-primary btn-lg btn-block" type="button" onclick="formCheck()">수정
 				</button>
 				
 				<input type="hidden" name="hobby" id="hobby" value="">
@@ -251,7 +261,41 @@ nickname.on("blur",function(){
 		nickname.focus();
 		return
 	}
-})
+	
+	var Nname = nickname.val();
+	var Sname = "${svo.nickname}";
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	$.ajax({
+		url : "/member/checkNickname",
+		type : "get",
+		data : {nickname : Nname},
+		dataType : 'json',
+
+		success : function(result) {
+			console.log(result);
+			if(result != 0) {
+				if(Nname == Sname) {
+					nicknameNotice.html("기존 닉네임과 같습니다.");
+					nicknameNotice.css('display','flex')
+				} else {
+					nicknameNotice.html("사용할 수 없는 닉네임입니다.");
+					nicknameNotice.css('display','flex')
+					nickname.focus();
+					return
+				}
+			} else {
+				nicknameNotice.html("사용할 수 있는 닉네임입니다.");
+				nicknameNotice.css('display','flex')
+			}
+		},
+		error : function() {
+			alert("서버요청실패");
+		}
+	});
+
+});
 
 birth.on("blur",function(){
 	birthNotice.css('display','none')
@@ -283,6 +327,12 @@ function formCheck(){
 	
 	if(nickname.val().search(/\s/) != -1){
 		alert("닉네임은 공백을 포함할 수 없습니다.");
+		nickname.focus();
+		return
+	}
+	
+	if(nicknameNotice.text().includes("사용할 수 없는 닉네임입니다.")) {
+		alert("사용할 수 없는 닉네임입니다.");
 		nickname.focus();
 		return
 	}
@@ -328,6 +378,57 @@ function formCheck(){
 	
 	$("#regForm").submit();
 }
+
+$(function() {
+	var lang = "${svo.language}";
+	var sex = "${svo.sex}";
+	var hobby = "${svo.hobby}"
+	
+	if(sex == "M") {
+		$("#male").prop("checked",true);
+		$("#female").prop("checked",false);
+	}else {
+		$("#male").prop("checked",false);
+		$("#female").prop("checked",true);
+	}
+	
+	if(lang == "K") {
+		$("#korean").prop("checked",true);
+	} else if(lang == "J") {
+		$("#japanese").prop("checked",true);
+	} else {
+		$("#etc").prop("checked",true);
+	}
+	
+	if(hobby.includes("1")) {
+		$("#trip").prop("checked",true);
+	} 
+	if(hobby.includes("2")) {
+		$("#food").prop("checked",true);
+	} 
+	if(hobby.includes("3")) {
+		$("#lan").prop("checked",true);
+	} 
+	if(hobby.includes("4")) {
+		$("#instrument").prop("checked",true);
+	} 
+	if(hobby.includes("5")) {
+		$("#reading").prop("checked",true);
+	} 
+	if(hobby.includes("6")) {
+		$("#exercise").prop("checked",true);
+	}
+	if(hobby.includes("7")) {
+		$("#photo").prop("checked",true);
+	} 
+	if(hobby.includes("8")) {
+		$("#music").prop("checked",true);
+	} 
+	if(hobby.includes("9")) {
+		$("#animal").prop("checked",true);
+	}
+});
+
 </script>
 
 <%@ include file="../../footer.jsp" %>

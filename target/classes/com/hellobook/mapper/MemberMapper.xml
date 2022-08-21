@@ -52,8 +52,8 @@
 	</insert>
 	
 	  <update id="modify">
-        UPDATE member SET nickname = #{nickname}, birth = #{birth}, language = #{language}, sex = #{sex}, hobby = #{hobby}
-        WHERE email = #{email} AND password = #{password}
+        UPDATE member SET nickname = #{nickname}, intro = #{intro}, birth = #{birth}, language = #{language}, sex = #{sex}, hobby = #{hobby}
+        WHERE email = #{email}
     </update>
 	
 	
