@@ -42,7 +42,7 @@
 			
 			<!-- post -->
 			<div class="col-lg-7">
-				<div class="row post-box">
+				<div class="row post-box" id="post-box">
 				  
 				  <c:choose>
 				  <c:when test="${post_list[0] != null}">
@@ -87,7 +87,7 @@
 						<!-- post 바디(이미지나 동영상 등 내용 입력 -->
 						<div class="img_section">
 							<div class="trans_inner">
-								<div id="carousel${idx}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+								<div id="carousel${postVO.pno}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
 								  <div class="carousel-inner">
 								    <div class="carousel-item active">
 								      <img src="/hello_img/post/${postVO.file_list[0].uuid}" alt="...">
@@ -98,11 +98,11 @@
 									    </div>
 								    </c:forEach>
 								  </div>
-								  <button class="carousel-control-prev" type="button" data-bs-target="#carousel${idx}" data-bs-slide="prev">
+								  <button class="carousel-control-prev" type="button" data-bs-target="#carousel${postVO.pno}" data-bs-slide="prev">
 								    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								    <span class="visually-hidden">Previous</span>
 								  </button>
-								  <button class="carousel-control-next" type="button" data-bs-target="#carousel${idx}" data-bs-slide="next">
+								  <button class="carousel-control-next" type="button" data-bs-target="#carousel${postVO.pno}" data-bs-slide="next">
 								    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 								    <span class="visually-hidden">Next</span>
 								  </button>
@@ -159,11 +159,9 @@
 									</div>
 								</div>
 							</c:forEach>
-<%-- 							<c:if test="${postVO.reply_list[3] != null}"> --%>
-								<div class="more-comment-div">
-									<span class="more-comment" data-pno="${postVO.pno}">...</span>
-								</div>
-<%-- 							</c:if> --%>
+							<div class="more-comment-div">
+								<span class="more-comment" data-pno="${postVO.pno}">...</span>
+							</div>
 						</div>
 					</article>
 					<c:set var="idx" value="${idx + 1}"/>
@@ -212,6 +210,7 @@
 				  </c:choose>
 
 				</div> <!-- // post-box -->
+				<p id="msg-loading">....... 次のデータをローディング中 .......</p>
 			</div> <!-- // col-lg-7 -->
 			
 
@@ -437,25 +436,28 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal-background2">
+	<div class="closeModalBtnDiv2">
+		<span class="closeModalBtn2 fs-5 text-white on_cursor">X</span>
+	</div>
+
+	<div class="modal-detail2">
+		<div class="container-fluid">
+			<div class="row">
+				
+				좋아요를 누른 회원 리스트
+
+			</div>
+		</div>
+	</div>
+</div>
 <!-- /Modal Test -->
 
 <script>
  
     // Post CRUD Alert Script
 	$(document).ready(function() {
-		
-		var totalRow = parseInt('${pageVO.cri.total}');
-		var nextPage = parseInt('${pageVO.cri.pageNum}') + 1;
-		var realEnd = parseInt('${pageVO.cri.realEnd}');
-		var amount = parseInt('${pageVO.cri.amount}'); 
-		var type = '${pageVO.cri.type}'; 
-		var keyword = '${pageVO.cri.keyword}'; 
-		console.log("total : " + totalRow);
-		console.log("nextPage : " + nextPage);
-		console.log("realEnd : " + realEnd);
-		console.log("amount : " + amount);
-		console.log("type : " + type);
-		console.log("keyword : " + keyword);
 		
 		var insert_post_result = "${insert_post_result}";
 		var insert_pno = "${insert_pno}";
@@ -495,7 +497,7 @@
 	})
 
 	// original Template Script
-	onclick = function deligationFunc(e) {
+/*  	onclick = function deligationFunc(e) {
 		let elem = e.target;
 		if(elem.getAttribute('data-name') == null){
 			elem = null;
@@ -515,15 +517,16 @@
 		}
 
 		elem.classList.toggle('on');
-	}
+	} */
 	
 	// Click heart-btn -> By status of data-heart, Adding or Removing user in like_list
-	$(".heart-btn").on("click", function(e){
+	$(document).on("click", ".heart-btn" ,function(e) {
 		var heart_stat = $(this).data("heart");
 		var heart_user = '${username}';
 		var heart_pno = $(this).data("pno");
 		if( heart_stat == 'y' ) {
-			$(this).data("heart", "n")
+			$(this).data("heart", "n");
+			$(this).removeClass("on");
 			e.preventDefault();
 			$.ajax({
 				type:"get",
@@ -536,7 +539,8 @@
 				}
 			})
 		}else {
-			$(this).data("heart", "y")
+			$(this).data("heart", "y");
+			$(this).addClass("on");
 			e.preventDefault();
 			$.ajax({
 				type:"get",
@@ -561,7 +565,7 @@
 	})
 	
 	// Modal - Detail
-	$(".more-comment").on("click", function(e){
+	$(document).on("click", ".more-comment" ,function(e) {
 		var nowPno = $(this).data("pno");
 		e.preventDefault();
 		// AJAX action
@@ -772,7 +776,7 @@
 	})
 	
 	// coComment Open Close
-	$(".cocoment-open").on("click", function() {
+	$(document).on("click",".cocoment-open",function() {
 		if( $(this).data("oc") == 'c' ){
 			$(this).data("oc", "o")
 			$(this).html("접기");
@@ -783,7 +787,7 @@
 	})
 
 	// Post Update
-	$(".updateLink").on("click", function() { 
+	$(document).on("click",".updateLink",function() {
 		var updatePno = $(this).data("pno");
 		var updateUser = '${username}';
 		if( confirm(updatePno + " 번 게시물을 수정하시겠습니까?") ) {
@@ -791,7 +795,7 @@
 		}
 	})
 	// Post Delete
-	$(".deleteLink").on("click", function() { 
+	$(document).on("click",".deleteLink",function() {
 		var deletePno = $(this).data("pno");
 		var deleteUser = '${username}';
 		if( confirm(deletePno + " 번 게시물을 삭제하시겠습니까?") ) {
@@ -800,7 +804,200 @@
 	})
 	
 	// Infinity Scroll
+	var totalRow = parseInt('${pageVO.total}');
+	var realEnd = parseInt('${pageVO.realEnd}');
+	var pageNum = parseInt('${pageVO.cri.pageNum}');
+	var amount = parseInt('${pageVO.cri.amount}'); 
+	var type = '${pageVO.cri.type}'; 
+	var keyword = '${pageVO.cri.keyword}'; 
+	const msgLoading = document.getElementById("msg-loading");
 	
+	console.log("total : " + totalRow);
+	console.log("pageNum : " + pageNum);
+	console.log("realEnd : " + realEnd);
+	console.log("amount : " + amount);
+	console.log("type : " + type);
+	console.log("keyword : " + keyword);
+    
+    // 데이터 추가 함수
+    function addData(nextPage) { 
+		$.ajax({
+			type:"get",
+			url:"/next?pageNum=" + nextPage + "&amount=" + amount + "&type=" + type + "&keyword=" + keyword,
+			dataType:"json",
+			success:function(post_list){
+				var contain = 'n';
+				$.each(post_list, function(postVO_i, postVO){
+					let nextArticle = 
+'<article class="contents post-fade-in">' + 
+	'<!-- post 헤더 -->' + 
+	'<header class="top post-header">' + 
+		'<div class="user_container" onclick="location.href=\'#\'">' + 
+			'<div class="profile_img">' + 
+				'<img src="/hello_img/member/' + postVO.profile + '" alt="프로필이미지">' + 
+			'</div>' + 
+			'<div class="profile_flag">';
+					if ( postVO.language == 'J' ) {
+						nextArticle += '<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>';
+					}else if ( postVO.language == 'K' ) {
+						nextArticle += '<img class="flag_icon" src="https://img.icons8.com/color/25/000000/south-korea-circular.png"/>';
+					}
+					nextArticle += 
+			'</div>' + 
+			'<div class="user_name">' + 
+				'<div class="nick_name m_text">' + postVO.nickname + '</div>' + 
+				'<div class="mt-1 s_text">東京, 日本</div>' + 
+			'</div>' + 
+		'</div>'; 
+					if ( postVO.email == '${username}' ) {
+						nextArticle += 
+		'<div class="updateDeleteDiv">' + 
+			'<span class="updateDeleteContent">' + 
+				'<span class="updateLink" data-pno="' + postVO.pno + '">게시물 수정</span>' + 
+				'|' +  
+				'<span class="deleteLink" data-pno="' + postVO.pno + '">게시물 삭제</span>' + 
+			'</span>' + 
+		'</div>';
+					}
+					nextArticle += 
+	'</header>' + 
+	'<!-- post 바디(이미지나 동영상 등 내용 입력 -->' + 
+	'<div class="img_section">' + 
+		'<div class="trans_inner">' + 
+			'<div id="carousel' + postVO.pno + '" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">' + 
+			  '<div class="carousel-inner">' + 
+			    '<div class="carousel-item active">' + 
+			      '<img src="/hello_img/post/' + postVO.file_list[0].uuid + '" alt="...">' + 
+			    '</div>'; 
+			    	if( postVO.file_list[1] != null ) {
+			    		for( var file_i in postVO.file_list ) {
+			    			if( file_i != 0 ) {
+			    				nextArticle += 
+			    '<div class="carousel-item">' + 
+			      '<img src="/hello_img/post/' + postVO.file_list[file_i].uuid + '" alt="...">' + 
+			    '</div>';
+			    			}
+			    		}
+			    	}
+			    	nextArticle += 
+			  '</div>' + 
+			  '<button class="carousel-control-prev" type="button" data-bs-target="#carousel' + postVO.pno + '" data-bs-slide="prev">' + 
+			    '<span class="carousel-control-prev-icon" aria-hidden="true"></span>' + 
+			    '<span class="visually-hidden">Previous</span>' + 
+			  '</button>' + 
+			  '<button class="carousel-control-next" type="button" data-bs-target="#carousel' + postVO.pno + '" data-bs-slide="next">' + 
+			    '<span class="carousel-control-next-icon" aria-hidden="true"></span>' + 
+			    '<span class="visually-hidden">Next</span>' + 
+			  '</button>' + 
+			'</div>' + 
+		'</div>' + 
+	'</div>' + 
+	'<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->' + 
+	'<div class="bottom_icons">' + 
+		'<div class="left_icons">';
+					var like_user = '${username}';
+					for( var like_i in postVO.like_list ) {
+						if( postVO.like_list[like_i].email == like_user ) {
+							contain = 'y';
+						}
+					}
+					
+					if( contain == 'y' ) {
+						nextArticle += 
+			'<div class="sprite_heart_icon_outline on on_cursor heart-btn" data-heart="y" data-pno="' + postVO.pno + '" data-name="heartbeat"></div>'; 
+					} else {
+						nextArticle += 
+			'<div class="sprite_heart_icon_outline on_cursor heart-btn" data-heart="n" data-pno="' + postVO.pno + '" data-name="heartbeat"></div>';
+					}
+					contain = 'n';
+					nextArticle += 			
+			'<span class="heart-count on_cursor" id="heart-count' + postVO.pno + '">' + 
+				postVO.like_cnt + ' 명이 좋아합니다' + 
+			'</span>' + 
+		'</div>' + 
+		'<div class="right_icon">' + 
+			'<div class="sprite_share_icon on_cursor" data-name="share"></div>' + 
+		'</div>' + 
+	'</div>' + 
+
+	'<div class="posting-master">' + 
+		'<p class="posting-master-name">' + postVO.nickname + '</p>' + 
+		'<div class="posting-master-content">' + 
+			postVO.content + 
+		'</div>' + 
+	'</div>' + 
+	'<div class="timer">' + 
+		postVO.timer + 
+	'</div>' + 
+	'<!-- post 댓글 div -->' + 
+	'<div class="comment_container">';
+					for( var relpy_i in postVO.reply_list ) {
+						nextArticle += 
+		'<div class="comment">' + 
+			'<div class="nick_name">' + postVO.reply_list[relpy_i].nickname + '</div>' + 
+			'<div class="real_comment">' + 
+				postVO.reply_list[relpy_i].rcontent + 
+			'</div>' + 
+		'</div>';
+					}
+					nextArticle += 
+		'<div class="more-comment-div">' + 
+			'<span class="more-comment" data-pno="' + postVO.pno + '">...</span>' + 
+		'</div>' + 
+	'</div>' + 
+'</article>';
+				    $("#post-box").append(nextArticle);
+					console.log( postVO_i + '. article 생성 완료');
+				})
+			}, error:function(){
+				alert("Error - Next Page's Data ! ");
+			}
+		})
+    }
+
+    // IntersectionObserver 갱신 함수 (마지막 artice 요소를 감시하도록 함)
+    function observeLastChild(intersectionObserver) {
+
+        const listChildren = document.querySelectorAll(".post-box article");
+        listChildren.forEach(ea => { // ea : End Article
+            if (!ea.nextElementSibling && pageNum < realEnd) { 
+                intersectionObserver.observe(ea) // ea에 대하여 관측 시작
+                console.log(ea);
+            } else if (pageNum >= realEnd) { 
+                intersectionObserver.disconnect()
+                msgLoading.textContent = "最後のページ" ///// *msgLoading
+            }
+        })
+    }
+
+    // IntersectionObeserver 부분 (옵저버 옵션)
+    const observerOption = {
+        root: null,
+        rootMargin: "0px 0px 0px 0px",
+        threshold: 0.5
+    }
+
+    // IntersectionObserver 인스턴스 생성
+    const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
+            if (entry.isIntersecting) {
+                msgLoading.classList.add("post-fade-in") ///// *msgLoading
+                // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTimeout 사용
+                setTimeout(() => {
+                    addData(++pageNum) ///// *currentPage
+                    console.log('addData(++pageNum) - ' + pageNum); // 
+                    observer.unobserve(entry.target)
+                    observeLastChild(observer)
+                    msgLoading.classList.remove("post-fade-in") ///// *msgLoading
+                }, 1000)
+            }
+        })
+    }, observerOption)
+
+    // 초기 데이터 생성
+    //addData(pageNum) // 데이터 추가 함수  ///// *currentPage
+    observeLastChild(io) // IntersectionObserver 갱신 함수
 	
 	
 	

@@ -75,6 +75,20 @@
     }
 </style>
 
+	<div class="fs-3 border border-3 border-dark m-3 text-center" id="btn-test">
+		Test Button
+	</div>
+	<div class="fs-1 border border-3 border-dark m-3 text-center" id="div-test">
+		yn
+	</div>
+
+	<div class="fs-3 border border-3 border-dark m-3 text-center" id="btn-test2">
+		Test Button2
+	</div>
+	<div class="fs-1 border border-3 border-dark m-3 text-center" id="div-test2">
+		yn
+	</div>
+
     <div id="container">
         <ul id="list">
 
@@ -95,11 +109,119 @@
 	</div>
     
 <script>
-    let currentPage = 1
+
+	var like_list = ['jgc6@naver.com','jgc2@naver.com','jgc3@naver.com'];
+	var user = '${username}';
+	
+	$("#btn-test").on("click", function() {
+		var yn = 'n';
+		for( var i in like_list ) {
+			if( like_list[i] == user ) {
+				yn = 'y';
+			}
+		}
+		if( yn == 'y' ) {
+			$("#div-test").html('y');
+		}else {
+			$("#div-test").html('n');
+		}
+	})
+	
+	$("#btn-test2").on("click", function() {
+		var yn = 'n';
+		for( var i in like_list ) {
+			if( like_list[i] == user ) {
+				yn = 'y';
+			}
+		}
+		if( yn == 'y' ) {
+			$("#div-test2").html('y');
+		}else {
+			$("#div-test2").html('n');
+		}
+	})
+
+	var totalRow = parseInt('${pageVO.total}');
+	var realEnd = parseInt('${pageVO.realEnd}');
+	var pageNum = parseInt('${pageVO.cri.pageNum}');
+	var nextPage = pageNum + 1 > realEnd ? realEnd : pageNum + 1;
+	var amount = parseInt('${pageVO.cri.amount}'); 
+	var startPage = parseInt('${pageVO.startPage}');
+	var endPage = parseInt('${pageVO.endPage}');
+	var type = '${pageVO.cri.type}'; 
+	var keyword = '${pageVO.cri.keyword}'; 
+	
+	console.log("total : " + totalRow);
+	console.log("pageNum : " + pageNum);
+	console.log("nextPage : " + nextPage);
+	console.log("realEnd : " + realEnd);
+	console.log("amount : " + amount);
+	console.log("type : " + type);
+	console.log("keyword : " + keyword);
+	
+    const msgLoading = document.getElementById("msg-loading") 
+
+    // 데이터 추가 함수
+    function addData(currentPage) { 
+
+        const $list = document.getElementById("list")
+        for (let i = startPage; i <= amount; i++) {
+            const $li = document.createElement("li")
+            $li.textContent = `${pageNum}페이지 : ${i}번째 데이터`
+            $li.classList.add("fade-in")
+            $list.appendChild($li)
+        }
+    }
+
+    // IntersectionObserver 갱신 함수 (마지막 artice 요소를 감시하도록 함)
+    function observeLastChild(intersectionObserver) {
+
+        const listChildren = document.querySelectorAll("#list li")
+        listChildren.forEach(el => {
+            if (!el.nextSibling && pageNum < realEnd) { ///// *currentPage, *lastPage
+                intersectionObserver.observe(el) // el에 대하여 관측 시작
+            } else if (pageNum >= realEnd) { ///// *currentPage, *lastPage
+                intersectionObserver.disconnect()
+                msgLoading.textContent = "最後のページ" ///// *msgLoading
+            }
+        })
+    }
+
+    // IntersectionObeserver 부분 (옵저버 옵션)
+    const observerOption = {
+        root: null,
+        rootMargin: "0px 0px 0px 0px",
+        threshold: 0.5
+    }
+
+    // IntersectionObserver 인스턴스 생성
+    const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
+            if (entry.isIntersecting) {
+                msgLoading.classList.add("fade-in") ///// *msgLoading
+                // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTimeout 사용
+                setTimeout(() => {
+                    addData(++pageNum) ///// *currentPage
+                    observer.unobserve(entry.target)
+                    observeLastChild(observer)
+
+                    msgLoading.classList.remove("fade-in") ///// *msgLoading
+                }, 1000)
+            }
+        })
+    }, observerOption)
+
+    // 초기 데이터 생성
+    addData(pageNum) // 데이터 추가 함수  ///// *currentPage
+    observeLastChild(io) // IntersectionObserver 갱신 함수
+	
+	
+/* 
+	let currentPage = 1
     const DATA_PER_PAGE = 10,
           lastPage = 5
     const msgLoading = document.getElementById("msg-loading")
-
 
     // 데이터 추가 함수
     function addData(currentPage) { 
@@ -155,6 +277,7 @@
     // 초기 데이터 생성
     addData(currentPage) // 데이터 추가 함수  ///// *currentPage
     observeLastChild(io) // IntersectionObserver 갱신 함수
+*/
 </script>
 
 

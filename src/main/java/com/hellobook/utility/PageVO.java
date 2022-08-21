@@ -10,7 +10,7 @@ public class PageVO {
 	private int startPage;
 	private int endPage;
 	private int realEnd;
-	private int blockPerPage = 10; 
+	private int blockPerPage = 5; 
 	
 	private boolean prev, next;
 	
