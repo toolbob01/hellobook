@@ -23,14 +23,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.databind.deser.DataFormatReaders.Match;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
 import com.hellobook.domain.SessionVO;
-import com.hellobook.mapper.MemberMapper;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Time;
@@ -114,15 +113,20 @@ public class MypageController {
     }
 	
     @RequestMapping(value="/setting/editprofile", method=RequestMethod.POST)
-    public String editAccount(MemberVO mvo, HttpSession session) {
+    public String editAccount(MemberVO mvo, HttpSession session) throws UnsupportedEncodingException {
         String email = (String) session.getAttribute("username");
-        String password = (String) session.getAttribute("password");
         mvo.setEmail(email);
-        mvo.setPassword(password);
         System.out.println(mvo.toString());
+        
         memberService.modify(mvo);
         
-        return "redirect:/mypage/setting/editprofile";
+        SessionVO svo = new SessionVO();
+        svo.setNickname(mvo.getNickname());
+        session.setAttribute("Nname", svo.getNickname());
+        
+        String encodedParam = URLEncoder.encode(svo.getNickname(), "UTF-8");
+        
+        return "redirect:/mypage/profile/"+encodedParam;
        
     }
    
@@ -221,6 +225,12 @@ public class MypageController {
 		String encodedParam = URLEncoder.encode(nickname, "UTF-8");
 		
 		return "redirect:/mypage/profile/"+encodedParam;
+	}
+	
+	@PostMapping("/setting/nicknameCheck")
+	public @ResponseBody int nicknameCheck(@RequestParam("nickname") String nickname) {
+		int result = memberService.checkEmail(nickname);
+		return result;
 	}
 
 }

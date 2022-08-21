@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../header.jsp" %>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <style>
 body {
 	
@@ -259,7 +261,41 @@ nickname.on("blur",function(){
 		nickname.focus();
 		return
 	}
-})
+	
+	var Nname = nickname.val();
+	var Sname = "${svo.nickname}";
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	$.ajax({
+		url : "/member/checkNickname",
+		type : "get",
+		data : {nickname : Nname},
+		dataType : 'json',
+
+		success : function(result) {
+			console.log(result);
+			if(result != 0) {
+				if(Nname == Sname) {
+					nicknameNotice.html("기존 닉네임과 같습니다.");
+					nicknameNotice.css('display','flex')
+				} else {
+					nicknameNotice.html("사용할 수 없는 닉네임입니다.");
+					nicknameNotice.css('display','flex')
+					nickname.focus();
+					return
+				}
+			} else {
+				nicknameNotice.html("사용할 수 있는 닉네임입니다.");
+				nicknameNotice.css('display','flex')
+			}
+		},
+		error : function() {
+			alert("서버요청실패");
+		}
+	});
+
+});
 
 birth.on("blur",function(){
 	birthNotice.css('display','none')
@@ -291,6 +327,12 @@ function formCheck(){
 	
 	if(nickname.val().search(/\s/) != -1){
 		alert("닉네임은 공백을 포함할 수 없습니다.");
+		nickname.focus();
+		return
+	}
+	
+	if(nicknameNotice.text().includes("사용할 수 없는 닉네임입니다.")) {
+		alert("사용할 수 없는 닉네임입니다.");
 		nickname.focus();
 		return
 	}
@@ -342,7 +384,7 @@ $(function() {
 	var sex = "${svo.sex}";
 	var hobby = "${svo.hobby}"
 	
-	if(sex=="M") {
+	if(sex == "M") {
 		$("#male").prop("checked",true);
 		$("#female").prop("checked",false);
 	}else {
