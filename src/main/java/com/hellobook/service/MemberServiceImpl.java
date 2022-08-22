@@ -36,8 +36,10 @@ public class MemberServiceImpl implements MemberService {
 		return svo;
 	}
 	
+	@Override
 	public void changePwd(MemberVO mvo) {
 		memberMapper.changePwd(mvo);
+		
 	}
 	
 	@Override

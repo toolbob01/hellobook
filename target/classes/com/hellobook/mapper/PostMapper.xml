@@ -42,6 +42,7 @@
  			WHERE rn > (#{pageNum}-1) * #{amount} 
          ]]> 
 	</select>
+ 
 	<select id="selectThreeReplyByPno" resultType="com.hellobook.domain.ReplyVO">
 		<![CDATA[
 			SELECT /*+ index_desc(r reply_pk)*/ r.repno, r.pno, r.rcontent, r.repdate, r.email, m.nickname, m.language, m.profile   
@@ -49,6 +50,7 @@
 			WHERE r.pno = #{pno} AND r.email = m.email AND r.depth = 1 AND rownum < 4
 		]]>
 	</select>
+	
 	<select id="selectLikeByPno" resultType="com.hellobook.domain.PostLikeVO">
 		SELECT l.pno, l.email, m.nickname, m.language, m.profile    
 		FROM post_like l, member m   

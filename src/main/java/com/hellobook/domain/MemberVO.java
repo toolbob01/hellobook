@@ -26,4 +26,6 @@ public class MemberVO {
 	//검색설정
 	
 	private String keyword;
+	
+	private String old_password;
 }
