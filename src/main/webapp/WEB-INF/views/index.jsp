@@ -424,8 +424,8 @@
 		                    <button class="msg_send_btn float-end" type="button" data-pno="">
 		                       <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		                    </button>
-							<div class="form-floating">
-							  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert"></textarea>
+							<div class="form-floating"> <!-- 답글달기 누르면 => depth,refno 입력 => 답글달기취소 버튼 생성 => depth,refno 리셋 -->
+							  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert" data-depth="1" data-refno=""></textarea>
 							</div>
 						</div>
 						
@@ -688,21 +688,35 @@
 					})
 				}
 				// Profile    
-				if( postVO.language == 'J' ){
-					$(".modal-detail-contents .comment-profile").append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진">' + 
-																		'<div class="comment-profile-flag">' + 
-																			'<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' +  
-																		'</div>' + 
-																		'<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>' + 
-																		'<div class="comment-time align-self-center mx-5">' + postVO.timer + '</div>');
+ 				var comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진">' + 
+									  '<div class="comment-profile-flag">';
+				if( postVO.language == 'J' ) {
+					comment_profile +=   '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' +  
+									   '</div>' + 
+									   '<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>';
 				}else {
-					$(".modal-detail-contents .comment-profile").append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진">' + 
-																		'<div class="comment-profile-flag">' + 
-																			'<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-																		'</div>' + 
-																		'<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>' + 
-																		'<div class="comment-time align-self-center mx-5">' + postVO.timer + '</div>');
+					comment_profile +=   '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
+									   '</div>' + 
+									   '<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>';
+				} 
+				var cpt = postVO.timer.slice(0, -1);
+				var cpt_1 = postVO.timer.slice(-1);
+				if(cpt_1 == 's') {
+					cpt += '초 전';
+				}else if(cpt_1 == 'm') {
+					cpt += '분 전';
+				}else if(cpt_1 == 'h') {
+					cpt += '시간 전';
+				}else if(cpt_1 == 'd') {
+					cpt += '일 전';
+				}else if(cpt_1 == 'M') {
+					cpt += '달 전';
+				}else if(cpt_1 == 'y') {
+					cpt += '년 전';
 				}
+ 				comment_profile += '<div class="comment-time align-self-center mx-5">' + cpt + '</div>';
+				$(".modal-detail-contents .comment-profile").append(comment_profile); 
+				
 				// Post Content
 				$(".modal-posting-master-content").html(postVO.content);
 				// Comment List
@@ -713,23 +727,33 @@
 					$.each(postVO.reply_list, function(i, replyVO){
 		 				$(".all-comment").append('<div class="comment-profile d-flex" id="comment-profile' + replyVO.repno + '"></div>' + 
 	    				 						 '<div class="comment-content" id="comment-content' + replyVO.repno + '"></div>');
+						var all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
+						  						  '<div class="comment-profile-flag">';
 						if( replyVO.language == 'J' ) {
-							$(".all-comment #comment-profile"+replyVO.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
-																	  '<div class="comment-profile-flag">' + 
-																	      '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
-															    	  '</div>' + 
-															    	  '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
-															    	  '<div class="comment-time align-self-center mx-5">' + replyVO.timer + '</div>' + 
-															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
 						}else {
-							$(".all-comment #comment-profile"+replyVO.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
-																	  '<div class="comment-profile-flag">' + 
-																	      '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-															    	  '</div>' + 
-															    	  '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
-															    	  '<div class="comment-time align-self-center mx-5">' + replyVO.timer + '</div>' + 
-															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
 						}
+						var acpt = replyVO.timer.slice(0, -1);
+						var acpt_1 = replyVO.timer.slice(-1);
+						if(acpt_1 == 's') {
+							acpt += '초 전';
+						}else if(acpt_1 == 'm') {
+							acpt += '분 전';
+						}else if(acpt_1 == 'h') {
+							acpt += '시간 전';
+						}else if(acpt_1 == 'd') {
+							acpt += '일 전';
+						}else if(acpt_1 == 'M') {
+							acpt += '달 전';
+						}else if(acpt_1 == 'y') {
+							acpt += '년 전';
+						}
+						all_comment_profile += '</div>' + 
+									    	   '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
+									    	   '<div class="comment-time align-self-center mx-5">' + acpt + '</div>' + 
+									    	   '<div class="comment-cocoment align-self-center">답글 달기</div>';
+			    	    $(".all-comment #comment-profile"+replyVO.repno).append(all_comment_profile);
 						$(".all-comment #comment-content"+replyVO.repno).html(replyVO.rcontent);
 						// Open&Close coComent script use id="collapse + replyVO.repno"
   	 					if( replyVO.cocomment_list[0] != null ){
@@ -739,35 +763,38 @@
 																      				'</div>');
 							$(".all-comment #comment-content"+replyVO.repno).append('<div class="collapse" id="collapse' + replyVO.repno + '"></div>');
  							$.each(replyVO.cocomment_list, function(k, cocommentVO) {
-								if( cocommentVO.language == 'J' ){
-									$(".all-comment #collapse" + replyVO.repno).append('<div class="comment-depth">' + 
-																				         '<div class="comment-profile d-flex">' + 
-																				           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
-																				           '<div class="comment-profile-flag">' + 
-																			                 '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
-																				           '</div>' + 
-																				           '<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>' + 
-																				           '<div class="comment-time align-self-center mx-5">' + cocommentVO.timer + '</div>' + 
-																				         '</div>' + 
-																				         '<div class="comment-content">' + 
-																				         	cocommentVO.rcontent +
-																				         '</div>' + 
-																				       '</div>');
-								}else {
-									$(".all-comment #collapse" + replyVO.repno).append('<div class="comment-depth">' + 
-																			     '<div class="comment-profile d-flex">' + 
-																			       '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
-																			       '<div class="comment-profile-flag">' + 
-																		             '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-																			       '</div>' + 
-																			       '<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>' + 
-																			       '<div class="comment-time align-self-center mx-5">' + cocommentVO.timer + '</div>' + 
-																			     '</div>' + 
-																			     '<div class="comment-content">' + 
-																			     	cocommentVO.rcontent +
-																			     '</div>' + 
-																			   '</div>');
-								}
+								var all_comment_collapse = '<div class="comment-depth">' + 
+													         '<div class="comment-profile d-flex">' + 
+													           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
+													           '<div class="comment-profile-flag">';
+				                if( cocommentVO.language == 'J' ){  
+				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
+				                }else{
+				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
+				                }
+				                all_comment_collapse += '</div>' + 
+						           						'<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>';
+        						var acct = cocommentVO.timer.slice(0, -1);
+        						var acct_1 = cocommentVO.timer.slice(-1);
+        						if(acct_1 == 's') {
+        							acct += '초 전';
+        						}else if(acct_1 == 'm') {
+        							acct += '분 전';
+        						}else if(acct_1 == 'h') {
+        							acct += '시간 전';
+        						}else if(acct_1 == 'd') {
+        							acct += '일 전';
+        						}else if(acct_1 == 'M') {
+        							acct += '달 전';
+        						}else if(acct_1 == 'y') {
+        							acct += '년 전';
+        						}				
+        						all_comment_collapse += '<div class="comment-time align-self-center mx-5">' + acct + '</div>' + 
+												         '</div>' + 
+												         '<div class="comment-content">' + 
+												         	cocommentVO.rcontent +
+												         '</div>' + 
+												       '</div>';			
  							})
 						}  
 					}) // each
@@ -855,23 +882,33 @@
  		 				$(".all-comment").prepend('<p class="fs-5 mb-3">댓글 리스트</p>' + 
  		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
 		 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
+ 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+						  								 '<div class="comment-profile-flag">';
 						if( data.language == 'J' ) {
-							$(".all-comment #comment-profile"+data.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
-																	  '<div class="comment-profile-flag">' + 
-																	      '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
-															    	  '</div>' + 
-															    	  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
-															    	  '<div class="comment-time align-self-center mx-5">' + data.timer + '</div>' + 
-															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
 						}else {
-							$(".all-comment #comment-profile"+data.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
-																	  '<div class="comment-profile-flag">' + 
-																	      '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-															    	  '</div>' + 
-															    	  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
-															    	  '<div class="comment-time align-self-center mx-5">' + data.timer + '</div>' + 
-															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
 						}
+						insert_all_comment_profile += '</div>' + 
+				    	  							  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>';
+						var accpt = data.timer.slice(0, -1);
+						var accpt_1 = data.timer.slice(-1);
+						if(accpt_1 == 's') {
+							accpt += '초 전';
+						}else if(accpt_1 == 'm') {
+							accpt += '분 전';
+						}else if(accpt_1 == 'h') {
+							accpt += '시간 전';
+						}else if(accpt_1 == 'd') {
+							accpt += '일 전';
+						}else if(accpt_1 == 'M') {
+							accpt += '달 전';
+						}else if(accpt_1 == 'y') {
+							accpt += '년 전';
+						}			
+						insert_all_comment_profile += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
+				    	  							  '<div class="comment-cocoment align-self-center">답글 달기</div>';
+						$(".all-comment #comment-profile"+data.repno).append(insert_all_comment_profile);
 						$(".all-comment #comment-content"+data.repno).html(data.rcontent);
 					}
 					$("#commentInsert").val("");
@@ -1044,8 +1081,24 @@
 				postVO.content + 
 			'</div>' + 
 		'</div>' + 
-		'<div class="timer">' + 
-			postVO.timer + 
+		'<div class="timer">';
+		var articleTimer = postVO.timer.slice(0, -1);
+		var articleTimer_1 = postVO.timer.slice(-1);
+		if(articleTimer_1 == 's') {
+			articleTimer += '초 전';
+		}else if(articleTimer_1 == 'm') {
+			articleTimer += '분 전';
+		}else if(articleTimer_1 == 'h') {
+			articleTimer += '시간 전';
+		}else if(articleTimer_1 == 'd') {
+			articleTimer += '일 전';
+		}else if(articleTimer_1 == 'M') {
+			articleTimer += '달 전';
+		}else if(articleTimer_1 == 'y') {
+			articleTimer += '년 전';
+		}			
+		nextArticle += 
+			articleTimer + 
 		'</div>' + 
 		'<!-- post 댓글 div -->' + 
 		'<div class="comment_container">';
