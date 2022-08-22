@@ -1121,6 +1121,7 @@
 						console.log( (postVO_i + 1) + ' '  + '. article 생성 완료');
 					})
 				}
+				observeLastChild(io);
 			}, error:function(){
 				alert("Error - Next Page's Data ! ");
 			}
@@ -1182,7 +1183,7 @@
 
     // 초기 데이터 생성
     addData(pageNum) // 데이터 추가 함수  ///// *currentPage
-    observeLastChild(io) // IntersectionObserver 갱신 함수
+    //observeLastChild(io) // IntersectionObserver 갱신 함수
 	
     
     
