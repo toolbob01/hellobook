@@ -159,7 +159,7 @@ public class MypageController {
     		 return "/mypage/setting/changepwd";
     	}
     	//비밀번호 인증
-    	MemberVO mvo = memberService.read(mvo.getEmail());
+    	SessionVO svo = memberService.read(mvo.getEmail());
     	
     }
 	
