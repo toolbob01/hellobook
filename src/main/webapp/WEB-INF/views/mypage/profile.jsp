@@ -16,12 +16,12 @@
 						<div class="mypage_thumbnail_c">
 							<c:if test="${mvo.email == username}">
 							<c:if test="${mvo.profile==null}">
-							<button class="mypage_thumbnail_d" title="프로필 사진 추가">
+							<button class="mypage_thumbnail_d" title="<spring:message code="profile.createThumbnail"/>">
 									<img class="mypage_thumbnail_e" src="/resources/imgs/unknown_thumbnail.jpg">
 							</button>
 							</c:if>
 							<c:if test="${mvo.profile!=null}">
-							<button class="mypage_thumbnail_d" title="프로필 사진 수정">
+							<button class="mypage_thumbnail_d" title="<spring:message code="profile.updateThumbnail"/>">
 									<img class="mypage_thumbnail_e" src="/hello_img/member/${mvo.profile}">
 							</button>
 							</c:if>

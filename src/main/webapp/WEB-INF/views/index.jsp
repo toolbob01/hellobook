@@ -424,8 +424,8 @@
 		                    <button class="msg_send_btn float-end" type="button" data-pno="">
 		                       <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		                    </button>
-							<div class="form-floating">
-							  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert"></textarea>
+							<div class="form-floating"> <!-- 답글달기 누르면 => depth,refno 입력 => 답글달기취소 버튼 생성 => depth,refno 리셋 -->
+							  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert" data-depth="1" data-refno=""></textarea>
 							</div>
 						</div>
 						
@@ -688,21 +688,35 @@
 					})
 				}
 				// Profile    
-				if( postVO.language == 'J' ){
-					$(".modal-detail-contents .comment-profile").append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진">' + 
-																		'<div class="comment-profile-flag">' + 
-																			'<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' +  
-																		'</div>' + 
-																		'<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>' + 
-																		'<div class="comment-time align-self-center mx-5">' + postVO.timer + '</div>');
+ 				var comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진">' + 
+									  '<div class="comment-profile-flag">';
+				if( postVO.language == 'J' ) {
+					comment_profile +=   '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' +  
+									   '</div>' + 
+									   '<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>';
 				}else {
-					$(".modal-detail-contents .comment-profile").append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진">' + 
-																		'<div class="comment-profile-flag">' + 
-																			'<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-																		'</div>' + 
-																		'<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>' + 
-																		'<div class="comment-time align-self-center mx-5">' + postVO.timer + '</div>');
+					comment_profile +=   '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
+									   '</div>' + 
+									   '<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>';
+				} 
+				var cpt = postVO.timer.slice(0, -1);
+				var cpt_1 = postVO.timer.slice(-1);
+				if(cpt_1 == 's') {
+					cpt += '초 전';
+				}else if(cpt_1 == 'm') {
+					cpt += '분 전';
+				}else if(cpt_1 == 'h') {
+					cpt += '시간 전';
+				}else if(cpt_1 == 'd') {
+					cpt += '일 전';
+				}else if(cpt_1 == 'M') {
+					cpt += '달 전';
+				}else if(cpt_1 == 'y') {
+					cpt += '년 전';
 				}
+ 				comment_profile += '<div class="comment-time align-self-center mx-5">' + cpt + '</div>';
+				$(".modal-detail-contents .comment-profile").append(comment_profile); 
+				
 				// Post Content
 				$(".modal-posting-master-content").html(postVO.content);
 				// Comment List
@@ -713,23 +727,33 @@
 					$.each(postVO.reply_list, function(i, replyVO){
 		 				$(".all-comment").append('<div class="comment-profile d-flex" id="comment-profile' + replyVO.repno + '"></div>' + 
 	    				 						 '<div class="comment-content" id="comment-content' + replyVO.repno + '"></div>');
+						var all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
+						  						  '<div class="comment-profile-flag">';
 						if( replyVO.language == 'J' ) {
-							$(".all-comment #comment-profile"+replyVO.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
-																	  '<div class="comment-profile-flag">' + 
-																	      '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
-															    	  '</div>' + 
-															    	  '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
-															    	  '<div class="comment-time align-self-center mx-5">' + replyVO.timer + '</div>' + 
-															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
 						}else {
-							$(".all-comment #comment-profile"+replyVO.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
-																	  '<div class="comment-profile-flag">' + 
-																	      '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-															    	  '</div>' + 
-															    	  '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
-															    	  '<div class="comment-time align-self-center mx-5">' + replyVO.timer + '</div>' + 
-															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
 						}
+						var acpt = replyVO.timer.slice(0, -1);
+						var acpt_1 = replyVO.timer.slice(-1);
+						if(acpt_1 == 's') {
+							acpt += '초 전';
+						}else if(acpt_1 == 'm') {
+							acpt += '분 전';
+						}else if(acpt_1 == 'h') {
+							acpt += '시간 전';
+						}else if(acpt_1 == 'd') {
+							acpt += '일 전';
+						}else if(acpt_1 == 'M') {
+							acpt += '달 전';
+						}else if(acpt_1 == 'y') {
+							acpt += '년 전';
+						}
+						all_comment_profile += '</div>' + 
+									    	   '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
+									    	   '<div class="comment-time align-self-center mx-5">' + acpt + '</div>' + 
+									    	   '<div class="comment-cocoment align-self-center">답글 달기</div>';
+			    	    $(".all-comment #comment-profile"+replyVO.repno).append(all_comment_profile);
 						$(".all-comment #comment-content"+replyVO.repno).html(replyVO.rcontent);
 						// Open&Close coComent script use id="collapse + replyVO.repno"
   	 					if( replyVO.cocomment_list[0] != null ){
@@ -739,35 +763,38 @@
 																      				'</div>');
 							$(".all-comment #comment-content"+replyVO.repno).append('<div class="collapse" id="collapse' + replyVO.repno + '"></div>');
  							$.each(replyVO.cocomment_list, function(k, cocommentVO) {
-								if( cocommentVO.language == 'J' ){
-									$(".all-comment #collapse" + replyVO.repno).append('<div class="comment-depth">' + 
-																				         '<div class="comment-profile d-flex">' + 
-																				           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
-																				           '<div class="comment-profile-flag">' + 
-																			                 '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
-																				           '</div>' + 
-																				           '<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>' + 
-																				           '<div class="comment-time align-self-center mx-5">' + cocommentVO.timer + '</div>' + 
-																				         '</div>' + 
-																				         '<div class="comment-content">' + 
-																				         	cocommentVO.rcontent +
-																				         '</div>' + 
-																				       '</div>');
-								}else {
-									$(".all-comment #collapse" + replyVO.repno).append('<div class="comment-depth">' + 
-																			     '<div class="comment-profile d-flex">' + 
-																			       '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
-																			       '<div class="comment-profile-flag">' + 
-																		             '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-																			       '</div>' + 
-																			       '<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>' + 
-																			       '<div class="comment-time align-self-center mx-5">' + cocommentVO.timer + '</div>' + 
-																			     '</div>' + 
-																			     '<div class="comment-content">' + 
-																			     	cocommentVO.rcontent +
-																			     '</div>' + 
-																			   '</div>');
-								}
+								var all_comment_collapse = '<div class="comment-depth">' + 
+													         '<div class="comment-profile d-flex">' + 
+													           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
+													           '<div class="comment-profile-flag">';
+				                if( cocommentVO.language == 'J' ){  
+				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
+				                }else{
+				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
+				                }
+				                all_comment_collapse += '</div>' + 
+						           						'<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>';
+        						var acct = cocommentVO.timer.slice(0, -1);
+        						var acct_1 = cocommentVO.timer.slice(-1);
+        						if(acct_1 == 's') {
+        							acct += '초 전';
+        						}else if(acct_1 == 'm') {
+        							acct += '분 전';
+        						}else if(acct_1 == 'h') {
+        							acct += '시간 전';
+        						}else if(acct_1 == 'd') {
+        							acct += '일 전';
+        						}else if(acct_1 == 'M') {
+        							acct += '달 전';
+        						}else if(acct_1 == 'y') {
+        							acct += '년 전';
+        						}				
+        						all_comment_collapse += '<div class="comment-time align-self-center mx-5">' + acct + '</div>' + 
+												         '</div>' + 
+												         '<div class="comment-content">' + 
+												         	cocommentVO.rcontent +
+												         '</div>' + 
+												       '</div>';			
  							})
 						}  
 					}) // each
@@ -799,7 +826,7 @@
 		var modal2 = $(".modal-background2");
 		if( modal2.has(e.target).length === 0){
 			$(".modal-background2").css('display','none');
-// 			$("#like-user-list-detail").empty();
+			$("#like-user-list-detail").empty();
 		}
 	});
 	
@@ -814,7 +841,7 @@
 	 });
 	 $('.closeModalBtn2').on('click', function(){
 		 $('.modal-background2').css("display", "none");  
-// 		 $("#like-user-list-detail").empty();
+		 $("#like-user-list-detail").empty();
 	 });
 	
 	// Coment Insert
@@ -855,23 +882,33 @@
  		 				$(".all-comment").prepend('<p class="fs-5 mb-3">댓글 리스트</p>' + 
  		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
 		 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
+ 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+						  								 '<div class="comment-profile-flag">';
 						if( data.language == 'J' ) {
-							$(".all-comment #comment-profile"+data.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
-																	  '<div class="comment-profile-flag">' + 
-																	      '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
-															    	  '</div>' + 
-															    	  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
-															    	  '<div class="comment-time align-self-center mx-5">' + data.timer + '</div>' + 
-															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
 						}else {
-							$(".all-comment #comment-profile"+data.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
-																	  '<div class="comment-profile-flag">' + 
-																	      '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-															    	  '</div>' + 
-															    	  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
-															    	  '<div class="comment-time align-self-center mx-5">' + data.timer + '</div>' + 
-															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
 						}
+						insert_all_comment_profile += '</div>' + 
+				    	  							  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>';
+						var accpt = data.timer.slice(0, -1);
+						var accpt_1 = data.timer.slice(-1);
+						if(accpt_1 == 's') {
+							accpt += '초 전';
+						}else if(accpt_1 == 'm') {
+							accpt += '분 전';
+						}else if(accpt_1 == 'h') {
+							accpt += '시간 전';
+						}else if(accpt_1 == 'd') {
+							accpt += '일 전';
+						}else if(accpt_1 == 'M') {
+							accpt += '달 전';
+						}else if(accpt_1 == 'y') {
+							accpt += '년 전';
+						}			
+						insert_all_comment_profile += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
+				    	  							  '<div class="comment-cocoment align-self-center">답글 달기</div>';
+						$(".all-comment #comment-profile"+data.repno).append(insert_all_comment_profile);
 						$(".all-comment #comment-content"+data.repno).html(data.rcontent);
 					}
 					$("#commentInsert").val("");
@@ -934,142 +971,165 @@
 			dataType:"json",
 			success:function(post_list){
 				var contain = 'n';
-				$.each(post_list, function(postVO_i, postVO){
-/*					const nextArticle = document.createElement("article");
- 					nextArticle.classList.add("fs-1");
-					let p_div = document.createElement("p");
-					p_div.textContent = "zaco zaco zaco";
-					nextArticle.append( p_div );
-				    $("#post-box").append(nextArticle); */
-					console.log( postVO_i + '. article 생성 완료');
- 					let nextArticle = 
-'<article class="contents post-fade-in">' + 
-	'<!-- post 헤더 -->' + 
-	'<header class="top post-header">' + 
-		'<div class="user_container" onclick="location.href=\'#\'">' + 
-			'<div class="profile_img">' + 
-				'<img src="/hello_img/member/' + postVO.profile + '" alt="프로필이미지">' + 
-			'</div>' + 
-			'<div class="profile_flag">';
-					if ( postVO.language == 'J' ) {
-						nextArticle += '<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>';
-					}else if ( postVO.language == 'K' ) {
-						nextArticle += '<img class="flag_icon" src="https://img.icons8.com/color/25/000000/south-korea-circular.png"/>';
-					}
-					nextArticle += 
-			'</div>' + 
-			'<div class="user_name">' + 
-				'<div class="nick_name m_text">' + postVO.nickname + '</div>' + 
-				'<div class="mt-1 s_text">東京, 日本</div>' + 
-			'</div>' + 
-		'</div>'; 
-					if ( postVO.email == '${username}' ) {
-						nextArticle += 
-		'<div class="updateDeleteDiv">' + 
-			'<span class="updateDeleteContent">' + 
-				'<span class="updateLink" data-pno="' + postVO.pno + '">게시물 수정</span>' + 
-				'|' +  
-				'<span class="deleteLink" data-pno="' + postVO.pno + '">게시물 삭제</span>' + 
-			'</span>' + 
-		'</div>';
-					}
-					nextArticle += 
-	'</header>' + 
-	'<!-- post 바디(이미지나 동영상 등 내용 입력 -->' + 
-	'<div class="img_section">' + 
-		'<div class="trans_inner">' + 
-			'<div id="carousel' + postVO.pno + '" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">' + 
-			  '<div class="carousel-inner">' + 
-			    '<div class="carousel-item active">' + 
-			      '<img src="/hello_img/post/' + postVO.file_list[0].uuid + '" alt="...">' + 
-			    '</div>'; 
-			    	if( postVO.file_list[1] != null ) {
-			    		for( var file_i in postVO.file_list ) {
-			    			if( file_i != 0 ) {
-			    				nextArticle += 
-			    '<div class="carousel-item">' + 
-			      '<img src="/hello_img/post/' + postVO.file_list[file_i].uuid + '" alt="...">' + 
-			    '</div>';
-			    			}
-			    		}
-			    	}
-			    	nextArticle += 
-			  '</div>' + 
-			  '<button class="carousel-control-prev" type="button" data-bs-target="#carousel' + postVO.pno + '" data-bs-slide="prev">' + 
-			    '<span class="carousel-control-prev-icon" aria-hidden="true"></span>' + 
-			    '<span class="visually-hidden">Previous</span>' + 
-			  '</button>' + 
-			  '<button class="carousel-control-next" type="button" data-bs-target="#carousel' + postVO.pno + '" data-bs-slide="next">' + 
-			    '<span class="carousel-control-next-icon" aria-hidden="true"></span>' + 
-			    '<span class="visually-hidden">Next</span>' + 
-			  '</button>' + 
-			'</div>' + 
-		'</div>' + 
-	'</div>' + 
-	'<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->' + 
-	'<div class="bottom_icons">' + 
-		'<div class="left_icons">';
-					var like_user = '${username}';
-					for( var like_i in postVO.like_list ) {
-						if( postVO.like_list[like_i].email == like_user ) {
-							contain = 'y';
+				if( post_list[0] == null ) {
+				    $("#post-box").append('<div class="text-center fs-3 my-5">No post ...</div>');
+				    $("#msg-loading").css("display", "none");
+					console.log('No Post... 생성 완료');
+				}else{
+	$.each(post_list, function(postVO_i, postVO){
+	/*					const nextArticle = document.createElement("article");
+	 					nextArticle.classList.add("fs-1");
+						let p_div = document.createElement("p");
+						p_div.textContent = "zaco zaco zaco";
+						nextArticle.append( p_div );
+					    $("#post-box").append(nextArticle); */
+	 					let nextArticle = 
+	'<article class="contents post-fade-in">' + 
+		'<!-- post 헤더 -->' + 
+		'<header class="top post-header">' + 
+			'<div class="user_container" onclick="location.href=\'#\'">' + 
+				'<div class="profile_img">' + 
+					'<img src="/hello_img/member/' + postVO.profile + '" alt="프로필이미지">' + 
+				'</div>' + 
+				'<div class="profile_flag">';
+						if ( postVO.language == 'J' ) {
+							nextArticle += '<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>';
+						}else if ( postVO.language == 'K' ) {
+							nextArticle += '<img class="flag_icon" src="https://img.icons8.com/color/25/000000/south-korea-circular.png"/>';
 						}
-					}
-					
-					if( contain == 'y' ) {
 						nextArticle += 
-			'<div class="sprite_heart_icon_outline on on_cursor heart-btn" data-heart="y" data-pno="' + postVO.pno + '" data-name="heartbeat"></div>'; 
-					} else {
+				'</div>' + 
+				'<div class="user_name">' + 
+					'<div class="nick_name m_text">' + postVO.nickname + '</div>' + 
+					'<div class="mt-1 s_text">東京, 日本</div>' + 
+				'</div>' + 
+			'</div>'; 
+						if ( postVO.email == '${username}' ) {
+							nextArticle += 
+			'<div class="updateDeleteDiv">' + 
+				'<span class="updateDeleteContent">' + 
+					'<span class="updateLink" data-pno="' + postVO.pno + '">게시물 수정</span>' + 
+					'|' +  
+					'<span class="deleteLink" data-pno="' + postVO.pno + '">게시물 삭제</span>' + 
+				'</span>' + 
+			'</div>';
+						}
 						nextArticle += 
-			'<div class="sprite_heart_icon_outline on_cursor heart-btn" data-heart="n" data-pno="' + postVO.pno + '" data-name="heartbeat"></div>';
-					}
-					contain = 'n';
-					nextArticle += 			
-			'<span class="heart-count on_cursor" id="heart-count' + postVO.pno + '" data-pno="' + postVO.pno + '">' + 
-				postVO.like_cnt + ' 명이 좋아합니다' + 
-			'</span>' + 
-		'</div>' + 
-		'<div class="right_icon">' + 
-			'<div class="sprite_share_icon on_cursor" data-name="share"></div>' + 
-		'</div>' + 
-	'</div>' + 
-
-	'<div class="posting-master">' + 
-		'<p class="posting-master-name">' + postVO.nickname + '</p>' + 
-		'<div class="posting-master-content">' + 
-			postVO.content + 
-		'</div>' + 
-	'</div>' + 
-	'<div class="timer">' + 
-		postVO.timer + 
-	'</div>' + 
-	'<!-- post 댓글 div -->' + 
-	'<div class="comment_container">';
-					for( var relpy_i in postVO.reply_list ) {
-						nextArticle += 
-		'<div class="comment">' + 
-			'<div class="nick_name">' + postVO.reply_list[relpy_i].nickname + '</div>' + 
-			'<div class="real_comment">' + 
-				postVO.reply_list[relpy_i].rcontent + 
+		'</header>' + 
+		'<!-- post 바디(이미지나 동영상 등 내용 입력 -->' + 
+		'<div class="img_section">' + 
+			'<div class="trans_inner">' + 
+				'<div id="carousel' + postVO.pno + '" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">' + 
+				  '<div class="carousel-inner">' + 
+				    '<div class="carousel-item active">' + 
+				      '<img src="/hello_img/post/' + postVO.file_list[0].uuid + '" alt="...">' + 
+				    '</div>'; 
+				    	if( postVO.file_list[1] != null ) {
+				    		for( var file_i in postVO.file_list ) {
+				    			if( file_i != 0 ) {
+				    				nextArticle += 
+				    '<div class="carousel-item">' + 
+				      '<img src="/hello_img/post/' + postVO.file_list[file_i].uuid + '" alt="...">' + 
+				    '</div>';
+				    			}
+				    		}
+				    	}
+				    	nextArticle += 
+				  '</div>' + 
+				  '<button class="carousel-control-prev" type="button" data-bs-target="#carousel' + postVO.pno + '" data-bs-slide="prev">' + 
+				    '<span class="carousel-control-prev-icon" aria-hidden="true"></span>' + 
+				    '<span class="visually-hidden">Previous</span>' + 
+				  '</button>' + 
+				  '<button class="carousel-control-next" type="button" data-bs-target="#carousel' + postVO.pno + '" data-bs-slide="next">' + 
+				    '<span class="carousel-control-next-icon" aria-hidden="true"></span>' + 
+				    '<span class="visually-hidden">Next</span>' + 
+				  '</button>' + 
+				'</div>' + 
 			'</div>' + 
-		'</div>';
-					}
-					nextArticle += 
-		'<div class="more-comment-div">' + 
-			'<span class="more-comment" data-pno="' + postVO.pno + '">...</span>' + 
 		'</div>' + 
-	'</div>' + 
-'</article>'; 
-				    $("#post-box").append(nextArticle);
-					console.log( postVO_i + '. article 생성 완료');
-				})
+		'<!-- post 아이콘(좋아요, 댓글, 공유 // 책갈피 기능) -->' + 
+		'<div class="bottom_icons">' + 
+			'<div class="left_icons">';
+						var like_user = '${username}';
+						for( var like_i in postVO.like_list ) {
+							if( postVO.like_list[like_i].email == like_user ) {
+								contain = 'y';
+							}
+						}
+						
+						if( contain == 'y' ) {
+							nextArticle += 
+				'<div class="sprite_heart_icon_outline on on_cursor heart-btn" data-heart="y" data-pno="' + postVO.pno + '" data-name="heartbeat"></div>'; 
+						} else {
+							nextArticle += 
+				'<div class="sprite_heart_icon_outline on_cursor heart-btn" data-heart="n" data-pno="' + postVO.pno + '" data-name="heartbeat"></div>';
+						}
+						contain = 'n';
+						nextArticle += 			
+				'<span class="heart-count on_cursor" id="heart-count' + postVO.pno + '" data-pno="' + postVO.pno + '">' + 
+					postVO.like_cnt + ' 명이 좋아합니다' + 
+				'</span>' + 
+			'</div>' + 
+			'<div class="right_icon">' + 
+				'<div class="sprite_share_icon on_cursor" data-name="share"></div>' + 
+			'</div>' + 
+		'</div>' + 
+
+		'<div class="posting-master">' + 
+			'<p class="posting-master-name">' + postVO.nickname + '</p>' + 
+			'<div class="posting-master-content">' + 
+				postVO.content + 
+			'</div>' + 
+		'</div>' + 
+		'<div class="timer">';
+		var articleTimer = postVO.timer.slice(0, -1);
+		var articleTimer_1 = postVO.timer.slice(-1);
+		if(articleTimer_1 == 's') {
+			articleTimer += '초 전';
+		}else if(articleTimer_1 == 'm') {
+			articleTimer += '분 전';
+		}else if(articleTimer_1 == 'h') {
+			articleTimer += '시간 전';
+		}else if(articleTimer_1 == 'd') {
+			articleTimer += '일 전';
+		}else if(articleTimer_1 == 'M') {
+			articleTimer += '달 전';
+		}else if(articleTimer_1 == 'y') {
+			articleTimer += '년 전';
+		}			
+		nextArticle += 
+			articleTimer + 
+		'</div>' + 
+		'<!-- post 댓글 div -->' + 
+		'<div class="comment_container">';
+						for( var relpy_i in postVO.reply_list ) {
+							nextArticle += 
+			'<div class="comment">' + 
+				'<div class="nick_name">' + postVO.reply_list[relpy_i].nickname + '</div>' + 
+				'<div class="real_comment">' + 
+					postVO.reply_list[relpy_i].rcontent + 
+				'</div>' + 
+			'</div>';
+						}
+						nextArticle += 
+			'<div class="more-comment-div">' + 
+				'<span class="more-comment" data-pno="' + postVO.pno + '">...</span>' + 
+			'</div>' + 
+		'</div>' + 
+	'</article>'; 
+					    $("#post-box").append(nextArticle);
+						console.log( (postVO_i + 1) + ' '  + '. article 생성 완료');
+					})
+				}
 			}, error:function(){
 				alert("Error - Next Page's Data ! ");
 			}
 		})
     }
-
-    // IntersectionObserver 갱신 함수 (마지막 artice 요소를 감시하도록 함)
+    
+    // observeLastChild(io)를 nextArticle 생성완료 뒤로 위치시키고, 스크립트의 함수 변수들 위치 조정?
+ 	// setTimeOut 문제 ? XXX
+    // IntersectionObserver 갱신 함수 
     function observeLastChild(intersectionObserver) {
 
         const listChildren = document.querySelectorAll(".post-box article");
@@ -1085,10 +1145,12 @@
         listChildren.forEach(ea => { // ea : End Article
             if (!ea.nextElementSibling && pageNum < realEnd) { 
                 intersectionObserver.observe(ea) // ea에 대하여 관측 시작
-                console.log(ea);
+                console.log('------- ea에 대하여 관측 시작'); //
+                console.log(ea); //
             } else if (pageNum >= realEnd) { 
                 intersectionObserver.disconnect()
                 msgLoading.textContent = "最後のページ" ///// *msgLoading
+               	console.log('最後のページ --- 관측 종료'); //
             }
         })
     }
@@ -1107,13 +1169,13 @@
             if (entry.isIntersecting) {
                 msgLoading.classList.add("post-fade-in") ///// *msgLoading
                 // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTimeout 사용
-                setTimeout(() => {
+//                 setTimeout(() => {
                     addData(++pageNum) ///// *currentPage
                     console.log('addData(++pageNum) - ' + pageNum); // 
                     observer.unobserve(entry.target)
                     observeLastChild(observer)
                     msgLoading.classList.remove("post-fade-in") ///// *msgLoading
-                }, 1000)
+//                 }, 1000)
             }
         })
     }, observerOption)
@@ -1121,7 +1183,7 @@
     // 초기 데이터 생성
     addData(pageNum) // 데이터 추가 함수  ///// *currentPage
     observeLastChild(io) // IntersectionObserver 갱신 함수
-
+	
     
     
     
