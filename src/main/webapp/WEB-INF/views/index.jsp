@@ -522,29 +522,6 @@
 		}
 		history.replaceState({},null,null);
 	})
-
-	// original Template Script
-/*  	onclick = function deligationFunc(e) {
-		let elem = e.target;
-		if(elem.getAttribute('data-name') == null){
-			elem = null;
-			return;
-		}
-		if (elem.matches('[data-name="heartbeat"]')) {
-			console.log("하트");
-		} else if (elem.matches('[data-name="bookmark"]')) {
-			console.log("북마크");
-		} else if (elem.matches('[data-name="share"]')) {
-			console.log("공유");
-		} else if (elem.matches('[data-name="commentheart"]')) {
-			console.log("코멘트하트");
-		}
-		if (elem.matches('[data-name="more"]')) {
-			console.log("더보기");
-		}
-
-		elem.classList.toggle('on');
-	} */
 	
 	// Click heart-btn -> By status of data-heart, Adding or Removing user in like_list
 	$(document).on("click", ".heart-btn" ,function(e) {
@@ -977,12 +954,6 @@
 					console.log('No Post... 생성 완료');
 				}else{
 	$.each(post_list, function(postVO_i, postVO){
-	/*					const nextArticle = document.createElement("article");
-	 					nextArticle.classList.add("fs-1");
-						let p_div = document.createElement("p");
-						p_div.textContent = "zaco zaco zaco";
-						nextArticle.append( p_div );
-					    $("#post-box").append(nextArticle); */
 	 					let nextArticle = 
 	'<article class="contents post-fade-in">' + 
 		'<!-- post 헤더 -->' + 
@@ -1121,7 +1092,7 @@
 						console.log( (postVO_i + 1) + ' '  + '. article 생성 완료');
 					})
 				}
-				observeLastChild(io);
+				observeLastChild(io); // 
 			}, error:function(){
 				alert("Error - Next Page's Data ! ");
 			}
@@ -1135,14 +1106,7 @@
 
         const listChildren = document.querySelectorAll(".post-box article");
         const listParent = document.querySelectorAll(".post-box")
-        console.log("------- '.post-box' ");
-		console.log(document.querySelectorAll(".post-box"));
-		console.log("------- 'listChildren' ");
-        console.log(listChildren);
-		console.log("------- 'article' ");
-		console.log(document.querySelectorAll("article"));
-		console.log("------- '$(post-box article)' ");
-        console.log($(".post-box article"));
+
         listChildren.forEach(ea => { // ea : End Article
             if (!ea.nextElementSibling && pageNum < realEnd) { 
                 intersectionObserver.observe(ea) // ea에 대하여 관측 시작
@@ -1150,7 +1114,7 @@
                 console.log(ea); //
             } else if (pageNum >= realEnd) { 
                 intersectionObserver.disconnect()
-                msgLoading.textContent = "最後のページ" ///// *msgLoading
+                msgLoading.textContent = "最後のページ";
                	console.log('最後のページ --- 관측 종료'); //
             }
         })
@@ -1168,68 +1132,24 @@
         entries.forEach(entry => {
             // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
             if (entry.isIntersecting) {
-                msgLoading.classList.add("post-fade-in") ///// *msgLoading
+                msgLoading.classList.add("post-fade-in") 
                 // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTimeout 사용
-//                 setTimeout(() => {
-                    addData(++pageNum) ///// *currentPage
-                    console.log('addData(++pageNum) - ' + pageNum); // 
+                setTimeout(() => {
+                    addData(++pageNum) 
+                    console.log('addData(++pageNum) - ' + pageNum); 
                     observer.unobserve(entry.target)
-                    observeLastChild(observer)
-                    msgLoading.classList.remove("post-fade-in") ///// *msgLoading
-//                 }, 1000)
+                    //observeLastChild(observer) 
+                    msgLoading.classList.remove("post-fade-in") 
+                }, 1000)
             }
         })
     }, observerOption)
 
     // 초기 데이터 생성
-    addData(pageNum) // 데이터 추가 함수  ///// *currentPage
+    addData(pageNum) // 
     //observeLastChild(io) // IntersectionObserver 갱신 함수
 	
-    
-    
-    
-	// Infinity Scroll
-/*  	function YesScroll () {
-		const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
-		const fullContent = document.querySelector('.post-box'); // 전체를 둘러싼 컨텐츠 정보획득
-		const screenHeight = screen.height; // 화면 크기
-		let oneTime = false; // 일회용 글로벌 변수
-		document.addEventListener('scroll',OnScroll,{passive:true}) // 스크롤 이벤트함수정의
-	 	function OnScroll () { //스크롤 이벤트 함수
-	    	const fullHeight = fullContent.clientHeight; // infinite 클래스의 높이   
-	    	const scrollPosition = pageYOffset; // 스크롤 위치
-	    	if (fullHeight-screenHeight/2 <= scrollPosition && !oneTime) { // 만약 전체높이-화면높이/2가 스크롤포지션보다 작아진다면, 그리고 oneTime 변수가 거짓이라면
-				oneTime = true; // oneTime 변수를 true로 변경해주고,
-				console.log('인피니티 스클로 감지 !!!');
-	      		madeBox(); // 컨텐츠를 추가하는 함수를 불러온다.
-	    	}
-	  	}
-		
-		const nextLink = pagination.querySelector('.nextPage'); // .pagination 의 .nextPage 링크
-		const nextURL = nextLink.getAttribute('href'); // .nextPage의 링크 주소
-		
-		function madeBox() {
-			const xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() { 
-			  if (xhr.readyState === xhr.DONE) { 
-			    if (xhr.status === 200 || xhr.status === 201) {
-			      const data = xhr.response; // 다음페이지의 정보
-			      const addList = data.querySelector('.contents'); // 다음페이지에서 list아이템을 획득 (contents = article)
-			      fullContent.appendChild(addList); // infinite에 list를 더해주기
-			      oneTime = false; // oneTime을 다시 false로 돌려서 madeBox를 불러올 수 있게 해주기
-			    } else {
-			      console.error(xhr.response);
-			    }
-			  }
-			};
-			xhr.open('GET', nextURL); // 다음페이지의 정보를 get
-			xhr.send();
-			xhr.responseType = "document";
-		}
-	}
-	YesScroll();*/
-	
- 
+
 </script>
 
 <%@ include file="footer.jsp"%>
