@@ -412,7 +412,7 @@
 			</div> <!-- / all-comment -->
 								
 			<div class="comment-write-div">
-				<span class="fs-5 mb-3">댓글 작성</span>
+				<span class="fs-5 mb-3"><spring:message code="postmodal.writeComment"/></span>
                    <button class="msg_send_btn float-end" type="button" data-pno="">
                       <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                    </button>
@@ -492,7 +492,7 @@
 				// Post Content
 				$(".modal-posting-master-content").html(PostVO.content);
 				// Comment List
- 				$(".all-comment").append('<p class="fs-5 mb-3">댓글 리스트</p>');
+ 				$(".all-comment").append('<p class="fs-5 mb-3"><spring:message code="postmodal.commentList"/></p>');
 				if( PostVO.reply_list[0] == null ) {
 					$(".all-comment").append('<p class="fs-6 text-center mt-5">아직 댓글이 없습니다.</p>');
 				}else {
