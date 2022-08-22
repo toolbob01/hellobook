@@ -145,24 +145,24 @@ public class MypageController {
         return "/mypage/setting/changepwd";
     }
     
-    //비밀번호 변경처리
-    @RequestMapping(value="/setting/changepwd", method=RequestMethod.POST)
-    public String submitChangePassword(@Valid MemberVO mvo,BindingResult result) {
-    	//로그 표시
-    	if(log.isDebugEnabled()) {
-    		log.debug("<<MemberVO>> : " + MemberVO);
-    	}
-    	
-    	//유효성 체크
-    	if(result.hasFieldErrors("passwd")) {
-    		
-    		 return "/mypage/setting/changepwd";
-    	}
-    	//비밀번호 인증
-    	MemberVO mvo = memberService.read(mvo.getEmail());
-    	
-    }
-	
+//    //비밀번호 변경처리
+//    @RequestMapping(value="/setting/changepwd", method=RequestMethod.POST)
+//    public String submitChangePassword(@Valid MemberVO mvo,BindingResult result) {
+//    	//로그 표시
+//    	if(log.isDebugEnabled()) {
+//    		log.debug("<<MemberVO>> : " + MemberVO);
+//    	}
+//    	
+//    	//유효성 체크
+//    	if(result.hasFieldErrors("passwd")) {
+//    		
+//    		 return "/mypage/setting/changepwd";
+//    	}
+//    	//비밀번호 인증
+//    	MemberVO mvo = memberService.read(mvo.getEmail());
+//    	
+//    }
+//	
 	
 	
 	
