@@ -372,9 +372,46 @@ button:focus {
 				  
 				</ul>
 				<div class="tab-content" id="myTabContent">
-				  <div class="tab-pane fade show active" id="findSearch" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-				  	<input type="text" class="form-control">
-				  	<button class="btn btn-primary">채팅방 만들기</button>
+				  <div class="tab-pane fade show active" id="findSearch" role="tabpanel" aria-labelledby="home-tab" tabindex="0" style="display:flex;flex-direction:column;align-content: stretch;justify-content: space-evenly;align-items: stretch;">
+    
+				  	<div style="margin-top:20px;">
+				  		<input type="text" class="form-control">
+					</div>
+				  	
+				  	
+				  	
+				  	<div style="margin-top:20px;border-top:1px solid #eee;">
+				  		<div class="py-3" style="display:flex;flex-direction: row;justify-content: space-evenly;align-items: center;">
+				  			<div>
+					  			<div style="width:100px;height:auto;">
+					  				<img src="/resources/imgs/unknown_thumbnail.jpg" alt="...">
+					  			</div>
+					  			<div>
+					  			닉네임<br>
+					  			email
+					  			</div>
+					  			<button class="btn btn-primary">+</button>
+				  			</div>
+				  		</div>
+				  		
+				  	</div>
+				  	
+				  	<div style="margin-top:20px;margin-bottom:20px;border-top:1px solid #eee;">
+				  		<div class="py-3" style="display:flex;flex-direction: row;justify-content: space-evenly;align-items: center;">
+				  			<div>
+					  			<div style="width:100px;height:auto;">
+					  				<img src="/resources/imgs/unknown_thumbnail.jpg" alt="...">
+					  			</div>
+					  			<div>
+					  			닉네임<br>
+					  			email
+					  			</div>
+					  			<button class="btn btn-primary">+</button>
+				  			</div>
+				  		</div>
+				  		
+				  	</div>
+				  	
 				  </div>
 				  
 				  <div class="tab-pane fade" id="findFriend" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
