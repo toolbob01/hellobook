@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hellobook.mapper.FriendMapper">
+
+	<select id="selectFriendList" resultType="com.hellobook.domain.MemberVO">
+		SELECT  f.frno, f.femail, m.email ,m.nickname, m.language, m.birth, m.sex, m.hobby, m.intro, m.profile  
+		FROM friend f   
+		LEFT OUTER JOIN member m   
+		ON f.femail = m.email  
+		
+	</select>
+	
+	<select id="countFriendList" resultType="int">
+		SELECT  COUNT(f.femail)  
+		FROM friend f   
+		LEFT OUTER JOIN member m   
+		ON f.femail = m.email  
+		
+	</select>
+	
+	<select id="findFriendList" resultType="com.hellobook.domain.MemberVO">
+		SELECT DISTINCT m.email ,m.nickname, m.language, m.birth, m.sex, m.hobby, m.intro, m.profile  
+		FROM member m   
+		LEFT OUTER JOIN friend f   
+		ON m.email = f.femail
+        WHERE f.email is null AND m.nickname LIKE CONCAT('%' || #{keyword, jdbcType=VARCHAR} ,'%')
+	</select>
+	
+	
+</mapper>

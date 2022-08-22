@@ -22,4 +22,8 @@ public class MemberVO {
 	// Friend
 	private int frno;
 	private String femail;
+	
+	//검색설정
+	
+	private String keyword;
 }
