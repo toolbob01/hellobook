@@ -94,7 +94,7 @@ body {
 			<div class="col-9">
 				<div class="input-form col-md-12 mx-auto">
 				<div id="notice">
-					<h4 class="mb-3">프로필 수정</h4>
+					<h4 class="mb-3"><spring:message code="setting.editProfile.title"/></h4>
 				</div>
 				<form class="validation-form" id="regForm" action="/mypage/setting/editprofile" method="post" novalidate>
 				<sec:csrfInput/>
@@ -102,7 +102,7 @@ body {
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
 
-							<label for="nickname">닉네임</label> 
+							<label for="nickname"><spring:message code="setting.editProfile.nickname"/></label> 
 							<input type="text"
 								class="form-control" id="nickname" name="nickname" value="${svo.nickname}" placeholder="">
 
@@ -113,7 +113,7 @@ body {
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
 
-							<label for="nickname">자기소개</label> 
+							<label for="nickname"><spring:message code="setting.editProfile.introduce"/></label> 
 							<input type="text"
 								class="form-control" id="nickname" name="intro" value="${svo.intro}" placeholder="">
 
@@ -123,82 +123,82 @@ body {
 					
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
-							<label for="language">모국어</label><br>
+							<label for="language"><spring:message code="setting.editProfile.language"/></label><br>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="checkbox" name="language" id="korean" value="K" onclick="checkOnlyOne(this)">
-								<label class="form-check-label" for="korean">한국어</label>
+								<label class="form-check-label" for="korean"><spring:message code="setting.editProfile.Korean"/></label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="checkbox" name="language" id="japanese" value="J" onclick="checkOnlyOne(this)">
-									<label class="form-check-label" for="japanese">일본어</label>
+									<label class="form-check-label" for="japanese"><spring:message code="setting.editProfile.Japanese"/></label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="checkbox" name="language" id="etc" value="E" onclick="checkOnlyOne(this)">
-								<label class="form-check-label" for="etc">기타</label>
+								<label class="form-check-label" for="etc"><spring:message code="setting.editProfile.Etc"/></label>
 							</div>
-							<div class="notice-bubble" id="lan-notice">모국어를 선택해주세요.</div>
+							<div class="notice-bubble" id="lan-notice"><spring:message code="setting.editProfile.checkLang"/></div>
 						</div>
 					</div>
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
-							<label for="birth">생년월일</label>
-							<input type="date" class="form-control" name="birth" id="birth" min="1900-01-01" value="${svo.birth}" style="width: 50%; min-width: 10px;" >
+							<label for="birth"><spring:message code="setting.editProfile.birth"/></label>
+							<input type="date" class="form-control" name="birth" id="birth" min="1900-01-01" value="${svo.birth}" placeholder="yyyy-mm-dd" style="width: 50%; min-width: 10px;" >
 							<div class="notice-bubble" id="birth-notice"></div>
 						</div>
 					</div>
 					<div class="col-md-12 mb-3">
 						<div class="input_div">
-							<label for="sex">성별</label><br>
+							<label for="sex"><spring:message code="setting.editProfile.sex"/></label><br>
 							<div class="row" id="sexCheckDiv">
 								<div class="form-check col-md-3 mb-3">
 									<input class="form-check-input" type="radio" name="sex" id="male" value="M" checked>
-									<label class="form-check-label" for="male">남성</label>
+									<label class="form-check-label" for="male"><spring:message code="setting.editProfile.male"/></label>
 								</div>
 								<div class="form-check col-md-3 mb-3">
 									<input class="form-check-input" type="radio" name="sex" id="female" value="F">
-									<label class="form-check-label" for="female">여성</label>
+									<label class="form-check-label" for="female"><spring:message code="setting.editProfile.female"/></label>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="mb-3">
 						<div class="row" id="hobbyCheckBox">
-							<label for="nickname">관심분야</label><br>
+							<label for="nickname"><spring:message code="setting.editProfile.hobby"/></label><br>
 							<div class="form-check form-check-inline col-md-3">
 								<input class="form-check-input" type="checkbox" name="hobbys" id="trip" value="1" >
-								<label class="form-check-label" for="trip">여행</label>
+								<label class="form-check-label" for="trip"><spring:message code="setting.editProfile.trip"/></label>
 							</div>
 							<div class="form-check form-check-inline col-md-3">
 								<input class="form-check-input" type="checkbox" name="hobbys" id="food" value="2" > 
-								<label class="form-check-label" for="food">음식</label>
+								<label class="form-check-label" for="food"><spring:message code="setting.editProfile.food"/></label>
 							</div>
 							<div class="form-check form-check-inline col-md-3">
 								<input class="form-check-input" type="checkbox" name="hobbys" id="lan" value="3" > 
-								<label class="form-check-label" for="lan">언어</label>
+								<label class="form-check-label" for="lan"><spring:message code="setting.editProfile.lan"/></label>
 							</div>
 							<div class="form-check form-check-inline col-md-3">
 								<input class="form-check-input" type="checkbox" name="hobbys" id="instrument" value="4" > 
-								<label class="form-check-label" for="instrument">악기</label>
+								<label class="form-check-label" for="instrument"><spring:message code="setting.editProfile.instrument"/></label>
 							</div>
 							<div class="form-check form-check-inline col-md-3">
 								<input class="form-check-input" type="checkbox" name="hobbys" id="reading" value="5" >
-								<label class="form-check-label" for="reading">독서</label>
+								<label class="form-check-label" for="reading"><spring:message code="setting.editProfile.read"/></label>
 							</div>
 							<div class="form-check form-check-inline col-md-3">
 								<input class="form-check-input" type="checkbox" name="hobbys" id="exercise" value="6" >
-								<label class="form-check-label" for="exercise">운동</label>
+								<label class="form-check-label" for="exercise"><spring:message code="setting.editProfile.workout"/></label>
 							</div>
 							<div class="form-check form-check-inline col-md-3">
 								<input class="form-check-input" type="checkbox" name="hobbys" id="photo" value="7" >
-								<label class="form-check-label" for="photo">사진</label>
+								<label class="form-check-label" for="photo"><spring:message code="setting.editProfile.photo"/></label>
 							</div>
 							<div class="form-check form-check-inline col-md-3">
 								<input class="form-check-input" type="checkbox" name="hobbys" id="music" value="8" >
-								<label class="form-check-label" for="music">음악</label>
+								<label class="form-check-label" for="music"><spring:message code="setting.editProfile.music"/></label>
 							</div>
 							<div class="form-check form-check-inline col-md-3">
 								<input class="form-check-input" type="checkbox" name="hobbys" id="animal" value="9" >
-								<label class="form-check-label" for="animal">동물</label>
+								<label class="form-check-label" for="animal"><spring:message code="setting.editProfile.animal"/></label>
 							</div>
 						</div>
 					</div>
@@ -206,7 +206,7 @@ body {
 
 				
 				<div class="mb-4"></div>
-				<button class="btn btn-primary btn-lg btn-block" type="button" onclick="formCheck()">수정
+				<button class="btn btn-primary btn-lg btn-block" type="button" onclick="formCheck()"><spring:message code="setting.editProfile.submit"/>
 				</button>
 				
 				<input type="hidden" name="hobby" id="hobby" value="">
@@ -249,14 +249,14 @@ nickname.on("blur",function(){
 	nicknameNotice.css('display','none')
 	
 	if(nickname.val() == ''){
-		nicknameNotice.html("닉네임을 입력해주세요.");
+		nicknameNotice.html('<spring:message code="setting.editProfile.checkNickname1"/>');
 		nicknameNotice.css('display','flex')
 		nickname.focus();
 		return
 	}
 	
 	if(nickname.val().search(/\s/) != -1){
-		nicknameNotice.html("닉네임은 공백을 포함할 수 없습니다.");
+		nicknameNotice.html('<spring:message code="setting.editProfile.checkNickname2"/>');
 		nicknameNotice.css('display','flex')
 		nickname.focus();
 		return
@@ -277,21 +277,21 @@ nickname.on("blur",function(){
 			console.log(result);
 			if(result != 0) {
 				if(Nname == Sname) {
-					nicknameNotice.html("기존 닉네임과 같습니다.");
+					nicknameNotice.html('<spring:message code="setting.editProfile.checkNickname3"/>');
 					nicknameNotice.css('display','flex')
 				} else {
-					nicknameNotice.html("사용할 수 없는 닉네임입니다.");
+					nicknameNotice.html('<spring:message code="setting.editProfile.checkNickname5"/>');
 					nicknameNotice.css('display','flex')
 					nickname.focus();
 					return
 				}
 			} else {
-				nicknameNotice.html("사용할 수 있는 닉네임입니다.");
+				nicknameNotice.html('<spring:message code="setting.editProfile.checkNickname4"/>');
 				nicknameNotice.css('display','flex')
 			}
 		},
 		error : function() {
-			alert("서버요청실패");
+			alert('<spring:message code="setting.editProfile.error"/>');
 		}
 	});
 
@@ -301,14 +301,14 @@ birth.on("blur",function(){
 	birthNotice.css('display','none')
 	
 	if(birth.val() == ''){
-		birthNotice.html("생년월일을 입력해주세요.")
+		birthNotice.html('<spring:message code="setting.editProfile.checkBirth1"/>')
 		birthNotice.css('display','flex')
 		birth.focus();
 		return
 	}
 	
 	if(birth.val().substr(0,4) < 1900){
-		birthNotice.html("1900년 미만은 입력하실 수 없습니다.")
+		birthNotice.html('<spring:message code="setting.editProfile.checkBirth2"/>')
 		birthNotice.css('display','flex')
 		birth.val("");
 		birth.focus();
@@ -320,19 +320,19 @@ birth.on("blur",function(){
 function formCheck(){
 	
 	if(nickname.val() == ''){
-		alert("닉네임을 입력해주세요.");
+		alert('<spring:message code="setting.editProfile.checkNickname1"/>');
 		nickname.focus();
 		return
 	}
 	
 	if(nickname.val().search(/\s/) != -1){
-		alert("닉네임은 공백을 포함할 수 없습니다.");
+		alert('<spring:message code="setting.editProfile.checkNickname2"/>');
 		nickname.focus();
 		return
 	}
 	
-	if(nicknameNotice.text().includes("사용할 수 없는 닉네임입니다.")) {
-		alert("사용할 수 없는 닉네임입니다.");
+	if(nicknameNotice.text().includes('<spring:message code="setting.editProfile.checkNickname4"/>')) {
+		alert('<spring:message code="setting.editProfile.checkNickname4"/>');
 		nickname.focus();
 		return
 	}
@@ -346,18 +346,18 @@ function formCheck(){
 	})
 	
 	if(i != 1){
-		alert("모국어를 선택해주세요.")
+		alert('<spring:message code="setting.editProfile.checkLang"/>')
 		return
 	}
 	
 	if(birth.val() == ''){
-		alert("생년월일을 입력해주세요.")
+		alert('<spring:message code="setting.editProfile.checkBirth1"/>')
 		birth.focus();
 		return
 	}
 	
 	if(birth.val().substr(0,4) < 1900){
-		alert("1900년 미만은 입력하실 수 없습니다.")
+		alert('<spring:message code="setting.editProfile.checkBirth2"/>')
 		birth.val("");
 		birth.focus();
 		return
