@@ -681,17 +681,47 @@
 				var cpt = postVO.timer.slice(0, -1);
 				var cpt_1 = postVO.timer.slice(-1);
 				if(cpt_1 == 's') {
-					cpt += '초 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.sec"/>';
+					}else {
+						cpt += '<spring:message code="timer.sec2"/>';
+					}
+					
 				}else if(cpt_1 == 'm') {
-					cpt += '분 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.min"/>';
+					}else {
+						cpt += '<spring:message code="timer.min2"/>';
+					}
+					
 				}else if(cpt_1 == 'h') {
-					cpt += '시간 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.hour"/>';
+					}else {
+						cpt += '<spring:message code="timer.hour2"/>';
+					}
+					
 				}else if(cpt_1 == 'd') {
-					cpt += '일 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.day"/>';
+					}else {
+						cpt += '<spring:message code="timer.day2"/>';
+					}
+					
 				}else if(cpt_1 == 'M') {
-					cpt += '달 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.month"/>';
+					}else {
+						cpt += '<spring:message code="timer.month2"/>';
+					}
+					
 				}else if(cpt_1 == 'y') {
-					cpt += '년 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.year"/>';
+					}else {
+						cpt += '<spring:message code="timer.year2"/>';
+					}
+					
 				}
  				comment_profile += '<div class="comment-time align-self-center mx-5">' + cpt + '</div>';
 				$(".modal-detail-contents .comment-profile").append(comment_profile); 
@@ -716,17 +746,47 @@
 						var acpt = replyVO.timer.slice(0, -1);
 						var acpt_1 = replyVO.timer.slice(-1);
 						if(acpt_1 == 's') {
-							acpt += '초 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.sec"/>';
+							}else {
+								acpt += '<spring:message code="timer.sec2"/>';
+							}
+							
 						}else if(acpt_1 == 'm') {
-							acpt += '분 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.min"/>';
+							}else {
+								acpt += '<spring:message code="timer.min2"/>';
+							}
+							
 						}else if(acpt_1 == 'h') {
-							acpt += '시간 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.hour"/>';
+							}else {
+								acpt += '<spring:message code="timer.hour2"/>';
+							}
+							
 						}else if(acpt_1 == 'd') {
-							acpt += '일 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.day"/>';
+							}else {
+								acpt += '<spring:message code="timer.day2"/>';
+							}
+							
 						}else if(acpt_1 == 'M') {
-							acpt += '달 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.month"/>';
+							}else {
+								acpt += '<spring:message code="timer.month2"/>';
+							}
+							
 						}else if(acpt_1 == 'y') {
-							acpt += '년 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.year"/>';
+							}else {
+								acpt += '<spring:message code="timer.year2"/>';
+							}
+							
 						}
 						all_comment_profile += '</div>' + 
 									    	   '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
@@ -756,18 +816,48 @@
         						var acct = cocommentVO.timer.slice(0, -1);
         						var acct_1 = cocommentVO.timer.slice(-1);
         						if(acct_1 == 's') {
-        							acct += '초 전';
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.sec"/>';
+        							}else {
+        								acct += '<spring:message code="timer.sec2"/>';
+        							}
+        							
         						}else if(acct_1 == 'm') {
-        							acct += '분 전';
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.min"/>';
+        							}else {
+        								acct += '<spring:message code="timer.min2"/>';
+        							}
+        							
         						}else if(acct_1 == 'h') {
-        							acct += '시간 전';
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.hour"/>';
+        							}else {
+        								acct += '<spring:message code="timer.hour2"/>';
+        							}
+        							
         						}else if(acct_1 == 'd') {
-        							acct += '일 전';
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.day"/>';
+        							}else {
+        								acct += '<spring:message code="timer.day2"/>';
+        							}
+        							
         						}else if(acct_1 == 'M') {
-        							acct += '달 전';
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.month"/>';
+        							}else {
+        								acct += '<spring:message code="timer.month2"/>';
+        							}
+        							
         						}else if(acct_1 == 'y') {
-        							acct += '년 전';
-        						}				
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.year"/>';
+        							}else {
+        								acct += '<spring:message code="timer.year2"/>';
+        							}
+        							
+        						}					
         						all_comment_collapse += '<div class="comment-time align-self-center mx-5">' + acct + '</div>' + 
 												         '</div>' + 
 												         '<div class="comment-content">' + 
@@ -917,17 +1007,47 @@
 						var accpt = data.timer.slice(0, -1);
 						var accpt_1 = data.timer.slice(-1);
 						if(accpt_1 == 's') {
-							accpt += '초 전';
+							if(accpt == '1') {
+								accpt += '<spring:message code="timer.sec"/>';
+							}else {
+								accpt += '<spring:message code="timer.sec2"/>';
+							}
+							
 						}else if(accpt_1 == 'm') {
-							accpt += '분 전';
+							if(accpt == '1') {
+								accpt += '<spring:message code="timer.min"/>';
+							}else {
+								accpt += '<spring:message code="timer.min2"/>';
+							}
+							
 						}else if(accpt_1 == 'h') {
-							accpt += '시간 전';
+							if(accpt == '1') {
+								accpt += '<spring:message code="timer.hour"/>';
+							}else {
+								accpt += '<spring:message code="timer.hour2"/>';
+							}
+							
 						}else if(accpt_1 == 'd') {
-							accpt += '일 전';
+							if(accpt == '1') {
+								accpt += '<spring:message code="timer.day"/>';
+							}else {
+								accpt += '<spring:message code="timer.day2"/>';
+							}
+							
 						}else if(accpt_1 == 'M') {
-							accpt += '달 전';
+							if(accpt == '1') {
+								accpt += '<spring:message code="timer.month"/>';
+							}else {
+								accpt += '<spring:message code="timer.month2"/>';
+							}
+							
 						}else if(accpt_1 == 'y') {
-							accpt += '년 전';
+							if(accpt == '1') {
+								accpt += '<spring:message code="timer.year"/>';
+							}else {
+								accpt += '<spring:message code="timer.year2"/>';
+							}
+							
 						}			
 						insert_all_comment_profile += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
 				    	  							  '<div class="comment-cocoment align-self-center" data-repno="' + data.repno + '">답글 달기</div>';
@@ -1102,18 +1222,48 @@
 		var articleTimer = postVO.timer.slice(0, -1);
 		var articleTimer_1 = postVO.timer.slice(-1);
 		if(articleTimer_1 == 's') {
-			articleTimer += '초 전';
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.sec"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.sec2"/>';
+			}
+			
 		}else if(articleTimer_1 == 'm') {
-			articleTimer += '분 전';
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.min"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.min2"/>';
+			}
+			
 		}else if(articleTimer_1 == 'h') {
-			articleTimer += '시간 전';
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.hour"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.hour2"/>';
+			}
+			
 		}else if(articleTimer_1 == 'd') {
-			articleTimer += '일 전';
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.day"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.day2"/>';
+			}
+			
 		}else if(articleTimer_1 == 'M') {
-			articleTimer += '달 전';
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.month"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.month2"/>';
+			}
+			
 		}else if(articleTimer_1 == 'y') {
-			articleTimer += '년 전';
-		}			
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.year"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.year2"/>';
+			}
+			
+		}		
 		nextArticle += 
 			articleTimer + 
 		'</div>' + 
