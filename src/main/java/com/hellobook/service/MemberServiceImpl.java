@@ -70,4 +70,10 @@ public class MemberServiceImpl implements MemberService {
 		 return memberMapper.modify(mvo);
 		 
 	}
+	
+	@Override
+	public List<MemberVO> selectAllMember() {
+	
+		return memberMapper.selectAllMember();
+	}
 }

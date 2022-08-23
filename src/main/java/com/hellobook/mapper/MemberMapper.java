@@ -25,6 +25,6 @@ public interface MemberMapper {
 	
 	public void updateThumbnailByNickname(MemberVO mvo); //프로필 사진 수정
 	
-	
+	public List<MemberVO> selectAllMember();
 	
 }

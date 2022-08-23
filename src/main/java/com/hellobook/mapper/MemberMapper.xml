@@ -132,7 +132,9 @@
 		nickname=#{nickname}
 	</update>
 
-
+	<select id="selectAllMember" resultType="com.hellobook.domain.MemberVO">
+		select email, nickname, profile from member
+	</select>
 
 
 </mapper>

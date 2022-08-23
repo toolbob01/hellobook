@@ -290,41 +290,20 @@ button:focus {
                </div>
                <div class="inbox_chat">
                <!-- 채팅유저 -->
+               	<c:forEach var="cvo" items="${cvoList}">
                   <div class="chat_list" data-email="friendA" data-rno="1">
                      <div class="chat_people">
                         <div class="chat_img">
                            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                         </div>
                         <div class="chat_ib">
-                           <h5>friendA <span class="chat_date">07-31</span></h5>
-                           <p>최근 메세지</p>
+                           <h5>${cvo.nickname} <span class="chat_date"><fmt:formatDate value="${cvo.mdate}" pattern="MM-dd"/></span></h5>
+                           <p>${cvo.content}</p>
                         </div>
                      </div>
                   </div>
-                  <div class="chat_list" data-email="friendB" data-rno="2">
-                     <div class="chat_people">
-                        <div class="chat_img">
-                        <!-- 유저 프로필 사진 -->
-                           <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                        </div>
-                        <div class="chat_ib">
-                           <h5>friendB <span class="chat_date">07-31</span></h5>
-                           <p>최근 메세지</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="chat_list" data-email="friendC" data-rno="3">
-                     <div class="chat_people">
-                        <div class="chat_img">
-                        <!-- 유저 프로필 사진 -->
-                           <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                        </div>
-                        <div class="chat_ib">
-                           <h5>friendC <span class="chat_date">07-31</span></h5>
-                           <p>세줄 이상의 긴글은 잘라서 ... 표시합니다. 세줄 이상의 긴글은 잘라서 ... 표시합니다. 세줄 이상의 긴글은 잘라서 ... 표시합니다.</p>
-                        </div>
-                     </div>
-                  </div>
+                </c:forEach>  
+                
                <!--채팅유저 -->
                </div>
             </div>
@@ -362,66 +341,46 @@ button:focus {
       	<div class="d-flex flex-column align-items-stretch flex-shrink-0">
 		
 		    <div class="list-group list-group-flush border-bottom scrollarea mp-st-sidebar_b">
-		      	<ul class="nav nav-tabs" id="myTab" role="tablist">
-				  <li class="nav-item" role="presentation">
-				    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#findSearch" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">검색으로 찾기</button>
-				  </li>
-				  <li class="nav-item" role="presentation">
-				    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#findFriend" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">친구 중에서 찾기</button>
-				  </li>
-				  
-				</ul>
-				<div class="tab-content" id="myTabContent">
-				  <div class="tab-pane fade show active" id="findSearch" role="tabpanel" aria-labelledby="home-tab" tabindex="0" style="display:flex;flex-direction:column;align-content: stretch;justify-content: space-evenly;align-items: stretch;">
-    
-				  	<div style="margin-top:20px;">
-				  		<input type="text" class="form-control">
-					</div>
-				  	
-				  	
-				  	
-				  	<div style="margin-top:20px;border-top:1px solid #eee;">
-				  		<div class="py-3" style="display:flex;flex-direction: row;justify-content: space-evenly;align-items: center;">
-				  			<div>
-					  			<div style="width:100px;height:auto;">
-					  				<img src="/resources/imgs/unknown_thumbnail.jpg" alt="...">
-					  			</div>
-					  			<div>
-					  			닉네임<br>
-					  			email
-					  			</div>
-					  			<button class="btn btn-primary">+</button>
-				  			</div>
-				  		</div>
-				  		
-				  	</div>
-				  	
-				  	<div style="margin-top:20px;margin-bottom:20px;border-top:1px solid #eee;">
-				  		<div class="py-3" style="display:flex;flex-direction: row;justify-content: space-evenly;align-items: center;">
-				  			<div>
-					  			<div style="width:100px;height:auto;">
-					  				<img src="/resources/imgs/unknown_thumbnail.jpg" alt="...">
-					  			</div>
-					  			<div>
-					  			닉네임<br>
-					  			email
-					  			</div>
-					  			<button class="btn btn-primary">+</button>
-				  			</div>
-				  		</div>
-				  		
-				  	</div>
-				  	
-				  </div>
-				  
-				  <div class="tab-pane fade" id="findFriend" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-				  	<button class="btn btn-primary">채팅방 만들기</button>
-				  </div>
-
-				</div>
+		      	<div style="margin:20px;display: flex;flex-direction: column;justify-content: space-evenly;align-items: stretch;">
+		      	
+		      		<c:forEach var="mvo" items="${mvoList}">
+		      		<c:if test="${mvo.email == username}">
+		      		</c:if>
+		      		<c:if test="${mvo.email != username}">
+		      		<div style="margin:10px 0;padding:10px 0;border-top:0.5px solid #eee;border-bottom:0.5px solid #eee;">
+			      		<div class="row">
+			      			<div class="col-md-3">
+			      				<img src="/hello_img/member/${mvo.profile}" alt="..." style="width:100px;height:100px;">
+			      			</div>
+			      			<div class="col-md-6" style="margin: auto;text-align: center;">
+			      				<span>
+			      					${mvo.email}
+			      				</span>
+			      				<br><br>
+			      				<span>
+			      					${mvo.nickname}
+			      				</span>
+			      			</div>
+			      			<div class="col-md-3" style="margin: auto;text-align: center;">
+			      			<form action="/chat/createChatRoom" method="post">
+			      				<sec:csrfInput/>
+			      				<input type="hidden" name="email" value="${username}">
+			      				<input type="hidden" name="femail" value="${mvo.email}">
+			      				
+			      					<button class="btn btn-primary" type="submit">+</button>
+			      				
+			      			</form>
+			      			</div>
+	
+			      		</div>
+		      		</div>
+		      		</c:if>
+		      		</c:forEach>
+		      		
+		      	</div>
 		    </div>
-		  </div>
-      </div>
+		 </div>
+     </div>
     <!-- </div> -->
   </div>
 </div>
