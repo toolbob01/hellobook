@@ -307,4 +307,9 @@ public class MemberController {
 		int nicknameCheck = memberService.checkNickname(nickname);
 		return nicknameCheck != 0? Integer.toString(nicknameCheck) : "0";
 	}
+	
+	@GetMapping("testPage")
+	public void testPage() {
+		
+	}
 }
