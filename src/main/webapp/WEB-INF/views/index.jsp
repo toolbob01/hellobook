@@ -421,11 +421,11 @@
 						
 						<div class="comment-write-div">
 							<span class="fs-5 mb-3"><spring:message code="postmodal.writeComment"/></span>
-							<span class="depth2nick ms-5">
-								<span>@HongGilDong</span>
-								<span class="depth2x"><i class="bi bi-x-lg"></i></span>
-							</span> 
-		                    <button class="msg_send_btn float-end" id="msg_send_btn" type="button" data-pno="" data-refno="" data-depth="1">
+							<span class="depth2div ms-2">
+<!-- 								<span class="depth2nick">@イェーイ韓国人</span> -->
+<!-- 								<span class="depth2x on_cursor"><i class="bi bi-x-lg"></i></span> -->
+							</span>
+		                    <button class="msg_send_btn float-end" id="msg_send_btn" type="button" data-pno="" data-refno="0" data-depth="1">
 		                       <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		                    </button>
 							<div class="form-floating">
@@ -652,8 +652,6 @@
 			url:"/post/post_detail_modal?pno=" + nowPno,
 			dataType:"json",
 			success:function(postVO){
-				console.log(postVO);
-				console.log(postVO.file_list);
 				// carousel main
 				$("#carousel-inner").append('<div class="carousel-item active">' + 
 														      			'<img src="/hello_img/post/' + postVO.file_list[0].uuid + '" alt="...">' + 
@@ -775,7 +773,8 @@
 												         '<div class="comment-content">' + 
 												         	cocommentVO.rcontent +
 												         '</div>' + 
-												       '</div>';			
+												       '</div>';
+							    $("#collapse" + replyVO.repno).append(all_comment_collapse);
  							})
 						}  
 					}) // each
@@ -825,15 +824,25 @@
 		 $("#like-user-list-detail").empty();
 	 });
 	
-	// Coment Depth 2
+	// Coment Depth 2 Add
 	$(document).on("click", ".comment-cocoment", function() {
+		$(".depth2div").empty();
 		var cocoRef = $(this).data("repno");
-		console.log('repno : ' + cocoRef);
+		var cocoNick = $(this).closest(".comment-profile").children(".comment-name").html();
 		$("#msg_send_btn").data("refno", cocoRef);
 		$("#msg_send_btn").data("depth", "2");
-
+		var cocoAt = '<span class="depth2nick">@' + cocoNick + '</span>' + 
+					 '<span class="depth2x on_cursor"> <i class="bi bi-x-lg"></i></span>';
+		$(".depth2div").append(cocoAt);
 	})
-	 
+	
+	// Coment Depth 2 Remove
+	$(document).on("click", ".depth2x", function(){
+		$("#msg_send_btn").data("refno", "0");
+		$("#msg_send_btn").data("depth", "1");
+		$(".depth2div").empty();
+	})
+		 
 	// Coment Insert
 	$(".msg_send_btn").on("click", function(e){		
 		e.preventDefault();
@@ -868,8 +877,28 @@
 				},
 				success:function(data){
 					if( data.depth == '2' ) {
-						console.log(data);
-						alert('This is Depth 2 coment !!!');
+						var accpt = data.timer.slice(0, -1);
+						var accpt_1 = data.timer.slice(-1);
+						if(accpt_1 == 's') {
+							accpt += '초 전';
+						}else if(accpt_1 == 'm') {
+							accpt += '분 전';
+						}else if(accpt_1 == 'h') {
+							accpt += '시간 전';
+						}else if(accpt_1 == 'd') {
+							accpt += '일 전';
+						}else if(accpt_1 == 'M') {
+							accpt += '달 전';
+						}else if(accpt_1 == 'y') {
+							accpt += '년 전';
+						}
+						dAllComCol += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
+							          '</div>' + 
+							          '<div class="comment-content">' + 
+							             cocommentVO.rcontent +
+							          '</div>' + 
+							          '</div>';
+						$("#collapse" + data.refno).append(all_comment_collapse);
 					}else {
 						// if depth : 1
 						$(".all-comment > p").remove();
