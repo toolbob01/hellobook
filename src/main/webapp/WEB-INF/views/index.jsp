@@ -821,42 +821,36 @@
         							}else {
         								acct += '<spring:message code="timer.sec2"/>';
         							}
-        							
         						}else if(acct_1 == 'm') {
         							if(acct == '1') {
         								acct += '<spring:message code="timer.min"/>';
         							}else {
         								acct += '<spring:message code="timer.min2"/>';
         							}
-        							
         						}else if(acct_1 == 'h') {
         							if(acct == '1') {
         								acct += '<spring:message code="timer.hour"/>';
         							}else {
         								acct += '<spring:message code="timer.hour2"/>';
         							}
-        							
         						}else if(acct_1 == 'd') {
         							if(acct == '1') {
         								acct += '<spring:message code="timer.day"/>';
         							}else {
         								acct += '<spring:message code="timer.day2"/>';
         							}
-        							
         						}else if(acct_1 == 'M') {
         							if(acct == '1') {
         								acct += '<spring:message code="timer.month"/>';
         							}else {
         								acct += '<spring:message code="timer.month2"/>';
         							}
-        							
         						}else if(acct_1 == 'y') {
         							if(acct == '1') {
         								acct += '<spring:message code="timer.year"/>';
         							}else {
         								acct += '<spring:message code="timer.year2"/>';
         							}
-        							
         						}					
         						all_comment_collapse += '<div class="comment-time align-self-center mx-5">' + acct + '</div>' + 
 												         '</div>' + 
@@ -970,91 +964,139 @@
 						var accpt = data.timer.slice(0, -1);
 						var accpt_1 = data.timer.slice(-1);
 						if(accpt_1 == 's') {
-							accpt += '초 전';
-						}else if(accpt_1 == 'm') {
-							accpt += '분 전';
-						}else if(accpt_1 == 'h') {
-							accpt += '시간 전';
-						}else if(accpt_1 == 'd') {
-							accpt += '일 전';
-						}else if(accpt_1 == 'M') {
-							accpt += '달 전';
-						}else if(accpt_1 == 'y') {
-							accpt += '년 전';
-						}
-						dAllComCol += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
-							          '</div>' + 
-							          '<div class="comment-content">' + 
-							             cocommentVO.rcontent +
-							          '</div>' + 
-							          '</div>';
-						$("#collapse" + data.refno).append(all_comment_collapse);
-					}else {
-						// if depth : 1
-						$(".all-comment > p").remove();
- 		 				$(".all-comment").prepend('<p class="fs-5 mb-3">댓글 리스트</p>' + 
- 		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
-		 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
- 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
-						  								 '<div class="comment-profile-flag">';
-						if( data.language == 'J' ) {
-							insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
-						}else {
-							insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
-						}
-						insert_all_comment_profile += '</div>' + 
-				    	  							  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>';
-						var accpt = data.timer.slice(0, -1);
-						var accpt_1 = data.timer.slice(-1);
-						if(accpt_1 == 's') {
-							if(accpt == '1') {
+							if(accpt_1 == '1') {
 								accpt += '<spring:message code="timer.sec"/>';
-							}else {
+							}else{
 								accpt += '<spring:message code="timer.sec2"/>';
 							}
-							
 						}else if(accpt_1 == 'm') {
-							if(accpt == '1') {
+							if(accpt_1 == '1') {
 								accpt += '<spring:message code="timer.min"/>';
-							}else {
+							}else{
 								accpt += '<spring:message code="timer.min2"/>';
 							}
-							
 						}else if(accpt_1 == 'h') {
-							if(accpt == '1') {
+							if(accpt_1 == '1') {
 								accpt += '<spring:message code="timer.hour"/>';
-							}else {
+							}else{
 								accpt += '<spring:message code="timer.hour2"/>';
 							}
-							
 						}else if(accpt_1 == 'd') {
-							if(accpt == '1') {
+							if(accpt_1 == '1') {
 								accpt += '<spring:message code="timer.day"/>';
-							}else {
+							}else{
 								accpt += '<spring:message code="timer.day2"/>';
 							}
-							
 						}else if(accpt_1 == 'M') {
-							if(accpt == '1') {
+							if(accpt_1 == '1') {
 								accpt += '<spring:message code="timer.month"/>';
-							}else {
+							}else{
 								accpt += '<spring:message code="timer.month2"/>';
 							}
-							
 						}else if(accpt_1 == 'y') {
-							if(accpt == '1') {
+							if(accpt_1 == '1') {
 								accpt += '<spring:message code="timer.year"/>';
-							}else {
+							}else{
 								accpt += '<spring:message code="timer.year2"/>';
 							}
-							
-						}			
-						insert_all_comment_profile += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
-				    	  							  '<div class="comment-cocoment align-self-center" data-repno="' + data.repno + '">답글 달기</div>';
-						$(".all-comment #comment-profile"+data.repno).append(insert_all_comment_profile);
-						$(".all-comment #comment-content"+data.repno).html(data.rcontent);
-					}
-					$("#commentInsert").val("");
+						}
+						// 처음 달리는 대댓글일 때
+						console.log(" null ??? ");
+						console.log( $("#collapse" + data.refno).length == 0 );
+						if( $("#collapse" + data.refno).length == 0 ) {
+							$(".all-comment #comment-content"+data.refno).append('<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#collapse' + data.refno + '" aria-expanded="false">' + 
+																	      			 '<i class="bi bi-arrow-return-right fs-5"></i>' + 
+																	      		     '<span class="cocoment-open ms-3" data-oc="c">펼치기</span>' + 
+																      			 '</div>');
+							$(".all-comment #comment-content"+data.refno).append('<div class="collapse show" id="collapse' + data.refno + '">');
+						}
+						var dAllComCol = '<div class="comment-depth">' + 
+								         '<div class="comment-profile d-flex">' + 
+								           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+								           '<div class="comment-profile-flag">';
+						if( data.language == 'J' ){  
+							dAllComCol += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
+						}else{
+							dAllComCol += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
+						}
+						dAllComCol += '</div>' + 
+										'<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
+										'<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
+							          '</div>' + 
+							          '<div class="comment-content">' + 
+							             data.rcontent +
+							          '</div>' + 
+							          '</div>';
+						$("#collapse" + data.refno).prepend(dAllComCol);
+						}else {
+							// if depth : 1
+							$(".all-comment > p").remove();
+	 		 				$(".all-comment").prepend('<p class="fs-5 mb-3">댓글 리스트</p>' + 
+	 		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
+			 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
+	 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+							  								 '<div class="comment-profile-flag">';
+							if( data.language == 'J' ) {
+								insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
+							}else {
+								insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
+							}
+							insert_all_comment_profile += '</div>' + 
+					    	  							  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>';
+							var accpt = data.timer.slice(0, -1);
+							var accpt_1 = data.timer.slice(-1);
+							if(accpt_1 == 's') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.sec"/>';
+								}else {
+									accpt += '<spring:message code="timer.sec2"/>';
+								}
+								
+							}else if(accpt_1 == 'm') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.min"/>';
+								}else {
+									accpt += '<spring:message code="timer.min2"/>';
+								}
+								
+							}else if(accpt_1 == 'h') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.hour"/>';
+								}else {
+									accpt += '<spring:message code="timer.hour2"/>';
+								}
+								
+							}else if(accpt_1 == 'd') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.day"/>';
+								}else {
+									accpt += '<spring:message code="timer.day2"/>';
+								}
+								
+							}else if(accpt_1 == 'M') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.month"/>';
+								}else {
+									accpt += '<spring:message code="timer.month2"/>';
+								}
+								
+							}else if(accpt_1 == 'y') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.year"/>';
+								}else {
+									accpt += '<spring:message code="timer.year2"/>';
+								}
+								
+							}			
+							insert_all_comment_profile += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
+					    	  							  '<div class="comment-cocoment align-self-center" data-repno="' + data.repno + '">답글 달기</div>';
+							$(".all-comment #comment-profile"+data.repno).append(insert_all_comment_profile);
+							$(".all-comment #comment-content"+data.repno).html(data.rcontent);
+						}
+						$("#commentInsert").val("");
+						$("#msg_send_btn").data("refno", "0");
+						$("#msg_send_btn").data("depth", "1");
+						$(".depth2div").empty();
 				}, error:function(){
 					alert("Error - Comment Insert ! ");
 				}
