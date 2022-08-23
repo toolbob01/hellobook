@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,18 +26,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.databind.deser.DataFormatReaders.Match;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
 import com.hellobook.domain.SessionVO;
-import com.hellobook.mapper.MemberMapper;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Time;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
 @RequestMapping("/mypage/*")
+@Log4j
 public class MypageController {
 	
 	@Autowired
@@ -101,39 +103,6 @@ public class MypageController {
 		}
 		
 	}
-	
-
-//	@GetMapping({"/setting/","/setting/editprofile"})
-//	public String editprofile(HttpServletRequest request, Model model) {
-//		HttpSession session = request.getSession();
-//		String email = (String) session.getAttribute("username");
-//		
-//		SessionVO svo = memberService.read(email);
-//		model.addAttribute("svo", svo);
-//		return "/mypage/setting/editprofile";
-//	}
-	
-
-	
-
-//	@GetMapping({"/setting/","/setting/editprofile"})
-//	public String editprofile() {
-//		return "/mypage/setting/editprofile";
-//	}
-//	
-//	
-//
-//	
-//	
-//	@GetMapping("/setting/changepwd")
-//	public String changepwd() {
-//		return "/mypage/setting/changepwd";
-//	}
-	
-//	@GetMapping("/setting/quit")
-//	public String quit() {
-//		return "/mypage/setting/quit";
-//	}
 
 	@RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.GET)
     public String editprofile(HttpServletRequest request, Model model) {
@@ -146,69 +115,55 @@ public class MypageController {
         return  "/mypage/setting/editprofile";
     }
 	
-    @RequestMapping(value={"/setting/","/setting/editprofile"}, method=RequestMethod.POST)
-    public String editAccount(MemberVO mvo, HttpSession session) throws Exception {
-        MemberVO loginUser = (MemberVO) session.getAttribute("check");
-        String email = loginUser.getEmail(); //세션에 저장된 사용자 정보로부터 이메일을 알아낸다.
-       
-        if (mvo.getNickname() == null) {
-            mvo.setNickname(loginUser.getNickname());
-        }
-        if (mvo.getBirth() == null) {
-            mvo.setBirth(loginUser.getBirth());
-        }
-        
-        if (mvo.getLanguage() == null) {
-            mvo.setLanguage(loginUser.getLanguage());
-        }
-        
-        if (mvo.getSex() == null) {
-            mvo.setSex(loginUser.getSex());
-        }
-        
-        if (mvo.getHobby() == null) {
-            mvo.setHobby(loginUser.getHobby());
-        }
-        
-              
+    @RequestMapping(value="/setting/editprofile", method=RequestMethod.POST)
+    public String editAccount(MemberVO mvo, HttpSession session) throws UnsupportedEncodingException {
+        String email = (String) session.getAttribute("username");
         mvo.setEmail(email);
-        int check = memberService.modify(mvo);
-        if (check == 1) {
-            session.setAttribute("check",mvo);
-        }
-       
-        return "/mypage/setting/changepwd";
+        System.out.println(mvo.toString());
+        
+        memberService.modify(mvo);
+        
+        SessionVO svo = new SessionVO();
+        svo.setNickname(mvo.getNickname());
+        session.setAttribute("Nname", svo.getNickname());
+        
+        String encodedParam = URLEncoder.encode(svo.getNickname(), "UTF-8");
+        
+        return "redirect:/mypage/profile/"+encodedParam;
        
     }
    
+    //비밀번호 변경 요청
     @RequestMapping(value="/setting/changepwd", method=RequestMethod.GET)
     public String changePasswd(HttpServletRequest request, Model model) {
     	
     	HttpSession session = request.getSession();
-		String email = (String) session.getAttribute("username");
+    	String email = (String) session.getAttribute("username");
 		SessionVO svo = memberService.read(email);
 		model.addAttribute("svo", svo);
     	
         return "/mypage/setting/changepwd";
     }
-   
-    @RequestMapping(value="/setting/changepwd", method=RequestMethod.POST)
-    public String changePasswd(String password, HttpSession session) throws Exception {
-        String email = ((MemberVO)session.getAttribute("check")).getEmail();
-       
-        MemberVO mvo = new MemberVO();
-        mvo.setEmail(email);
-        mvo.setPassword(password);
-       
-        memberService.changePwd(mvo);
-       
-        return "/mypage/setting/changepwd";
-    }
+    
+//    //비밀번호 변경처리
+//    @RequestMapping(value="/setting/changepwd", method=RequestMethod.POST)
+//    public String submitChangePassword(@Valid MemberVO mvo,BindingResult result) {
+//    	//로그 표시
+//    	if(log.isDebugEnabled()) {
+//    		log.debug("<<MemberVO>> : " + MemberVO);
+//    	}
+//    	
+//    	//유효성 체크
+//    	if(result.hasFieldErrors("passwd")) {
+//    		
+//    		 return "/mypage/setting/changepwd";
+//    	}
+//    	//비밀번호 인증
+//    	MemberVO mvo = memberService.read(mvo.getEmail());
+//    	
+//    }
+//	
 
-	
-	
-	
-	
 	
 	
 	

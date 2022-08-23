@@ -59,10 +59,14 @@
 }
 /* 즐겨찾기, 친구 부분 */
 .profile-title>* {
-	font-size: 12px; /* 16px 브라우저 기준 12px 의미*/
+	font-size: 13px; /* 16px 브라우저 기준 12px 의미*/
 	color: gray;
 	display: inline-block;
 	margin: 0;
+}
+
+.profile-title p {
+     padding-bottom : -10px;
 }
 
 /* 메인 프로필들 li부분 */
@@ -112,14 +116,30 @@
 			<button class="btn btn-light" type="submit"
 				style="font-size: 24px; font-weight: bold; display: inline; background-color:white;">친구
 				목록</button>
-			<button class="btn btn-light" type="submit"
+			<button class="btn btn-light" type="submit" onclick="location.href='/friend/search'"
 				style="float: right; margin-left: 15px; font-size: 24px; color: gray; background-color:white;">친구
 				찾기</button>
 		</header>
 
 	
 		<main class="friendlist_main">
-			
+				<!-- 친구신청 -->
+			<div>
+			<c:forEach var="friendrequest" items="${friendrequest}">
+				<div class="profile-title">
+					<h2>친구신청</h2>
+				</div>
+				<ul class="friendlist_ul">
+					<li><img src="/resources/imgs/me.png" alt="친구1프로필사진">
+						<div class="profile">
+							<p>${friendrequest}</p>
+							<p>수락 대기중</p>
+						</div>
+					</li>
+				
+				</ul>
+				</c:forEach>
+			</div>
 			<!-- 즐겨찾기 부분-->
 			<div>
 				<div class="profile-title">
@@ -142,40 +162,17 @@
 			<div>
 				<div class="profile-title">
 					<h2>친구</h2>
-					<p>친구 수 표시</p>
+					<p>${friendcount}</p>
 				</div>
+				<c:forEach var="friend" items="${friendlist}">
 				<ul class="friendlist_ul">
 					<li><img src="/resources/imgs/me.png" alt="친구3프로필사진">
 						<div class="profile">
-							<p>친구3</p>
-							<p>싱태 메세지</p>
-						</div></li>
-					<li><img src="/resources/imgs/me.png" alt="친구1프로필사진">
-						<div class="profile">
-							<p>친구4</p>
-							<p>싱태 메세지</p>
-						</div></li>
-					<li><img src="/resources/imgs/me.png" alt="친구2프로필사진">
-						<div class="profile">
-							<p>친구5</p>
-							<p>싱태 메세지</p>
-						</div></li>
-					<li><img src="/resources/imgs/me.png" alt="뫄뫄프로필사진">
-						<div class="profile">
-							<p>친구6</p>
-							<p>싱태 메세지</p>
-						</div></li>
-					<li><img src="/resources/imgs/me.png" alt="쀼프로필사진">
-						<div class="profile">
-							<p>친구7</p>
-							<p>싱태 메세지</p>
-						</div></li>
-					<li><img src="/resources/imgs/me.png" alt="베프프로필사진">
-						<div class="profile">
-							<p>친구8</p>
-							<p>싱태 메세지</p>
-						</div></li>
+							<p>${friend.nickname}</p>
+							<p>${friend.intro}</p>
+						</div></li>	
 				</ul>
+				</c:forEach>
 			</div>
 		</main>
 

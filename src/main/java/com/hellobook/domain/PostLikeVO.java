@@ -19,5 +19,6 @@ public class PostLikeVO {
 	
 	// Like
 	private int pno;
+	private String friendYN;
 	
 }

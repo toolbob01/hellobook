@@ -261,6 +261,10 @@ button:focus {
 
 <body>
    <div class="container">
+		<div>
+			<button class="btn btn-primary float-end" id="createChatRoom" style="margin-bottom:20px;">채팅방 추가</button>
+			
+		</div>
 <!--       <h3 class=" text-center">Chat</h3> -->
       <div class="messaging">
          <div class="inbox_msg">
@@ -271,8 +275,10 @@ button:focus {
                   <div class="recent_heading">
                      <h4>최근 대화 목록</h4>
                   </div>
+                  
                   <div class="srch_bar">
                      <div class="stylish-input-group">
+                     	
                         <input type="text" class="search-bar" placeholder="Search" onkeyup="searchUser()">
                         <span class="input-group-addon">
                            <button type="button">
@@ -348,7 +354,87 @@ button:focus {
       </div>
    </div>
    
+   <!-- Modal -->
+<div class="modal modal-hide fade py-5" tabindex="-1" role="dialog" id="createChatRoomModal" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <!-- <div class="modal-body p-5"> -->
+      	<div class="d-flex flex-column align-items-stretch flex-shrink-0">
+		
+		    <div class="list-group list-group-flush border-bottom scrollarea mp-st-sidebar_b">
+		      	<ul class="nav nav-tabs" id="myTab" role="tablist">
+				  <li class="nav-item" role="presentation">
+				    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#findSearch" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">검색으로 찾기</button>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#findFriend" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">친구 중에서 찾기</button>
+				  </li>
+				  
+				</ul>
+				<div class="tab-content" id="myTabContent">
+				  <div class="tab-pane fade show active" id="findSearch" role="tabpanel" aria-labelledby="home-tab" tabindex="0" style="display:flex;flex-direction:column;align-content: stretch;justify-content: space-evenly;align-items: stretch;">
+    
+				  	<div style="margin-top:20px;">
+				  		<input type="text" class="form-control">
+					</div>
+				  	
+				  	
+				  	
+				  	<div style="margin-top:20px;border-top:1px solid #eee;">
+				  		<div class="py-3" style="display:flex;flex-direction: row;justify-content: space-evenly;align-items: center;">
+				  			<div>
+					  			<div style="width:100px;height:auto;">
+					  				<img src="/resources/imgs/unknown_thumbnail.jpg" alt="...">
+					  			</div>
+					  			<div>
+					  			닉네임<br>
+					  			email
+					  			</div>
+					  			<button class="btn btn-primary">+</button>
+				  			</div>
+				  		</div>
+				  		
+				  	</div>
+				  	
+				  	<div style="margin-top:20px;margin-bottom:20px;border-top:1px solid #eee;">
+				  		<div class="py-3" style="display:flex;flex-direction: row;justify-content: space-evenly;align-items: center;">
+				  			<div>
+					  			<div style="width:100px;height:auto;">
+					  				<img src="/resources/imgs/unknown_thumbnail.jpg" alt="...">
+					  			</div>
+					  			<div>
+					  			닉네임<br>
+					  			email
+					  			</div>
+					  			<button class="btn btn-primary">+</button>
+				  			</div>
+				  		</div>
+				  		
+				  	</div>
+				  	
+				  </div>
+				  
+				  <div class="tab-pane fade" id="findFriend" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+				  	<button class="btn btn-primary">채팅방 만들기</button>
+				  </div>
+
+				</div>
+		    </div>
+		  </div>
+      </div>
+    <!-- </div> -->
+  </div>
+</div>
+   
    <script>
+   $('#createChatRoom').on('click', function(){
+		 $('#createChatRoomModal').modal('show');
+	 });
+	 // 모달 안의 취소 버튼에 이벤트를 건다.
+	 $('#closeModalBtn').on('click', function(){
+		 $('#createChatRoomModal').modal('hide');  
+	 });
+	 
       function resize(obj) {
          obj.style.height = '1px';
          obj.style.height = (12 + obj.scrollHeight) + 'px';

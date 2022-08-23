@@ -1,0 +1,228 @@
+
+* {
+  box-sizing: border-box;
+}
+
+/* 전체 body 부분 */
+body .body1{
+  
+  background-color: white;
+  padding: 10px 20px;
+  color: #020202;
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* 메인헤더 */
+.header {
+	   align-items: center;
+            justify-content: center;
+	margin-left: -450px;
+	display: flex;
+}
+
+.header .header_header-column {
+     float: left;
+}
+
+.header .header_header-column h1 {
+     font-size : 30px;
+     font-weight: bold;
+    
+}
+
+.header .search_box {
+	padding-top: 20px;
+   padding-bottom: 20px;
+    padding-left: 20px;
+    
+	float: left;
+	
+}
+
+.header .search_box input{
+    width: 250px;
+	height: 33px;
+	border-width:3px;
+	border-radius: 5px;
+}
+
+.header .search_box input::placeholder{
+    font-weight: bold;
+    padding-left : 5px;
+}
+
+.header span i {
+	
+}
+
+.header .header_icon {
+  font-size: 25px;
+  margin-left: 10px;
+  cursor: pointer;
+  
+}
+
+.header .search_box .search_btn {
+	border: none;
+	background:white;
+}
+
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+main {
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-in-out;
+  width: 50%;
+}
+
+/* 친구찾기 조건 버튼 이름, 이메일, 주소, 아이디 */
+
+.find .find_header-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.find .find_header-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  cursor: pointer;
+}
+
+
+.find .header-btn_title1 {
+  
+  font-size: 25px;
+  font-weight : bold;
+  
+  letter-spacing: 25px;
+  margin-left: -10px;  
+  
+  
+}
+.find .header-btn_title2 {
+  
+  font-size: 25px;
+  font-weight : bold;
+  margin-left: -40px;  
+
+
+}
+.find .header-btn_title3 {
+  
+  font-size: 25px;
+  font-weight : bold;
+  
+  letter-spacing: 25px;
+ 
+
+}
+
+
+
+/* 추천 친구 글*/
+
+.find .find_recommended {
+  
+  
+  border-top: 1px solid #f0f0f0;
+  
+}
+
+.find .find_title {
+  margin-top: 10px;
+  font-size: 20px;
+  opacity: 0.6;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-left : 5px;
+}
+
+
+
+.friend:active {
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.friend .friend_column {
+ 	
+ 	position: absolute;
+
+
+}
+
+/* 친구 추가 버튼 스타일 */
+.friend .friend_add-btn {
+ 
+  
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.container {
+	position: relative;
+}
+
+.container .button {
+	
+	border-width:1px;
+	background-color:white;
+}
+
+
+/* 메인 프로필들 li부분 */
+li{
+    
+    display: flex;
+    flex-direction: row;
+    
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+    margin-top: 10px; 
+
+}
+    /* 프로필사진 사이즈 */
+li > img{
+
+    width: 100px;
+}
+  /* 이름과 프로필 사진의 margin */
+.profile > *{
+  
+    margin: 18px;
+    margin-left: 15px;
+}
+
+ /* 이름 스타일*/
+.profile > *:first-of-type{
+   
+    font-weight: bold;
+    font-size: 20px; 
+} 
+ /* 상태메시지 스타일*/
+.profile > *:nth-of-type(2){
+ 
+    color: gray;
+    font-size: 15px; 
+}

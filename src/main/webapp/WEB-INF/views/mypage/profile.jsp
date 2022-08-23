@@ -16,12 +16,12 @@
 						<div class="mypage_thumbnail_c">
 							<c:if test="${mvo.email == username}">
 							<c:if test="${mvo.profile==null}">
-							<button class="mypage_thumbnail_d" title="프로필 사진 추가">
+							<button class="mypage_thumbnail_d" title="<spring:message code="profile.createThumbnail"/>">
 									<img class="mypage_thumbnail_e" src="/resources/imgs/unknown_thumbnail.jpg">
 							</button>
 							</c:if>
 							<c:if test="${mvo.profile!=null}">
-							<button class="mypage_thumbnail_d" title="프로필 사진 수정">
+							<button class="mypage_thumbnail_d" title="<spring:message code="profile.updateThumbnail"/>">
 									<img class="mypage_thumbnail_e" src="/hello_img/member/${mvo.profile}">
 							</button>
 							</c:if>
@@ -173,11 +173,11 @@
 								            <img src="/hello_img/post/${PostVO.file_list[0].uuid}" alt="..." width="100%" height="225">
 											<div class="mypage_post_btn" style="position: relative;">
 													<c:if test="${mvo.email == username}">
-													<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+													<a href="/post/post_update?pno=${PostVO.pno}&email=${username}" onclick="return confirm('${PostVO.pno}번 게시물을 수정하시겠습니까?')"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
 													</c:if>
 													<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;" data-pno="${PostVO.pno}"/></a>
 													<c:if test="${mvo.email == username}">
-									       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+									       			<a href="/post/post_delete?pno=${PostVO.pno}&email=${username}" onclick="return confirm('${PostVO.pno}번 게시물을 삭제하시겠습니까?')"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
 									       			</c:if>
 									          		
 									          	</div>
@@ -223,11 +223,11 @@
 								            <img src="/hello_img/post/${LikeVO.file_list[0].uuid}" alt="..." width="100%" height="225">
 											<div class="mypage_post_btn" style="position: relative;">
 													<c:if test="${mvo.email == username}">
-													<a href="/post/post_update"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+													<a href="/post/post_update?pno=${PostVO.pno}&email=${username}"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
 													</c:if>
 													<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;" data-pno="${LikeVO.pno}"/></a>
 													<c:if test="${mvo.email == username}">
-									       			<a href="/post/post_delete"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+									       			<a href="/post/post_delete?pno=${PostVO.pno}&email=${username}"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
 									       			</c:if>
 									          		
 									          	</div>
@@ -412,7 +412,7 @@
 			</div> <!-- / all-comment -->
 								
 			<div class="comment-write-div">
-				<span class="fs-5 mb-3">댓글 작성</span>
+				<span class="fs-5 mb-3"><spring:message code="postmodal.writeComment"/></span>
                    <button class="msg_send_btn float-end" type="button" data-pno="">
                       <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                    </button>
@@ -492,7 +492,7 @@
 				// Post Content
 				$(".modal-posting-master-content").html(PostVO.content);
 				// Comment List
- 				$(".all-comment").append('<p class="fs-5 mb-3">댓글 리스트</p>');
+ 				$(".all-comment").append('<p class="fs-5 mb-3"><spring:message code="postmodal.commentList"/></p>');
 				if( PostVO.reply_list[0] == null ) {
 					$(".all-comment").append('<p class="fs-6 text-center mt-5">아직 댓글이 없습니다.</p>');
 				}else {
