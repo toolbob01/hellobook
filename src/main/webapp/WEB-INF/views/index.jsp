@@ -377,7 +377,7 @@
 								</div>
 								<div class="comment-name on_cursor align-self-center">Hanulso</div>
 								<div class="comment-time align-self-center mx-5">17분전</div>
-								<div class="comment-cocoment align-self-center">답글 달기</div>
+								<div class="comment-cocoment align-self-center" data-refno="">답글 달기</div>
 							</div>
 							<div class="comment-content">
 								하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
@@ -421,11 +421,15 @@
 						
 						<div class="comment-write-div">
 							<span class="fs-5 mb-3"><spring:message code="postmodal.writeComment"/></span>
-		                    <button class="msg_send_btn float-end" type="button" data-pno="">
+							<span class="depth2nick ms-5">
+								<span>@HongGilDong</span>
+								<span class="depth2x"><i class="bi bi-x-lg"></i></span>
+							</span> 
+		                    <button class="msg_send_btn float-end" id="msg_send_btn" type="button" data-pno="" data-refno="" data-depth="1">
 		                       <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		                    </button>
-							<div class="form-floating"> <!-- 답글달기 누르면 => depth,refno 입력 => 답글달기취소 버튼 생성 => depth,refno 리셋 -->
-							  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert" data-depth="1" data-refno=""></textarea>
+							<div class="form-floating">
+							  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert"></textarea>
 							</div>
 						</div>
 						
@@ -621,7 +625,7 @@
 		})
 	})
 	
-	// Like User List - Hover
+	// Like User List - Hover ***************************************************************************************************
 // 	$(document).on("hover", "#like-user-list-detail .luld", function() {
 	$(".luld").hover(function(){
 		$(this).css("background-color", "rgb(204 204 204 / 19%)");
@@ -729,7 +733,7 @@
 						all_comment_profile += '</div>' + 
 									    	   '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
 									    	   '<div class="comment-time align-self-center mx-5">' + acpt + '</div>' + 
-									    	   '<div class="comment-cocoment align-self-center">답글 달기</div>';
+									    	   '<div class="comment-cocoment align-self-center" data-repno="' + replyVO.repno + '">답글 달기</div>';
 			    	    $(".all-comment #comment-profile"+replyVO.repno).append(all_comment_profile);
 						$(".all-comment #comment-content"+replyVO.repno).html(replyVO.rcontent);
 						// Open&Close coComent script use id="collapse + replyVO.repno"
@@ -821,12 +825,23 @@
 		 $("#like-user-list-detail").empty();
 	 });
 	
+	// Coment Depth 2
+	$(document).on("click", ".comment-cocoment", function() {
+		var cocoRef = $(this).data("repno");
+		console.log('repno : ' + cocoRef);
+		$("#msg_send_btn").data("refno", cocoRef);
+		$("#msg_send_btn").data("depth", "2");
+
+	})
+	 
 	// Coment Insert
 	$(".msg_send_btn").on("click", function(e){		
 		e.preventDefault();
 		var pno = $(this).data("pno");
 		var email = '${username}';
 		var rcontent = $("#commentInsert").val();
+		var refno = $(this).data("refno");
+		var depth = $(this).data("depth");
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 		if( rcontent == "" ) {
@@ -844,7 +859,9 @@
 				data : {
 					pno : pno,
 					email : email,
-					rcontent : rcontent
+					rcontent : rcontent,
+					refno : refno,
+					depth : depth
 				},
 				beforeSend : function(xhr){
 					xhr.setRequestHeader(header, token);
@@ -884,7 +901,7 @@
 							accpt += '년 전';
 						}			
 						insert_all_comment_profile += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
-				    	  							  '<div class="comment-cocoment align-self-center">답글 달기</div>';
+				    	  							  '<div class="comment-cocoment align-self-center" data-repno="' + data.repno + '">답글 달기</div>';
 						$(".all-comment #comment-profile"+data.repno).append(insert_all_comment_profile);
 						$(".all-comment #comment-content"+data.repno).html(data.rcontent);
 					}
@@ -1098,9 +1115,7 @@
 			}
 		})
     }
-    
-    // observeLastChild(io)를 nextArticle 생성완료 뒤로 위치시키고, 스크립트의 함수 변수들 위치 조정?
- 	// setTimeOut 문제 ? XXX
+
     // IntersectionObserver 갱신 함수 
     function observeLastChild(intersectionObserver) {
 

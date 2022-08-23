@@ -395,7 +395,12 @@ body::-webkit-scrollbar-track {
 .comment-write-div .msg_send_btn:hover {
    border: solid 2px #76bef5;
 }
-
+.depth2nick {
+	float: end;
+}
+.depth2x {
+	
+}
 /* /Modal CSS */
 
 
