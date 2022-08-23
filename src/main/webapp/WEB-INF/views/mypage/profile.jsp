@@ -172,11 +172,11 @@
 								          <div class="card shadow-sm posted">
 								            <img src="/hello_img/post/${PostVO.file_list[0].uuid}" alt="..." width="100%" height="225">
 											<div class="mypage_post_btn" style="position: relative;">
-													<c:if test="${mvo.email == username}">
+													<c:if test="${PostVO.email == username}">
 													<a href="/post/post_update?pno=${PostVO.pno}&email=${username}" onclick="return confirm('${PostVO.pno}번 게시물을 수정하시겠습니까?')"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
 													</c:if>
 													<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;" data-pno="${PostVO.pno}"/></a>
-													<c:if test="${mvo.email == username}">
+													<c:if test="${PostVO.email == username}">
 									       			<a href="/post/post_delete?pno=${PostVO.pno}&email=${username}" onclick="return confirm('${PostVO.pno}번 게시물을 삭제하시겠습니까?')"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
 									       			</c:if>
 									          		
@@ -222,12 +222,12 @@
 								          <div class="card shadow-sm posted">
 								            <img src="/hello_img/post/${LikeVO.file_list[0].uuid}" alt="..." width="100%" height="225">
 											<div class="mypage_post_btn" style="position: relative;">
-													<c:if test="${mvo.email == username}">
-													<a href="/post/post_update?pno=${PostVO.pno}&email=${username}"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
+													<c:if test="${LikeVO.email == username}">
+													<a href="/post/post_update?pno=${LikeVO.pno}&email=${username}"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
 													</c:if>
 													<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;" data-pno="${LikeVO.pno}"/></a>
-													<c:if test="${mvo.email == username}">
-									       			<a href="/post/post_delete?pno=${PostVO.pno}&email=${username}"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
+													<c:if test="${LikeVO.email == username}">
+									       			<a href="/post/post_delete?pno=${LikeVO.pno}&email=${username}"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
 									       			</c:if>
 									          		
 									          	</div>
