@@ -6,23 +6,23 @@
     <div class="list-group list-group-flush border-bottom scrollarea mp-st-sidebar_b">
       <a href="/mypage/setting/editprofile" class="list-group-item list-group-item-action py-3 lh-sm">
         <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">프로필 수정</strong>
+          <strong class="mb-1"><spring:message code="setting.sidebar.editProfile"/></strong>
         </div>
       </a>
       <a href="/mypage/setting/changepwd" class="list-group-item list-group-item-action py-3 lh-sm">
         <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">비밀번호 변경</strong>
+          <strong class="mb-1"><spring:message code="setting.sidebar.changePwd"/></strong>
         </div>
       </a>
       <a href="/mypage/setting/quit" class="list-group-item list-group-item-action py-3 lh-sm">
         <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">회원탈퇴</strong>
+          <strong class="mb-1"><spring:message code="setting.sidebar.quit"/></strong>
         </div>
       </a>
 
       <a href="/mypage/setting/report" class="list-group-item list-group-item-action py-3 lh-sm"">
         <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">문제 신고</strong>
+          <strong class="mb-1"><spring:message code="setting.sidebar.report"/></strong>
 
         </div>
 
