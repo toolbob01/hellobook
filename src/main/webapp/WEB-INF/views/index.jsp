@@ -229,7 +229,7 @@
 						<c:forEach var="friendVO" items="${friend_list}">
 							<div class="scroll_inner">
 								<div class="thumb_user">
-									<div class="profile_thumb" onclick="location.href='#'">
+									<div class="profile_thumb" onclick="location.href='/mypage/profile/${friendVO.nickname}'">
 										<img class="profile_img_side" src="/hello_img/member/${friendVO.profile}" alt="프로필사진">
 										<c:choose>
 										  <c:when test="${friendVO.language eq 'J'}">
@@ -242,7 +242,7 @@
 									</div>
 	
 									<div class="detail">
-										<div class="id" onclick="location.href='#'">${friendVO.nickname}</div>
+										<div class="id" onclick="location.href='/mypage/profile/${friendVO.nickname}'">${friendVO.nickname}</div>
 										<div class="time">
 											<div class="online-circle"></div>
 											<span class="time-status">온라인</span>
@@ -252,7 +252,12 @@
 									</div>
 									
 									<div class="msg-link">
-										<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
+						      			<form action="/chat/createChatRoom" method="post">
+						      				<sec:csrfInput/>
+						      				<input type="hidden" name="email" value="${username}">
+						      				<input type="hidden" name="femail" value="${friendVO.email}">
+											<i class="bi bi-chat-dots" onclick="submitMsg(this)"></i>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -527,6 +532,11 @@
 		history.replaceState({},null,null);
 	})
 	
+	// Side Bar - Message Form Submit
+	function submitMsg(e) {
+    	$(e).closest("form").submit();
+    }
+	
 	// Click heart-btn -> By status of data-heart, Adding or Removing user in like_list
 	$(document).on("click", ".heart-btn" ,function(e) {
 		var heart_stat = $(this).data("heart");
@@ -580,7 +590,7 @@
 						let luld = 
 							'<div class="d-flex justify-content-between align-items-center luld">' + 
 								'<div class="top post-header ms-5">' + 
-									'<div class="user_container" onclick="location.href=\'#\'">' + 
+									'<div class="user_container" onclick="location.href=\'/mypage/profile/' + likeVO.nickname + '\'">' + 
 										'<div class="profile_img">' + 
 											'<img src="/hello_img/member/' + likeVO.profile + '" alt="프로필이미지">' + 
 										'</div>' + 
@@ -625,13 +635,13 @@
 		})
 	})
 	
-	// Like User List - Hover ***************************************************************************************************
-// 	$(document).on("hover", "#like-user-list-detail .luld", function() {
-	$(".luld").hover(function(){
-		$(this).css("background-color", "rgb(204 204 204 / 19%)");
-	},function(){
-		$(this).css("background-color", "#ffffff");
-	})
+	// Like User List - Hover
+	$(document).on("mouseenter", ".luld", function(){
+    	$(this).css("background-color", "rgb(204 204 204 / 19%)");
+    });
+	$(document).on("mouseleave", ".luld", function(){
+    	$(this).css("background-color", "#ffffff");
+    });
 	
 	// Side Bar - Hover
 	$(".thumb_user").hover(function(){
@@ -667,16 +677,16 @@
 					})
 				}
 				// Profile    
- 				var comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진">' + 
+ 				var comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + 
 									  '<div class="comment-profile-flag">';
 				if( postVO.language == 'J' ) {
 					comment_profile +=   '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' +  
 									   '</div>' + 
-									   '<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>';
+									   '<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + postVO.nickname + '</div>';
 				}else {
 					comment_profile +=   '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
 									   '</div>' + 
-									   '<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>';
+									   '<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + postVO.nickname + '</div>';
 				} 
 				var cpt = postVO.timer.slice(0, -1);
 				var cpt_1 = postVO.timer.slice(-1);
@@ -736,7 +746,7 @@
 					$.each(postVO.reply_list, function(i, replyVO){
 		 				$(".all-comment").append('<div class="comment-profile d-flex" id="comment-profile' + replyVO.repno + '"></div>' + 
 	    				 						 '<div class="comment-content" id="comment-content' + replyVO.repno + '"></div>');
-						var all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
+						var all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진" onclick="location.href=\'/mypage/profile/' + replyVO.nickname + '\'">' + 
 						  						  '<div class="comment-profile-flag">';
 						if( replyVO.language == 'J' ) {
 							all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
@@ -789,7 +799,7 @@
 							
 						}
 						all_comment_profile += '</div>' + 
-									    	   '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
+									    	   '<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + replyVO.nickname + '\'">' + replyVO.nickname + '</div>' + 
 									    	   '<div class="comment-time align-self-center mx-5">' + acpt + '</div>' + 
 									    	   '<div class="comment-cocoment align-self-center" data-repno="' + replyVO.repno + '">답글 달기</div>';
 			    	    $(".all-comment #comment-profile"+replyVO.repno).append(all_comment_profile);
@@ -804,7 +814,7 @@
  							$.each(replyVO.cocomment_list, function(k, cocommentVO) {
 								var all_comment_collapse = '<div class="comment-depth">' + 
 													         '<div class="comment-profile d-flex">' + 
-													           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
+													           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진" onclick="location.href=\'/mypage/profile/' + cocommentVO.nickname + '\'">' + 
 													           '<div class="comment-profile-flag">';
 				                if( cocommentVO.language == 'J' ){  
 				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
@@ -812,7 +822,7 @@
 				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
 				                }
 				                all_comment_collapse += '</div>' + 
-						           						'<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>';
+						           						'<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + cocommentVO.nickname + '\'">' + cocommentVO.nickname + '</div>';
         						var acct = cocommentVO.timer.slice(0, -1);
         						var acct_1 = cocommentVO.timer.slice(-1);
         						if(acct_1 == 's') {
@@ -1001,8 +1011,6 @@
 							}
 						}
 						// 처음 달리는 대댓글일 때
-						console.log(" null ??? ");
-						console.log( $("#collapse" + data.refno).length == 0 );
 						if( $("#collapse" + data.refno).length == 0 ) {
 							$(".all-comment #comment-content"+data.refno).append('<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#collapse' + data.refno + '" aria-expanded="false">' + 
 																	      			 '<i class="bi bi-arrow-return-right fs-5"></i>' + 
@@ -1166,7 +1174,7 @@
 	'<article class="contents post-fade-in">' + 
 		'<!-- post 헤더 -->' + 
 		'<header class="top post-header">' + 
-			'<div class="user_container" onclick="location.href=\'#\'">' + 
+			'<div class="user_container" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + 
 				'<div class="profile_img">' + 
 					'<img src="/hello_img/member/' + postVO.profile + '" alt="프로필이미지">' + 
 				'</div>' + 
@@ -1253,9 +1261,8 @@
 				'<div class="sprite_share_icon on_cursor" data-name="share"></div>' + 
 			'</div>' + 
 		'</div>' + 
-
 		'<div class="posting-master">' + 
-			'<p class="posting-master-name">' + postVO.nickname + '</p>' + 
+			'<p class="posting-master-name on_cursor" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + postVO.nickname + '</p>' + 
 			'<div class="posting-master-content">' + 
 				postVO.content + 
 			'</div>' + 
@@ -1314,7 +1321,7 @@
 						for( var relpy_i in postVO.reply_list ) {
 							nextArticle += 
 			'<div class="comment">' + 
-				'<div class="nick_name">' + postVO.reply_list[relpy_i].nickname + '</div>' + 
+				'<div class="nick_name on_cursor" onclick="location.href=\'/mypage/profile/' + postVO.reply_list[relpy_i].nickname + '\'">' + postVO.reply_list[relpy_i].nickname + '</div>' + 
 				'<div class="real_comment">' + 
 					postVO.reply_list[relpy_i].rcontent + 
 				'</div>' + 
