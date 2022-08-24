@@ -877,7 +877,9 @@
 				// Comment Write Div's data-pno
 				$(".comment-write-div .msg_send_btn").data("pno", postVO.pno);
 				// Display Block
-				$(".modal-background").css("display","block");
+				$(".modal-background").fadeIn( 300, function() {
+					$(this).css("display","block");
+				} );
 			}, error:function(){
 				alert("Error - Post Detail Up");
 			}

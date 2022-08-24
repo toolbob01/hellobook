@@ -2,25 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-<style>
-	.mt-50px { margin-top: 50px; }
-	
-	.mb-3px { margin-bottom: 3px; }
-	
-	.carousel-inner {
-		position: relative;
-	    width: 100%;
-	    overflow: auto;
-	    height: 55vh;
-	}
-	
-	.carousel-item img {
-		width: 100%;
-	    height: 100%;
-	    margin: 0;
-	    padding: 0;
-	}
-</style>
+<link rel="stylesheet" href="/resources/css/post.css">
 
 
 
