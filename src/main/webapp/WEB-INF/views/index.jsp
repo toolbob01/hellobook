@@ -229,7 +229,7 @@
 						<c:forEach var="friendVO" items="${friend_list}">
 							<div class="scroll_inner">
 								<div class="thumb_user">
-									<div class="profile_thumb" onclick="location.href='#'">
+									<div class="profile_thumb" onclick="location.href='/mypage/profile/${friendVO.nickname}'">
 										<img class="profile_img_side" src="/hello_img/member/${friendVO.profile}" alt="프로필사진">
 										<c:choose>
 										  <c:when test="${friendVO.language eq 'J'}">
@@ -242,7 +242,7 @@
 									</div>
 	
 									<div class="detail">
-										<div class="id" onclick="location.href='#'">${friendVO.nickname}</div>
+										<div class="id" onclick="location.href='/mypage/profile/${friendVO.nickname}'">${friendVO.nickname}</div>
 										<div class="time">
 											<div class="online-circle"></div>
 											<span class="time-status">온라인</span>
@@ -252,7 +252,12 @@
 									</div>
 									
 									<div class="msg-link">
-										<i class="bi bi-chat-dots" onclick="location.href='#'"></i>
+						      			<form action="/chat/createChatRoom" method="post">
+						      				<sec:csrfInput/>
+						      				<input type="hidden" name="email" value="${username}">
+						      				<input type="hidden" name="femail" value="${friendVO.email}">
+											<i class="bi bi-chat-dots" onclick="submitMsg(this)"></i>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -377,7 +382,7 @@
 								</div>
 								<div class="comment-name on_cursor align-self-center">Hanulso</div>
 								<div class="comment-time align-self-center mx-5">17분전</div>
-								<div class="comment-cocoment align-self-center">답글 달기</div>
+								<div class="comment-cocoment align-self-center" data-refno="">답글 달기</div>
 							</div>
 							<div class="comment-content">
 								하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 하늘소는 장수하늘소가 최고지 ~ 
@@ -421,11 +426,15 @@
 						
 						<div class="comment-write-div">
 							<span class="fs-5 mb-3"><spring:message code="postmodal.writeComment"/></span>
-		                    <button class="msg_send_btn float-end" type="button" data-pno="">
+							<span class="depth2div ms-2">
+<!-- 								<span class="depth2nick">@イェーイ韓国人</span> -->
+<!-- 								<span class="depth2x on_cursor"><i class="bi bi-x-lg"></i></span> -->
+							</span>
+		                    <button class="msg_send_btn float-end" id="msg_send_btn" type="button" data-pno="" data-refno="0" data-depth="1">
 		                       <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		                    </button>
-							<div class="form-floating"> <!-- 답글달기 누르면 => depth,refno 입력 => 답글달기취소 버튼 생성 => depth,refno 리셋 -->
-							  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert" data-depth="1" data-refno=""></textarea>
+							<div class="form-floating">
+							  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert"></textarea>
 							</div>
 						</div>
 						
@@ -523,6 +532,11 @@
 		history.replaceState({},null,null);
 	})
 	
+	// Side Bar - Message Form Submit
+	function submitMsg(e) {
+    	$(e).closest("form").submit();
+    }
+	
 	// Click heart-btn -> By status of data-heart, Adding or Removing user in like_list
 	$(document).on("click", ".heart-btn" ,function(e) {
 		var heart_stat = $(this).data("heart");
@@ -576,7 +590,7 @@
 						let luld = 
 							'<div class="d-flex justify-content-between align-items-center luld">' + 
 								'<div class="top post-header ms-5">' + 
-									'<div class="user_container" onclick="location.href=\'#\'">' + 
+									'<div class="user_container" onclick="location.href=\'/mypage/profile/' + likeVO.nickname + '\'">' + 
 										'<div class="profile_img">' + 
 											'<img src="/hello_img/member/' + likeVO.profile + '" alt="프로필이미지">' + 
 										'</div>' + 
@@ -622,12 +636,12 @@
 	})
 	
 	// Like User List - Hover
-// 	$(document).on("hover", "#like-user-list-detail .luld", function() {
-	$(".luld").hover(function(){
-		$(this).css("background-color", "rgb(204 204 204 / 19%)");
-	},function(){
-		$(this).css("background-color", "#ffffff");
-	})
+	$(document).on("mouseenter", ".luld", function(){
+    	$(this).css("background-color", "rgb(204 204 204 / 19%)");
+    });
+	$(document).on("mouseleave", ".luld", function(){
+    	$(this).css("background-color", "#ffffff");
+    });
 	
 	// Side Bar - Hover
 	$(".thumb_user").hover(function(){
@@ -648,8 +662,6 @@
 			url:"/post/post_detail_modal?pno=" + nowPno,
 			dataType:"json",
 			success:function(postVO){
-				console.log(postVO);
-				console.log(postVO.file_list);
 				// carousel main
 				$("#carousel-inner").append('<div class="carousel-item active">' + 
 														      			'<img src="/hello_img/post/' + postVO.file_list[0].uuid + '" alt="...">' + 
@@ -665,31 +677,61 @@
 					})
 				}
 				// Profile    
- 				var comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진">' + 
+ 				var comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + postVO.profile + '" alt="프로필사진" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + 
 									  '<div class="comment-profile-flag">';
 				if( postVO.language == 'J' ) {
 					comment_profile +=   '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' +  
 									   '</div>' + 
-									   '<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>';
+									   '<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + postVO.nickname + '</div>';
 				}else {
 					comment_profile +=   '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
 									   '</div>' + 
-									   '<div class="comment-name on_cursor align-self-center">' + postVO.nickname + '</div>';
+									   '<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + postVO.nickname + '</div>';
 				} 
 				var cpt = postVO.timer.slice(0, -1);
 				var cpt_1 = postVO.timer.slice(-1);
 				if(cpt_1 == 's') {
-					cpt += '초 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.sec"/>';
+					}else {
+						cpt += '<spring:message code="timer.sec2"/>';
+					}
+					
 				}else if(cpt_1 == 'm') {
-					cpt += '분 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.min"/>';
+					}else {
+						cpt += '<spring:message code="timer.min2"/>';
+					}
+					
 				}else if(cpt_1 == 'h') {
-					cpt += '시간 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.hour"/>';
+					}else {
+						cpt += '<spring:message code="timer.hour2"/>';
+					}
+					
 				}else if(cpt_1 == 'd') {
-					cpt += '일 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.day"/>';
+					}else {
+						cpt += '<spring:message code="timer.day2"/>';
+					}
+					
 				}else if(cpt_1 == 'M') {
-					cpt += '달 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.month"/>';
+					}else {
+						cpt += '<spring:message code="timer.month2"/>';
+					}
+					
 				}else if(cpt_1 == 'y') {
-					cpt += '년 전';
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.year"/>';
+					}else {
+						cpt += '<spring:message code="timer.year2"/>';
+					}
+					
 				}
  				comment_profile += '<div class="comment-time align-self-center mx-5">' + cpt + '</div>';
 				$(".modal-detail-contents .comment-profile").append(comment_profile); 
@@ -704,7 +746,7 @@
 					$.each(postVO.reply_list, function(i, replyVO){
 		 				$(".all-comment").append('<div class="comment-profile d-flex" id="comment-profile' + replyVO.repno + '"></div>' + 
 	    				 						 '<div class="comment-content" id="comment-content' + replyVO.repno + '"></div>');
-						var all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
+						var all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진" onclick="location.href=\'/mypage/profile/' + replyVO.nickname + '\'">' + 
 						  						  '<div class="comment-profile-flag">';
 						if( replyVO.language == 'J' ) {
 							all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
@@ -714,22 +756,52 @@
 						var acpt = replyVO.timer.slice(0, -1);
 						var acpt_1 = replyVO.timer.slice(-1);
 						if(acpt_1 == 's') {
-							acpt += '초 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.sec"/>';
+							}else {
+								acpt += '<spring:message code="timer.sec2"/>';
+							}
+							
 						}else if(acpt_1 == 'm') {
-							acpt += '분 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.min"/>';
+							}else {
+								acpt += '<spring:message code="timer.min2"/>';
+							}
+							
 						}else if(acpt_1 == 'h') {
-							acpt += '시간 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.hour"/>';
+							}else {
+								acpt += '<spring:message code="timer.hour2"/>';
+							}
+							
 						}else if(acpt_1 == 'd') {
-							acpt += '일 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.day"/>';
+							}else {
+								acpt += '<spring:message code="timer.day2"/>';
+							}
+							
 						}else if(acpt_1 == 'M') {
-							acpt += '달 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.month"/>';
+							}else {
+								acpt += '<spring:message code="timer.month2"/>';
+							}
+							
 						}else if(acpt_1 == 'y') {
-							acpt += '년 전';
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.year"/>';
+							}else {
+								acpt += '<spring:message code="timer.year2"/>';
+							}
+							
 						}
 						all_comment_profile += '</div>' + 
-									    	   '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
+									    	   '<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + replyVO.nickname + '\'">' + replyVO.nickname + '</div>' + 
 									    	   '<div class="comment-time align-self-center mx-5">' + acpt + '</div>' + 
-									    	   '<div class="comment-cocoment align-self-center">답글 달기</div>';
+									    	   '<div class="comment-cocoment align-self-center" data-repno="' + replyVO.repno + '">답글 달기</div>';
 			    	    $(".all-comment #comment-profile"+replyVO.repno).append(all_comment_profile);
 						$(".all-comment #comment-content"+replyVO.repno).html(replyVO.rcontent);
 						// Open&Close coComent script use id="collapse + replyVO.repno"
@@ -742,7 +814,7 @@
  							$.each(replyVO.cocomment_list, function(k, cocommentVO) {
 								var all_comment_collapse = '<div class="comment-depth">' + 
 													         '<div class="comment-profile d-flex">' + 
-													           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
+													           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진" onclick="location.href=\'/mypage/profile/' + cocommentVO.nickname + '\'">' + 
 													           '<div class="comment-profile-flag">';
 				                if( cocommentVO.language == 'J' ){  
 				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
@@ -750,28 +822,53 @@
 				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
 				                }
 				                all_comment_collapse += '</div>' + 
-						           						'<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>';
+						           						'<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + cocommentVO.nickname + '\'">' + cocommentVO.nickname + '</div>';
         						var acct = cocommentVO.timer.slice(0, -1);
         						var acct_1 = cocommentVO.timer.slice(-1);
         						if(acct_1 == 's') {
-        							acct += '초 전';
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.sec"/>';
+        							}else {
+        								acct += '<spring:message code="timer.sec2"/>';
+        							}
         						}else if(acct_1 == 'm') {
-        							acct += '분 전';
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.min"/>';
+        							}else {
+        								acct += '<spring:message code="timer.min2"/>';
+        							}
         						}else if(acct_1 == 'h') {
-        							acct += '시간 전';
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.hour"/>';
+        							}else {
+        								acct += '<spring:message code="timer.hour2"/>';
+        							}
         						}else if(acct_1 == 'd') {
-        							acct += '일 전';
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.day"/>';
+        							}else {
+        								acct += '<spring:message code="timer.day2"/>';
+        							}
         						}else if(acct_1 == 'M') {
-        							acct += '달 전';
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.month"/>';
+        							}else {
+        								acct += '<spring:message code="timer.month2"/>';
+        							}
         						}else if(acct_1 == 'y') {
-        							acct += '년 전';
-        						}				
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.year"/>';
+        							}else {
+        								acct += '<spring:message code="timer.year2"/>';
+        							}
+        						}					
         						all_comment_collapse += '<div class="comment-time align-self-center mx-5">' + acct + '</div>' + 
 												         '</div>' + 
 												         '<div class="comment-content">' + 
 												         	cocommentVO.rcontent +
 												         '</div>' + 
-												       '</div>';			
+												       '</div>';
+							    $("#collapse" + replyVO.repno).append(all_comment_collapse);
  							})
 						}  
 					}) // each
@@ -780,7 +877,9 @@
 				// Comment Write Div's data-pno
 				$(".comment-write-div .msg_send_btn").data("pno", postVO.pno);
 				// Display Block
-				$(".modal-background").css("display","block");
+				$(".modal-background").fadeIn( 300, function() {
+					$(this).css("display","block");
+				} );
 			}, error:function(){
 				alert("Error - Post Detail Up");
 			}
@@ -821,12 +920,33 @@
 		 $("#like-user-list-detail").empty();
 	 });
 	
+	// Coment Depth 2 Add
+	$(document).on("click", ".comment-cocoment", function() {
+		$(".depth2div").empty();
+		var cocoRef = $(this).data("repno");
+		var cocoNick = $(this).closest(".comment-profile").children(".comment-name").html();
+		$("#msg_send_btn").data("refno", cocoRef);
+		$("#msg_send_btn").data("depth", "2");
+		var cocoAt = '<span class="depth2nick">@' + cocoNick + '</span>' + 
+					 '<span class="depth2x on_cursor"> <i class="bi bi-x-lg"></i></span>';
+		$(".depth2div").append(cocoAt);
+	})
+	
+	// Coment Depth 2 Remove
+	$(document).on("click", ".depth2x", function(){
+		$("#msg_send_btn").data("refno", "0");
+		$("#msg_send_btn").data("depth", "1");
+		$(".depth2div").empty();
+	})
+		 
 	// Coment Insert
 	$(".msg_send_btn").on("click", function(e){		
 		e.preventDefault();
 		var pno = $(this).data("pno");
 		var email = '${username}';
 		var rcontent = $("#commentInsert").val();
+		var refno = $(this).data("refno");
+		var depth = $(this).data("depth");
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 		if( rcontent == "" ) {
@@ -844,51 +964,149 @@
 				data : {
 					pno : pno,
 					email : email,
-					rcontent : rcontent
+					rcontent : rcontent,
+					refno : refno,
+					depth : depth
 				},
 				beforeSend : function(xhr){
 					xhr.setRequestHeader(header, token);
 				},
 				success:function(data){
 					if( data.depth == '2' ) {
-						console.log(data);
-						alert('This is Depth 2 coment !!!');
-					}else {
-						// if depth : 1
-						$(".all-comment > p").remove();
- 		 				$(".all-comment").prepend('<p class="fs-5 mb-3">댓글 리스트</p>' + 
- 		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
-		 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
- 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
-						  								 '<div class="comment-profile-flag">';
-						if( data.language == 'J' ) {
-							insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
-						}else {
-							insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
-						}
-						insert_all_comment_profile += '</div>' + 
-				    	  							  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>';
 						var accpt = data.timer.slice(0, -1);
 						var accpt_1 = data.timer.slice(-1);
 						if(accpt_1 == 's') {
-							accpt += '초 전';
+							if(accpt_1 == '1') {
+								accpt += '<spring:message code="timer.sec"/>';
+							}else{
+								accpt += '<spring:message code="timer.sec2"/>';
+							}
 						}else if(accpt_1 == 'm') {
-							accpt += '분 전';
+							if(accpt_1 == '1') {
+								accpt += '<spring:message code="timer.min"/>';
+							}else{
+								accpt += '<spring:message code="timer.min2"/>';
+							}
 						}else if(accpt_1 == 'h') {
-							accpt += '시간 전';
+							if(accpt_1 == '1') {
+								accpt += '<spring:message code="timer.hour"/>';
+							}else{
+								accpt += '<spring:message code="timer.hour2"/>';
+							}
 						}else if(accpt_1 == 'd') {
-							accpt += '일 전';
+							if(accpt_1 == '1') {
+								accpt += '<spring:message code="timer.day"/>';
+							}else{
+								accpt += '<spring:message code="timer.day2"/>';
+							}
 						}else if(accpt_1 == 'M') {
-							accpt += '달 전';
+							if(accpt_1 == '1') {
+								accpt += '<spring:message code="timer.month"/>';
+							}else{
+								accpt += '<spring:message code="timer.month2"/>';
+							}
 						}else if(accpt_1 == 'y') {
-							accpt += '년 전';
-						}			
-						insert_all_comment_profile += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
-				    	  							  '<div class="comment-cocoment align-self-center">답글 달기</div>';
-						$(".all-comment #comment-profile"+data.repno).append(insert_all_comment_profile);
-						$(".all-comment #comment-content"+data.repno).html(data.rcontent);
-					}
-					$("#commentInsert").val("");
+							if(accpt_1 == '1') {
+								accpt += '<spring:message code="timer.year"/>';
+							}else{
+								accpt += '<spring:message code="timer.year2"/>';
+							}
+						}
+						// 처음 달리는 대댓글일 때
+						if( $("#collapse" + data.refno).length == 0 ) {
+							$(".all-comment #comment-content"+data.refno).append('<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#collapse' + data.refno + '" aria-expanded="false">' + 
+																	      			 '<i class="bi bi-arrow-return-right fs-5"></i>' + 
+																	      		     '<span class="cocoment-open ms-3" data-oc="c">펼치기</span>' + 
+																      			 '</div>');
+							$(".all-comment #comment-content"+data.refno).append('<div class="collapse show" id="collapse' + data.refno + '">');
+						}
+						var dAllComCol = '<div class="comment-depth">' + 
+								         '<div class="comment-profile d-flex">' + 
+								           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+								           '<div class="comment-profile-flag">';
+						if( data.language == 'J' ){  
+							dAllComCol += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
+						}else{
+							dAllComCol += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
+						}
+						dAllComCol += '</div>' + 
+										'<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
+										'<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
+							          '</div>' + 
+							          '<div class="comment-content">' + 
+							             data.rcontent +
+							          '</div>' + 
+							          '</div>';
+						$("#collapse" + data.refno).prepend(dAllComCol);
+						}else {
+							// if depth : 1
+							$(".all-comment > p").remove();
+	 		 				$(".all-comment").prepend('<p class="fs-5 mb-3">댓글 리스트</p>' + 
+	 		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
+			 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
+	 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+							  								 '<div class="comment-profile-flag">';
+							if( data.language == 'J' ) {
+								insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
+							}else {
+								insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
+							}
+							insert_all_comment_profile += '</div>' + 
+					    	  							  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>';
+							var accpt = data.timer.slice(0, -1);
+							var accpt_1 = data.timer.slice(-1);
+							if(accpt_1 == 's') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.sec"/>';
+								}else {
+									accpt += '<spring:message code="timer.sec2"/>';
+								}
+								
+							}else if(accpt_1 == 'm') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.min"/>';
+								}else {
+									accpt += '<spring:message code="timer.min2"/>';
+								}
+								
+							}else if(accpt_1 == 'h') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.hour"/>';
+								}else {
+									accpt += '<spring:message code="timer.hour2"/>';
+								}
+								
+							}else if(accpt_1 == 'd') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.day"/>';
+								}else {
+									accpt += '<spring:message code="timer.day2"/>';
+								}
+								
+							}else if(accpt_1 == 'M') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.month"/>';
+								}else {
+									accpt += '<spring:message code="timer.month2"/>';
+								}
+								
+							}else if(accpt_1 == 'y') {
+								if(accpt == '1') {
+									accpt += '<spring:message code="timer.year"/>';
+								}else {
+									accpt += '<spring:message code="timer.year2"/>';
+								}
+								
+							}			
+							insert_all_comment_profile += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
+					    	  							  '<div class="comment-cocoment align-self-center" data-repno="' + data.repno + '">답글 달기</div>';
+							$(".all-comment #comment-profile"+data.repno).append(insert_all_comment_profile);
+							$(".all-comment #comment-content"+data.repno).html(data.rcontent);
+						}
+						$("#commentInsert").val("");
+						$("#msg_send_btn").data("refno", "0");
+						$("#msg_send_btn").data("depth", "1");
+						$(".depth2div").empty();
 				}, error:function(){
 					alert("Error - Comment Insert ! ");
 				}
@@ -958,7 +1176,7 @@
 	'<article class="contents post-fade-in">' + 
 		'<!-- post 헤더 -->' + 
 		'<header class="top post-header">' + 
-			'<div class="user_container" onclick="location.href=\'#\'">' + 
+			'<div class="user_container" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + 
 				'<div class="profile_img">' + 
 					'<img src="/hello_img/member/' + postVO.profile + '" alt="프로필이미지">' + 
 				'</div>' + 
@@ -1045,9 +1263,8 @@
 				'<div class="sprite_share_icon on_cursor" data-name="share"></div>' + 
 			'</div>' + 
 		'</div>' + 
-
 		'<div class="posting-master">' + 
-			'<p class="posting-master-name">' + postVO.nickname + '</p>' + 
+			'<p class="posting-master-name on_cursor" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + postVO.nickname + '</p>' + 
 			'<div class="posting-master-content">' + 
 				postVO.content + 
 			'</div>' + 
@@ -1056,18 +1273,48 @@
 		var articleTimer = postVO.timer.slice(0, -1);
 		var articleTimer_1 = postVO.timer.slice(-1);
 		if(articleTimer_1 == 's') {
-			articleTimer += '초 전';
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.sec"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.sec2"/>';
+			}
+			
 		}else if(articleTimer_1 == 'm') {
-			articleTimer += '분 전';
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.min"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.min2"/>';
+			}
+			
 		}else if(articleTimer_1 == 'h') {
-			articleTimer += '시간 전';
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.hour"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.hour2"/>';
+			}
+			
 		}else if(articleTimer_1 == 'd') {
-			articleTimer += '일 전';
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.day"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.day2"/>';
+			}
+			
 		}else if(articleTimer_1 == 'M') {
-			articleTimer += '달 전';
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.month"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.month2"/>';
+			}
+			
 		}else if(articleTimer_1 == 'y') {
-			articleTimer += '년 전';
-		}			
+			if(articleTimer == '1') {
+				articleTimer += '<spring:message code="timer.year"/>';
+			}else {
+				articleTimer += '<spring:message code="timer.year2"/>';
+			}
+			
+		}		
 		nextArticle += 
 			articleTimer + 
 		'</div>' + 
@@ -1076,7 +1323,7 @@
 						for( var relpy_i in postVO.reply_list ) {
 							nextArticle += 
 			'<div class="comment">' + 
-				'<div class="nick_name">' + postVO.reply_list[relpy_i].nickname + '</div>' + 
+				'<div class="nick_name on_cursor" onclick="location.href=\'/mypage/profile/' + postVO.reply_list[relpy_i].nickname + '\'">' + postVO.reply_list[relpy_i].nickname + '</div>' + 
 				'<div class="real_comment">' + 
 					postVO.reply_list[relpy_i].rcontent + 
 				'</div>' + 
@@ -1098,9 +1345,7 @@
 			}
 		})
     }
-    
-    // observeLastChild(io)를 nextArticle 생성완료 뒤로 위치시키고, 스크립트의 함수 변수들 위치 조정?
- 	// setTimeOut 문제 ? XXX
+
     // IntersectionObserver 갱신 함수 
     function observeLastChild(intersectionObserver) {
 

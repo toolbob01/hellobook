@@ -8,8 +8,10 @@ import lombok.Data;
 public class ChatVO {
 
 	// Participant
-	private String email;
-	private String nickname;
+	private String email; //내 이메일
+	private String femail; //상대방 이메일
+	private String nickname; 
+
 	
 	// Room
 	private int rno;

@@ -2,264 +2,9 @@
 
 <%@ include file="../header.jsp" %>
 
-<style type="text/css">
-.container {
-   max-width: 65%;
-   margin: auto;
-}
-
-img {
-   max-width: 100%;
-}
-
-.inbox_people {
-   background: #f8f8f8 none repeat scroll 0 0;
-   float: left;
-   overflow: hidden;
-   width: 40%;
-   border-right: 1px solid #c4c4c4;
-}
-
-.inbox_msg {
-   border: 1px solid #c4c4c4;
-   clear: both;
-   overflow: hidden;
-   border-radius: 8px;
-}
-
-.top_spac {
-   margin: 20px 0 0;
-}
-
-.recent_heading {
-   float: left;
-   width: 40%;
-}
-
-.recent_heading h4 {
-	color: #707070;
-	font-size: 1.3vmax;
-	margin: auto;
-	font-weight: bold; 
-}
-
-.srch_bar {
-   display: inline-block;
-   text-align: right;
-   width: 60%;
-}
-
-.headind_srch {
-   padding: 10px 29px 10px 20px;
-   overflow: hidden;
-   border-bottom: 1px solid #c4c4c4;
-   /*/////////////*/
-   background-color: #fff;
-}
-
-.srch_bar input {
-   border: 1px solid #cdcdcd;
-   border-width: 0 0 1px 0;
-   width: 80%;
-   padding: 2px 0 4px 6px;
-   background: none;
-}
-
-.srch_bar .input-group-addon button {
-   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-   border: medium none;
-   padding: 0;
-   color: #707070;
-   font-size: 18px;
-}
-
-.srch_bar .input-group-addon {
-   margin: 0 0 0 -27px;
-}
-
-.input-group-addon {
-   pointer-events:none;
-}
-
-.chat_ib h5 {
-   font-size: 15px;
-   color: #464646;
-   margin: 0 0 8px 0;
-}
-
-.chat_ib h5 span {
-   font-size: 13px;
-   float: right;
-}
-
-.chat_ib p {
-   font-size: 14px;
-   color: #989898;
-   margin: auto;
-    max-height: 65px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
-.chat_img {
-   float: left;
-   width: 11%;
-}
-
-.chat_ib {
-   float: left;
-   padding: 0 0 0 15px;
-   width: 88%;
-}
-
-.chat_people {
-   overflow: hidden;
-   clear: both;
-}
-
-.chat_list {
-   border-bottom: 1px solid #c4c4c4;
-   margin: 0;
-   padding: 18px 16px 10px;
-   cursor: pointer;
-}
-
-.inbox_chat {
-   height: 610px;
-   overflow-y: scroll;
-}
-
-.active_chat {
-   background: #ebebeb;
-   cursor: default;
-   pointer-events:none;
-}
-
-.incoming_msg_img {
-   display: inline-block;
-   width: 6%;
-}
-
-.received_msg {
-   display: inline-block;
-   padding: 0 0 0 10px;
-   vertical-align: top;
-   width: 92%;
-}
-
-.received_withd_msg p {
-   background: #ebebeb none repeat scroll 0 0;
-   border-radius: 3px;
-   color: #646464;
-   font-size: 14px;
-   margin: 0;
-   padding: 5px 10px 5px 12px;
-   width: 100%;
-   box-shadow: 10px 5px 5px #ccc;
-}
-
-.time_date {
-   color: #747474;
-   display: block;
-   font-size: 12px;
-   margin: 8px 0 0;
-}
-
-.received_withd_msg {
-   width: 57%;
-}
-
-.mesgs {
-   float: left;
-   padding: 30px 15px 0 25px;
-   width: 60%;
-}
-
-.sent_msg p {
-   background: #9fd5ff none repeat scroll 0 0;
-   border-radius: 3px;
-   font-size: 14px;
-   margin: 0;
-   color: #333;
-   padding: 5px 10px 5px 12px;
-   width: 100%;
-   box-shadow: 10px 5px 5px #ccc;
-}
-
-.outgoing_msg {
-   overflow: hidden;
-   margin: 26px 0 26px;
-}
-
-.sent_msg {
-   float: right;
-   width: 46%;
-}
-
-.input_msg_write input {
-   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-   border: medium none;
-   color: #4c4c4c;
-   font-size: 15px;
-   min-height: 48px;
-   width: 100%;
-}
-
-.input_msg_write textarea {
-   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-   border: medium none;
-   color: #4c4c4c;
-   font-size: 15px;
-   min-height: 48px;
-   width: 100%;
-    overflow-y: hidden;
-    resize: none;
-}
-
-.type_msg {
-   border-top: 1px solid #c4c4c4;
-   position: relative;
-}
-
-.msg_send_btn {
-   background: #9fd5ff none repeat scroll 0 0;
-   border: medium none;
-   border-radius: 50%;
-   color: #fff;
-   cursor: pointer;
-   font-size: 17px;
-   height: 33px;
-   position: absolute;
-   right: 10px;
-   top: 11px;
-   width: 33px;
-}
-:focus-visible {
-    outline: #9fd5ff auto 1px;
-}
-button:focus {
-   outline: none;
-}
-.msg_send_btn:hover {
-   border: solid 2px #76bef5;
-}
-
-.messaging {
-   padding: 0 0 50px 0;
-   margin-top: 100px;
-}
-
-.msg_history {
-   height: 516px;
-   overflow-y: auto;
-}
-</style>
-</head>
+<link rel="stylesheet" href="/resources/css/chat_list.css">
 
 
-<body>
    <div class="container">
 		<div>
 			<button class="btn btn-primary float-end" id="createChatRoom" style="margin-bottom:20px;">채팅방 추가</button>
@@ -290,41 +35,20 @@ button:focus {
                </div>
                <div class="inbox_chat">
                <!-- 채팅유저 -->
+               	<c:forEach var="cvo" items="${cvoList}">
                   <div class="chat_list" data-email="friendA" data-rno="1">
                      <div class="chat_people">
                         <div class="chat_img">
                            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                         </div>
                         <div class="chat_ib">
-                           <h5>friendA <span class="chat_date">07-31</span></h5>
-                           <p>최근 메세지</p>
+                           <h5>${cvo.nickname} <span class="chat_date"><fmt:formatDate value="${cvo.mdate}" pattern="MM-dd"/></span></h5>
+                           <p>${cvo.content}</p>
                         </div>
                      </div>
                   </div>
-                  <div class="chat_list" data-email="friendB" data-rno="2">
-                     <div class="chat_people">
-                        <div class="chat_img">
-                        <!-- 유저 프로필 사진 -->
-                           <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                        </div>
-                        <div class="chat_ib">
-                           <h5>friendB <span class="chat_date">07-31</span></h5>
-                           <p>최근 메세지</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="chat_list" data-email="friendC" data-rno="3">
-                     <div class="chat_people">
-                        <div class="chat_img">
-                        <!-- 유저 프로필 사진 -->
-                           <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                        </div>
-                        <div class="chat_ib">
-                           <h5>friendC <span class="chat_date">07-31</span></h5>
-                           <p>세줄 이상의 긴글은 잘라서 ... 표시합니다. 세줄 이상의 긴글은 잘라서 ... 표시합니다. 세줄 이상의 긴글은 잘라서 ... 표시합니다.</p>
-                        </div>
-                     </div>
-                  </div>
+                </c:forEach>  
+                
                <!--채팅유저 -->
                </div>
             </div>
@@ -362,66 +86,46 @@ button:focus {
       	<div class="d-flex flex-column align-items-stretch flex-shrink-0">
 		
 		    <div class="list-group list-group-flush border-bottom scrollarea mp-st-sidebar_b">
-		      	<ul class="nav nav-tabs" id="myTab" role="tablist">
-				  <li class="nav-item" role="presentation">
-				    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#findSearch" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">검색으로 찾기</button>
-				  </li>
-				  <li class="nav-item" role="presentation">
-				    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#findFriend" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">친구 중에서 찾기</button>
-				  </li>
-				  
-				</ul>
-				<div class="tab-content" id="myTabContent">
-				  <div class="tab-pane fade show active" id="findSearch" role="tabpanel" aria-labelledby="home-tab" tabindex="0" style="display:flex;flex-direction:column;align-content: stretch;justify-content: space-evenly;align-items: stretch;">
-    
-				  	<div style="margin-top:20px;">
-				  		<input type="text" class="form-control">
-					</div>
-				  	
-				  	
-				  	
-				  	<div style="margin-top:20px;border-top:1px solid #eee;">
-				  		<div class="py-3" style="display:flex;flex-direction: row;justify-content: space-evenly;align-items: center;">
-				  			<div>
-					  			<div style="width:100px;height:auto;">
-					  				<img src="/resources/imgs/unknown_thumbnail.jpg" alt="...">
-					  			</div>
-					  			<div>
-					  			닉네임<br>
-					  			email
-					  			</div>
-					  			<button class="btn btn-primary">+</button>
-				  			</div>
-				  		</div>
-				  		
-				  	</div>
-				  	
-				  	<div style="margin-top:20px;margin-bottom:20px;border-top:1px solid #eee;">
-				  		<div class="py-3" style="display:flex;flex-direction: row;justify-content: space-evenly;align-items: center;">
-				  			<div>
-					  			<div style="width:100px;height:auto;">
-					  				<img src="/resources/imgs/unknown_thumbnail.jpg" alt="...">
-					  			</div>
-					  			<div>
-					  			닉네임<br>
-					  			email
-					  			</div>
-					  			<button class="btn btn-primary">+</button>
-				  			</div>
-				  		</div>
-				  		
-				  	</div>
-				  	
-				  </div>
-				  
-				  <div class="tab-pane fade" id="findFriend" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-				  	<button class="btn btn-primary">채팅방 만들기</button>
-				  </div>
-
-				</div>
+		      	<div style="margin:20px;display: flex;flex-direction: column;justify-content: space-evenly;align-items: stretch;">
+		      	
+		      		<c:forEach var="mvo" items="${mvoList}">
+		      		<c:if test="${mvo.email == username}">
+		      		</c:if>
+		      		<c:if test="${mvo.email != username}">
+		      		<div style="margin:10px 0;padding:10px 0;border-top:0.5px solid #eee;border-bottom:0.5px solid #eee;">
+			      		<div class="row">
+			      			<div class="col-md-3">
+			      				<img src="/hello_img/member/${mvo.profile}" alt="..." style="width:100px;height:100px;">
+			      			</div>
+			      			<div class="col-md-6" style="margin: auto;text-align: center;">
+			      				<span>
+			      					${mvo.email}
+			      				</span>
+			      				<br><br>
+			      				<span>
+			      					${mvo.nickname}
+			      				</span>
+			      			</div>
+			      			<div class="col-md-3" style="margin: auto;text-align: center;">
+			      			<form action="/chat/createChatRoom" method="post">
+			      				<sec:csrfInput/>
+			      				<input type="hidden" name="email" value="${username}">
+			      				<input type="hidden" name="femail" value="${mvo.email}">
+			      				
+			      					<button class="btn btn-primary" type="submit">+</button>
+			      				
+			      			</form>
+			      			</div>
+	
+			      		</div>
+		      		</div>
+		      		</c:if>
+		      		</c:forEach>
+		      		
+		      	</div>
 		    </div>
-		  </div>
-      </div>
+		 </div>
+     </div>
     <!-- </div> -->
   </div>
 </div>

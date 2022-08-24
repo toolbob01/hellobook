@@ -2,39 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-<style>
-	.mt-50px { margin-top: 50px; }
-	
-	.mb-3px { margin-bottom: 3px; }
-	
-	.carousel-inner {
-		position: relative;
-	    width: 100%;
-	    overflow: auto;
-	    height: 55vh;
-	}
-	.carousel-item img {
-		width: 100%;
-	    height: 100%;
-	    margin: 0;
-	    padding: 0;
-	}
-	.fileVO_div {
-		position: relative;
-	    width: 80%;
-	    overflow: auto;
-	    height: 35vh;
-	    border: 3px outset #9fd5ff;
-	    margin-left: auto;
-	    margin-right: auto;
-	}
-	.fileVO_img img {
-		width: 100%;
-	    height: 100%;
-	    margin: 0;
-	    padding: 0;
-	}
-</style>
+<link rel="stylesheet" href="/resources/css/post.css">
 
 	<div class="container post_write_page">
 		<div class="input-form-backgroud row">
@@ -81,7 +49,7 @@
 
 				  <div id="preview-div">
 					<!-- Carousel -->
-					<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+<!-- 		        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
 					  <div class="carousel-inner">
 					    <div class="carousel-item active uploadfile0">
 					      <img src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image" class="d-block w-100" alt="...">
@@ -95,19 +63,21 @@
 					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 					    <span class="visually-hidden">Next</span>
 					  </button>
-					</div>
+					</div> -->
+
+					<button type="button" class="_add btn btn-primary mb-3px float-end">추가</button>
 
 					<table class="table __add mt-5 mb-2"> 
-					  <tr>
+<!-- 				  <tr>
 					    <td>
 						  <div class="mb-4 text-center">
 							<input type="file" class="form-control uploadfile" id="uploadfile0" name="uploadfile" onchange="fileCheck(this)">
 						  </div>
 					    </td>
 					    <td>
-					      <button type="button" class="_add btn btn-primary mb-3px btnBtn" data-idx="uploadfile0">추가</button>
+					      <button type="button" class="_add btn btn-primary mb-3px">추가</button>
 					    </td>
-					  </tr> 
+					  </tr>  -->
 					</table>
 				  </div> <!-- /preview-div -->
 				  
@@ -123,7 +93,7 @@
 <script>
 
 var existingCnt = 0;
-var uploadfileCnt = 1;
+var uploadfileCnt = 0;
 
 // Calculating count of ExistingFile & Uploadfile
 $(document).ready(function(){
@@ -142,8 +112,8 @@ $(".btn-delete").on("click", function() {
 	if( existingCnt == 5 ) {
 		$(this).closest('.d-flex').remove();
 		existingCnt = 4;
-		uploadfileCnt = 1;
-		$("#preview-div").empty();
+		uploadfileCnt = 0;
+		$("#preview-div").empty(); /* '추가'버튼 + '테이블' 만들기 ************************************************************************************************/
 		$("#preview-div").append('<!-- Carousel --><div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false"><div class="carousel-inner"><div class="carousel-item active uploadfile0"><img src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image" class="d-block w-100" alt="..."></div></div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div><table class="table __add mt-5 mb-2"><tr><td><div class="mb-4 text-center"><input type="file" class="form-control uploadfile" id="uploadfile0" name="uploadfile" onchange="fileCheck(this)"></div></td><td><button type="button" class="_add btn btn-primary mb-3px btnBtn" data-idx="uploadfile0">추가</button></td></tr></table>');
 	}else {
 		$(this).closest('.d-flex').remove();
@@ -163,6 +133,7 @@ $(document).on("click",".__add ._add",function() {
 		return;
 	}else{
 		uploadfileCnt ++;
+		/* if carousel-item.length == 0 캐러셀 와꾸 만들기 ************************************************************************************************/
 		$('.__add').append('<tr>' + 
 					    	'<td>' + 
 						  	  '<div class="mb-3 text-center">' + 
@@ -198,6 +169,7 @@ function addDel(a){
 	var data_idx = $(a).data('idx'); 
 	$('.' + data_idx).remove(); // img delete
 	
+	/* if carousel-item.length == 0 캐러셀 와꾸 삭제 ************************************************************************************************/
 	$(".uploadfile").each(function(index, upload_item){ // input -> id : uploadfile 0 ~ 4
 		$(upload_item).attr('id', 'uploadfile' + index);
 	})

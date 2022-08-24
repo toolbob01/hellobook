@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hellobook.mapper.ChatMapper">
+	
+	<insert id="createChatRoom" parameterType="map">
+		
+		insert all 
+		into chat_room(rno) values(chat_room_seq.nextval)
+		into chat_participant(rno, email) values(chat_room_seq.currval, #{email})
+		into chat_participant(rno, email) values(chat_room_seq.currval, #{femail})
+		select * from dual
+	</insert>
+	
+	<select id="chatRoomList" resultType="com.hellobook.domain.ChatVO">
+		select m.nickname ,cm.mdate, cm.content
+		from member m 
+		left join chat_msg cm
+		on m.email = cm.email
+		where 
+		m.email in
+		(select cp.email
+		from chat_participant cp, chat_room cr
+		where cr.rno=cp.rno and cp.email != #{email})
+	</select>
+</mapper>
