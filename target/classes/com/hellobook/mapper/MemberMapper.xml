@@ -63,10 +63,12 @@
 		WHERE email = #{email}
 	</update>
 
-	<update id="changePwd">
-
-		update member set password=#{password} where email=#{email}
-
+	<update id="modifyPasswd">
+		<![CDATA[
+			update member 
+			set password=#{newPasswd}
+			where email = #{email}
+			]]>
 	</update>
 
 	<delete id="quitMember">

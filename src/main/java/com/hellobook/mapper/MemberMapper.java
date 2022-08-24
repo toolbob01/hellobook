@@ -2,6 +2,8 @@ package com.hellobook.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.SessionVO;
 
@@ -15,7 +17,7 @@ public interface MemberMapper {
 	public int checkEmail(String email);
 	public int checkNickname(String nickname);
 
-	public void changePwd(MemberVO mvo);
+	public void modifyPasswd(@Param("email")String email, @Param("newPasswd")String newPasswd);
 	public void quitMember(String email); //회원 탈퇴
 	public int modify(MemberVO mvo); 
 	

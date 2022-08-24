@@ -37,8 +37,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public void modifyPasswd(String email, String newPasswd) {
+		memberMapper.modifyPasswd(email, newPasswd);
+		
+	}
+	
+	@Override
 	public void changePwd(MemberVO mvo) {
-		memberMapper.changePwd(mvo);
+		// TODO Auto-generated method stub
 		
 	}
 	
