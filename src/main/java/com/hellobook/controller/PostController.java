@@ -273,7 +273,7 @@ public class PostController {
 	@ResponseBody
 	public ReplyVO commentInsert(ReplyVO replyVO) {
 		
-		/* 조건에 따라 Depth 바꾸기 + Refno 참조 */ replyVO.setDepth("1");
+		/* 조건에 따라 Depth 바꾸기 + Refno 참조 */
 		int insert_result = post_service.insertComment(replyVO);
 		ReplyVO rVO = post_service.recentCommentByEmail(replyVO.getEmail());
 		rVO.setTimer(Time.calculateTime(rVO.getRepdate()));

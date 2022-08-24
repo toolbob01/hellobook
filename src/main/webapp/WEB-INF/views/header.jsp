@@ -68,7 +68,7 @@ body {
             	</a>
             </div>
             <div class="mx-2 header-icon">
-            	<a href="/chat/chat_list">
+            	<a href="/chat/chat_list?email=${username}">
                 	<img src="https://img.icons8.com/ios-glyphs/30/000000/speech-bubble-with-dots.png"/>
                 </a>
             </div>

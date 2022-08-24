@@ -346,7 +346,7 @@
 		<!-- 										<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/> -->
 		<!-- 									</div> -->
 		<!-- 									<div class="comment-name on_cursor align-self-center">Hanulso</div> -->
-		<!-- 									<div class="comment-time align-self-center mx-5">1시간 전</div> -->
+		<!-- 									<div class="comment-time align-self-center mx-5">1<spring:message code="timer.hour"/></div> -->
 										</div>
 										
 										<div class="modal-posting-master-content">
@@ -474,21 +474,64 @@
 					});
 				}
 				// Profile    
-				if( PostVO.language == 'J' ){
-					$(".modal-detail-contents .comment-profile").append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + PostVO.profile + '" alt="프로필사진">' + 
-																		'<div class="comment-profile-flag">' + 
-																		'<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' +  
-																		'</div>' + 
-																		'<div class="comment-name on_cursor align-self-center">' + PostVO.nickname + '</div>' + 
-																		'<div class="comment-time align-self-center mx-5">' + PostVO.timer + '</div>');
+ 				var comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + PostVO.profile + '" alt="프로필사진">' + 
+									  '<div class="comment-profile-flag">';
+				if( PostVO.language == 'J' ) {
+					comment_profile +=   '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' +  
+									   '</div>' + 
+									   '<div class="comment-name on_cursor align-self-center">' + PostVO.nickname + '</div>';
 				}else {
-					$(".modal-detail-contents .comment-profile").append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + PostVO.profile + '" alt="프로필사진">' + 
-																		'<div class="comment-profile-flag">' + 
-																		'<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-																		'</div>' + 
-																		'<div class="comment-name on_cursor align-self-center">' + PostVO.nickname + '</div>' + 
-																		'<div class="comment-time align-self-center mx-5">' + PostVO.timer + '</div>');
+					comment_profile +=   '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
+									   '</div>' + 
+									   '<div class="comment-name on_cursor align-self-center">' + PostVO.nickname + '</div>';
+				} 
+				var cpt = PostVO.timer.slice(0, -1);
+				var cpt_1 = PostVO.timer.slice(-1);
+				if(cpt_1 == 's') {
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.sec"/>';
+					}else {
+						cpt += '<spring:message code="timer.sec2"/>';
+					}
+					
+				}else if(cpt_1 == 'm') {
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.min"/>';
+					}else {
+						cpt += '<spring:message code="timer.min2"/>';
+					}
+					
+				}else if(cpt_1 == 'h') {
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.hour"/>';
+					}else {
+						cpt += '<spring:message code="timer.hour2"/>';
+					}
+					
+				}else if(cpt_1 == 'd') {
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.day"/>';
+					}else {
+						cpt += '<spring:message code="timer.day2"/>';
+					}
+					
+				}else if(cpt_1 == 'M') {
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.month"/>';
+					}else {
+						cpt += '<spring:message code="timer.month2"/>';
+					}
+					
+				}else if(cpt_1 == 'y') {
+					if(cpt == '1') {
+						cpt += '<spring:message code="timer.year"/>';
+					}else {
+						cpt += '<spring:message code="timer.year2"/>';
+					}
+					
 				}
+ 				comment_profile += '<div class="comment-time align-self-center mx-5">' + cpt + '</div>';
+				$(".modal-detail-contents .comment-profile").append(comment_profile); 
 				// Post Content
 				$(".modal-posting-master-content").html(PostVO.content);
 				// Comment List
@@ -499,25 +542,137 @@
 					$.each(PostVO.reply_list, function(i, replyVO){
 		 				$(".all-comment").append('<div class="comment-profile d-flex" id="comment-profile' + replyVO.repno + '"></div>' + 
 	    				 						 '<div class="comment-content" id="comment-content' + replyVO.repno + '"></div>');
+						var all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
+						  						  '<div class="comment-profile-flag">';
 						if( replyVO.language == 'J' ) {
-							$(".all-comment #comment-profile"+replyVO.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
-																	  '<div class="comment-profile-flag">' + 
-																	      '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
-															    	  '</div>' + 
-															    	  '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
-															    	  '<div class="comment-time align-self-center mx-5">' + replyVO.timer + '</div>' + 
-															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
 						}else {
-							$(".all-comment #comment-profile"+replyVO.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진">' + 
-																	  '<div class="comment-profile-flag">' + 
-																	      '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-															    	  '</div>' + 
-															    	  '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
-															    	  '<div class="comment-time align-self-center mx-5">' + replyVO.timer + '</div>' + 
-															    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+							all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
 						}
-						$(".all-comment #comment-content"+replyVO.repno).html(replyVO.rcontent);					
-					}); // each
+						var acpt = replyVO.timer.slice(0, -1);
+						var acpt_1 = replyVO.timer.slice(-1);
+						if(acpt_1 == 's') {
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.sec"/>';
+							}else {
+								acpt += '<spring:message code="timer.sec2"/>';
+							}
+							
+						}else if(acpt_1 == 'm') {
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.min"/>';
+							}else {
+								acpt += '<spring:message code="timer.min2"/>';
+							}
+							
+						}else if(acpt_1 == 'h') {
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.hour"/>';
+							}else {
+								acpt += '<spring:message code="timer.hour2"/>';
+							}
+							
+						}else if(acpt_1 == 'd') {
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.day"/>';
+							}else {
+								acpt += '<spring:message code="timer.day2"/>';
+							}
+							
+						}else if(acpt_1 == 'M') {
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.month"/>';
+							}else {
+								acpt += '<spring:message code="timer.month2"/>';
+							}
+							
+						}else if(acpt_1 == 'y') {
+							if(acpt == '1') {
+								acpt += '<spring:message code="timer.year"/>';
+							}else {
+								acpt += '<spring:message code="timer.year2"/>';
+							}
+							
+						}
+						all_comment_profile += '</div>' + 
+									    	   '<div class="comment-name on_cursor align-self-center">' + replyVO.nickname + '</div>' + 
+									    	   '<div class="comment-time align-self-center mx-5">' + acpt + '</div>' + 
+									    	   '<div class="comment-cocoment align-self-center">답글 달기</div>';
+			    	    $(".all-comment #comment-profile"+replyVO.repno).append(all_comment_profile);
+						$(".all-comment #comment-content"+replyVO.repno).html(replyVO.rcontent);
+						// Open&Close coComent script use id="collapse + replyVO.repno"
+  	 					if( replyVO.cocomment_list[0] != null ){
+							$(".all-comment #comment-content"+replyVO.repno).append('<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#collapse' + replyVO.repno + '" aria-expanded="false">' + 
+																	      				'<i class="bi bi-arrow-return-right fs-5"></i>' + 
+																	      				'<span class="cocoment-open ms-3" data-oc="c">펼치기</span>' + 
+																      				'</div>');
+							$(".all-comment #comment-content"+replyVO.repno).append('<div class="collapse" id="collapse' + replyVO.repno + '"></div>');
+ 							$.each(replyVO.cocomment_list, function(k, cocommentVO) {
+								var all_comment_collapse = '<div class="comment-depth">' + 
+													         '<div class="comment-profile d-flex">' + 
+													           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진">' + 
+													           '<div class="comment-profile-flag">';
+				                if( cocommentVO.language == 'J' ){  
+				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
+				                }else{
+				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
+				                }
+				                all_comment_collapse += '</div>' + 
+						           						'<div class="comment-name on_cursor align-self-center">' + cocommentVO.nickname + '</div>';
+        						var acct = cocommentVO.timer.slice(0, -1);
+        						var acct_1 = cocommentVO.timer.slice(-1);
+        						if(acct_1 == 's') {
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.sec"/>';
+        							}else {
+        								acct += '<spring:message code="timer.sec2"/>';
+        							}
+        							
+        						}else if(acct_1 == 'm') {
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.min"/>';
+        							}else {
+        								acct += '<spring:message code="timer.min2"/>';
+        							}
+        							
+        						}else if(acct_1 == 'h') {
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.hour"/>';
+        							}else {
+        								acct += '<spring:message code="timer.hour2"/>';
+        							}
+        							
+        						}else if(acct_1 == 'd') {
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.day"/>';
+        							}else {
+        								acct += '<spring:message code="timer.day2"/>';
+        							}
+        							
+        						}else if(acct_1 == 'M') {
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.month"/>';
+        							}else {
+        								acct += '<spring:message code="timer.month2"/>';
+        							}
+        							
+        						}else if(acct_1 == 'y') {
+        							if(acct == '1') {
+        								acct += '<spring:message code="timer.year"/>';
+        							}else {
+        								acct += '<spring:message code="timer.year2"/>';
+        							}
+        							
+        						}				
+        						all_comment_collapse += '<div class="comment-time align-self-center mx-5">' + acct + '</div>' + 
+												         '</div>' + 
+												         '<div class="comment-content">' + 
+												         	cocommentVO.rcontent +
+												         '</div>' + 
+												       '</div>';			
+ 							})
+						}  
+					}) // each
 				} // reply_list[0] else
 				
 				// Comment Write Div's data-pno
@@ -589,23 +744,63 @@
 	 		 				$(".all-comment").prepend('<p class="fs-5 mb-3">댓글 리스트</p>' + 
 	 		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
 			 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
+	 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+							  								 '<div class="comment-profile-flag">';
 							if( data.language == 'J' ) {
-								$(".all-comment #comment-profile"+data.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
-																		  '<div class="comment-profile-flag">' + 
-																		      '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>' + 
-																    	  '</div>' + 
-																    	  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
-																    	  '<div class="comment-time align-self-center mx-5">' + data.timer + '</div>' + 
-																    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+								insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
 							}else {
-								$(".all-comment #comment-profile"+data.repno).append('<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
-																		  '<div class="comment-profile-flag">' + 
-																		      '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>' + 
-																    	  '</div>' + 
-																    	  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
-																    	  '<div class="comment-time align-self-center mx-5">' + data.timer + '</div>' + 
-																    	  '<div class="comment-cocoment align-self-center">답글 달기</div>');
+								insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
 							}
+							insert_all_comment_profile += '</div>' + 
+					    	  							  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>';
+							var accpt = data.timer.slice(0, -1);
+							var accpt_1 = data.timer.slice(-1);
+							if(accpt_1 == 's') {
+    							if(accpt == '1') {
+    								accpt += '<spring:message code="timer.sec"/>';
+    							}else {
+    								accpt += '<spring:message code="timer.sec2"/>';
+    							}
+    							
+    						}else if(accpt_1 == 'm') {
+    							if(accpt == '1') {
+    								accpt += '<spring:message code="timer.min"/>';
+    							}else {
+    								accpt += '<spring:message code="timer.min2"/>';
+    							}
+    							
+    						}else if(accpt_1 == 'h') {
+    							if(accpt == '1') {
+    								accpt += '<spring:message code="timer.hour"/>';
+    							}else {
+    								accpt += '<spring:message code="timer.hour2"/>';
+    							}
+    							
+    						}else if(accpt_1 == 'd') {
+    							if(accpt == '1') {
+    								accpt += '<spring:message code="timer.day"/>';
+    							}else {
+    								accpt += '<spring:message code="timer.day2"/>';
+    							}
+    							
+    						}else if(accpt_1 == 'M') {
+    							if(accpt == '1') {
+    								accpt += '<spring:message code="timer.month"/>';
+    							}else {
+    								accpt += '<spring:message code="timer.month2"/>';
+    							}
+    							
+    						}else if(accpt_1 == 'y') {
+    							if(accpt == '1') {
+    								accpt += '<spring:message code="timer.year"/>';
+    							}else {
+    								accpt += '<spring:message code="timer.year2"/>';
+    							}
+    							
+    						}			
+							insert_all_comment_profile += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
+					    	  							  '<div class="comment-cocoment align-self-center">답글 달기</div>';
+							$(".all-comment #comment-profile"+data.repno).append(insert_all_comment_profile);
 							$(".all-comment #comment-content"+data.repno).html(data.rcontent);
 						}
 						$("#commentInsert").val("");
