@@ -1262,9 +1262,9 @@
 			'</div>' + 
 			'<div class="right_icon">' + 
 			    // Kakao Share Test
-   				'<span><a id="kakaotalk-sharing-btn" href="javascript:shareMessage()" data-nick="' + postVO.nickname + '" onclick="kakaoData(this)"><img src="/resources/imgs/kakao_share_icon_big.png" alt="Kakao Share" style="width:37px; height:37px; margin-right:10px;"/></a></span>' + 
+   				'<span><a id="kakaotalk-sharing-btn" href="javascript:shareMessage()" data-nick="' + postVO.nickname + '" data-pno="' + postVO.pno + '" onclick="kakaoData(this)"><img src="/resources/imgs/kakao_share_icon_big.png" alt="Kakao Share" style="width:37px; height:37px; margin-right:10px;"/></a></span>' + 
 				// Line Share Test
-				'<span class="on_cursor line_share" onclick="sendNaverLine(this)" data-nick="' + postVO.nickname + '"><img src="/resources/imgs/line_share_icon_big.png" alt="Line Share" style="width:33px; height:33px; margin-right:10px;"></img></span>' +
+				'<span class="on_cursor line_share" data-nick="' + postVO.nickname + '" data-pno="' + postVO.pno + '" onclick="sendNaverLine(this)"><img src="/resources/imgs/line_share_icon_big.png" alt="Line Share" style="width:33px; height:33px; margin-right:10px;"></img></span>' +
 				'<div class="sprite_share_icon on_cursor" data-name="share"></div>' + 
 			'</div>' + 
 		'</div>' + 
