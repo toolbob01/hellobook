@@ -17,7 +17,10 @@ public interface MemberMapper {
 	public int checkEmail(String email);
 	public int checkNickname(String nickname);
 
-	public void modifyPasswd(@Param("email")String email, @Param("newPasswd")String newPasswd);
+//	public void modifyPasswd(@Param("email")String email, @Param("newPasswd")String newPasswd);
+	public String pwCheck(String email);
+	public void pwUpdate(String email, String hashedPw);
+	
 	public void quitMember(String email); //회원 탈퇴
 	public int modify(MemberVO mvo); 
 	
