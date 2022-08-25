@@ -19,7 +19,7 @@ public interface MemberMapper {
 
 //	public void modifyPasswd(@Param("email")String email, @Param("newPasswd")String newPasswd);
 	public String pwCheck(String email);
-	public void pwUpdate(String email, String hashedPw);
+	public int pwUpdate(@Param("email") String email, @Param("password") String password);
 	
 	public void quitMember(String email); //회원 탈퇴
 	public int modify(MemberVO mvo); 

@@ -22,7 +22,7 @@ public interface MemberService {
 	
 	public String pwCheck(String email);
 	
-	public void pwUpdate(String email, String hashedPw);
+	public int pwUpdate(String email, String hashedPw);
 	
 	
 	

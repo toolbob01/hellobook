@@ -87,9 +87,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void pwUpdate(String email, String hashedPw) {
+	public int pwUpdate(String email, String hashedPw) {
 		
-		memberMapper.pwUpdate(email, hashedPw);
+		return memberMapper.pwUpdate(email, hashedPw);
 	}
 	
 }

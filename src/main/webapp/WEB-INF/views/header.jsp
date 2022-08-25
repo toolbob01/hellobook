@@ -37,6 +37,15 @@ body {
 }
 </style>
 
+<script>
+	var csrfHeanderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
+	});
+</script>
+
 <title>Hello Book</title>
 </head>
 <body>
