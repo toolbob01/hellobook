@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <%@ include file="../header.jsp" %>
-
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <link rel="stylesheet" href="/resources/css/chat_list.css">
 
 
@@ -35,20 +36,26 @@
                </div>
                <div class="inbox_chat">
                <!-- 채팅유저 -->
-               	<c:forEach var="cvo" items="${cvoList}">
-                  <div class="chat_list" data-email="friendA" data-rno="1">
+               	<c:forEach var="cvo" items="${cvoList}" varStatus="status">
+               	
+                  <div class="chat_list" data-email="${cvo.nickname}" data-rno="${cvo.rno}">
                      <div class="chat_people">
                         <div class="chat_img">
-                           <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                           <img src="/hello_img/member/${cvo.profile}" alt="...">
                         </div>
                         <div class="chat_ib">
-                           <h5>${cvo.nickname} <span class="chat_date"><fmt:formatDate value="${cvo.mdate}" pattern="MM-dd"/></span></h5>
-                           <p>${cvo.content}</p>
+
+                           <h5>${cvo.nickname}
+                           	<span class="chat_date"><fmt:formatDate value="${cvo2.mdate}" pattern="MM-dd"/></span>
+                           </h5>
+                           <p>${cvo2.content}</p>
+
                         </div>
                      </div>
                   </div>
-                </c:forEach>  
                 
+                </c:forEach>   
+                 
                <!--채팅유저 -->
                </div>
             </div>
@@ -64,10 +71,15 @@
                <!-- 채팅 보내기 -->
                <div class="type_msg">
                   <div class="input_msg_write">
-                     <textarea class="write_msg" id="message" placeholder="메세지 입력" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
-                     <button class="msg_send_btn" type="button" id="sendBtn">
+                  	
+
+                  	 <input type="hidden" id="sendEmail" name="email" value="${username}">
+                  	 <input type="hidden" id="sendRno" name="rno" value="">
+                     <textarea class="write_msg" id="message" name="content" placeholder="메세지 입력" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
+                     <button class="msg_send_btn" type="submit" id="sendBtn">
                         <i class="fa fa-paper-plane-o"  aria-hidden="true"></i>
                      </button>
+
                   </div>
                </div>
                <!-- //채팅 보내기 -->
@@ -155,56 +167,41 @@
       window.onload = function(){
     	  
     	  console.log(firstChat);
-    	  chatUserId = firstChat.attr('data-email');
+    	  chatUserId = firstChat.attr('data-email'); //맨 위 채팅방 닉네임
+    	  chatRno = firstChat.attr('data-rno'); //맨 위 채팅방번호
+    	  $('#sendRno').val(chatRno); //메시지 입력란에 rno값 넣기
     	  console.log(chatUserId);
-    	  //ajax 실행해서 메세지 list 받아오기
-    	  //아래 내용 삭제
-    	  let list = [
-    			{
-    				"mno":"1",
-    				"rno":1,
-    				"content":"친구 A에게 보낸 메세지.",
-    				"email":"friendD",
-    				"mdate":"11:41 AM | 07-31",
-    				"status":2
-    			},
-    			{
-    				"mno":"5",
-    				"rno":1,
-    				"content":"친구 A에게 보낸 메세지.2",
-    				"email":"friendD",
-    				"mdate":"11:48 AM | 07-31",
-    				"status":2
-    			},
-    			{
-    				"mno":"9",
-    				"rno":1,
-    				"content":"친구 A가 보낸 메세지.",
-    				"email":"friendA",
-    				"mdate":"11:51 AM | 07-31",
-    				"status":2
-    			},
-    			{
-    				"mno":"13",
-    				"rno":1,
-    				"content":"친구 A가 보낸 메세지.2",
-    				"email":"friendA",
-    				"mdate":"12:01 AM | 07-31",
-    				"status":2
-    			}
-    		]
-    	  //위 내용 삭제
-    	  
-    	  chatChange(list);
-    	  $(this).addClass('active_chat');
+    	  //ajax
+    	  var data = chatChangeRoom(chatRno);
+    	  chatChange(data);
+    	  $(".active_chat").removeClass('active_chat');
+       	  $(this).addClass('active_chat');
+      }
+      //ajax
+      function chatChangeRoom(chatRno) {
+    	  var result = "";
+    	  $.ajax({
+    		  url : "/chat/messageList",
+	    	  type : "get",
+	          data : {rno : chatRno},
+	          dataType:"json",
+	          success : function(data) {
+	        	  result = JSON.stringify(data);	  
+	          },
+	          error : function(err) {
+	        	  console.log(err)
+	          }
+	          
+    	  });
+    	  return result;
       }
       
       //채팅방 이동
-      function chatChange(msgList){
+      function chatChange(chatRoomNm){
 
     	  var chatMsg = "";
     	  
-    	  $.each(msgList,function(index,item){
+    	  $.each(chatRoomNm,function(index,item){
     	  
     	  if(item.email == userId){
     		  chatMsg += '<div class="outgoing_msg"><div class="sent_msg"><p>'+item.content+'</p><span class="time_date">'+item.mdate+'</span></div></div>';
@@ -221,129 +218,15 @@
       $(".chat_list").on("click",function() {
     	  console.log("채팅방 이동");
     	  chatUserId = $(this).attr('data-email');
-    	  
-    	  //여기서 ajax이용해서 데이터베이스로부터 id검색해서 채팅내용을 전부 list로 가져오기
-    	  //시간 순서대로 리스트를 받아올거고 메시지 번호,그룹 아이디,메시지 내용,이메일,시간,상태를 받아옴
-    	  //사용할 땐 아래의 내용을 전부 지울 것
-    	  let listA = [
-    			{
-    				"mno":"1",
-    				"rno":1,
-    				"content":"친구 A에게 보낸 메세지.",
-    				"email":"friendD",
-    				"mdate":"11:41 AM | 07-31",
-    				"status":2
-    			},
-    			{
-    				"mno":"5",
-    				"rno":1,
-    				"content":"친구 A에게 보낸 메세지.2",
-    				"email":"friendD",
-    				"mdate":"11:48 AM | 07-31",
-    				"status":2
-    			},
-    			{
-    				"mno":"9",
-    				"rno":1,
-    				"content":"친구 A가 보낸 메세지.",
-    				"email":"friendA",
-    				"mdate":"11:51 AM | 07-31",
-    				"status":2
-    			},
-    			{
-    				"mno":"13",
-    				"rno":1,
-    				"content":"친구 A가 보낸 메세지.2",
-    				"email":"friendA",
-    				"mdate":"12:01 AM | 07-31",
-    				"status":2
-    			}
-    		]
-    	  let listB = [
-  			{
-  				"mno":"1",
-  				"rno":2,
-  				"content":"친구 B에게 보낸 메세지",
-  				"email":"friendD",
-  				"mdate":"11:01 AM | 07-31",
-  				"status":2
-  			},
-  			{
-  				"mno":"4",
-  				"rno":2,
-  				"content":"친구 B가 보낸 장문의 메세지 <br/>친구 B가 보낸 장문의 메세지 <br/>친구 B가 보낸 장문의 메세지 <br/>친구 B가 보낸 장문의 메세지 <br/>",
-  				"email":"friendB",
-  				"mdate":"11:07 AM | 07-31",
-  				"status":2
-  			},
-  			{
-  				"mno":"5",
-  				"rno":2,
-  				"content":"친구 B에게 보낸 메세지. 2",
-  				"email":"friendD",
-  				"mdate":"11:10 AM | 07-31",
-  				"status":2
-  			},
-  			{
-  				"mno":"9",
-  				"rno":2,
-  				"content":"친구 B가 보낸 메세지.2",
-  				"email":"friendB",
-  				"mdate":"11:12 AM | 07-31",
-  				"status":2
-  			}
-  		  ]
-    	let listC = [
-  			{
-  				"mno":"9",
-  				"rno":3,
-  				"content":"친구 C가 보낸 메세지.",
-  				"email":"friendC",
-  				"mdate":"11:01 AM | 07-31",
-  				"status":2
-  			},
-  			{
-  				"mno":"19",
-  				"rno":3,
-  				"content":"친구 C가 보낸 메세지.2",
-  				"email":"friendC",
-  				"mdate":"11:07 AM | 07-31",
-  				"status":2
-  			},
-  			{
-  				"mno":"21",
-  				"rno":3,
-  				"content":"친구 C에게 보낸 메세지.",
-  				"email":"friendD",
-  				"mdate":"11:08 AM | 07-31",
-  				"status":2
-  			},
-  			{
-  				"mno":"25",
-  				"rno":3,
-  				"content":"친구 C에게 보낸 장문의 메세지.<br/>친구 C에게 보낸 장문의 메세지.<br/>친구 C에게 보낸 장문의 메세지.<br/>친구 C에게 보낸 장문의 메세지.<br/>",
-  				"email":"friendD",
-  				"mdate":"11:11 AM | 07-31",
-  				"status":2
-  			}
-  		  ]
-    	  
-    	  let msgList;
-    	  
-    	  if(chatUserId == 'friendA'){
-        	  msgList = listA
-    	  }else if(chatUserId == 'friendB'){
-    		  msgList = listB
-    	  }else{
-    		  msgList = listC
-    	  }
-    	//사용할 땐 위의 내용을 전부 지울 것
-    	
-    	  chatChange(msgList);
-    	  
+    	  chatRno = $(this).attr('data-rno');
+    	  $('#sendRno').val(chatRno);
+
+    		//ajax
+    	  var data = chatChangeRoom(chatRno);
+    	  chatChange(data);
     	  $(".active_chat").removeClass('active_chat');
-    	  $(this).addClass('active_chat');
-    	  
+       	  $(this).addClass('active_chat');
+
       })
       
       
@@ -366,6 +249,8 @@
       //test중
       const username = '<%=(String)session.getAttribute("username")%>';
       let today = new Date(+new Date() + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, '');
+      var token = $("meta[name='_csrf']").attr("content");
+  	  var header = $("meta[name='_csrf_header']").attr("content");
       
       $('#sendBtn').click(function() {
     	  sendMessage();
@@ -377,9 +262,35 @@
       sock.onclose = onClose;
       //메시지 전송
 	  function sendMessage() {
+		  
+	      
+	      var rno = $('#sendRno').val();
+	      var content = document.getElementById("message").value;	 
+		console.log(rno);
+		console.log(content);
 	      sock.send(
-	    	  username+":"+$('#message').val()
+	    	  username+":"+content
           );
+	          $.ajax({
+	    	  url : "/chat/sendMessage",
+	    	  type : "post",
+	          data : JSON.stringify({
+	        	  email : username,
+	          	  rno : rno,
+	          	  content : content
+	          }),
+	          dataType : "json",
+	          contentType : "application/json",
+	          beforeSend : function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
+	          success : function(result) {
+	        	  
+	          },
+	          error : function(err) {
+	        	  alert("실패!")
+	          }
+	      }); 
       }
       //서버로부터 메시지를 받았을 때
       function onMessage(msg) {

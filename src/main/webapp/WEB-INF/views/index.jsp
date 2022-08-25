@@ -1198,7 +1198,7 @@
 			'<div class="updateDeleteDiv">' + 
 				'<span class="updateDeleteContent">' + 
 					'<span class="updateLink" data-pno="' + postVO.pno + '">게시물 수정</span>' + 
-					'|' +  
+					' | ' +  
 					'<span class="deleteLink" data-pno="' + postVO.pno + '">게시물 삭제</span>' + 
 				'</span>' + 
 			'</div>';
