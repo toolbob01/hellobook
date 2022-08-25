@@ -12,6 +12,7 @@
 <security:http auto-config="true" use-expressions="true">
 	<security:intercept-url pattern="/member/**" access="permitAll"/>
 	<security:intercept-url pattern="/findpwd/**" access="permitAll"/>
+	<security:intercept-url pattern="/post/post_detail/**" access="permitAll"/>
 	<security:intercept-url pattern="/translate/**" access="permitAll"/>
 	<security:intercept-url pattern="/resources/**" access="permitAll"/>
 	<security:intercept-url pattern="/**" access="isAuthenticated()"/>

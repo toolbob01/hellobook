@@ -80,8 +80,7 @@ public class MemberServiceImpl implements MemberService {
 	
 		return memberMapper.selectAllMember();
 	}
-	
-<<<<<<< HEAD
+
 	//나중에 지울 것
 	@Override
 	public int[] getRno(String email) {
@@ -98,7 +97,7 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println(mno);
 		return memberMapper.getNewChat(email, rno, mno);
 	}
-=======
+
 	@Override
 	public String pwCheck(String email) {
 		
@@ -110,6 +109,5 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberMapper.pwUpdate(email, hashedPw);
 	}
-	
->>>>>>> 148082b87f681bc20fc1bac41066ed00bb333205
+
 }

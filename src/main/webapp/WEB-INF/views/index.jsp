@@ -1260,12 +1260,11 @@
 					postVO.like_cnt + ' 명이 좋아합니다' + 
 				'</span>' + 
 			'</div>' + 
-			'<div class="right_icon">' + 
+			'<div class="d-flex align-items-center">' + 
 			    // Kakao Share Test
-   				'<span><a id="kakaotalk-sharing-btn" href="javascript:shareMessage()" data-nick="' + postVO.nickname + '" data-pno="' + postVO.pno + '" onclick="kakaoData(this)"><img src="/resources/imgs/kakao_share_icon_big.png" alt="Kakao Share" style="width:37px; height:37px; margin-right:10px;"/></a></span>' + 
+   				'<span><a id="kakaotalk-sharing-btn" href="javascript:shareMessage()" data-nick="' + postVO.nickname + '" data-pno="' + postVO.pno + '" onclick="kakaoData(this)"><img src="/resources/imgs/kakao_share_icon_big.png" alt="Kakao Share" style="width:43px; height:43px; margin-right:10px;"/></a></span>' + 
 				// Line Share Test
 				'<span class="on_cursor line_share" data-nick="' + postVO.nickname + '" data-pno="' + postVO.pno + '" onclick="sendNaverLine(this)"><img src="/resources/imgs/line_share_icon_big.png" alt="Line Share" style="width:33px; height:33px; margin-right:10px;"></img></span>' +
-				'<div class="sprite_share_icon on_cursor" data-name="share"></div>' + 
 			'</div>' + 
 		'</div>' + 
 		'<div class="posting-master">' + 
@@ -1402,11 +1401,12 @@
 	// Line Share Test
 	function sendNaverLine(e) {
         var line_nick = $(e).data("nick");
-    	var line_title = "[Hello Book]";
-        var line_summary = "Welcome to [" + line_nick + "]'s page !'";
+        var line_pno = $(e).data("pno");
+    	var line_title = "[Welcome to HelloBook]";
+        var line_summary = "'" + line_nick + "'s post";
         var line_br = "\n";
-        var line_link = "http://hellobook/mypage/profile/" + line_nick;
-        var line_img = "이미지?"; // 
+        var line_link = "http://localhost:8088/post/post_detail/" + line_pno;
+        var line_img = "https://media.discordapp.net/attachments/591977740350128139/1012435521412272188/hello_book_logo.jpg?";
         var line_url = "http://line.me/R/msg/text/?" + 
 						encodeURIComponent(line_title + line_br + line_summary + line_br + line_link);
         var openNewWindow = window.open("about:blank");
@@ -1416,22 +1416,22 @@
     // Kakao Share Test 
       Kakao.init("a7ba4a0aa3292ea9684a93aa38bba597");
 	  var kakao_nick = "";
-	  var kakao_img = "이미지?";
+	  var kakao_pno = "";
+	  var kakao_img = "https://media.discordapp.net/attachments/591977740350128139/1012435521412272188/hello_book_logo.jpg";
       function kakaoData(e) {
     	  kakao_nick = $(e).data("nick");
-    	  console.log(kakao_nick);
+    	  kakao_pno = $(e).data("pno");
       }
 	  function shareMessage() {
 	    Kakao.Share.sendDefault({
 	      objectType: 'feed',
 	      content: {
-	        title: '제목',
+	        title: "[HelloBook] " + kakao_nick + "'s post",
 	        description: '#HelloBook #Korea #Japan #学習 #言語交換',
-	        imageUrl:
-	          'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+	        imageUrl: kakao_img,
 	        link: {
-	          mobileWebUrl: 'https://developers.kakao.com',
-	          webUrl: 'https://developers.kakao.com',
+	          mobileWebUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno, // 'https://developers.kakao.com'
+	          webUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno,
 	        },
 	      },
 // 	      social: {
@@ -1443,15 +1443,15 @@
 	        {
 	          title: '웹으로 보기',
 	          link: {
-	            mobileWebUrl: 'https://developers.kakao.com',
-	            webUrl: 'https://developers.kakao.com',
+	            mobileWebUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno,
+	            webUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno,
 	          },
 	        },
 	        {
 	          title: '앱으로 보기',
 	          link: {
-	            mobileWebUrl: 'https://developers.kakao.com',
-	            webUrl: 'https://developers.kakao.com',
+	            mobileWebUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno,
+	            webUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno,
 	          },
 	        },
 	      ],
