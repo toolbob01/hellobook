@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../header.jsp"%>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <head>
 <script src="https://kit.fontawesome.com/aa30b88fc4.js" crossorigin="anonymous"></script>
 </head>
@@ -102,20 +104,20 @@ body {
 				
 				<div id="form">
 				
-					  <form action="/member/pwUpdate" method="post" id="pwUpdateForm" name="pwUpdateForm">
+					  <form action="/mypage/pwUpdate" method="post" id="pwUpdateForm" name="pwUpdateForm">
 							 <input type="hidden" id="email" name="email" value="${svo.email}">
-							 
+							 <sec:csrfInput/>
 						<div class="row" id="pw_input_group">
 							<div class="col-md-12 mb-3" id="input_div">
 								<input type="password" class="form-control" name="memberPw" id="memberPw" placeholder="현재 비밀번호" required="">
 								<i class="fa-solid fa-eye" value=""></i>
 							</div>
 							<div class="col-md-12 mb-3" id="input_div">
-								<input type="password" class="form-control" name="memberPw1" placeholder="새 비밀번호" required="">
+								<input type="password" class="form-control" name="memberPw1" id="memberPw1" placeholder="새 비밀번호" required="">
 								<i class="fa-solid fa-eye"></i>
 							</div>
 							<div class="col-md-12 mb-3" id="input_div">
-								<input type="password" class="form-control" name="memberPw2" placeholder="새 비밀번호 확인" required="">
+								<input type="password" class="form-control" name="memberPw2" id="memberPw2" placeholder="새 비밀번호 확인" required="">
 								<i class="fa-solid fa-eye"></i>
 							</div>
 						</div>
@@ -150,52 +152,83 @@ body {
 </script>
 
 <script type="text/javascript">
-		$(document).ready(function(){
+ 
+//현재 비밀번호 입력 시 실행
+var email = '<%=(String)session.getAttribute("username")%>';
+
+
+$('#memberPw').on("change",function(){
+	var memberPw = $('#memberPw').val();
+
+	$.ajax({
+		url : "/mypage/pwCheck",
+		type : "post",
+		dataType : "json",
+		data : 
+			JSON.stringify({
+			email : email,
+			memberPw : memberPw
+		}),
+		contentType : "application/json",
+		success: function(data){
+
+			if(data=="1"){
+				alert("패스워드가 틀렸습니다.");
+				return;
+			}
+			else {
+				$('#memberPw').attr("disabled",'disabled');
+				
+			}
+		}
+	});
+});
+
+//현재 비밀번호와 새 비밀번호 일치 확인
+var pwCheck = /^(?=.*?[a-zA-Z0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+
 		
-			$("#pwUpdate").on("click", function(){
-				if($("#memberPw").val==""){
-					alert("현재 비밀번호를 입력해주세요");
-					$("#memberPw").focus();
-					return false
-				}
-				if($("#memberPw1").val==""){
-					alert("변경비밀번호을를 입력해주세요");
-					$("#memberPw1").focus();
-					return false
-				}
-				if($("#memberPw2").val==""){
-					alert("변경비밀번호를 입력해주세요");
-					$("#memberPw2").focus();
-					return false
-				}
-				if ($("#memberPw").val() != $("#memberPw2").val()) {
-					alert("변경비밀번호가 일치하지 않습니다.");
-					$("#memberPw2").focus();
-					 
-				
-				$.ajax({
-					url : "/member/pwCheck",
-					type : "POST",
-					dataType : "json",
-					data : $("#pwUpdateForm").serializeArray(),
-					success: function(data){
-						
-						if(data==0){
-							alert("패스워드가 틀렸습니다.");
-							return;
-						}else{
-							if(confirm("변경하시겠습니까?")){
-								$("#pwUpdateForm").submit();
-							}
-							
-						}
-					}
-				})
-				
-			});
-			
-				
-			
-		})
+//수정버튼 클릭 시 실행		
+$("#pwUpdate").on("click", function(){
+	
+	if($("#memberPw").val()==""){
+		alert("현재 비밀번호를 입력해 주세요.");
+		$("#memberPw").focus();
+		return false;
+	}
+	if($("#memberPw1").val()==""){
+		alert("새 비밀번호를 입력해 주세요.");
+		$("#memberPw1").focus();
+		return false;
+	}
+	if($("#memberPw2").val()==""){
+		alert("새 비밀번호 확인을 입력해 주세요.");
+		$("#memberPw2").focus();
+		return false;
+	}
+	if($('#memberPw1').val()==$('#memberPw').val()) {
+		alert('현재 비밀번호와 다른 비밀번호를 입력해 주세요.');
+		$("#memberPw1").focus();
+		return false;
+	}
+	if ($("#memberPw1").val() != $("#memberPw2").val()) {
+		alert("새 비밀번호가 일치하지 않습니다.");
+		$("#memberPw2").focus();
+		return false;
+	}
+	if ($("#memberPw1").val().length < 8 || !pwCheck.test($("#memberPw1").val())) {
+		alert("8자리 이상, 두 가지 이상의 영어 대소문자, 숫자, 특수문자의 조합이어야 합니다.");
+		$("#memberPw1").focus();
+		return false;
+	}
+	if($("#memberPw1").val().search(/\s/) != -1){
+		alert("비밀번호에는 공백을 사용할 수 없습니다.");
+		$("#memberPw1").focus();
+		return false;
+	}
+	
+	return true;
+});
 	</script>
 <%@ include file="../../footer.jsp"%>

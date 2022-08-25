@@ -20,7 +20,7 @@
 		on m.email = cp.email
 		left join chat_msg cm
 		on cp.rno = cm.rno        
-        where rno in (select cp.rno
+        where cp.rno in (select cp.rno
         from chat_participant cp
         left join member m
         on m.email = cp.email

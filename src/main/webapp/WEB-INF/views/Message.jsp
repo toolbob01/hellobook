@@ -21,6 +21,8 @@
 				top.alert('<spring:message code="message.alert1"/>'+'\n'+'<spring:message code="message.welcome"/>');
 			}else if(message == '2'){
 				top.alert('<spring:message code="message.alert2"/>'+'\n'+'<spring:message code="message.welcome"/>');
+			}else {
+				top.alert(message);
 			}
 		</script>
 	</c:if>

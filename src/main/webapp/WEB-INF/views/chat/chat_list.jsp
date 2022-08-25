@@ -162,23 +162,8 @@
       let chatRoom = $(".msg_history");
       let userId = 'friendD';
       
-      
-      //페이지 처음 시작시 맨 위 채팅방 자동 활성화
-      window.onload = function(){
-    	  
-    	  console.log(firstChat);
-    	  chatUserId = firstChat.attr('data-email'); //맨 위 채팅방 닉네임
-    	  chatRno = firstChat.attr('data-rno'); //맨 위 채팅방번호
-    	  $('#sendRno').val(chatRno); //메시지 입력란에 rno값 넣기
-    	  console.log(chatUserId);
-    	  //ajax
-    	  var data = chatChangeRoom(chatRno);
-    	  chatChange(data);
-    	  $(".active_chat").removeClass('active_chat');
-       	  $(this).addClass('active_chat');
-      }
-      //ajax
-      function chatChangeRoom(chatRno) {
+    //ajax
+      function messageList(chatRno) {
     	  var result = "";
     	  $.ajax({
     		  url : "/chat/messageList",
@@ -186,7 +171,8 @@
 	          data : {rno : chatRno},
 	          dataType:"json",
 	          success : function(data) {
-	        	  result = JSON.stringify(data);	  
+	        	  result = JSON.stringify(data);
+	        	  console.log(result);
 	          },
 	          error : function(err) {
 	        	  console.log(err)
@@ -195,14 +181,14 @@
     	  });
     	  return result;
       }
-      
-      //채팅방 이동
-      function chatChange(chatRoomNm){
+    
+    
+      function chatChange(data){
 
     	  var chatMsg = "";
     	  
-    	  $.each(chatRoomNm,function(index,item){
-    	  
+    	  $.each(data,function(index,item){
+    	  console.log("item : "+item);
     	  if(item.email == userId){
     		  chatMsg += '<div class="outgoing_msg"><div class="sent_msg"><p>'+item.content+'</p><span class="time_date">'+item.mdate+'</span></div></div>';
 		  }else{
@@ -210,11 +196,28 @@
 			  chatMsg += '<div class="received_msg"><div class="received_withd_msg"><p>'+item.content+'</p><span class="time_date">'+item.mdate+'</span></div></div></div>';
 		  }  
     	  })
-    	  
     	  chatRoom.html(chatMsg);
       }
       
       
+      //페이지 처음 시작시 맨 위 채팅방 자동 활성화
+      window.onload = function(){
+    	  
+    	  console.log(firstChat);
+    	  chatUserId = firstChat.attr('data-email'); //맨 위 채팅방 닉네임
+    	  chatRno = firstChat.attr('data-rno'); //맨 위 채팅방번호
+    	  $('#sendRno').val(chatRno); //메시지 입력란에 rno값 넣기
+    	  //ajax
+    	  var data = messageList(chatRno);
+    	  chatChange(data);
+    	  $(".active_chat").removeClass('active_chat');
+       	  $(this).addClass('active_chat');
+      }
+      
+      
+      
+      
+    //채팅방 이동
       $(".chat_list").on("click",function() {
     	  console.log("채팅방 이동");
     	  chatUserId = $(this).attr('data-email');
@@ -222,7 +225,7 @@
     	  $('#sendRno').val(chatRno);
 
     		//ajax
-    	  var data = chatChangeRoom(chatRno);
+    	  var data = messageList(chatRno);
     	  chatChange(data);
     	  $(".active_chat").removeClass('active_chat');
        	  $(this).addClass('active_chat');

@@ -3,8 +3,12 @@ package com.hellobook.service;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
+import com.hellobook.domain.ChatVO;
+=======
 import org.apache.ibatis.annotations.Param;
 
+>>>>>>> 148082b87f681bc20fc1bac41066ed00bb333205
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.SessionVO;
 
@@ -22,7 +26,7 @@ public interface MemberService {
 	
 	public String pwCheck(String email);
 	
-	public void pwUpdate(String email, String hashedPw);
+	public int pwUpdate(String email, String hashedPw);
 	
 	
 	
@@ -34,5 +38,13 @@ public interface MemberService {
 	public void updateThumbnailByNickname(MemberVO mvo); //프로필 사진 수정
 	
 	public List<MemberVO> selectAllMember();
+<<<<<<< HEAD
+	
+	//test용 스크립트 // 나중에 지울 것
+	public int[] getRno(String email);
+	public Integer getNewMno(int rno);
+	public ChatVO getNewChat(String email, int rno, Integer mno);
+=======
 	public void changePwd(MemberVO mvo);
+>>>>>>> 148082b87f681bc20fc1bac41066ed00bb333205
 }

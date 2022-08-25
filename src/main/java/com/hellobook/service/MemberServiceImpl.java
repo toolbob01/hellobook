@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hellobook.domain.ChatVO;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.SessionVO;
 import com.hellobook.mapper.MemberMapper;
@@ -80,6 +81,24 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.selectAllMember();
 	}
 	
+<<<<<<< HEAD
+	//나중에 지울 것
+	@Override
+	public int[] getRno(String email) {
+		return memberMapper.getRno(email);
+	}
+	@Override
+	public Integer getNewMno(int rno) {
+		return memberMapper.getNewMno(rno);
+	}
+	@Override
+	public ChatVO getNewChat(String email, int rno, Integer mno) {
+		System.out.println(email);
+		System.out.println(rno);
+		System.out.println(mno);
+		return memberMapper.getNewChat(email, rno, mno);
+	}
+=======
 	@Override
 	public String pwCheck(String email) {
 		
@@ -87,9 +106,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void pwUpdate(String email, String hashedPw) {
+	public int pwUpdate(String email, String hashedPw) {
 		
-		memberMapper.pwUpdate(email, hashedPw);
+		return memberMapper.pwUpdate(email, hashedPw);
 	}
 	
+>>>>>>> 148082b87f681bc20fc1bac41066ed00bb333205
 }

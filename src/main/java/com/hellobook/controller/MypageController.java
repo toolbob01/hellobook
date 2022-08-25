@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,17 +24,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.util.JavaScriptUtils;
 
+import com.hellobook.domain.ChangePwdVO;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
 import com.hellobook.domain.SessionVO;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
+import com.hellobook.utility.Message;
 import com.hellobook.utility.Time;
 
 import lombok.extern.log4j.Log4j;
@@ -157,15 +156,16 @@ public class MypageController {
     
     
     @PostMapping(value="/pwCheck", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	  public ResponseEntity<String> pwCheck(@RequestBody MemberVO mvo) throws Exception {
+	  public ResponseEntity<String> pwCheck(@RequestBody ChangePwdVO cpvo){
 		  ResponseEntity<String> result = null;
 		  
-		  String putInPwd = mvo.getPassword();
-		  SessionVO svo = memberService.read(mvo.getEmail());
-		  
+		  String putInPwd = cpvo.getMemberPw();
+		  SessionVO svo = memberService.read(cpvo.getEmail());
+		  boolean match = pwencoder.matches(putInPwd, svo.getPassword());
+
 		  //입력받은 비밀번호(인코딩x)와 기존 비밀번호(인코딩o)를 비교
 		  if(pwencoder.matches(putInPwd, svo.getPassword())) {
-			  memberService.pwCheck(mvo.getEmail());
+			  //memberService.pwCheck(cpvo.getEmail());
 			  
 			  result = new ResponseEntity<String>("0",HttpStatus.OK);
 		  }else{
@@ -179,13 +179,15 @@ public class MypageController {
     
 	
 	@RequestMapping(value="/pwUpdate" , method=RequestMethod.POST)
-	public String pwUpdate(String email,String memberPw1,RedirectAttributes rttr,HttpSession session)throws Exception{
+	public ModelAndView pwUpdate(String memberPw1,HttpSession session,ModelAndView mav){
+		String email = (String) session.getAttribute("username");
 		String hashedPw = BCrypt.hashpw(memberPw1, BCrypt.gensalt());
-		memberService.pwUpdate(email, hashedPw);
-		session.invalidate();
-		rttr.addFlashAttribute("msg", "정보 수정이 완료되었습니다. 다시 로그인해주세요.");
-		
-		return "redirect:/member/loginView";
+		int result = memberService.pwUpdate(email, hashedPw);
+		if(result == 1) {
+			mav.addObject("data", new Message("비밀번호 변경에 성공하셨습니다.", "/mypage/setting/changepwd"));
+			mav.setViewName("Message");
+		}
+		return mav;
 	}
 
     

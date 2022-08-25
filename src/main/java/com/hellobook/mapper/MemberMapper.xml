@@ -142,6 +142,20 @@
 		select email, nickname, profile from member
 	</select>
 
-
+	<select id="getRno" resultType="int">
+		select rno from chat_participant where email = #{email}
+	</select>
+	
+	<select id="getNewMno" resultType="Integer">
+		select max(c.mno) from chat_msg c where c.rno = #{rno}
+	</select>
+	
+	<select id="getNewChat" resultType="com.hellobook.domain.ChatVO">
+		select c.mno, c.rno, mm.nickname, mm.profile, c.content, c.mdate
+		from chat_msg c, (select m.nickname, m.profile 
+		from member m, (select email from chat_participant where email != #{email} and rno = #{rno}) cp 
+		where m.email = cp.email) mm
+		where c.mno = #{mno}
+	</select>
 </mapper>
 
