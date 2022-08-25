@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
 
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 
@@ -1260,6 +1261,10 @@
 				'</span>' + 
 			'</div>' + 
 			'<div class="right_icon">' + 
+			    // Kakao Share Test
+   				'<span><a id="kakaotalk-sharing-btn" href="javascript:shareMessage()" data-nick="' + postVO.nickname + '" onclick="kakaoData(this)"><img src="/resources/imgs/kakao_share_icon_big.png" alt="Kakao Share" style="width:37px; height:37px; margin-right:10px;"/></a></span>' + 
+				// Line Share Test
+				'<span class="on_cursor line_share" onclick="sendNaverLine(this)" data-nick="' + postVO.nickname + '"><img src="/resources/imgs/line_share_icon_big.png" alt="Line Share" style="width:33px; height:33px; margin-right:10px;"></img></span>' +
 				'<div class="sprite_share_icon on_cursor" data-name="share"></div>' + 
 			'</div>' + 
 		'</div>' + 
@@ -1394,7 +1399,65 @@
     addData(pageNum) // 
     //observeLastChild(io) // IntersectionObserver 갱신 함수
 	
+	// Line Share Test
+	function sendNaverLine(e) {
+        var line_nick = $(e).data("nick");
+    	var line_title = "[Hello Book]";
+        var line_summary = "Welcome to [" + line_nick + "]'s page !'";
+        var line_br = "\n";
+        var line_link = "http://hellobook/mypage/profile/" + line_nick;
+        var line_img = "이미지?"; // 
+        var line_url = "http://line.me/R/msg/text/?" + 
+						encodeURIComponent(line_title + line_br + line_summary + line_br + line_link);
+        var openNewWindow = window.open("about:blank");
+        openNewWindow.location.href = line_url;
+    }
 
+    // Kakao Share Test 
+      Kakao.init("a7ba4a0aa3292ea9684a93aa38bba597");
+	  var kakao_nick = "";
+	  var kakao_img = "이미지?";
+      function kakaoData(e) {
+    	  kakao_nick = $(e).data("nick");
+    	  console.log(kakao_nick);
+      }
+	  function shareMessage() {
+	    Kakao.Share.sendDefault({
+	      objectType: 'feed',
+	      content: {
+	        title: '제목',
+	        description: '#HelloBook #Korea #Japan #学習 #言語交換',
+	        imageUrl:
+	          'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+	        link: {
+	          mobileWebUrl: 'https://developers.kakao.com',
+	          webUrl: 'https://developers.kakao.com',
+	        },
+	      },
+// 	      social: {
+// 	        likeCount: 286,
+// 	        commentCount: 45,
+// 	        sharedCount: 845,
+// 	      },
+	      buttons: [
+	        {
+	          title: '웹으로 보기',
+	          link: {
+	            mobileWebUrl: 'https://developers.kakao.com',
+	            webUrl: 'https://developers.kakao.com',
+	          },
+	        },
+	        {
+	          title: '앱으로 보기',
+	          link: {
+	            mobileWebUrl: 'https://developers.kakao.com',
+	            webUrl: 'https://developers.kakao.com',
+	          },
+	        },
+	      ],
+	    })
+	  }
+    
 </script>
 
 <%@ include file="footer.jsp"%>
