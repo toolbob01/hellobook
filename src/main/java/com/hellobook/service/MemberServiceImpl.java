@@ -37,9 +37,12 @@ public class MemberServiceImpl implements MemberService {
 		return svo;
 	}
 	
+	
+	
+	
 	@Override
 	public void changePwd(MemberVO mvo) {
-		memberMapper.changePwd(mvo);
+		// TODO Auto-generated method stub
 		
 	}
 	
@@ -78,6 +81,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.selectAllMember();
 	}
 	
+<<<<<<< HEAD
 	//나중에 지울 것
 	@Override
 	public int[] getRno(String email) {
@@ -94,4 +98,18 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println(mno);
 		return memberMapper.getNewChat(email, rno, mno);
 	}
+=======
+	@Override
+	public String pwCheck(String email) {
+		
+		return memberMapper.pwCheck(email);
+	}
+	
+	@Override
+	public int pwUpdate(String email, String hashedPw) {
+		
+		return memberMapper.pwUpdate(email, hashedPw);
+	}
+	
+>>>>>>> 148082b87f681bc20fc1bac41066ed00bb333205
 }

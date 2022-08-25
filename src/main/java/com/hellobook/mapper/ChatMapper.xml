@@ -12,14 +12,38 @@
 	</insert>
 	
 	<select id="chatRoomList" resultType="com.hellobook.domain.ChatVO">
-		select m.nickname ,cm.mdate, cm.content
-		from member m 
+		select distinct cr.rno, m.nickname, m.profile
+		from chat_room cr
+		join chat_participant cp
+		on cr.rno = cp.rno
+		join member m 
+		on m.email = cp.email
 		left join chat_msg cm
-		on m.email = cm.email
-		where 
-		m.email in
+		on cp.rno = cm.rno        
+        where cp.rno in (select cp.rno
+        from chat_participant cp
+        left join member m
+        on m.email = cp.email
+        where cp.email=#{email})
+        and
+        m.email in
 		(select cp.email
 		from chat_participant cp, chat_room cr
-		where cr.rno=cp.rno and cp.email != #{email})
+		where cr.rno=cp.rno and cp.email != #{email}
+		)
 	</select>
+	
+	<insert id="sendMessage">
+		insert into chat_msg(mno, rno, email, content)
+		values(chat_msg_seq.nextval, #{rno}, #{email}, #{content})
+		<selectKey keyProperty="mno" resultType="int">
+			select chat_msg_seq.currval from dual
+		</selectKey>
+	</insert>
+	
+	<select id="messageList" resultType="com.hellobook.domain.ChatMessageVO">
+		select mno,rno,content,email,mdate from chat_msg where rno = #{rno} order by mdate asc
+		
+	</select>
+
 </mapper>

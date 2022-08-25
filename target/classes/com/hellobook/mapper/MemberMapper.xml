@@ -63,11 +63,16 @@
 		WHERE email = #{email}
 	</update>
 
-	<update id="changePwd">
 
-		update member set password=#{password} where email=#{email}
+	<select id="pwCheck" resultType="String">
+		select password from member where email = #{email}
+	</select>
 
+	<update id="pwUpdate">
+		update member set password = #{password} where email = #{email}
 	</update>
+
+
 
 	<delete id="quitMember">
 		delete from member where email = #{email}
@@ -132,7 +137,8 @@
 		nickname=#{nickname}
 	</update>
 
-	<select id="selectAllMember" resultType="com.hellobook.domain.MemberVO">
+	<select id="selectAllMember"
+		resultType="com.hellobook.domain.MemberVO">
 		select email, nickname, profile from member
 	</select>
 

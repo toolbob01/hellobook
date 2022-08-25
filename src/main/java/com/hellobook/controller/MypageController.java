@@ -13,10 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,13 +25,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hellobook.domain.ChangePwdVO;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
 import com.hellobook.domain.SessionVO;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
+import com.hellobook.utility.Message;
 import com.hellobook.utility.Time;
 
 import lombok.extern.log4j.Log4j;
@@ -132,37 +136,117 @@ public class MypageController {
         return "redirect:/mypage/profile/"+encodedParam;
        
     }
-   
-    //비밀번호 변경 요청
-    @RequestMapping(value="/setting/changepwd", method=RequestMethod.GET)
-    public String changePasswd(HttpServletRequest request, Model model) {
-    	
-    	HttpSession session = request.getSession();
-    	String email = (String) session.getAttribute("username");
+    
+    
+    
+    @RequestMapping(value={"/passwd/","/setting/changepwd"}, method=RequestMethod.GET)
+    public String passwdForm(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("username");
 		SessionVO svo = memberService.read(email);
 		model.addAttribute("svo", svo);
-    	
-        return "/mypage/setting/changepwd";
+		
+        return  "/mypage/setting/changepwd";
     }
     
-//    //비밀번호 변경처리
-//    @RequestMapping(value="/setting/changepwd", method=RequestMethod.POST)
-//    public String submitChangePassword(@Valid MemberVO mvo,BindingResult result) {
-//    	//로그 표시
-//    	if(log.isDebugEnabled()) {
-//    		log.debug("<<MemberVO>> : " + MemberVO);
-//    	}
+    
+    
+  
+    
+    
+    @PostMapping(value="/pwCheck", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	  public ResponseEntity<String> pwCheck(@RequestBody ChangePwdVO cpvo){
+		  ResponseEntity<String> result = null;
+		  
+		  String putInPwd = cpvo.getMemberPw();
+		  SessionVO svo = memberService.read(cpvo.getEmail());
+		  boolean match = pwencoder.matches(putInPwd, svo.getPassword());
+
+		  //입력받은 비밀번호(인코딩x)와 기존 비밀번호(인코딩o)를 비교
+		  if(pwencoder.matches(putInPwd, svo.getPassword())) {
+			  //memberService.pwCheck(cpvo.getEmail());
+			  
+			  result = new ResponseEntity<String>("0",HttpStatus.OK);
+		  }else{
+			  result = new ResponseEntity<String>("1",HttpStatus.OK);
+		  }
+		  
+		  return result != null? result : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+	  }
+    
+        
+    
+	
+	@RequestMapping(value="/pwUpdate" , method=RequestMethod.POST)
+	public ModelAndView pwUpdate(String memberPw1,HttpSession session,ModelAndView mav){
+		String email = (String) session.getAttribute("username");
+		String hashedPw = BCrypt.hashpw(memberPw1, BCrypt.gensalt());
+		int result = memberService.pwUpdate(email, hashedPw);
+		if(result == 1) {
+			mav.addObject("data", new Message("비밀번호 변경에 성공하셨습니다.", "/mypage/setting/changepwd"));
+			mav.setViewName("Message");
+		}
+		return mav;
+	}
+
+    
+    
+    
+    
+    
+    
+    
+//    @PostMapping("/passwd")
+//    public ResponseEntity<String> modifyPasswd(String passwd, String newPasswd, String newPasswdConfirm, HttpSession session){
 //    	
-//    	//유효성 체크
-//    	if(result.hasFieldErrors("passwd")) {
+//    	//1. 현재 비밀번호 맞는지 체크
+//    	String email = (String) session.getAttribute("email");
+//    	SessionVO svo = memberService.read(email);
+//    	
+//    	boolean isPasswordRight = BCrypt.checkpw(passwd, svo.getPassword());
+//    	
+//    	if(isPasswordRight == false) { // 현재 비밀번호 일치 하지 않음
+//    	
+//    		HttpHeaders headers = new HttpHeaders();
+//    		headers.add("Content-Type", "text/html; charset=UTF-8");
 //    		
-//    		 return "/mypage/setting/changepwd";
+//    		String str = null ; //JScript.back("현재 비밀번호가 틀렸습니다.");
+//    		
+//    		return new ResponseEntity<String>(str, headers, HttpStatus.OK);
+//    		
 //    	}
-//    	//비밀번호 인증
-//    	MemberVO mvo = memberService.read(mvo.getEmail());
 //    	
+//    	//2.새 비밀번호, 새비밀번호 확인 맞는지 체크
+//    	if(newPasswd.equals(newPasswdConfirm) == false) { //새비밀번호, 새비밀번호 확인이 서로 다름
+//    		HttpHeaders headers = new HttpHeaders();
+//    		headers.add("Content-Type", "text/html; charset=UTF-8");
+//    		
+//    		String str = null ; //JScript.back("새 비밀번호와 서로 일치하지 않습니다.");
+//    		
+//    		return new ResponseEntity<String>(str, headers, HttpStatus.OK);
+//    		
+//    	}
+//    	
+//    	//3. DB 비밀번호 변경
+//    	//3-1. 비밀번호 암호화
+//    	String hashPasswd = BCrypt.hashpw(newPasswd, BCrypt.gensalt());
+//    	
+//    	memberService.modifyPasswd(email, hashPasswd);
+//    	
+//    	//4. 비밀번호 변경 완료 메세지 띄우고 로그아웃 처리
+//    	
+//    	HttpHeaders headers = new HttpHeaders();
+//		headers.add("Content-Type", "text/html; charset=UTF-8");
+//		
+//		String str = null ; //JScript.href("비밀번호 변경 완료", "/member/login");
+//		
+//		return new ResponseEntity<String>(str, headers, HttpStatus.OK);
+//    	
+//    	//return null;
 //    }
-//	
+//    
+   
 
 	
 	

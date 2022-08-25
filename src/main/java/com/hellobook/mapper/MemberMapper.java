@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+<<<<<<< HEAD
 import com.hellobook.domain.ChatVO;
+=======
+>>>>>>> 148082b87f681bc20fc1bac41066ed00bb333205
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.SessionVO;
 
@@ -18,7 +21,10 @@ public interface MemberMapper {
 	public int checkEmail(String email);
 	public int checkNickname(String nickname);
 
-	public void changePwd(MemberVO mvo);
+//	public void modifyPasswd(@Param("email")String email, @Param("newPasswd")String newPasswd);
+	public String pwCheck(String email);
+	public int pwUpdate(@Param("email") String email, @Param("password") String password);
+	
 	public void quitMember(String email); //회원 탈퇴
 	public int modify(MemberVO mvo); 
 	
