@@ -16,7 +16,16 @@ public interface MemberService {
 	public int checkNickname(String nickname);
 	public int modify(MemberVO mvo);
 	
-	public void modifyPasswd(@Param("email")String email, @Param("newPasswd")String newPasswd);
+//	public void modifyPasswd(@Param("email")String email, @Param("newPasswd")String newPasswd);
+	
+	
+	
+	public String pwCheck(String email);
+	
+	public void pwUpdate(String email, String hashedPw);
+	
+	
+	
 	public void quitMember(String email); //회원 탈퇴
 	public SessionVO read(String email);
 	public MemberVO readByNickname(String nickname);

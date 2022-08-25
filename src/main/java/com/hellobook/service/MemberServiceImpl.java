@@ -36,11 +36,8 @@ public class MemberServiceImpl implements MemberService {
 		return svo;
 	}
 	
-	@Override
-	public void modifyPasswd(String email, String newPasswd) {
-		memberMapper.modifyPasswd(email, newPasswd);
-		
-	}
+	
+	
 	
 	@Override
 	public void changePwd(MemberVO mvo) {
@@ -82,4 +79,17 @@ public class MemberServiceImpl implements MemberService {
 	
 		return memberMapper.selectAllMember();
 	}
+	
+	@Override
+	public String pwCheck(String email) {
+		
+		return memberMapper.pwCheck(email);
+	}
+	
+	@Override
+	public void pwUpdate(String email, String hashedPw) {
+		
+		memberMapper.pwUpdate(email, hashedPw);
+	}
+	
 }
