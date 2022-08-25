@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hellobook.domain.ChatVO;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.SessionVO;
 import com.hellobook.mapper.MemberMapper;
@@ -75,5 +76,22 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> selectAllMember() {
 	
 		return memberMapper.selectAllMember();
+	}
+	
+	//나중에 지울 것
+	@Override
+	public int[] getRno(String email) {
+		return memberMapper.getRno(email);
+	}
+	@Override
+	public Integer getNewMno(int rno) {
+		return memberMapper.getNewMno(rno);
+	}
+	@Override
+	public ChatVO getNewChat(String email, int rno, Integer mno) {
+		System.out.println(email);
+		System.out.println(rno);
+		System.out.println(mno);
+		return memberMapper.getNewChat(email, rno, mno);
 	}
 }

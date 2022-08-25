@@ -3,7 +3,7 @@ package com.hellobook.service;
 import java.util.List;
 import java.util.Map;
 
-
+import com.hellobook.domain.ChatVO;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.SessionVO;
 
@@ -24,4 +24,9 @@ public interface MemberService {
 	public void updateThumbnailByNickname(MemberVO mvo); //프로필 사진 수정
 	
 	public List<MemberVO> selectAllMember();
+	
+	//test용 스크립트 // 나중에 지울 것
+	public int[] getRno(String email);
+	public Integer getNewMno(int rno);
+	public ChatVO getNewChat(String email, int rno, Integer mno);
 }
