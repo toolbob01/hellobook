@@ -46,13 +46,58 @@
 									</div>
 									<div class="comment-name on_cursor align-self-center"><c:out value="${postVO.nickname}"/></div>
 									<c:set var="len" value="${fn:length(postVO.timer)}"/>
-									 <c:set var="postTimer" value="${fn:substring(postVO.timer, len -1, len)}" />
+									<c:set var="postTimer1" value="${fn:substring(postVO.timer, 0, len -1)}" />
+									<c:set var="postTimer2" value="${fn:substring(postVO.timer, len -1, len)}" />
 									<c:choose>
-									  <c:when test="${postVO.timer != null}">
-									    <div class="comment-time align-self-center mx-5">${postTimer}</div>
+									  <c:when test="${postTimer2 == 's'}">
+									    <c:if test="${postTimer1 == '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.sec"/></div>
+									    </c:if>
+									    <c:if test="${postTimer1 != '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.sec2"/></div>
+									    </c:if>
+									  </c:when>
+									  <c:when test="${postTimer2 == 'm'}">
+									    <c:if test="${postTimer1 == '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.min"/></div>
+									    </c:if>
+									    <c:if test="${postTimer1 != '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.min2"/></div>
+									    </c:if>
+									  </c:when>
+									  <c:when test="${postTimer2 == 'h'}">
+									    <c:if test="${postTimer1 == '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.hour"/></div>
+									    </c:if>
+									    <c:if test="${postTimer1 != '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.hour2"/></div>
+									    </c:if>
+									  </c:when>
+									  <c:when test="${postTimer2 == 'd'}">
+									    <c:if test="${postTimer1 == '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.day"/></div>
+									    </c:if>
+									    <c:if test="${postTimer1 != '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.day2"/></div>
+									    </c:if>
+									  </c:when>
+									  <c:when test="${postTimer2 == 'M'}">
+									    <c:if test="${postTimer1 == '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.month"/></div>
+									    </c:if>
+									    <c:if test="${postTimer1 != '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.month2"/></div>
+									    </c:if>
+									  </c:when>
+									  <c:when test="${postTimer2 == 'y'}">
+									    <c:if test="${postTimer1 == '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.year"/></div>
+									    </c:if>
+									    <c:if test="${postTimer1 != '1'}">
+									      <div class="comment-time align-self-center mx-5">${postTimer1} <spring:message code="timer.year2"/></div>
+									    </c:if>
 									  </c:when>
 									</c:choose>
-									
 								</div>
 								
 								<div class="modal-posting-master-content">
@@ -140,48 +185,7 @@
 
 <script>
 
-/* $(document).ready(function() {
-	var articleOrg = '${postVO.timer}';
-	var articleTimer = articleOrg.slice(0, -1);
-	var articleTimer_1 = articleOrg.slice(-1);
-	if(articleTimer_1 == 's') {
-		if(articleTimer == '1') {
-			articleTimer += '<spring:message code="timer.sec"/>';
-		}else {
-			articleTimer += '<spring:message code="timer.sec2"/>';
-		}
-	}else if(articleTimer_1 == 'm') {
-		if(articleTimer == '1') {
-			articleTimer += '<spring:message code="timer.min"/>';
-		}else {
-			articleTimer += '<spring:message code="timer.min2"/>';
-		}
-	}else if(articleTimer_1 == 'h') {
-		if(articleTimer == '1') {
-			articleTimer += '<spring:message code="timer.hour"/>';
-		}else {
-			articleTimer += '<spring:message code="timer.hour2"/>';
-		}
-	}else if(articleTimer_1 == 'd') {
-		if(articleTimer == '1') {
-			articleTimer += '<spring:message code="timer.day"/>';
-		}else {
-			articleTimer += '<spring:message code="timer.day2"/>';
-		}
-	}else if(articleTimer_1 == 'M') {
-		if(articleTimer == '1') {
-			articleTimer += '<spring:message code="timer.month"/>';
-		}else {
-			articleTimer += '<spring:message code="timer.month2"/>';
-		}
-	}else if(articleTimer_1 == 'y') {
-		if(articleTimer == '1') {
-			articleTimer += '<spring:message code="timer.year"/>';
-		}else {
-			articleTimer += '<spring:message code="timer.year2"/>';
-		}
-	}		
-}) */
+
 		
 </script>
 

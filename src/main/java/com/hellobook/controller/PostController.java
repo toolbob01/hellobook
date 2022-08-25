@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -269,8 +270,8 @@ public class PostController {
 		return postVO;
 	}
 	
-	@GetMapping("post_detail")
-	public void postDetail(Model model, int pno) { 
+	@GetMapping("post_detail/{pno}")
+	public String postDetail(Model model, @PathVariable int pno) { 
 		
 		PostVO postVO = post_service.postDetail(pno);
 
@@ -286,6 +287,7 @@ public class PostController {
 		postVO.setTimer(Time.calculateTime(postVO.getPdate())); // ex) 5분전 2시간전 3일전
 		
 		model.addAttribute("postVO", postVO);
+		return "/post/post_detail";
 	}
 	
 	@PostMapping("comment_insert")
