@@ -19,7 +19,7 @@
             <div class="inbox_people">
                <div class="headind_srch">
                   <div class="recent_heading">
-                     <h4>최근 대화 목록</h4>
+                     <h4>최근 대화 목록</h4>s
                   </div>
                   
                   <div class="srch_bar">
@@ -218,7 +218,7 @@
       
       
     //채팅방 이동
-      $(".chat_list").on("click",function() {
+      $(".chat_list").on("click",function() {2
     	  console.log("채팅방 이동");
     	  chatUserId = $(this).attr('data-email');
     	  chatRno = $(this).attr('data-rno');
