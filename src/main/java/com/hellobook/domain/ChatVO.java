@@ -14,7 +14,7 @@ public class ChatVO {
 	//member
 	private String nickname;
 	private String profile;
-
+	private String language;
 	
 	// Room
 	private Integer rno;

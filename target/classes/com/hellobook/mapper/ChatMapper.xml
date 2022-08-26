@@ -12,7 +12,7 @@
 	</insert>
 	
 	<select id="chatRoomList" resultType="com.hellobook.domain.ChatVO">
-		select distinct cr.rno, m.nickname, m.profile
+		select distinct cr.rno, m.nickname, m.profile, m.language  
 		from chat_room cr
 		join chat_participant cp
 		on cr.rno = cp.rno
@@ -49,6 +49,10 @@
 	
 	<select id="existChatRoom" resultType="Integer">
 		select rno from chat_participant where email=#{femail} and rno in (select rno from chat_participant where email=#{email})
+	</select>
+
+	<select id="recentMsgByRno" resultType="String">
+		SELECT content FROM chat_msg WHERE rno = #{rno} AND rownum = 1 ORDER BY mno DESC
 	</select>
 
 </mapper>

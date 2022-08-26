@@ -253,12 +253,7 @@
 									</div>
 									
 									<div class="msg-link">
-						      			<form action="/chat/createChatRoom" method="post">
-						      				<sec:csrfInput/>
-						      				<input type="hidden" name="email" value="${username}">
-						      				<input type="hidden" name="femail" value="${friendVO.email}">
-											<i class="bi bi-chat-dots" onclick="submitMsg(this)"></i>
-										</form>
+										<i class="bi bi-chat-dots" onclick="location.href='/chat/chat_list/${username}'"></i>
 									</div>
 								</div>
 							</div>
@@ -533,10 +528,6 @@
 		history.replaceState({},null,null);
 	})
 	
-	// Side Bar - Message Form Submit
-	function submitMsg(e) {
-    	$(e).closest("form").submit();
-    }
 	
 	// Click heart-btn -> By status of data-heart, Adding or Removing user in like_list
 	$(document).on("click", ".heart-btn" ,function(e) {
