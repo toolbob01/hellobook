@@ -139,12 +139,16 @@ body {
 
 
 <script>
+	var em = '<%=(String)session.getAttribute("username")%>';
 	function changLang(lang){
 		var protocol = window.location.protocol;
 		var host = window.location.host;
 		var path = window.location.pathname;
-
-		var link = "/?lang="+lang;
+		var link = path+"?lang="+lang;
+		if(path=="/chat/chat_list") {
+			link = path+"?email="+em+"&lang="+lang;
+		}
+		
 		console.log(link);
 
 		location.replace(link);
