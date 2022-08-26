@@ -21,7 +21,7 @@ public class ChatRoomVO {
 	private Date rdate;
 	
 	// Message
-	private int mno;
+	private Integer mno;
 	private String content;
 	private Date mdate;
 	

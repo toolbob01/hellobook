@@ -8,7 +8,7 @@
 
    <div class="container">
 		<div>
-			<button class="btn btn-primary float-end" id="createChatRoom" style="margin-bottom:20px;">채팅방 추가</button>
+			<button class="btn btn-primary float-end" id="createChatRoom" style="margin-bottom:20px;"><spring:message code="chatList.createChatRoom"/></button>
 			
 		</div>
 <!--       <h3 class=" text-center">Chat</h3> -->
@@ -19,13 +19,13 @@
             <div class="inbox_people">
                <div class="headind_srch">
                   <div class="recent_heading">
-                     <h4>최근 대화 목록</h4>s
+                     <h4><spring:message code="chatList.chatList"/></h4>
                   </div>
                   
                   <div class="srch_bar">
                      <div class="stylish-input-group">
                      	
-                        <input type="text" class="search-bar" placeholder="Search" onkeyup="searchUser()">
+                        <input type="text" class="search-bar" placeholder="<spring:message code="chatList.search"/>" onkeyup="searchUser()">
                         <span class="input-group-addon">
                            <button type="button">
                               <i class="fa fa-search" aria-hidden="true"></i>
@@ -46,9 +46,9 @@
                         <div class="chat_ib">
 
                            <h5>${cvo.nickname}
-                           	<span class="chat_date"><fmt:formatDate value="${cvo2.mdate}" pattern="MM-dd"/></span>
+                           	<span class="chat_date"><fmt:formatDate value="${cvo.mdate}" pattern="MM-dd"/></span>
                            </h5>
-                           <p>${cvo2.content}</p>
+                           <p>${cvo.content}</p>
 
                         </div>
                      </div>
@@ -75,7 +75,7 @@
 
                   	 <input type="hidden" id="sendEmail" name="email" value="${username}">
                   	 <input type="hidden" id="sendRno" name="rno" value="">
-                     <textarea class="write_msg" id="message" name="content" placeholder="메세지 입력" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
+                     <textarea class="write_msg" id="message" name="content" placeholder="<spring:message code="chatList.sendMessage"/>" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
                      <button class="msg_send_btn" type="submit" id="sendBtn">
                         <i class="fa fa-paper-plane-o"  aria-hidden="true"></i>
                      </button>
@@ -161,6 +161,16 @@
       let firstChat = $(".inbox_chat").children("div").first();
       let chatRoom = $(".msg_history");
       let userId = '<%=(String)session.getAttribute("username")%>';;
+     
+      //enter 시 submit
+      //shift+enter시 줄바꿈
+      $("#message").keypress(function (e) {
+    	    if(e.which === 13 && !e.shiftKey) {
+    	        e.preventDefault();
+    	    
+    	        $('#sendBtn').click();
+    	    }
+    	});
       
     //ajax
     
@@ -259,7 +269,7 @@
       
       $('#sendBtn').click(function() {
     	  sendMessage();
-    	  $('message').val('');
+    	  $('#message').val('');
       });
       
       let sock = new SockJS("http://localhost:8088/chat/chat/");
@@ -291,6 +301,8 @@
 				},
 	          success : function(result) {
 	        	  
+	        	  $("#message").val();
+	        	  chatRoom.scrollTop(chatRoom[0].scrollHeight);
 	          },
 	          error : function(err) {
 	        	  alert("실패!")
@@ -340,7 +352,7 @@
       }
       //서버와 연결을 끊었을 때
       function onClose(evt) {
-    	  $('.msg_history').append("연결 끊김");
+    	  $('.msg_history').append("<spring:message code='chatList.disconnected'/>");
       }
    </script>
 

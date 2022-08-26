@@ -1,5 +1,6 @@
 package com.hellobook.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hellobook.domain.ChatMessageVO;
 import com.hellobook.domain.ChatVO;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.service.ChatService;
 import com.hellobook.service.MemberService;
+import com.hellobook.utility.Message;
 
 @Controller
 @RequestMapping("/chat/*")
@@ -34,6 +37,8 @@ public class ChatController {
 		List<MemberVO> mvoList = memberService.selectAllMember();
 		List<ChatVO> cvoList = chatService.chatRoomList(email);
 		
+
+		
 		model.addAttribute("mvoList", mvoList);
 		model.addAttribute("cvoList", cvoList);
 		
@@ -41,9 +46,17 @@ public class ChatController {
 	}
 	
 	@PostMapping("createChatRoom")
-	public String createChatRoom(@Param("email") String email, @Param("femail") String femail) {
-		chatService.createChatRoom(email, femail);
-		return "redirect:/chat/chat_list?email="+email;
+	public ModelAndView createChatRoom(@Param("email") String email, @Param("femail") String femail, ModelAndView mav) {
+		Integer existChatRoom = chatService.existChatRoom(email, femail);
+		if(existChatRoom != null) {
+			mav.addObject("data", new Message("existChatRoomTrue", "/chat/chat_list?email="+email));
+			mav.setViewName("Message");
+		}else {
+			chatService.createChatRoom(email, femail);
+			mav.addObject("data", new Message("existChatRoomFalse", "/chat/chat_list?email="+email));
+			mav.setViewName("Message");
+		}
+		return mav;
 	}
 	
 	@PostMapping("sendMessage")
