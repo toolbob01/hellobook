@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
 
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 
@@ -1259,8 +1260,11 @@
 					postVO.like_cnt + ' 명이 좋아합니다' + 
 				'</span>' + 
 			'</div>' + 
-			'<div class="right_icon">' + 
-				'<div class="sprite_share_icon on_cursor" data-name="share"></div>' + 
+			'<div class="d-flex align-items-center">' + 
+			    // Kakao Share Test
+   				'<span><a id="kakaotalk-sharing-btn" href="javascript:shareMessage()" data-nick="' + postVO.nickname + '" data-pno="' + postVO.pno + '" onclick="kakaoData(this)"><img src="/resources/imgs/kakao_share_icon_big.png" alt="Kakao Share" style="width:43px; height:43px; margin-right:10px;"/></a></span>' + 
+				// Line Share Test
+				'<span class="on_cursor line_share" data-nick="' + postVO.nickname + '" data-pno="' + postVO.pno + '" onclick="sendNaverLine(this)"><img src="/resources/imgs/line_share_icon_big.png" alt="Line Share" style="width:33px; height:33px; margin-right:10px;"></img></span>' +
 			'</div>' + 
 		'</div>' + 
 		'<div class="posting-master">' + 
@@ -1394,7 +1398,66 @@
     addData(pageNum) // 
     //observeLastChild(io) // IntersectionObserver 갱신 함수
 	
+	// Line Share Test
+	function sendNaverLine(e) {
+        var line_nick = $(e).data("nick");
+        var line_pno = $(e).data("pno");
+    	var line_title = "[Welcome to HelloBook]";
+        var line_summary = "'" + line_nick + "'s post";
+        var line_br = "\n";
+        var line_link = "http://localhost:8088/post/post_detail/" + line_pno;
+        var line_img = "https://media.discordapp.net/attachments/591977740350128139/1012435521412272188/hello_book_logo.jpg?";
+        var line_url = "http://line.me/R/msg/text/?" + 
+						encodeURIComponent(line_title + line_br + line_summary + line_br + line_link);
+        var openNewWindow = window.open("about:blank");
+        openNewWindow.location.href = line_url;
+    }
 
+    // Kakao Share Test 
+      Kakao.init("a7ba4a0aa3292ea9684a93aa38bba597");
+	  var kakao_nick = "";
+	  var kakao_pno = "";
+	  var kakao_img = "https://media.discordapp.net/attachments/591977740350128139/1012435521412272188/hello_book_logo.jpg";
+      function kakaoData(e) {
+    	  kakao_nick = $(e).data("nick");
+    	  kakao_pno = $(e).data("pno");
+      }
+	  function shareMessage() {
+	    Kakao.Share.sendDefault({
+	      objectType: 'feed',
+	      content: {
+	        title: "[HelloBook] " + kakao_nick + "'s post",
+	        description: '#HelloBook #Korea #Japan #学習 #言語交換',
+	        imageUrl: kakao_img,
+	        link: {
+	          mobileWebUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno, // 'https://developers.kakao.com'
+	          webUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno,
+	        },
+	      },
+// 	      social: {
+// 	        likeCount: 286,
+// 	        commentCount: 45,
+// 	        sharedCount: 845,
+// 	      },
+	      buttons: [
+	        {
+	          title: '웹으로 보기',
+	          link: {
+	            mobileWebUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno,
+	            webUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno,
+	          },
+	        },
+	        {
+	          title: '앱으로 보기',
+	          link: {
+	            mobileWebUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno,
+	            webUrl: 'http://localhost:8088/post/post_detail/' + kakao_pno,
+	          },
+	        },
+	      ],
+	    })
+	  }
+    
 </script>
 
 <%@ include file="footer.jsp"%>
