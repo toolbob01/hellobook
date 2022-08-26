@@ -38,7 +38,7 @@
                <!-- 채팅유저 -->
                	<c:forEach var="cvo" items="${cvoList}" varStatus="status">
                	
-                  <div class="chat_list" data-email="${cvo.nickname}" data-rno="${cvo.rno}">
+                  <div class="chat_list" data-email="${cvo.nickname}" data-rno="${cvo.rno}" id="who${cvo.nickname}">
 <%--                      <div class="chat_people">
                         <div class="chat_img">
                            <img src="/hello_img/member/${cvo.profile}" alt="...">
@@ -82,7 +82,7 @@
             
             <!-- 채팅방 -->
             <div class="mesgs">
-               <div class="msg_history">
+               <div class="msg_history hello-scroll">
                <!-- 내용 출력 -->
                </div>
                <!-- //채팅방 -->
@@ -177,9 +177,16 @@
          $(".inbox_chat").css("height", 550 + obj.scrollHeight);
       }
       
-      let firstChat = $(".inbox_chat").children("div").first();
-      let chatRoom = $(".msg_history");
-      let userId = '<%=(String)session.getAttribute("username")%>';;
+      var who = '쭈뇨귀요미';
+  	  who != null && who != ''
+  	      let firstChat = who != '' ? $("#who" + who) : $(".inbox_chat").children("div").first();
+  	      let chatRoom = $(".msg_history");
+  	      let userId = '<%=(String)session.getAttribute("username")%>';;
+
+//           let firstChat = $(".inbox_chat").children("div").first();
+//           let chatRoom = $(".msg_history");
+<%--           let userId = '<%=(String)session.getAttribute("username")%>';; --%>
+
      
       //enter 시 submit
       //shift+enter시 줄바꿈
@@ -374,6 +381,8 @@
       function onClose(evt) {
     	  $('.msg_history').append("<spring:message code='chatList.disconnected'/>");
       }
+      
+      
    </script>
 
 <%@ include file="../footer.jsp" %>

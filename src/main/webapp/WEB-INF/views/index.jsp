@@ -253,7 +253,7 @@
 									</div>
 									
 									<div class="msg-link">
-										<i class="bi bi-chat-dots" onclick="location.href='/chat/chat_list/${username}'"></i>
+										<i class="bi bi-chat-dots" onclick="location.href='/chat/chat_list?email=${username}'"></i>
 									</div>
 								</div>
 							</div>
