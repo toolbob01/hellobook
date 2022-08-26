@@ -19,7 +19,7 @@
             <div class="inbox_people">
                <div class="headind_srch">
                   <div class="recent_heading">
-                     <h4>최근 대화 목록</h4>s
+                     <h4>최근 대화 목록</h4>
                   </div>
                   
                   <div class="srch_bar">
@@ -46,9 +46,9 @@
                         <div class="chat_ib">
 
                            <h5>${cvo.nickname}
-                           	<span class="chat_date"><fmt:formatDate value="${cvo2.mdate}" pattern="MM-dd"/></span>
+                           	<span class="chat_date"><fmt:formatDate value="${cvo.mdate}" pattern="MM-dd"/></span>
                            </h5>
-                           <p>${cvo2.content}</p>
+                           <p>${cvo.content}</p>
 
                         </div>
                      </div>
@@ -161,6 +161,16 @@
       let firstChat = $(".inbox_chat").children("div").first();
       let chatRoom = $(".msg_history");
       let userId = '<%=(String)session.getAttribute("username")%>';;
+     
+      //enter 시 submit
+      //shift+enter시 줄바꿈
+      $("#message").keypress(function (e) {
+    	    if(e.which === 13 && !e.shiftKey) {
+    	        e.preventDefault();
+    	    
+    	        $('#sendBtn').click();
+    	    }
+    	});
       
     //ajax
     
@@ -259,7 +269,7 @@
       
       $('#sendBtn').click(function() {
     	  sendMessage();
-    	  $('message').val('');
+    	  $('#message').val('');
       });
       
       let sock = new SockJS("http://localhost:8088/chat/chat/");
@@ -291,6 +301,8 @@
 				},
 	          success : function(result) {
 	        	  
+	        	  $("#message").val();
+	        	  chatRoom.scrollTop(chatRoom[0].scrollHeight);
 	          },
 	          error : function(err) {
 	        	  alert("실패!")

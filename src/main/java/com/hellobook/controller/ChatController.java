@@ -1,5 +1,6 @@
 package com.hellobook.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class ChatController {
 	public String chatList(String email, Model model) {
 		List<MemberVO> mvoList = memberService.selectAllMember();
 		List<ChatVO> cvoList = chatService.chatRoomList(email);
+		
+
 		
 		model.addAttribute("mvoList", mvoList);
 		model.addAttribute("cvoList", cvoList);
