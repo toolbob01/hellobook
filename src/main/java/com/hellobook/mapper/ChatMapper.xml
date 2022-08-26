@@ -46,5 +46,9 @@
 		select mno,rno,content,email,mdate from chat_msg where rno = #{rno} order by mdate asc
 		
 	</select>
+	
+	<select id="existChatRoom" resultType="Integer">
+		select rno from chat_participant where email=#{femail} and rno in (select rno from chat_participant where email=#{email})
+	</select>
 
 </mapper>

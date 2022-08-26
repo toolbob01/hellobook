@@ -39,6 +39,12 @@ public class ChatServiceImpl implements ChatService {
 		return chatMapper.messageList(rno);
 	}
 	
+	@Override
+	public Integer existChatRoom(String email, String femail) {
+		
+		return chatMapper.existChatRoom(email, femail);
+	}
+	
 
 }
 

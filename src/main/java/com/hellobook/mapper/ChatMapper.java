@@ -9,12 +9,14 @@ import com.hellobook.domain.ChatVO;
 
 public interface ChatMapper {
 	
-	public void createChatRoom(@Param("email") String email, @Param("femail")String femail);
+	public void createChatRoom(@Param("email") String email, @Param("femail") String femail);
 	
 	public List<ChatVO> chatRoomList(String email);
 	
 	public int sendMessage(ChatMessageVO cvo);
 	
 	public List<ChatMessageVO> messageList(int rno);
+	
+	public Integer existChatRoom(@Param("email") String email, @Param("femail") String femail);
 }
 
