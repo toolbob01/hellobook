@@ -35,7 +35,7 @@ public class ChatHandler extends TextWebSocketHandler{
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		logger.info("{} to {}", session.getId(), message.getPayload());
-		//紐⑤뱺 �쑀���뿉寃� 硫붿떆吏� 異쒕젰
+
 		for (WebSocketSession sess : sessionList) {
 			sess.sendMessage(new TextMessage(message.getPayload()));
 		}

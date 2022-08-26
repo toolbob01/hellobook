@@ -8,7 +8,7 @@
 
    <div class="container">
 		<div>
-			<button class="btn btn-primary float-end" id="createChatRoom" style="margin-bottom:20px;">채팅방 추가</button>
+			<button class="btn btn-primary float-end" id="createChatRoom" style="margin-bottom:20px;"><spring:message code="chatList.createChatRoom"/></button>
 			
 		</div>
 <!--       <h3 class=" text-center">Chat</h3> -->
@@ -19,13 +19,13 @@
             <div class="inbox_people">
                <div class="headind_srch">
                   <div class="recent_heading">
-                     <h4>최근 대화 목록</h4>
+                     <h4><spring:message code="chatList.chatList"/></h4>
                   </div>
                   
                   <div class="srch_bar">
                      <div class="stylish-input-group">
                      	
-                        <input type="text" class="search-bar" placeholder="Search" onkeyup="searchUser()">
+                        <input type="text" class="search-bar" placeholder="<spring:message code="chatList.search"/>" onkeyup="searchUser()">
                         <span class="input-group-addon">
                            <button type="button">
                               <i class="fa fa-search" aria-hidden="true"></i>
@@ -75,7 +75,7 @@
 
                   	 <input type="hidden" id="sendEmail" name="email" value="${username}">
                   	 <input type="hidden" id="sendRno" name="rno" value="">
-                     <textarea class="write_msg" id="message" name="content" placeholder="메세지 입력" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
+                     <textarea class="write_msg" id="message" name="content" placeholder="<spring:message code="chatList.sendMessage"/>" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
                      <button class="msg_send_btn" type="submit" id="sendBtn">
                         <i class="fa fa-paper-plane-o"  aria-hidden="true"></i>
                      </button>
@@ -352,7 +352,7 @@
       }
       //서버와 연결을 끊었을 때
       function onClose(evt) {
-    	  $('.msg_history').append("연결 끊김");
+    	  $('.msg_history').append("<spring:message code='chatList.disconnected'/>");
       }
    </script>
 
