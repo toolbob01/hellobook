@@ -21,7 +21,13 @@
 				top.alert('<spring:message code="message.alert1"/>'+'\n'+'<spring:message code="message.welcome"/>');
 			}else if(message == '2'){
 				top.alert('<spring:message code="message.alert2"/>'+'\n'+'<spring:message code="message.welcome"/>');
-			}else {
+			}else if(message == 'existChatRoomTrue'){
+				top.alert('<spring:message code="chatList.existChatRoomTrue"/>');
+			}else if(message == 'existChatRoomFalse'){
+				top.alert('<spring:message code="chatList.existChatRoomFalse"/>');
+			}
+			
+			else {
 				top.alert(message);
 			}
 		</script>

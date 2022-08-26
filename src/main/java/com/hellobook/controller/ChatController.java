@@ -49,11 +49,11 @@ public class ChatController {
 	public ModelAndView createChatRoom(@Param("email") String email, @Param("femail") String femail, ModelAndView mav) {
 		Integer existChatRoom = chatService.existChatRoom(email, femail);
 		if(existChatRoom != null) {
-			mav.addObject("data", new Message("이미 존재하는 채팅방입니다.", "/chat/chat_list?email="+email));
+			mav.addObject("data", new Message("existChatRoomTrue", "/chat/chat_list?email="+email));
 			mav.setViewName("Message");
 		}else {
 			chatService.createChatRoom(email, femail);
-			mav.addObject("data", new Message("Success Create Chat Room.", "/chat/chat_list?email="+email));
+			mav.addObject("data", new Message("existChatRoomFalse", "/chat/chat_list?email="+email));
 			mav.setViewName("Message");
 		}
 		return mav;
