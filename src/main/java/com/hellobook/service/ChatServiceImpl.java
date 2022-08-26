@@ -34,7 +34,7 @@ public class ChatServiceImpl implements ChatService {
 	}
 	
 	@Override
-	public List<ChatMessageVO> messageList(int rno) {
+	public List<ChatMessageVO> messageList(Integer rno) {
 		
 		return chatMapper.messageList(rno);
 	}

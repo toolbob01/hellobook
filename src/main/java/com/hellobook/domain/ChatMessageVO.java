@@ -7,7 +7,7 @@ public class ChatMessageVO {
 
 
 	private String email;
-	private int rno;
+	private Integer rno;
 	private Integer mno;
 	private String content;
 	private String mdate;

@@ -143,11 +143,12 @@ body {
 		var protocol = window.location.protocol;
 		var host = window.location.host;
 		var path = window.location.pathname;
-		
-		var link = path+"?lang="+lang
+
+		var link = "/?lang="+lang;
 		console.log(link);
-		
+
 		location.replace(link);
+
 	}
 </script>
 

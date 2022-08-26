@@ -17,7 +17,7 @@ public class ChatVO {
 
 	
 	// Room
-	private int rno;
+	private Integer rno;
 	private Date rdate;
 	
 	// Message

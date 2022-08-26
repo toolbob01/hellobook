@@ -15,7 +15,7 @@ public interface ChatMapper {
 	
 	public int sendMessage(ChatMessageVO cvo);
 	
-	public List<ChatMessageVO> messageList(int rno);
+	public List<ChatMessageVO> messageList(Integer rno);
 	
 	public Integer existChatRoom(@Param("email") String email, @Param("femail") String femail);
 }

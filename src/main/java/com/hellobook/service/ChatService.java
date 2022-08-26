@@ -11,7 +11,7 @@ public interface ChatService {
 	public List<ChatVO> chatRoomList(String email);
 	
 	public int sendMessage(ChatMessageVO cvo);
-	public List<ChatMessageVO> messageList(int rno);
+	public List<ChatMessageVO> messageList(Integer rno);
 	
 	public Integer existChatRoom(String email, String femail);
 }
