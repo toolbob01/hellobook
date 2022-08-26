@@ -177,6 +177,7 @@
          $(".inbox_chat").css("height", 550 + obj.scrollHeight);
       }
       
+<<<<<<< HEAD
       var who = '쭈뇨귀요미';
   	  who != null && who != ''
   	      let firstChat = who != '' ? $("#who" + who) : $(".inbox_chat").children("div").first();
@@ -187,6 +188,17 @@
 //           let chatRoom = $(".msg_history");
 <%--           let userId = '<%=(String)session.getAttribute("username")%>';; --%>
 
+=======
+      var who = 'pjh';
+      who != null && who != ''
+          let firstChat = who != '' ? $("#who" + who) : $(".inbox_chat").children("div").first();
+          let chatRoom = $(".msg_history");
+          let userId = '<%=(String)session.getAttribute("username")%>';;
+
+//          let firstChat = $(".inbox_chat").children("div").first();
+//          let chatRoom = $(".msg_history");
+<%--           let userId = '<%=(String)session.getAttribute("username")%>';; --%>
+>>>>>>> c212815856285706402f39e358f16f25a05d2867
      
       //enter 시 submit
       //shift+enter시 줄바꿈
@@ -305,36 +317,43 @@
 	  function sendMessage() {
 		  
 	      
-	      var rno = $('#sendRno').val();
-	      var content = document.getElementById("message").value;	 
-// 	      content = content.replace(/\n/g, "<br>");
-		console.log(rno);
-		console.log(content);
-	      sock.send(
-	    	  username+":"+content
-          );
-	          $.ajax({
-	    	  url : "/chat/sendMessage",
-	    	  type : "post",
-	          data : JSON.stringify({
-	        	  email : username,
-	          	  rno : rno,
-	          	  content : content
-	          }),
-	          dataType : "json",
-	          contentType : "application/json",
-	          beforeSend : function(xhr){
-					xhr.setRequestHeader(header, token);
-				},
-	          success : function(result) {
-	        	  
-	        	  $("#message").val();
-	        	  chatRoom.scrollTop(chatRoom[0].scrollHeight);
-	          },
-	          error : function(err) {
-	        	  alert("실패!")
-	          }
-	      }); 
+		      var rno = $('#sendRno').val();
+		      var content = document.getElementById("message").value;	 
+	// 	      content = content.replace(/\n/g, "<br>");
+			console.log(rno);
+			console.log(content);
+			if(content != null && content!='') {
+		        sock.send(
+		      	  username+":"+content
+	            );
+	      	
+	      		$.ajax({
+	  	    	  url : "/chat/sendMessage",
+	  	    	  type : "post",
+	  	          data : JSON.stringify({
+	  	        	  email : username,
+	  	          	  rno : rno,
+	  	          	  content : content
+	  	          }),
+	  	          dataType : "json",
+	  	          contentType : "application/json",
+	  	          beforeSend : function(xhr){
+	  					xhr.setRequestHeader(header, token);
+	  				},
+	  	          success : function(result) {
+	  	        	  
+	  	        	  $("#message").val();
+	  	        	  chatRoom.scrollTop(chatRoom[0].scrollHeight);
+	  	          },
+	  	          error : function(err) {
+	  	        	  alert("실패!")
+	  	          }
+	  	      	}); 
+	      	}else {
+	      		alert('<spring:message code="chatList.textareaEmpty"/>');
+	      		return false;
+	      	}
+	          
       }
       //서버로부터 메시지를 받았을 때
       function onMessage(msg) {
