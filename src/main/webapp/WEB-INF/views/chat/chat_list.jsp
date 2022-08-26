@@ -19,7 +19,7 @@
             <div class="inbox_people">
                <div class="headind_srch">
                   <div class="recent_heading">
-                     <h4>최근 대화 목록</h4>
+                     <h4>최근 대화 목록</h4>s
                   </div>
                   
                   <div class="srch_bar">
@@ -160,43 +160,45 @@
       
       let firstChat = $(".inbox_chat").children("div").first();
       let chatRoom = $(".msg_history");
-      let userId = 'friendD';
+      let userId = '<%=(String)session.getAttribute("username")%>';;
       
     //ajax
+    
       function messageList(chatRno) {
-    	  var result = "";
+    	  let result= new Array();
     	  $.ajax({
     		  url : "/chat/messageList",
 	    	  type : "get",
 	          data : {rno : chatRno},
 	          dataType:"json",
+	          contentType:"application/json",
+	          async:false,
 	          success : function(data) {
-	        	  result = JSON.stringify(data);
+	        	  result = data;
 	        	  console.log(result);
-	          },
-	          error : function(err) {
-	        	  console.log(err)
-	          }
-	          
+	        	  
+	          } 
     	  });
     	  return result;
       }
-    
+
     
       function chatChange(data){
-
+		chatRoom.empty();
     	  var chatMsg = "";
-    	  
-    	  $.each(data,function(index,item){
-    	  console.log("item : "+item);
-    	  if(item.email == userId){
-    		  chatMsg += '<div class="outgoing_msg"><div class="sent_msg"><p>'+item.content+'</p><span class="time_date">'+item.mdate+'</span></div></div>';
-		  }else{
-			  chatMsg += '<div class="incoming_msg"><div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>';
-			  chatMsg += '<div class="received_msg"><div class="received_withd_msg"><p>'+item.content+'</p><span class="time_date">'+item.mdate+'</span></div></div></div>';
-		  }  
-    	  })
-    	  chatRoom.html(chatMsg);
+    	  console.log(data);
+    	  console.log(data.length);
+		  for (var i = 0; i<data.length; i++) {
+			  if(data[i].email == userId){
+	    		  chatMsg += '<div class="outgoing_msg"><div class="sent_msg"><p>'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span></div></div>';
+			  }else{
+				  chatMsg += '<div class="incoming_msg"></div>';
+				  chatMsg += '<div class="received_msg"><div class="received_withd_msg"><p>'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span></div></div></div>';
+			  } 
+		  }
+
+    	  chatRoom.append(chatMsg);
+    	  chatRoom.scrollTop(chatRoom[0].scrollHeight);
       }
       
       
@@ -208,8 +210,8 @@
     	  chatRno = firstChat.attr('data-rno'); //맨 위 채팅방번호
     	  $('#sendRno').val(chatRno); //메시지 입력란에 rno값 넣기
     	  //ajax
-    	  var data = messageList(chatRno);
-    	  chatChange(data);
+    	  
+    	  chatChange(messageList(chatRno));
     	  $(".active_chat").removeClass('active_chat');
        	  $(this).addClass('active_chat');
       }
@@ -218,15 +220,15 @@
       
       
     //채팅방 이동
-      $(".chat_list").on("click",function() {
+      $(".chat_list").on("click",function() {2
     	  console.log("채팅방 이동");
     	  chatUserId = $(this).attr('data-email');
     	  chatRno = $(this).attr('data-rno');
     	  $('#sendRno').val(chatRno);
 
     		//ajax
-    	  var data = messageList(chatRno);
-    	  chatChange(data);
+    	  
+    	  chatChange(messageList(chatRno));
     	  $(".active_chat").removeClass('active_chat');
        	  $(this).addClass('active_chat');
 
