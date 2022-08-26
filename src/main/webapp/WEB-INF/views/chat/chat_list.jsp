@@ -39,7 +39,7 @@
                	<c:forEach var="cvo" items="${cvoList}" varStatus="status">
                	
                   <div class="chat_list" data-email="${cvo.nickname}" data-rno="${cvo.rno}">
-                     <div class="chat_people">
+<%--                      <div class="chat_people">
                         <div class="chat_img">
                            <img src="/hello_img/member/${cvo.profile}" alt="...">
                         </div>
@@ -51,7 +51,26 @@
                            <p>${cvo.content}</p>
 
                         </div>
-                     </div>
+                     </div> --%>
+						<div class="user_container d-flex align-items-center">
+							<div class="profile_img">
+								<img src="/hello_img/member/${cvo.profile}" alt="프로필이미지">
+							</div>
+							<div class="profile_flag">
+								<c:choose>
+								  <c:when test="${cvo.language == 'J'}">
+								  	<img class="flag_icon" src="https://img.icons8.com/color/25/000000/japan-circular.png"/>
+								  </c:when>
+								  <c:otherwise>
+								    <img class="flag_icon" src="https://img.icons8.com/color/25/000000/south-korea-circular.png"/>
+								  </c:otherwise>
+								</c:choose>
+							</div>
+							<div class="user_name">
+								<div class="nick_name m_text">${cvo.nickname}</div>
+							</div>
+						</div>
+						<div class="recentlyMsg">${cvo.content}</div>
                   </div>
                 
                 </c:forEach>   
@@ -281,6 +300,7 @@
 	      
 	      var rno = $('#sendRno').val();
 	      var content = document.getElementById("message").value;	 
+// 	      content = content.replace(/\n/g, "<br>");
 		console.log(rno);
 		console.log(content);
 	      sock.send(
