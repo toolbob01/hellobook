@@ -4,10 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-<<<<<<< HEAD
 import com.hellobook.domain.ChatVO;
-=======
->>>>>>> 148082b87f681bc20fc1bac41066ed00bb333205
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.SessionVO;
 

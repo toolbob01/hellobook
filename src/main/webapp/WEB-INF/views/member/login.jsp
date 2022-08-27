@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../member/memberHeader.jsp"%>
 <style>
 @font-face {
@@ -160,11 +159,26 @@ a {
 			</c:if>
 			<button type="submit" class="btn btn-sm btn-primary" id="loginBtn"><spring:message code="login.loginBtn"/></button>
 		</form>
-		<a class="btn btn-block btn-social btn-facebook" id="naverLoginBtn" href="${naverUrl}"><spring:message code="login.naverLoginBtn"/></a>
+		<a class="btn btn-block btn-social btn-facebook" id="naverLoginBtn"><spring:message code="login.naverLoginBtn"/></a>
 		<a class="btn btn-block btn-social btn-facebook" id="googleLoginBtn" href="${googleUrl}"><spring:message code="login.googleLoginBtn"/></a>
 		<span class="button_forgot" onclick="location.href='/member/findpwd'" id="findPwdBtn"><spring:message code="login.findPwdBtn"/></span>
 		<span class="button_forgot" onclick="location.href='/member/join'" style="margin-top: 5px;" id="signUpBtn"><spring:message code="login.signUpBtn"/></span>
 	</div>
 
+<script>
+	$('#naverLoginBtn').on('click', function(){
+		$.ajax({
+			type: "get",
+			url: "/member/naverLogin",
+			success: function(result){
+				console.log(result);
+				window.location.href = result;
+			},
+			error: function(){
+				
+			}
+		})
+	})
+</script>
 </body>
 </html>

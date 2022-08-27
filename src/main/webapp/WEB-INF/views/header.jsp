@@ -107,7 +107,7 @@ body {
             </div>
         </div>
 		<div id="changeLang">
-			<select class="form-control" onchange="changLang(this.value)" name="lang" style="width: auto;">
+			<select class="form-control" id="langController" name="lang" style="width: auto;">
 			  <option value=""><spring:message code="header.setlanguage"/>
 			  <option value="en">English</option>
 			  <option value="ja">日本語</option>
@@ -139,16 +139,24 @@ body {
 
 
 <script>
-	function changLang(lang){
-		var protocol = window.location.protocol;
-		var host = window.location.host;
-		var path = window.location.pathname;
-		
-		var link = path+"?lang="+lang
-		console.log(link);
-		
-		location.replace(link);
+	function changeLang(lang,callback){
+		$.ajax({
+			type : "get",
+			url : "/changelang?lang=" + lang,
+			success : function(){
+				callback()
+			},error: function(){
+			}
+		})
 	}
+	
+	$('#langController').on('change',function(){
+		var lang = $(this).val();
+		changeLang(lang,function(){
+			location.reload();
+		})
+		
+	})
 </script>
 
 <script>
