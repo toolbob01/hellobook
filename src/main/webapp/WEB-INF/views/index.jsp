@@ -13,33 +13,6 @@
 <div class="container-fluid">
 	<div class="container">
 		<div class="row post-main-view-row">
-
-
-<!-- 		<div class="m-5 border border-2 border-dark" style="line-height: 1.5; font-size: 13px;">
-			<br><br>
-			<p style="font-family: 'Kosugi Maru';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Kosugi Maru AAA bbb CCC</p>
-			<p style="font-family: 'Sawarabi Gothic', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Sawarabi Gothic AAA bbb CCC</p>
-			<p style="font-family: 'Murecho', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Murecho', sans-serif AAA bbb CCC</p>
-			<p style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Nanum Gothic', sans-serif AAA bbb CCC</p>
-			<p style="font-family: 'Inconsolata';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Inconsolata AAA bbb CCC</p>
-			<p style="font-family: 'Nunito', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Nunito', sans-serif AAA bbb CCC</p>
-			<p style="font-family: 'Noto Sans KR';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Nunito', sans-serif AAA bbb CCC</p>
-			<br><br>
-			<span style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말</span>
-			<span style="font-family: 'Sawarabi Gothic', sans-serif;">日本語　ひらがな　カタカナ</span>
-			<span style="font-family: 'Sawarabi Gothic', sans-serif;"> english English AAA bbb CCC</span>
-			<br><br>
-			<span style="font-family: 'Noto Sans KR';">한국어 한글 우리나라말</span>
-			<br><br>
-			<span style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말</span>
-			<span style="font-family: 'Sawarabi Gothic', sans-serif;">日本語　ひらがな　カタカナ</span>
-			<span style="font-family: 'Nunito', sans-serif;"> english English AAA bbb CCC</span>
-			<br><br>
-			<span style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말</span>
-			<span style="font-family: 'Sawarabi Gothic', sans-serif;">日本語　ひらがな　カタカナ</span>
-			<span style="font-family: 'Noto Sans KR';"> english English AAA bbb CCC</span>
-			<br><br>
-		</div> -->
 			
 			<!-- post -->
 			<div class="col-lg-7">
@@ -71,7 +44,6 @@
 									<div class="mt-1 s_text">東京, 日本</div>
 								</div>
 							</div> --%>
-<!-- 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div> -->
 <%-- 								<sec:authorize access="isAuthenticated()">
 								     <c:if test="${postVO.email eq username}">
 										<div class="updateDeleteDiv">
@@ -171,41 +143,6 @@
 				  <c:otherwise>
 				  	<div class="text-center fs-3 mt-5">
 				  		No Post ...
-				  		<p class="fs-5 mt-3" style="line-height: 1.5;">
-				  			-> post_write -> 포스팅 추가 <br>
-				  			-> Index에서 방금 작성한 포스팅 확인 <br>
-				  			<br>
-				  			... 버튼 클릭시 모달 작동 <br>
-				  			-> 댓글 입력 후 모달댓글창에 추가되는지 확인<br>
-				  			-> 오라클에서 depth 값 2로 입력해서 더미 대댓글 추가<br>
-				  			-> 모달창 대댓글 펼치기/접기 버튼 확인 <br>
-				  		</p>
-
-				  		<p style="line-height: 1.5; text-align: left; font-size: 15px;">
-				  			<br><br><br><br>
-			  				로그인 된 유저 정보를 잘 받아오는가 확인<br>
-			  				==================================================================<br>
-				  			<sec:authentication property="principal"/><br>
-				  			==================================================================<br>
-				  			principal.Username = <sec:authentication property="principal.Username"/><br>
-				  			$Nname = ${Nname }<br>
-				  			$username = ${username }<br>
-				  			<br><br>
-				  			January <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
-				  			February <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
-				  			March <span style="font-size: 12px;">한국어한국어한국어한국어한국어 한국어한국어한국어</span><br>
-				  			April <span style="font-size: 12px;">englishENGLISHenglish ENGLISHenglishENGLISH</span><br>
-				  			June <span style="font-size: 12px;">ENGLISHenglish ENGLISHenglishENGLISH</span><br>
-				  			July <span style="font-size: 12px;">englishENGLISHenglish ENGLISHenglishENGLISH</span><br>
-				  			October <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
-				  			September <span style="font-size: 12px;">漢字　ひらがなカタカナ漢字</span><br>
-				  			August <span style="font-size: 12px;">カタカナ漢字　ひらがなカタカナ漢字</span><br>
-				  			십일월 <span style="font-size: 12px;">한글한글한글</span><br>
-				  			십이월 <span style="font-size: 12px;">english english ENGLISH</span><br>
-				  			십삼월 <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
-				  			<br><br><br>
-				  		</p>
-
 				  	</div>
 				  </c:otherwise>
 				  </c:choose> --%>
@@ -253,7 +190,7 @@
 									</div>
 									
 									<div class="msg-link">
-										<i class="bi bi-chat-dots" onclick="location.href='/chat/chat_list?email=${username}'"></i>
+										<i class="bi bi-chat-dots" onclick="location.href='/chat/chat_list?email=${username}&who=${friendVO.nickname}'"></i>
 									</div>
 								</div>
 							</div>
@@ -1159,7 +1096,7 @@
 			success:function(post_list){
 				var contain = 'n';
 				if( post_list[0] == null ) {
-				    $("#post-box").append('<div class="text-center fs-3 my-5">No post ...</div>');
+				    $("#post-box").append('<div class="text-center fs-3 my-5"><spring:message code="index.noPost"/></div>');
 				    $("#msg-loading").css("display", "none");
 					console.log('No Post... 생성 완료');
 				}else{
@@ -1170,7 +1107,7 @@
 		'<header class="top post-header">' + 
 			'<div class="user_container" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + 
 				'<div class="profile_img">' + 
-					'<img src="/hello_img/member/' + postVO.profile + '" alt="프로필이미지">' + 
+					'<img src="/hello_img/member/' + postVO.profile + '" alt="profile">' + 
 				'</div>' + 
 				'<div class="profile_flag">';
 						if ( postVO.language == 'J' ) {
@@ -1182,16 +1119,16 @@
 				'</div>' + 
 				'<div class="user_name">' + 
 					'<div class="nick_name m_text">' + postVO.nickname + '</div>' + 
-					'<div class="mt-1 s_text">東京, 日本</div>' + 
+// 					'<div class="mt-1 s_text">東京, 日本</div>' + 
 				'</div>' + 
 			'</div>'; 
 						if ( postVO.email == '${username}' ) {
 							nextArticle += 
 			'<div class="updateDeleteDiv">' + 
 				'<span class="updateDeleteContent">' + 
-					'<span class="updateLink" data-pno="' + postVO.pno + '">게시물 수정</span>' + 
+					'<span class="updateLink" data-pno="' + postVO.pno + '"><spring:message code="index.postUpdate"/></span>' + 
 					' | ' +  
-					'<span class="deleteLink" data-pno="' + postVO.pno + '">게시물 삭제</span>' + 
+					'<span class="deleteLink" data-pno="' + postVO.pno + '"><spring:message code="index.postDelete"/></span>' + 
 				'</span>' + 
 			'</div>';
 						}
@@ -1248,7 +1185,7 @@
 						contain = 'n';
 						nextArticle += 			
 				'<span class="heart-count on_cursor" id="heart-count' + postVO.pno + '" data-pno="' + postVO.pno + '">' + 
-					postVO.like_cnt + ' 명이 좋아합니다' + 
+					postVO.like_cnt + ' <spring:message code="index.likeCount"/>' + 
 				'</span>' + 
 			'</div>' + 
 			'<div class="d-flex align-items-center">' + 

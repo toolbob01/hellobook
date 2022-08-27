@@ -95,7 +95,7 @@
                   	 <input type="hidden" id="sendEmail" name="email" value="${username}">
                   	 <input type="hidden" id="sendRno" name="rno" value="">
                      <textarea class="write_msg" id="message" name="content" placeholder="<spring:message code="chatList.sendMessage"/>" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
-                     <button class="msg_send_btn" type="submit" id="sendBtn">
+                     <button class="msg_send_btn" type="submit" id="sendBtn" data-nick="dummy">
                         <i class="fa fa-paper-plane-o"  aria-hidden="true"></i>
                      </button>
 
@@ -177,28 +177,15 @@
          $(".inbox_chat").css("height", 550 + obj.scrollHeight);
       }
       
-<<<<<<< HEAD
-      var who = '쭈뇨귀요미';
-  	  who != null && who != ''
-  	      let firstChat = who != '' ? $("#who" + who) : $(".inbox_chat").children("div").first();
-  	      let chatRoom = $(".msg_history");
-  	      let userId = '<%=(String)session.getAttribute("username")%>';;
-
-//           let firstChat = $(".inbox_chat").children("div").first();
-//           let chatRoom = $(".msg_history");
-<%--           let userId = '<%=(String)session.getAttribute("username")%>';; --%>
-
-=======
-      var who = 'pjh';
-      who != null && who != ''
-          let firstChat = who != '' ? $("#who" + who) : $(".inbox_chat").children("div").first();
-          let chatRoom = $(".msg_history");
-          let userId = '<%=(String)session.getAttribute("username")%>';;
-
+      var who = '${who}';
+      console.log(" who : " + who);
+      let firstChat = who != '' ? $("#who" + who) : $(".inbox_chat").children("div").first();
+      $("#sendBtn").attr("data-nick", firstChat.attr("data-email") );
+      let chatRoom = $(".msg_history");
+      let userId = '<%=(String)session.getAttribute("username")%>';;
 //          let firstChat = $(".inbox_chat").children("div").first();
 //          let chatRoom = $(".msg_history");
 <%--           let userId = '<%=(String)session.getAttribute("username")%>';; --%>
->>>>>>> c212815856285706402f39e358f16f25a05d2867
      
       //enter 시 submit
       //shift+enter시 줄바꿈
@@ -273,6 +260,8 @@
     	  chatUserId = $(this).attr('data-email');
     	  chatRno = $(this).attr('data-rno');
     	  $('#sendRno').val(chatRno);
+    	  var thisNick = $(this).data("email");
+    	  $('#sendBtn').attr("data-nick", thisNick);  //data("nick", thisNick);
 
     		//ajax
     	  
@@ -343,6 +332,8 @@
 	  	          success : function(result) {
 	  	        	  
 	  	        	  $("#message").val();
+	  	        	  var recentNick = $('#sendBtn').attr("data-nick"); console.log("recentNick : " + recentNick);
+	  	        	  $('#who' + recentNick).children('.recentlyMsg').html( content );
 	  	        	  chatRoom.scrollTop(chatRoom[0].scrollHeight);
 	  	          },
 	  	          error : function(err) {
