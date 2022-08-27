@@ -10,7 +10,7 @@
 	<div class="container post_write_page">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-				<h4 class="mb-5 text-center fs-1">게시글 수정</h4>
+				<h4 class="mb-5 text-center fs-1"><spring:message code="postUpdate.title"/></h4>
 				<form id="postUpdateForm" method="post" action="/post/post_update" enctype="multipart/form-data">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="hidden" name="pno" value="${postVO.pno}" />
@@ -19,15 +19,15 @@
 					<input type="hidden" name="existingFile" value="-1"> <!-- Preventing null pointer -->
 
 					<div class="mb-5">
-						<label class="fs-3 mb-2" for="content">내용</label>
+						<label class="fs-3 mb-2" for="content"><spring:message code="postWrite.content"/></label>
 						<textarea class="form-control hello-scroll" rows="5" 
-								  name="content" id="content" placeholder="포스트 내용을 입력해주세요."><c:out value="${postVO.content}"/></textarea>
+								  name="content" id="content" placeholder="<spring:message code="postWrite.placeholder"/>"><c:out value="${postVO.content}"/></textarea>
 					</div>
 
 					<hr class="hello-hr mt-5">
 
 					<div>
-					    <label class="fs-3 mt-5 mb-2" for="uploadfile">기존 사진 삭제</label>
+					    <label class="fs-3 mt-5 mb-2" for="uploadfile"><spring:message code="postUpdate.existingImgDelete"/></label>
 					</div>
 
 					<div class="my-3 text-center" id="existing-file-div">
@@ -39,7 +39,7 @@
 							    <input type="hidden" name="existingFile" value="${fileVO.fno}">
 							  </div>
 						    </div>
-							<button type="button" class="btn btn-secondary btn-delete">삭제</button>
+							<button type="button" class="btn btn-secondary btn-delete"><spring:message code="postWrite.remove"/></button>
 						  </div>
 						</c:forEach>
 					</div>
@@ -47,7 +47,7 @@
 					<hr class="hello-hr my-5">
 
 					<div>
-					    <label class="fs-3 mt-5 mb-2" for="uploadfile">추가할 사진 미리보기</label>
+					    <label class="fs-3 mt-5 mb-2" for="uploadfile"><spring:message code="postUpdate.addImgPreview"/></label>
 					</div>
 
 				  <div id="preview-div">
@@ -68,7 +68,7 @@
 					  </button>
 					</div> -->
 
-					<button type="button" class="_add btn btn-primary mt-2 mb-5 float-end">추가</button>
+					<button type="button" class="_add btn btn-primary mt-2 mb-5 float-end"><spring:message code="postWrite.add"/></button>
 
 					<table class="table __add mt-5 mb-2"> 
 					  <tbody>
@@ -87,8 +87,8 @@
 				  </div> <!-- /preview-div -->
 				  
 					<div class="mt-5 text-center">
-						<button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="return postUpdateCheck()">수정</button>
-						<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/'">목록</button>
+						<button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="return postUpdateCheck()"><spring:message code="postUpdate.update"/></button>
+						<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/'"><spring:message code="postWrite.list"/></button>
 					</div>
 				</form>
 			</div>
@@ -105,7 +105,7 @@ $(document).ready(function(){
 	existingCnt = $("#existing-file-div").find('.d-flex').length;
 	if( existingCnt == 5 ) {
 		$("#preview-div").empty();
-		$("#preview-div").append('<p class="text-center fs-5 my-5">사진은 최대 5개까지 첨부 가능합니다.</p>');
+		$("#preview-div").append('<p class="text-center fs-5 my-5"><spring:message code="postWrite.maxFive"/></p>');
 		uploadfileCnt = 0;
 	}
 	console.log("existing : " + existingCnt); //
@@ -138,7 +138,7 @@ $(".btn-delete").on("click", function() {
 // Add File Input
 $(document).on("click","._add",function() {
 	if( existingCnt + uploadfileCnt >= 5){
-		alert("최대 업로드 수는 5개 입니다 (기존 이미지 포함)");
+		alert('<spring:message code="postWrite.maxFive"/>');
 		return;
 	}else{
 		uploadfileCnt ++;
@@ -164,7 +164,7 @@ $(document).on("click","._add",function() {
 						  	  '</div>' + 
 							'</td>' +  
 		    			    '<td>' + 
-		    			      '<button type="button" class="btn btn-secondary mb-3px btnBtn" data-idx="uploadfile1234" onclick="addDel(this);">삭제</button>' + 
+		    			      '<button type="button" class="btn btn-secondary mb-3px btnBtn" data-idx="uploadfile1234" onclick="addDel(this);"><spring:message code="postWrite.remove"/></button>' + 
 		    			    '</td>' +
 		    			  '</tr>'); 
 		$('.carousel-inner').append('<div class="carousel-item">' + 
@@ -218,7 +218,7 @@ function fileCheck(file) {
     fileSize = file.files[0].size;
     if(fileSize > maxSize)
     {
-        alert("첨부파일 사이즈는 3 MB 이내로 등록 가능합니다. ");
+        alert('<spring:message code="postWrite.maxThree"/>');
         file.value = "";
         return;
     }
@@ -226,7 +226,7 @@ function fileCheck(file) {
 	if( name != "" ){
 		var ext = name.split('.').pop().toLowerCase();
 		if( $.inArray(ext,['gif','jpg','png','jpeg']) == -1 ) { 
-			alert('첨부파일은 (gif,jpg,png,jpeg) 이미지만 업로드 가능합니다.');
+			alert('<spring:message code="postWrite.fileExt"/>');
 			file.value = "";
 			return false;
 		}
@@ -247,7 +247,7 @@ function fileCheck(file) {
 // Submit Script
 function postUpdateCheck(){
 	if( $("#content").val() == "" ) {
-		alert("내용을 입력해주세요");
+		alert('<spring:message code="postWrite.pleaseContent"/>');
 		$("#content").focus();
 		return false;
 	}
@@ -261,12 +261,12 @@ function postUpdateCheck(){
 		var nowUpload = file_list[i];
 		console.log( nowUpload );
 		if( nowUpload == "" ) {
-			alert("이미지를 첨부해주세요.");
+			alert('<spring:message code="postWrite.pleaseImage"/>');
 			return false;
 		}
 	}
 	
-	if( confirm('게시물을 수정하시겠습니까?') ) {
+	if( confirm('<spring:message code="postWrite.updateConfirm"/>') ) {
 	 	$("#postUpdateForm").submit();
 	}else {
 		return;

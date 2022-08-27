@@ -256,21 +256,12 @@
       
     //채팅방 이동
       $(".chat_list").on("click",function() {2
-<<<<<<< HEAD
-    	  console.log("채팅방 이동");
-    	  chatUserId = $(this).attr('data-email');
-    	  chatRno = $(this).attr('data-rno');
-    	  $('#sendRno').val(chatRno);
-    	  var thisNick = $(this).data("email");
-    	  $('#sendBtn').attr("data-nick", thisNick);  //data("nick", thisNick);
-=======
          console.log("채팅방 이동");
          chatUserId = $(this).attr('data-email');
          chatRno = $(this).attr('data-rno');
          $('#sendRno').val(chatRno);
          var thisNick = $(this).data("email");
          $('#sendBtn').attr("data-nick", thisNick);  //data("nick", thisNick);
->>>>>>> 246070b00198c497e4689b02e533d4e18c04a7d0
 
           //ajax
          
@@ -312,50 +303,6 @@
       sock.onmessage = onMessage;
       sock.onclose = onClose;
       //메시지 전송
-<<<<<<< HEAD
-	  function sendMessage() {
-		  
-	      
-		      var rno = $('#sendRno').val();
-		      var content = document.getElementById("message").value;	 
-	// 	      content = content.replace(/\n/g, "<br>");
-			console.log(rno);
-			console.log(content);
-			if(content != null && content!='') {
-		        sock.send(
-		      	  username+":"+content
-	            );
-	      	
-	      		$.ajax({
-	  	    	  url : "/chat/sendMessage",
-	  	    	  type : "post",
-	  	          data : JSON.stringify({
-	  	        	  email : username,
-	  	          	  rno : rno,
-	  	          	  content : content
-	  	          }),
-	  	          dataType : "json",
-	  	          contentType : "application/json",
-	  	          beforeSend : function(xhr){
-	  					xhr.setRequestHeader(header, token);
-	  				},
-	  	          success : function(result) {
-	  	        	  
-	  	        	  $("#message").val();
-	  	        	  var recentNick = $('#sendBtn').attr("data-nick"); console.log("recentNick : " + recentNick);
-	  	        	  $('#who' + recentNick).children('.recentlyMsg').html( content );
-	  	        	  chatRoom.scrollTop(chatRoom[0].scrollHeight);
-	  	          },
-	  	          error : function(err) {
-	  	        	  alert("실패!")
-	  	          }
-	  	      	}); 
-	      	}else {
-	      		alert('<spring:message code="chatList.textareaEmpty"/>');
-	      		return false;
-	      	}
-	          
-=======
      function sendMessage() {
         
          
@@ -398,7 +345,6 @@
                return false;
             }
              
->>>>>>> 246070b00198c497e4689b02e533d4e18c04a7d0
       }
       //서버로부터 메시지를 받았을 때
       function onMessage(msg) {

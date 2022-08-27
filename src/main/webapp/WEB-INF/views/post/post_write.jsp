@@ -9,18 +9,18 @@
 	<div class="container post_write_page">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-				<h4 class="mb-5 text-center fs-1">게시글 등록</h4>
+				<h4 class="mb-5 text-center fs-1"><spring:message code="postWrite.title"/></h4>
 				<form class="validation-form" novalidate id="postingForm" name="postingForm" method="post" action="/post/post_write" enctype="multipart/form-data">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="hidden" name="email" value="${username}" />
 
 					<div class="mb-5">
-						<label class="fs-3 mb-2" for="content">내용</label>
-						<textarea class="form-control mt-3 hello-scroll" rows="5" name="content" id="content" placeholder="포스트 내용을 입력해주세요."></textarea>
+						<label class="fs-3 mb-2" for="content"><spring:message code="postWrite.content"/></label>
+						<textarea class="form-control mt-3 hello-scroll" rows="5" name="content" id="content" placeholder="<spring:message code="postWrite.placeholder"/>"></textarea>
 					</div>
 
 					<div>
-					    <label class="fs-3 mb-3" for="uploadfile">사진</label>
+					    <label class="fs-3 mb-3" for="uploadfile"><spring:message code="postWrite.image"/></label>
 					</div>
 
 					<!-- Carousel -->
@@ -48,14 +48,14 @@
 						  </div>
 					    </td>
 					    <td>
-					      <button type="button" class="_add btn btn-primary mb-3px btnBtn" data-idx="uploadfile0">추가</button>
+					      <button type="button" class="_add btn btn-primary mb-3px btnBtn" data-idx="uploadfile0"><spring:message code="postWrite.add"/></button>
 					    </td>
 					  </tr> 
 					</table>
 
 					<div class="mt-5 text-center">
-						<button type="button" class="btn btn-sm btn-primary" id="btnSave" onclick="return postingCheck()">저장</button>
-						<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/'">목록</button>
+						<button type="button" class="btn btn-sm btn-primary" id="btnSave" onclick="return postingCheck()"><spring:message code="postWrite.save"/></button>
+						<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/'"><spring:message code="postWrite.list"/></button>
 					</div>
 				</form>
 			</div>
@@ -70,7 +70,7 @@ var uploadfileCnt = 0;
 
 $('.__add ._add').on('click',function(){ 
 	if(uploadfileCnt >= 4){
-		alert("파일 업로드 최대 개수는 5개 입니다.");
+		alert("<spring:message code='postWrite.maxFive'/>");
 		return;
 	}else{
 		uploadfileCnt ++;
@@ -81,7 +81,7 @@ $('.__add ._add').on('click',function(){
 						  	  '</div>' + 
 							'</td>' +  
 		    			    '<td>' + 
-		    			      '<button type="button" class="btn btn-secondary mb-3px btnBtn" data-idx="uploadfile1234" onclick="addDel(this);">삭제</button>' + 
+		    			      '<button type="button" class="btn btn-secondary mb-3px btnBtn" data-idx="uploadfile1234" onclick="addDel(this);"><spring:message code="postWrite.remove"/></button>' + 
 		    			    '</td>' +
 		    			  '</tr>' ); 
 		$('.carousel-inner').append('<div class="carousel-item">' + 
@@ -131,7 +131,7 @@ function fileCheck(file) {
     fileSize = file.files[0].size;
     if(fileSize > maxSize)
     {
-        alert("첨부파일 사이즈는 3 MB 이내로 등록 가능합니다. ");
+        alert('<spring:message code="postWrite.maxThree"/>');
         file.value = "";
         return;
     }
@@ -139,7 +139,7 @@ function fileCheck(file) {
 	if( name != "" ){
 		var ext = name.split('.').pop().toLowerCase();
 		if( $.inArray(ext,['gif','jpg','png','jpeg']) == -1 ) { 
-			alert('첨부파일은 (gif,jpg,png,jpeg) 이미지만 업로드 가능합니다.');
+			alert('<spring:message code="postWrite.fileExt"/>');
 			file.value = "";
 			return false;
 		}
@@ -160,7 +160,7 @@ function fileCheck(file) {
 // Submit Script
 function postingCheck(){
 	if( $("#content").val() == "" ) {
-		alert("내용을 입력해주세요");
+		alert('<spring:message code="postWrite.pleaseContent"/>');
 		$("#content").focus();
 		return false;
 	}
@@ -174,12 +174,12 @@ function postingCheck(){
 		var nowUpload = file_list[i];
 		console.log( nowUpload );
 		if( nowUpload == "" ) {
-			alert("이미지를 첨부해주세요.");
+			alert('<spring:message code="postWrite.pleaseImage"/>');
 			return false;
 		}
 	}
 	
-	if( confirm('게시물을 작성하시겠습니까?') ) {
+	if( confirm('<spring:message code="postWrite.writeConfirm"/>') ) {
 		$("#postingForm").submit();
 	}else {
 		return;
