@@ -22,8 +22,12 @@ public class ChatServiceImpl implements ChatService {
 	
 	@Override
 	public List<ChatVO> chatRoomList(String email) {
-		
-		return chatMapper.chatRoomList(email);
+		List<ChatVO> room_list = chatMapper.chatRoomList(email);
+		for( ChatVO chatVO : room_list ) {
+			String content = chatMapper.recentMsgByRno(chatVO.getRno());
+			chatVO.setContent(content);
+		}
+		return room_list;
 	}
 	
 	@Override
@@ -34,9 +38,15 @@ public class ChatServiceImpl implements ChatService {
 	}
 	
 	@Override
-	public List<ChatMessageVO> messageList(int rno) {
+	public List<ChatMessageVO> messageList(Integer rno) {
 		
 		return chatMapper.messageList(rno);
+	}
+	
+	@Override
+	public Integer existChatRoom(String email, String femail) {
+		
+		return chatMapper.existChatRoom(email, femail);
 	}
 	
 

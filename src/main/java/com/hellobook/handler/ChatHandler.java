@@ -28,14 +28,14 @@ public class ChatHandler extends TextWebSocketHandler{
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		sessionList.add(session);
 		
-		logger.info("{} �뿰寃곕맖", session.getId());
+		logger.info("{} 연결됨", session.getId());
 	}
 	
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		logger.info("{}濡쒕��꽣 {} 諛쏆쓬", session.getId(), message.getPayload());
-		//紐⑤뱺 �쑀���뿉寃� 硫붿떆吏� 異쒕젰
+		logger.info("{} to {}", session.getId(), message.getPayload());
+
 		for (WebSocketSession sess : sessionList) {
 			sess.sendMessage(new TextMessage(message.getPayload()));
 		}
@@ -45,6 +45,6 @@ public class ChatHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		sessionList.remove(session);
-		logger.info("{} �뿰寃� �걡源�", session.getId());
+		logger.info("{} 연결 해제", session.getId());
 	}
 }

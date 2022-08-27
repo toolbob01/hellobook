@@ -141,9 +141,9 @@ img {
 
 .received_msg {
    display: inline-block;
-   padding: 0 0 0 10px;
-   vertical-align: top;
+
    width: 92%;
+   margin: 26px 0 26px;
 }
 
 .received_withd_msg p {
@@ -251,4 +251,29 @@ button:focus {
 .msg_history {
    height: 516px;
    overflow-y: auto;
+}
+
+/* List - Profile Image */
+.chat_list .user_container {
+	position: relative;
+	cursor: pointer;
+}
+.chat_list .profile_img {
+	width: 40px;
+	height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+.chat_list .profile_img img {
+	width: 100%;
+	height: 100%;
+}
+.chat_list .recentlyMsg {
+    font-size: 14px;
+    color: #777;
+    margin-top: 10px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

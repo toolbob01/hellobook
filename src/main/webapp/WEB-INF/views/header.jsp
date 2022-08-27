@@ -86,25 +86,34 @@ body {
                 	<img src="https://img.icons8.com/ios-glyphs/30/000000/add--v1.png"/>
                 </a>
             </div>
-            <div class="mx-2">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://img.icons8.com/ios-glyphs/30/000000/small-icons.png"/>
-                </a>
-                <ul class="dropdown-menu text-small text-center" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="/mypage/profile/${Nname}"><spring:message code="header.profile"/></a></li>
-                    <li><a class="dropdown-item" href="/mypage/setting/"><spring:message code="header.setting"/></a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                    	<form class="dropdown-item on_cursor" id="logoutFN" method="post" action="/member/logout" onclick="logoutFN()">
-                    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                    		<div class="d-flex">
-	                    		<img class="" src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>
-	                    		<span class="mt-1 ms-3"><spring:message code="header.logout"/></span>	
-                    		</div>
-                    	</form>
-                    </li>
-                </ul>
-            </div>
+            <sec:authorize access="isAuthenticated()">
+	            <div class="mx-2">
+	                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+	                    <img src="https://img.icons8.com/ios-glyphs/30/000000/small-icons.png"/>
+	                </a>
+	                <ul class="dropdown-menu text-small text-center" aria-labelledby="dropdownUser1">
+	                    <li><a class="dropdown-item" href="/mypage/profile/${Nname}"><spring:message code="header.profile"/></a></li>
+	                    <li><a class="dropdown-item" href="/mypage/setting/"><spring:message code="header.setting"/></a></li>
+	                    <li><hr class="dropdown-divider"></li>
+	                    <li>
+	                    	<form class="dropdown-item on_cursor" id="logoutFN" method="post" action="/member/logout" onclick="logoutFN()">
+	                    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	                    		<div class="d-flex">
+		                    		<img class="" src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/20/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"/>
+		                    		<span class="mt-1 ms-3"><spring:message code="header.logout"/></span>	
+	                    		</div>
+	                    	</form>
+	                    </li>
+	                </ul>
+	            </div>
+            </sec:authorize>
+            <sec:authorize access="isAnonymous()">
+            	<div class="mx-2">
+	            	<a href="/member/login">
+	                	<img src="https://img.icons8.com/external-kmg-design-glyph-kmg-design/35/000000/external-login-real-estate-kmg-design-glyph-kmg-design.png"/>
+	                </a>
+            	</div>
+            </sec:authorize>
         </div>
 		<div id="changeLang">
 			<select class="form-control" id="langController" name="lang" style="width: auto;">
@@ -139,6 +148,7 @@ body {
 
 
 <script>
+<<<<<<< HEAD
 	function changeLang(lang,callback){
 		$.ajax({
 			type : "get",
@@ -148,6 +158,22 @@ body {
 			},error: function(){
 			}
 		})
+=======
+	var em = '<%=(String)session.getAttribute("username")%>';
+	function changLang(lang){
+		var protocol = window.location.protocol;
+		var host = window.location.host;
+		var path = window.location.pathname;
+		var link = path+"?lang="+lang;
+		if(path=="/chat/chat_list") {
+			link = path+"?email="+em+"&lang="+lang;
+		}
+		
+		console.log(link);
+
+		location.replace(link);
+
+>>>>>>> 38ae114a9203af73883683eb8b6f85f3bbd20d38
 	}
 	
 	$('#langController').on('change',function(){

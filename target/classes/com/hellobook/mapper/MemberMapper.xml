@@ -152,9 +152,10 @@
 	
 	<select id="getNewChat" resultType="com.hellobook.domain.ChatVO">
 		select c.mno, c.rno, mm.nickname, mm.profile, c.content, c.mdate
-		from chat_msg c, (select m.nickname, m.profile 
-		from member m, (select email from chat_participant where email != #{email} and rno = #{rno}) cp 
-		where m.email = cp.email) mm
+		from chat_msg c, 
+			(select m.nickname, m.profile 
+			from member m, (select email from chat_participant where email != #{email} and rno = #{rno}) cp 
+			where m.email = cp.email) mm
 		where c.mno = #{mno}
 	</select>
 </mapper>

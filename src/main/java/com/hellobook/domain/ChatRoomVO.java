@@ -17,11 +17,11 @@ public class ChatRoomVO {
 
 	
 	// Room
-	private int rno;
+	private Integer rno;
 	private Date rdate;
 	
 	// Message
-	private int mno;
+	private Integer mno;
 	private String content;
 	private Date mdate;
 	
