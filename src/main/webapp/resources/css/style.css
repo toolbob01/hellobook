@@ -1161,10 +1161,10 @@ body{
 .btn-primary {
     color: #fff;
     border-color: #82c5f9;
-    background-color: #9fd5ff;
+    background-color: #45adff;
 }
 .btn-primary:hover {
     color: #fff;
-    border-color: #82c5f9;
-    background-color: #45adff;
+    border-color: #8accff70;
+    background-color: #9fd5ff;
 }
