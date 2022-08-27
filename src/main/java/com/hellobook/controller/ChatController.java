@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hellobook.domain.ChatMessageVO;
 import com.hellobook.domain.ChatVO;
@@ -34,18 +35,28 @@ public class ChatController {
 	
 	@PreAuthorize("isAuthenticated() and (#email == principal.username)")
 	@GetMapping("chat_list")
-	public String chatList(String email, Model model) {
-		
-		List<MemberVO> mvoList = memberService.selectAllMember();
-		List<ChatVO> cvoList = chatService.chatRoomList(email);
-		
+	public String chatList(String email, String who, Model model, RedirectAttributes rttr) {
 
-		
-		model.addAttribute("mvoList", mvoList);
-		model.addAttribute("cvoList", cvoList);
-		
-		return "/chat/chat_list";
+		System.out.println("who : " + who);
+		if( who != null && !who.equals("") ) {
+		MemberVO whoVO = memberService.readByNickname(who);
+		Integer result = chatService.existChatRoom(email, whoVO.getEmail());
+		if( result == null || result < 1) {
+			// Create Room
+			System.out.println(who + " 's ROOM CREATE SUCCESS");
+			chatService.createChatRoom(email, whoVO.getEmail());
+			model.addAttribute("who", who);
+		}else {
+			model.addAttribute("who", who);
+	    }
 	}
+  
+  List<MemberVO> mvoList = memberService.selectAllMember();
+  List<ChatVO> cvoList = chatService.chatRoomList(email);
+  model.addAttribute("mvoList", mvoList);
+  model.addAttribute("cvoList", cvoList);
+  return "/chat/chat_list";
+   }
 	
 	@PostMapping("createChatRoom")
 	public ModelAndView createChatRoom(@Param("email") String email, @Param("femail") String femail, ModelAndView mav) {
