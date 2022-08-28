@@ -37,15 +37,6 @@ body {
 }
 </style>
 
-<script>
-	var csrfHeanderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
-
-	$(document).ajaxSend(function(e, xhr, options) {
-		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
-	});
-</script>
-
 <title>Hello Book</title>
 </head>
 <body>
@@ -129,14 +120,6 @@ body {
     
 </header>
 
-<script>
-	var csrfHeanderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
-
-	$(document).ajaxSend(function(e, xhr, options) {
-		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
-	});
-</script>
 
 <style>
 #changeLang {
@@ -148,33 +131,25 @@ body {
 
 
 <script>
-<<<<<<< HEAD
+	
+var csrfHeanderName = "${_csrf.headerName}";
+var csrfTokenValue = "${_csrf.token}";
+
+$(document).ajaxSend(function(e, xhr, options) {
+	xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
+});
+	
 	function changeLang(lang,callback){
 		$.ajax({
 			type : "get",
 			url : "/changelang?lang=" + lang,
 			success : function(){
-				callback()
+				callback();
 			},error: function(){
 			}
-		})
-=======
-	var em = '<%=(String)session.getAttribute("username")%>';
-	function changLang(lang){
-		var protocol = window.location.protocol;
-		var host = window.location.host;
-		var path = window.location.pathname;
-		var link = path+"?lang="+lang;
-		if(path=="/chat/chat_list") {
-			link = path+"?email="+em+"&lang="+lang;
-		}
-		
-		console.log(link);
-
-		location.replace(link);
-
->>>>>>> 38ae114a9203af73883683eb8b6f85f3bbd20d38
+		});
 	}
+
 	
 	$('#langController').on('change',function(){
 		var lang = $(this).val();
@@ -183,9 +158,7 @@ body {
 		})
 		
 	})
-</script>
 
-<script>
 	function logoutFN(){
 		$("#logoutFN").submit();
 		console.log('Logout Success !!!');
