@@ -131,18 +131,14 @@ body {
 
 
 <script>
-<<<<<<< HEAD
 
-=======
+	var csrfHeanderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
 	
-var csrfHeanderName = "${_csrf.headerName}";
-var csrfTokenValue = "${_csrf.token}";
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
+	});
 
-$(document).ajaxSend(function(e, xhr, options) {
-	xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
-});
-	
->>>>>>> debbb87fbbd47e9779ec24e6ee98e325c1840a8b
 	function changeLang(lang,callback){
 		$.ajax({
 			type : "get",
@@ -150,36 +146,16 @@ $(document).ajaxSend(function(e, xhr, options) {
 			success : function(){
 				callback();
 			},error: function(){
+				
 			}
-<<<<<<< HEAD
 		})
-
-<%-- 	var em = '<%=(String)session.getAttribute("username")%>'; --%>
-// 	function changLang(lang){
-// 		var protocol = window.location.protocol;
-// 		var host = window.location.host;
-// 		var path = window.location.pathname;
-// 		var link = path+"?lang="+lang;
-// 		if(path=="/chat/chat_list") {
-// 			link = path+"?email="+em+"&lang="+lang;
-// 		}
-		
-// 		console.log(link);
-
-// 		location.replace(link);
-// 	}
-=======
-		});
 	}
-
->>>>>>> debbb87fbbd47e9779ec24e6ee98e325c1840a8b
-	
+		
 	$('#langController').on('change',function(){
 		var lang = $(this).val();
 		changeLang(lang,function(){
 			location.reload();
 		})
-		
 	})
 
 	function logoutFN(){
