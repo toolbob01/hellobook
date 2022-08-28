@@ -300,7 +300,7 @@
 						</c:when>
 						<c:otherwise>
 							<div class="no_friend">
-								<p><spring:message code="index.noRecommed"/></p>
+								<p><spring:message code="index.noRecommend"/></p>
 							</div>
 						</c:otherwise>
 					  </c:choose>

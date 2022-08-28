@@ -131,7 +131,6 @@ body {
 
 
 <script>
-<<<<<<< HEAD
 	var em = '<%=(String)session.getAttribute("username")%>';
 	
 	function changLang(lang){
@@ -148,35 +147,12 @@ body {
 		location.replace(link);
 	}
 	
-</script>
-=======
-
 	var csrfHeanderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
 	
 	$(document).ajaxSend(function(e, xhr, options) {
 		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
 	});
-
-	function changeLang(lang,callback){
-		$.ajax({
-			type : "get",
-			url : "/changelang?lang=" + lang,
-			success : function(){
-				callback();
-			},error: function(){
-				
-			}
-		})
-	}
-		
-	$('#langController').on('change',function(){
-		var lang = $(this).val();
-		changeLang(lang,function(){
-			location.reload();
-		})
-	})
->>>>>>> eccc0b01da6716b656b8552b07231dd4edaff13e
 
 	function logoutFN(){
 		$("#logoutFN").submit();
