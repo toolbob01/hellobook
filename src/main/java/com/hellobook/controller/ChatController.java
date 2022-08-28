@@ -32,6 +32,7 @@ public class ChatController {
 
 	@Autowired
 	private ChatService chatService;
+<<<<<<< HEAD
 
 	@PreAuthorize("isAuthenticated() and (#email == principal.username)")
 	@GetMapping("chat_list")
@@ -45,6 +46,34 @@ public class ChatController {
 		return "/chat/chat_list";
 	}
 
+=======
+	
+	   @PreAuthorize("isAuthenticated() and (#email == principal.username)")
+	   @GetMapping("chat_list")
+	   public String chatList(String email, String who, Model model, RedirectAttributes rttr) {
+
+	      System.out.println("who : " + who);
+	      if( who != null && !who.equals("") ) {
+	         MemberVO whoVO = memberService.readByNickname(who);
+	         Integer result = chatService.existChatRoom(email, whoVO.getEmail());
+	         if( result == null || result < 1) {
+	            // Create Room
+	            System.out.println(who + " 's ROOM CREATE SUCCESS");
+	            chatService.createChatRoom(email, whoVO.getEmail());
+	            model.addAttribute("who", who);
+	         }else {
+	            model.addAttribute("who", who);
+	         }
+	      }
+	      
+	      List<MemberVO> mvoList = memberService.selectAllMember();
+	      List<ChatVO> cvoList = chatService.chatRoomList(email);
+	      model.addAttribute("mvoList", mvoList);
+	      model.addAttribute("cvoList", cvoList);
+	      return "/chat/chat_list";
+	   }
+	
+>>>>>>> dd5a3115feba75429a8390c06f97e029db47460d
 	@PostMapping("createChatRoom")
 	public ModelAndView createChatRoom(@Param("email") String email, @Param("femail") String femail, ModelAndView mav) {
 		Integer existChatRoom = chatService.existChatRoom(email, femail);

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" session="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -37,12 +37,12 @@
 <link rel="stylesheet" href="/resources/css/mypage.css">
 
 <script>
-	var csrfHeanderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
+// 	var csrfHeanderName = "${_csrf.headerName}";
+// 	var csrfTokenValue = "${_csrf.token}";
 
-	$(document).ajaxSend(function(e, xhr, options) {
-		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
-	});
+// 	$(document).ajaxSend(function(e, xhr, options) {
+// 		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
+// 	});
 </script>
 
 <style>
@@ -54,7 +54,7 @@
 </style>
 <body>
 <div id="changeLang">
-	<select class="form-control" onchange="changLang(this.value)" name="lang" style="width: auto;">
+	<select class="form-control" id="langController" name="lang" style="width: auto;">
 	  <option value=""><spring:message code="header.setlanguage"/>
 	  <option value="en">English</option>
 	  <option value="ja">日本語</option>
@@ -62,14 +62,22 @@
 	</select>
 </div>
 <script>
-	function changLang(lang){
-		var protocol = window.location.protocol;
-		var host = window.location.host;
-		var path = window.location.pathname;
-		
-		var link = path+"?lang="+lang
-		console.log(link);
-		
-		location.replace(link);
+	function changeLang(lang,callback){
+		$.ajax({
+			type : "get",
+			url : "/changelang?lang=" + lang,
+			success : function(){
+				callback()
+			},error: function(){
+			}
+		})
 	}
+	
+	$('#langController').on('change',function(){
+		var lang = $(this).val();
+		changeLang(lang,function(){
+			location.reload();
+		})
+		
+	})
 </script>

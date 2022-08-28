@@ -1,8 +1,6 @@
 package com.hellobook.controller;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -42,6 +40,7 @@ import com.hellobook.domain.SessionVO;
 import com.hellobook.security.CustomUserDetailsService;
 import com.hellobook.service.MemberService;
 import com.hellobook.utility.Message;
+import com.hellobook.utility.SessionConfig;
 
 import lombok.extern.log4j.Log4j;
 
@@ -76,15 +75,11 @@ public class MemberController {
 	private CustomUserDetailsService cuds;
 	
 	@GetMapping("login")
-	public String login(String error, Model model, HttpSession session) {
+	public String login(String error, Model model) {
 		//로그인에 실패했을 때 안내문 출력
 		if(error != null) {
 			model.addAttribute("error", "error");
 		}
-		
-		//naver로그인 url 생성
-		String naverAuthUrl = naverLoginBO.getAuthorizaionUrl(session);
-		model.addAttribute("naverUrl",naverAuthUrl);
 		
 		//google로그인 url 생성
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
@@ -92,6 +87,14 @@ public class MemberController {
 		model.addAttribute("googleUrl",googelAuthUrl);
 		
 		return "/member/login";
+	}
+	
+	@GetMapping("naverLogin")
+	public @ResponseBody String naverLogin(HttpSession session) {
+		//naver로그인 url 생성
+		String naverAuthUrl = naverLoginBO.getAuthorizaionUrl(session);
+		
+		return naverAuthUrl;
 	}
 	
 	@RequestMapping(value="/memberNaverLogin", method= {RequestMethod.GET,RequestMethod.POST})
@@ -149,10 +152,14 @@ public class MemberController {
 			user.getUsername();
 			
 			SessionVO svo = memberService.read(user.getUsername());
+
+			SessionConfig.getSessionidCheck("username", svo.getEmail());
 			
 			session.setAttribute("username", user.getUsername());
 			session.setAttribute("Nname", svo.getNickname());
 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+			
+			SessionConfig.SessionIdCheck(session);
 			
 			//mav는 메세지 전송 객체
 			mav.addObject("data", new Message("0", "/"));
@@ -215,11 +222,14 @@ public class MemberController {
 			user.getUsername();
 			
 			SessionVO svo = memberService.read(user.getUsername());
+
+			SessionConfig.getSessionidCheck("username", svo.getEmail());
 			
 			session.setAttribute("username", user.getUsername());
 			session.setAttribute("Nname", svo.getNickname());
-			
 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+			
+			SessionConfig.SessionIdCheck(session);
 			
 			//mav는 메세지 전송 객체
 			mav.addObject("data", new Message("0", "/"));

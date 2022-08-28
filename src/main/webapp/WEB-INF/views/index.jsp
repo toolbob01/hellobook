@@ -13,33 +13,6 @@
 <div class="container-fluid">
 	<div class="container">
 		<div class="row post-main-view-row">
-
-
-<!-- 		<div class="m-5 border border-2 border-dark" style="line-height: 1.5; font-size: 13px;">
-			<br><br>
-			<p style="font-family: 'Kosugi Maru';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Kosugi Maru AAA bbb CCC</p>
-			<p style="font-family: 'Sawarabi Gothic', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Sawarabi Gothic AAA bbb CCC</p>
-			<p style="font-family: 'Murecho', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Murecho', sans-serif AAA bbb CCC</p>
-			<p style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Nanum Gothic', sans-serif AAA bbb CCC</p>
-			<p style="font-family: 'Inconsolata';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Inconsolata AAA bbb CCC</p>
-			<p style="font-family: 'Nunito', sans-serif;">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Nunito', sans-serif AAA bbb CCC</p>
-			<p style="font-family: 'Noto Sans KR';">한국어 한글 우리나라말 日本語　ひらがな　カタカナ Nunito', sans-serif AAA bbb CCC</p>
-			<br><br>
-			<span style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말</span>
-			<span style="font-family: 'Sawarabi Gothic', sans-serif;">日本語　ひらがな　カタカナ</span>
-			<span style="font-family: 'Sawarabi Gothic', sans-serif;"> english English AAA bbb CCC</span>
-			<br><br>
-			<span style="font-family: 'Noto Sans KR';">한국어 한글 우리나라말</span>
-			<br><br>
-			<span style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말</span>
-			<span style="font-family: 'Sawarabi Gothic', sans-serif;">日本語　ひらがな　カタカナ</span>
-			<span style="font-family: 'Nunito', sans-serif;"> english English AAA bbb CCC</span>
-			<br><br>
-			<span style="font-family: 'Nanum Gothic', sans-serif;">한국어 한글 우리나라말</span>
-			<span style="font-family: 'Sawarabi Gothic', sans-serif;">日本語　ひらがな　カタカナ</span>
-			<span style="font-family: 'Noto Sans KR';"> english English AAA bbb CCC</span>
-			<br><br>
-		</div> -->
 			
 			<!-- post -->
 			<div class="col-lg-7">
@@ -71,7 +44,6 @@
 									<div class="mt-1 s_text">東京, 日本</div>
 								</div>
 							</div> --%>
-<!-- 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div> -->
 <%-- 								<sec:authorize access="isAuthenticated()">
 								     <c:if test="${postVO.email eq username}">
 										<div class="updateDeleteDiv">
@@ -171,47 +143,12 @@
 				  <c:otherwise>
 				  	<div class="text-center fs-3 mt-5">
 				  		No Post ...
-				  		<p class="fs-5 mt-3" style="line-height: 1.5;">
-				  			-> post_write -> 포스팅 추가 <br>
-				  			-> Index에서 방금 작성한 포스팅 확인 <br>
-				  			<br>
-				  			... 버튼 클릭시 모달 작동 <br>
-				  			-> 댓글 입력 후 모달댓글창에 추가되는지 확인<br>
-				  			-> 오라클에서 depth 값 2로 입력해서 더미 대댓글 추가<br>
-				  			-> 모달창 대댓글 펼치기/접기 버튼 확인 <br>
-				  		</p>
-
-				  		<p style="line-height: 1.5; text-align: left; font-size: 15px;">
-				  			<br><br><br><br>
-			  				로그인 된 유저 정보를 잘 받아오는가 확인<br>
-			  				==================================================================<br>
-				  			<sec:authentication property="principal"/><br>
-				  			==================================================================<br>
-				  			principal.Username = <sec:authentication property="principal.Username"/><br>
-				  			$Nname = ${Nname }<br>
-				  			$username = ${username }<br>
-				  			<br><br>
-				  			January <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
-				  			February <span style="font-size: 12px;">한국어한국어한국어한국어 한국어한국어한국어한국어</span><br>
-				  			March <span style="font-size: 12px;">한국어한국어한국어한국어한국어 한국어한국어한국어</span><br>
-				  			April <span style="font-size: 12px;">englishENGLISHenglish ENGLISHenglishENGLISH</span><br>
-				  			June <span style="font-size: 12px;">ENGLISHenglish ENGLISHenglishENGLISH</span><br>
-				  			July <span style="font-size: 12px;">englishENGLISHenglish ENGLISHenglishENGLISH</span><br>
-				  			October <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
-				  			September <span style="font-size: 12px;">漢字　ひらがなカタカナ漢字</span><br>
-				  			August <span style="font-size: 12px;">カタカナ漢字　ひらがなカタカナ漢字</span><br>
-				  			십일월 <span style="font-size: 12px;">한글한글한글</span><br>
-				  			십이월 <span style="font-size: 12px;">english english ENGLISH</span><br>
-				  			십삼월 <span style="font-size: 12px;">ひらがなカタカナ漢字　ひらがなカタカナ漢字</span><br>
-				  			<br><br><br>
-				  		</p>
-
 				  	</div>
 				  </c:otherwise>
 				  </c:choose> --%>
 
 				</div> <!-- // post-box -->
-				<p id="msg-loading">....... 次のデータをローディング中 .......</p>
+				<p id="msg-loading"><spring:message code="index.loading"/></p>
 			</div> <!-- // col-lg-7 -->
 			
 
@@ -221,7 +158,7 @@
 					
 					<article class="story">
 						<header class="story_header">
-							<div>친구 리스트</div>
+							<div><spring:message code="index.friendList"/></div>
 							<div class="sprite_more_icon" data-name="more" onclick="location.href='/friend/list'"></div>
 						</header>
 
@@ -261,7 +198,7 @@
 						</c:when>
 						<c:otherwise>
 							<div class="no_friend">
-								<p>아직 친구가 없습니다</p>
+								<p><spring:message code="index.noFriend"/></p>
 							</div>
 						</c:otherwise>
 					  </c:choose>
@@ -269,7 +206,7 @@
 
 					<article class="recommend">
 						<header class="reco_header">
-							<div>친구 추천</div>
+							<div><spring:message code="index.friendRecommend"/></div>
 <!-- 							<div class="more">모두 보기</div> -->
 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div>
 						</header>
@@ -453,7 +390,7 @@
 				<div class="col-md-12">
 					
 					<div id="like-user-list" class="like-user-list hello-scroll">
-						<p class="text-center fs-3 my-4">ハート</p>
+						<p class="text-center fs-3 my-4"><spring:message code="index.heartList"/></p>
 						<div id="like-user-list-detail">
 						
 <!-- 							<div class="d-flex justify-content-between align-items-center luld">
@@ -495,34 +432,34 @@
 		var insert_pno = "${insert_pno}";
 		if( insert_post_result != null && insert_post_result != "" && !history.state ){
 			if( parseInt(insert_post_result) == 1 ){
-				alert('Insert Post Success ! ( ' + insert_pno + ' 번 게시글 )');
+				alert('<spring:message code="index.insertPostSuccess"/> ! ( ' + insert_pno + ' <spring:message code="index.pno"/> )'); // transalte
 			}else{
-				alert('Insert Post Fail ! ');
+				alert('<spring:message code="index.insertPostFail"/> ! '); // transalte
 			}
 		}
 		var request_file_count = "${request_file_count}";
 		var insert_file_result = "${insert_file_result}";
 		if( request_file_count != null && request_file_count != "" && insert_file_result != null && insert_file_result != "" && !history.state ){
 			if( parseInt(request_file_count) != parseInt(insert_file_result) ){
-				alert('Insert Image file Fail ! ( ' + insert_file_result + ' / ' + request_file_count + ' )');
+				alert('<spring:message code="index.insertFileFail"/> ! ( ' + insert_file_result + ' / ' + request_file_count + ' )'); // transalte
 			}
 		}
 		var delete_result = "${delete_result}";
 		var delete_pno = "${delete_pno}";
 		if( delete_result != null && delete_result != "" && delete_pno != null && delete_pno != "" && !history.state ){
 			if( parseInt(delete_result) == 1 ) {
-				alert('Delete Post Success ! ( ' + delete_pno + ' 번 게시글 )');
+				alert('<spring:message code="index.deletePostSuccess"/> ! ( ' + delete_pno + ' <spring:message code="index.pno"/> )'); // transalte
 			}else {
-				alert('Delete Post Fail ! ( ' + delete_pno + ' 번 게시글 )');
+				alert('<spring:message code="index.deletePostFail"/> ! ( ' + delete_pno + ' <spring:message code="index.pno"/> )'); // transalte
 			}
 		}
 		var update_result = "${update_result}";
 		var update_pno = "${update_pno}";
 		if( update_result != null && update_result != "" && update_pno != null && update_pno != "" && !history.state ){
 			if( parseInt(update_result) == 1 ) {
-				alert('Update Post Success ! ( ' + update_pno + ' 번 게시글 )');
+				alert('<spring:message code="index.updatePostSuccess"/> ! ( ' + update_pno + ' <spring:message code="index.pno"/> )'); // transalte
 			}else {
-				alert('Update Post Fail ! ( ' + update_pno + ' 번 게시글 )');
+				alert('<spring:message code="index.updatePostFail"/> ! ( ' + update_pno + ' <spring:message code="index.pno"/> )'); // transalte
 			}
 		}
 		history.replaceState({},null,null);
@@ -543,7 +480,7 @@
 				url:"/post/like_delete?email=" + heart_user + "&pno=" + heart_pno,
 				dataType:"json",
 				success:function(data){
-					$("#heart-count" + heart_pno).html(data + " 명이 좋아합니다");
+					$("#heart-count" + heart_pno).html(data + " <spring:message code='index.likeCount'/>"); // transalte
 				}, error:function(){
 					alert("Error - Like Delete");
 				}
@@ -557,7 +494,7 @@
 				url:"/post/like_add?email=" + heart_user + "&pno=" + heart_pno,
 				dataType:"json",
 				success:function(data){
-					$("#heart-count" + heart_pno).html(data + " 명이 좋아합니다");
+					$("#heart-count" + heart_pno).html(data + " <spring:message code='index.likeCount'/>"); // transalte
 				}, error:function(){
 					alert("Error - Like Add");
 				}
@@ -575,7 +512,7 @@
 			dataType:"json",
 			success:function(like_list){
 				if( like_list[0] == null ) {
-					let luld = '<p class="mt-5 text-center fs-5">まだ、誰もハートを押していません。</p>';
+					let luld = '<p class="mt-5 text-center fs-5"><spring:message code="index.noHeart"/></p>'; // transalte
 					$("#like-user-list-detail").append(luld);
 				}else {
 					$.each(like_list, function(luld_i, likeVO){
@@ -584,7 +521,7 @@
 								'<div class="top post-header ms-5">' + 
 									'<div class="user_container" onclick="location.href=\'/mypage/profile/' + likeVO.nickname + '\'">' + 
 										'<div class="profile_img">' + 
-											'<img src="/hello_img/member/' + likeVO.profile + '" alt="프로필이미지">' + 
+											'<img src="/hello_img/member/' + likeVO.profile + '" alt="profile">' + 
 										'</div>' + 
 										'<div class="profile_flag">';
 									if( likeVO.language == 'J' ) {
@@ -598,7 +535,7 @@
 										'</div>' + 
 										'<div class="user_name">' + 
 											'<div class="nick_name m_text">' + likeVO.nickname + '</div>' + 
-											'<div class="mt-1 s_text">東京, 日本</div>' + 
+// 											'<div class="mt-1 s_text">東京, 日本</div>' + // transalte
 										'</div>' + 
 									'</div>' + 
 								'</div>' + 
@@ -609,10 +546,10 @@
 									}else {
 										if( likeVO.friendYN == 'Y' ) {
 											luld += 
-									'<button type="button" class="btn btn-outline-secondary">친구 삭제</button>';
+									'<button type="button" class="btn btn-outline-secondary"><spring:message code="index.removeFriend"/></button>'; // transalte
 										}else {
 											luld += 
-									'<button type="button" class="btn btn-outline-info">친구 추가</button>';
+									'<button type="button" class="btn btn-outline-info"><spring:message code="index.addFriend"/></button>'; // transalte
 										}	
 									}
 									luld += 
@@ -733,12 +670,12 @@
 				// Comment List
  				$(".all-comment").append('<p class="fs-5 mb-3"><spring:message code="postmodal.commentList"/></p>');
 				if( postVO.reply_list[0] == null ) {
-					$(".all-comment").append('<p class="fs-6 text-center mt-5">아직 댓글이 없습니다.</p>');
+					$(".all-comment").append('<p class="fs-6 text-center mt-5"><spring:message code="postmodal.noComment"/></p>');  // transalte
 				}else {
 					$.each(postVO.reply_list, function(i, replyVO){
 		 				$(".all-comment").append('<div class="comment-profile d-flex" id="comment-profile' + replyVO.repno + '"></div>' + 
 	    				 						 '<div class="comment-content" id="comment-content' + replyVO.repno + '"></div>');
-						var all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="프로필사진" onclick="location.href=\'/mypage/profile/' + replyVO.nickname + '\'">' + 
+						var all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + replyVO.profile + '" alt="profile" onclick="location.href=\'/mypage/profile/' + replyVO.nickname + '\'">' + 
 						  						  '<div class="comment-profile-flag">';
 						if( replyVO.language == 'J' ) {
 							all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
@@ -793,20 +730,20 @@
 						all_comment_profile += '</div>' + 
 									    	   '<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + replyVO.nickname + '\'">' + replyVO.nickname + '</div>' + 
 									    	   '<div class="comment-time align-self-center mx-5">' + acpt + '</div>' + 
-									    	   '<div class="comment-cocoment align-self-center" data-repno="' + replyVO.repno + '">답글 달기</div>';
+									    	   '<div class="comment-cocoment align-self-center" data-repno="' + replyVO.repno + '"><spring:message code="postModal.coComment"/></div>'; // transalte
 			    	    $(".all-comment #comment-profile"+replyVO.repno).append(all_comment_profile);
 						$(".all-comment #comment-content"+replyVO.repno).html(replyVO.rcontent);
 						// Open&Close coComent script use id="collapse + replyVO.repno"
   	 					if( replyVO.cocomment_list[0] != null ){
 							$(".all-comment #comment-content"+replyVO.repno).append('<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#collapse' + replyVO.repno + '" aria-expanded="false">' + 
 																	      				'<i class="bi bi-arrow-return-right fs-5"></i>' + 
-																	      				'<span class="cocoment-open ms-3" data-oc="c">펼치기</span>' + 
+																	      				'<span class="cocoment-open ms-3" data-oc="c"><spring:message code="postModal.cocoOpen"/></span>' + 
 																      				'</div>');
 							$(".all-comment #comment-content"+replyVO.repno).append('<div class="collapse" id="collapse' + replyVO.repno + '"></div>');
  							$.each(replyVO.cocomment_list, function(k, cocommentVO) {
 								var all_comment_collapse = '<div class="comment-depth">' + 
 													         '<div class="comment-profile d-flex">' + 
-													           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="프로필사진" onclick="location.href=\'/mypage/profile/' + cocommentVO.nickname + '\'">' + 
+													           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + cocommentVO.profile + '" alt="profile" onclick="location.href=\'/mypage/profile/' + cocommentVO.nickname + '\'">' + 
 													           '<div class="comment-profile-flag">';
 				                if( cocommentVO.language == 'J' ){  
 				                	all_comment_collapse += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
@@ -942,10 +879,10 @@
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 		if( rcontent == "" ) {
-			alert('댓글 내용을 작성해주세요.');
+			alert('<spring:message code="index.pleaseComment"/>'); //translate
 		}else {
 			// AJAX action
-			if( !confirm('댓글을 작성하시겠습니까?') ) {
+			if( !confirm('<spring:message code="index.confirmComment"/>') ) { //translate
 				$("#commentInsert").val(""); 
 				return ; 
 			}
@@ -1008,13 +945,13 @@
 						if( $("#collapse" + data.refno).length == 0 ) {
 							$(".all-comment #comment-content"+data.refno).append('<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#collapse' + data.refno + '" aria-expanded="false">' + 
 																	      			 '<i class="bi bi-arrow-return-right fs-5"></i>' + 
-																	      		     '<span class="cocoment-open ms-3" data-oc="c">펼치기</span>' + 
+																	      		     '<span class="cocoment-open ms-3" data-oc="c"><spring:message code="postModal.cocoOpen"/></span>' + 
 																      			 '</div>');
 							$(".all-comment #comment-content"+data.refno).append('<div class="collapse show" id="collapse' + data.refno + '">');
 						}
 						var dAllComCol = '<div class="comment-depth">' + 
 								         '<div class="comment-profile d-flex">' + 
-								           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+								           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="profile">' + 
 								           '<div class="comment-profile-flag">';
 						if( data.language == 'J' ){  
 							dAllComCol += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
@@ -1033,10 +970,10 @@
 						}else {
 							// if depth : 1
 							$(".all-comment > p").remove();
-	 		 				$(".all-comment").prepend('<p class="fs-5 mb-3">댓글 리스트</p>' + 
+	 		 				$(".all-comment").prepend('<p class="fs-5 mb-3"><spring:message code="postmodal.commentList"/></p>' + 
 	 		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
 			 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
-	 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="프로필사진">' + 
+	 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="profile">' + 
 							  								 '<div class="comment-profile-flag">';
 							if( data.language == 'J' ) {
 								insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
@@ -1091,7 +1028,7 @@
 								
 							}			
 							insert_all_comment_profile += '<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
-					    	  							  '<div class="comment-cocoment align-self-center" data-repno="' + data.repno + '">답글 달기</div>';
+					    	  							  '<div class="comment-cocoment align-self-center" data-repno="' + data.repno + '"><spring:message code="postModal.coComment"/></div>'; //translate
 							$(".all-comment #comment-profile"+data.repno).append(insert_all_comment_profile);
 							$(".all-comment #comment-content"+data.repno).html(data.rcontent);
 						}
@@ -1110,10 +1047,10 @@
 	$(document).on("click",".cocoment-open",function() {
 		if( $(this).data("oc") == 'c' ){
 			$(this).data("oc", "o")
-			$(this).html("접기");
+			$(this).html('<spring:message code="postModal.cocoClose"/>');
 		}else {
 			$(this).data("oc", "c")
-			$(this).html("펼치기");
+			$(this).html('<spring:message code="postModal.cocoOpen"/>');
 		}
 	})
 
@@ -1121,7 +1058,7 @@
 	$(document).on("click",".updateLink",function() {
 		var updatePno = $(this).data("pno");
 		var updateUser = '${username}';
-		if( confirm(updatePno + " 번 게시물을 수정하시겠습니까?") ) {
+		if( confirm(updatePno + "<spring:message code='index.confirmUpdate'/>") ) { //translate
 			location.href = '/post/post_update?pno=' + updatePno + '&email=' + updateUser;
 		}
 	})
@@ -1129,7 +1066,7 @@
 	$(document).on("click",".deleteLink",function() {
 		var deletePno = $(this).data("pno");
 		var deleteUser = '${username}';
-		if( confirm(deletePno + " 번 게시물을 삭제하시겠습니까?") ) {
+		if( confirm(deletePno + "<spring:message code='index.confirmDelete'/>") ) { //translate
 			location.href = '/post/post_delete?pno=' + deletePno + '&email=' + deleteUser;
 		}
 	})
@@ -1159,7 +1096,7 @@
 			success:function(post_list){
 				var contain = 'n';
 				if( post_list[0] == null ) {
-				    $("#post-box").append('<div class="text-center fs-3 my-5">No post ...</div>');
+				    $("#post-box").append('<div class="text-center fs-3 my-5"><spring:message code="index.noPost"/></div>'); // transalte
 				    $("#msg-loading").css("display", "none");
 					console.log('No Post... 생성 완료');
 				}else{
@@ -1170,7 +1107,7 @@
 		'<header class="top post-header">' + 
 			'<div class="user_container" onclick="location.href=\'/mypage/profile/' + postVO.nickname + '\'">' + 
 				'<div class="profile_img">' + 
-					'<img src="/hello_img/member/' + postVO.profile + '" alt="프로필이미지">' + 
+					'<img src="/hello_img/member/' + postVO.profile + '" alt="profile">' + 
 				'</div>' + 
 				'<div class="profile_flag">';
 						if ( postVO.language == 'J' ) {
@@ -1182,16 +1119,16 @@
 				'</div>' + 
 				'<div class="user_name">' + 
 					'<div class="nick_name m_text">' + postVO.nickname + '</div>' + 
-					'<div class="mt-1 s_text">東京, 日本</div>' + 
+// 					'<div class="mt-1 s_text">東京, 日本</div>' + // transalte
 				'</div>' + 
 			'</div>'; 
 						if ( postVO.email == '${username}' ) {
 							nextArticle += 
 			'<div class="updateDeleteDiv">' + 
 				'<span class="updateDeleteContent">' + 
-					'<span class="updateLink" data-pno="' + postVO.pno + '">게시물 수정</span>' + 
+					'<span class="updateLink" data-pno="' + postVO.pno + '"><spring:message code="index.postUpdate"/></span>' + 
 					' | ' +  
-					'<span class="deleteLink" data-pno="' + postVO.pno + '">게시물 삭제</span>' + 
+					'<span class="deleteLink" data-pno="' + postVO.pno + '"><spring:message code="index.postDelete"/></span>' + 
 				'</span>' + 
 			'</div>';
 						}
@@ -1248,7 +1185,7 @@
 						contain = 'n';
 						nextArticle += 			
 				'<span class="heart-count on_cursor" id="heart-count' + postVO.pno + '" data-pno="' + postVO.pno + '">' + 
-					postVO.like_cnt + ' 명이 좋아합니다' + 
+					postVO.like_cnt + ' <spring:message code="index.likeCount"/>' + // transalte
 				'</span>' + 
 			'</div>' + 
 			'<div class="d-flex align-items-center">' + 

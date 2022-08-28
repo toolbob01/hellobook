@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.hellobook.domain.ChatVO;
-
 import org.apache.ibatis.annotations.Param;
 
 import com.hellobook.domain.MemberVO;
@@ -38,11 +37,5 @@ public interface MemberService {
 	
 	public List<MemberVO> selectAllMember();
 
-	//test용 스크립트 // 나중에 지울 것
-	public int[] getRno(String email);
-	public Integer getNewMno(int rno);
-	public ChatVO getNewChat(String email, int rno, Integer mno);
-
 	public void changePwd(MemberVO mvo);
-
 }

@@ -1,5 +1,6 @@
 package com.hellobook.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +9,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hellobook.utility.PageVO;
+import com.hellobook.utility.SessionConfig;
 import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostLikeVO;
 import com.hellobook.domain.PostVO;
@@ -115,6 +118,48 @@ public class HomeController {
 		}
 
 		return post_list;
+	}
+	
+	@GetMapping("/changelang")
+	public @ResponseBody String changeLang() {
+		return "success";
+	}
+	
+	@GetMapping("/loginUser")
+	public String loginUser(Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("username");
+		
+		//서버 세션에 로그인 중인 사람을 담은 list
+		List<String> loginUsers = SessionConfig.loginUserCheck(email);
+		model.addAttribute("loginUsers",loginUsers);
+		
+		//친구를 담는 리스트가 있어야 합니다.
+		List<String> friend = new ArrayList<String>();
+		friend.add("kumosun@naver.com");
+		friend.add("test11@test.com");
+		friend.add("test22@test.com");
+		friend.add("test33@test.com");
+		model.addAttribute("friend",friend);
+		
+		/*
+		 * <c:forEach items="${friend}" var="friend">
+				친구 ${friend } 님은 현재 <br>
+				<c:choose>
+					<c:when test="${fn:contains(loginUsers,friend)}">
+						로그인 중입니다. <br>
+					</c:when>
+					<c:otherwise>
+						로그인 중이 아닙니다.<br>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			붙여 넣기 사용
+		 * 
+		 */
+		
+		return "loginuser";
 	}
 
 }
