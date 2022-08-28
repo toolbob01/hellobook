@@ -131,7 +131,6 @@ body {
 
 
 <script>
-<<<<<<< HEAD
 	var em = '<%=(String)session.getAttribute("username")%>';
 	
 	function changLang(lang){
@@ -147,9 +146,6 @@ body {
 
 		location.replace(link);
 	}
-	
-</script>
-=======
 
 	var csrfHeanderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
@@ -176,7 +172,6 @@ body {
 			location.reload();
 		})
 	})
->>>>>>> eccc0b01da6716b656b8552b07231dd4edaff13e
 
 	function logoutFN(){
 		$("#logoutFN").submit();
