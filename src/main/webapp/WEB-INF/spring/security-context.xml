@@ -15,17 +15,8 @@
 	<security:intercept-url pattern="/post/post_detail/**" access="permitAll"/>
 	<security:intercept-url pattern="/translate/**" access="permitAll"/>
 	<security:intercept-url pattern="/resources/**" access="permitAll"/>
-<<<<<<< HEAD
 	<security:intercept-url pattern="/changelang" access="permitAll"/>
 	<security:intercept-url pattern="/hello_img/**" access="permitAll"/>
-=======
-
-	<security:intercept-url pattern="/changelang" access="permitAll"/>
-	
-
-	<security:intercept-url pattern="/hello_img/**" access="permitAll"/>
-
->>>>>>> debbb87fbbd47e9779ec24e6ee98e325c1840a8b
 	<security:intercept-url pattern="/**" access="isAuthenticated()"/>
 	<security:form-login login-page="/member/login" authentication-success-handler-ref="customLoginSuccess" username-parameter="email"/>
 	<security:logout logout-url="/member/logout" logout-success-url="/member/login" invalidate-session="true"/>
