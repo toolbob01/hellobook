@@ -277,3 +277,15 @@ button:focus {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.chatMessage {
+	
+}
+
+.chatMessage:hover {
+	opacity: 0.5;
+}
+
+.trslbtns {
+	display: none;
+}
