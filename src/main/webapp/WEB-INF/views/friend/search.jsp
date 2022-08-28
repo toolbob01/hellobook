@@ -13,9 +13,14 @@
     />
     <link rel="stylesheet" href="/resources/css/friendfind.css" />
     <title></title>
+ 
 
   </head>
   <body class="body1">
+  
+  
+  
+  
     <header class="header">
       <div class="header_header-column">
         <h1>친구찾기</h1>
@@ -46,26 +51,29 @@
         </ul>
       </header>
       <div class="container">
-      <c:forEach var="find" items="${friendfind}">
+      <h5 class="find_title">추천 친구</h5>
       <ul class="find_recommended">
-        <h5 class="find_title">추천 친구</h5>
+       
+         <c:forEach var="find" items="${friendfind}">
         <li class="find_friend friend ">
           <img src="/resources/imgs/me.png">
            <div class="profile">
                 <p>${find.nickname}</p>
                 <p>${find.intro}</p>
           </div>
-          <form action="/friend/list" method="get">
+          <form action="/friend/request" method="get">
           <div class="friend_column">
             <span class="friend_add-btn">
-            <button type="submit" class="button"><i class="fas fa-user-plus"></i></button>
-            <input type="hidden" name="request" value="${find.nickname}">
+            <button type="submit" class="button" ><i class="fas fa-user-plus"></i></button>
+            <input type="hidden" name="request" value="${find.email}">
+            
             </span>
           </div>
           </form>
         </li>
+         </c:forEach>
       </ul>
-      </c:forEach>
+     
       </div>
     </main>
   </body>

@@ -37,15 +37,6 @@ body {
 }
 </style>
 
-<script>
-	var csrfHeanderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
-
-	$(document).ajaxSend(function(e, xhr, options) {
-		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
-	});
-</script>
-
 <title>Hello Book</title>
 </head>
 <body>
@@ -129,14 +120,6 @@ body {
     
 </header>
 
-<script>
-	var csrfHeanderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
-
-	$(document).ajaxSend(function(e, xhr, options) {
-		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
-	});
-</script>
 
 <style>
 #changeLang {
@@ -148,15 +131,27 @@ body {
 
 
 <script>
+<<<<<<< HEAD
 
+=======
+	
+var csrfHeanderName = "${_csrf.headerName}";
+var csrfTokenValue = "${_csrf.token}";
+
+$(document).ajaxSend(function(e, xhr, options) {
+	xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
+});
+	
+>>>>>>> debbb87fbbd47e9779ec24e6ee98e325c1840a8b
 	function changeLang(lang,callback){
 		$.ajax({
 			type : "get",
 			url : "/changelang?lang=" + lang,
 			success : function(){
-				callback()
+				callback();
 			},error: function(){
 			}
+<<<<<<< HEAD
 		})
 
 <%-- 	var em = '<%=(String)session.getAttribute("username")%>'; --%>
@@ -173,6 +168,11 @@ body {
 
 // 		location.replace(link);
 // 	}
+=======
+		});
+	}
+
+>>>>>>> debbb87fbbd47e9779ec24e6ee98e325c1840a8b
 	
 	$('#langController').on('change',function(){
 		var lang = $(this).val();
@@ -181,9 +181,7 @@ body {
 		})
 		
 	})
-</script>
 
-<script>
 	function logoutFN(){
 		$("#logoutFN").submit();
 		console.log('Logout Success !!!');
