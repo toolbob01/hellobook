@@ -984,6 +984,10 @@ body{
 	cursor: pointer;
 }
 
+.side_box >article > div.scroll_inner > div.thumb_user > div.detail > div.id{
+	text-align: left;
+}
+
 .thumb_user {
 	display: flex;
 	align-itmes: center;

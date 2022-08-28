@@ -9,7 +9,7 @@ body {
 }
 
 .input-form {
-	max-width: 680px;
+	max-width: 480px;
 	margin-top: 80px;
 	padding: 32px;
 	background: #fff;
@@ -82,6 +82,23 @@ body {
 	
 	#pw_input_group{
 		margin-bottom: 25px;
+	}
+	
+	#sexCheckDiv{
+		display: flex;
+	    justify-content: flex-start;
+	    margin-left: 0px;
+	    margin-top: 5px;
+	}
+	
+	#hobbyCheckBox{
+		display: flex;
+	    justify-content: space-around;
+	}
+	
+	.form-check-inline{
+		margin-top: 5px;
+    	margin-bottom: 5px;
 	}
 
 </style>
@@ -281,7 +298,7 @@ nickname.on("blur",function(){
 					nicknameNotice.css('display','flex')
 				} else {
 					nicknameNotice.html('<spring:message code="setting.editProfile.checkNickname5"/>');
-					nicknameNotice.css('display','flex')
+					nicknameNotice.css('display','flex');
 					nickname.focus();
 					return
 				}
