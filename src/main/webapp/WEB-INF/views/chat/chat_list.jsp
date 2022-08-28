@@ -177,6 +177,7 @@
          $(".inbox_chat").css("height", 550 + obj.scrollHeight);
       }
       
+
       var who = '${who}';
       console.log(" who : " + who);
       let firstChat = who != '' ? $("#who" + who) : $(".inbox_chat").children("div").first();
@@ -186,6 +187,7 @@
 //          let firstChat = $(".inbox_chat").children("div").first();
 //          let chatRoom = $(".msg_history");
 <%--           let userId = '<%=(String)session.getAttribute("username")%>';; --%>
+
      
       //enter 시 submit
       //shift+enter시 줄바꿈
@@ -225,10 +227,18 @@
          console.log(data.length);
         for (var i = 0; i<data.length; i++) {
            if(data[i].email == userId){
-               chatMsg += '<div class="outgoing_msg"><div class="sent_msg"><p>'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span></div></div>';
+               chatMsg += '<div class="outgoing_msg"><div class="sent_msg"><p class="chatMessage">'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span>';
+               chatMsg += '<div class="trslbtns"><button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>';
+               chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>';
+               chatMsg += '<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>';
+               chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button></div></div></div>';
            }else{
               chatMsg += '<div class="incoming_msg"></div>';
-              chatMsg += '<div class="received_msg"><div class="received_withd_msg"><p>'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span></div></div></div>';
+              chatMsg += '<div class="received_msg"><div class="received_withd_msg"><p class="chatMessage">'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span>';
+              chatMsg += '<div class="trslbtns"><button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>';
+              chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>';
+              chatMsg += '<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>';
+              chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button></div></div></div></div>';
            } 
         }
 
@@ -371,8 +381,12 @@
          if(sessionId == cur_session) {
             var str = '<div class="outgoing_msg">';
             str += '<div class="sent_msg">';
-            str += '<p>'+message+'</p>';
-            str += '<span class="time_date">'+today+'</span></div></div>';
+            str += '<p class="chatMessage">'+message+'</p>';
+            str += '<span class="time_date">'+today+'</span>';
+            str += '<div class="trslbtns"><button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>';
+			str += '<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>';
+			str += '<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>';
+			str += '<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button></div></div></div>';
             $('.msg_history').append(str);
          }
          else {
@@ -381,8 +395,12 @@
                 str += '<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>';
                str += '<div class="received_msg">';
                str += '<div class="received_withd_msg">';
-               str += '<p>'+message+'</p>';
-               str += '<span class="time_date">'+today+'</span></div></div></div>';
+               str += '<p class="chatMessage">'+message+'</p>';
+               str += '<span class="time_date">'+today+'</span>';
+               str += '<div class="trslbtns"><button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>';
+   			str += '<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>';
+   			str += '<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>';
+   			str += '<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button></div></div></div></div>';
                $('.msg_history').append(str);
          }
          
@@ -392,7 +410,16 @@
          $('.msg_history').append("<spring:message code='chatList.disconnected'/>");
       }
       
+
+    	
+	$('.chatMessage').on("click",function() {
+		
+	});
+     
+      
+      
       
    </script>
 
 <%@ include file="../footer.jsp" %>
+transBox += '</div>';

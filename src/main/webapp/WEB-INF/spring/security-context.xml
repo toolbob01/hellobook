@@ -16,7 +16,10 @@
 	<security:intercept-url pattern="/translate/**" access="permitAll"/>
 	<security:intercept-url pattern="/resources/**" access="permitAll"/>
 	<security:intercept-url pattern="/changelang" access="permitAll"/>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> eccc0b01da6716b656b8552b07231dd4edaff13e
 	<security:intercept-url pattern="/hello_img/**" access="permitAll"/>
 	<security:intercept-url pattern="/**" access="isAuthenticated()"/>
 	<security:form-login login-page="/member/login" authentication-success-handler-ref="customLoginSuccess" username-parameter="email"/>

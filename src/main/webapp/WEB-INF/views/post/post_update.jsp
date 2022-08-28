@@ -195,7 +195,6 @@ function addDel(a){
 		$("#carouselExampleIndicators").remove();
 	}
 	
-	/* if carousel-item.length == 0 캐러셀 와꾸 삭제 ************************************************************************************************/
 	$(".uploadfile").each(function(index, upload_item){ // input -> id : uploadfile 0 ~ 4
 		$(upload_item).attr('id', 'uploadfile' + index);
 	})
