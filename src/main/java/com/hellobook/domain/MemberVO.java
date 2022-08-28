@@ -20,11 +20,14 @@ public class MemberVO {
 	private List<AuthVO> authList;
 	
 	// Friend
+	private String insert;
 	private int frno;
+	private String remail;
 	private String femail;
 	
 	//검색설정
 	
+	private String userid;
 	private String keyword;
 	
 	private String old_password;
