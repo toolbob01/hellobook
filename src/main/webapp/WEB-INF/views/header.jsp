@@ -148,7 +148,7 @@ body {
 
 
 <script>
-<<<<<<< HEAD
+
 	function changeLang(lang,callback){
 		$.ajax({
 			type : "get",
@@ -158,23 +158,21 @@ body {
 			},error: function(){
 			}
 		})
-=======
-	var em = '<%=(String)session.getAttribute("username")%>';
-	function changLang(lang){
-		var protocol = window.location.protocol;
-		var host = window.location.host;
-		var path = window.location.pathname;
-		var link = path+"?lang="+lang;
-		if(path=="/chat/chat_list") {
-			link = path+"?email="+em+"&lang="+lang;
-		}
+
+<%-- 	var em = '<%=(String)session.getAttribute("username")%>'; --%>
+// 	function changLang(lang){
+// 		var protocol = window.location.protocol;
+// 		var host = window.location.host;
+// 		var path = window.location.pathname;
+// 		var link = path+"?lang="+lang;
+// 		if(path=="/chat/chat_list") {
+// 			link = path+"?email="+em+"&lang="+lang;
+// 		}
 		
-		console.log(link);
+// 		console.log(link);
 
-		location.replace(link);
-
->>>>>>> 38ae114a9203af73883683eb8b6f85f3bbd20d38
-	}
+// 		location.replace(link);
+// 	}
 	
 	$('#langController').on('change',function(){
 		var lang = $(this).val();

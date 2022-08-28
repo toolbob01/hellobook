@@ -164,7 +164,7 @@
 
 					  <c:choose>
 						<c:when test="${friend_list[0] != null}">
-						<c:forEach var="friendVO" items="${friend_list}">
+						<c:forEach var="friendVO" items="${friend_list}" begin="0" end="4">
 							<div class="scroll_inner">
 								<div class="thumb_user">
 									<div class="profile_thumb" onclick="location.href='/mypage/profile/${friendVO.nickname}'">
@@ -330,20 +330,6 @@
 											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
 											<div class="comment-profile-flag">
 												<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>
-											</div>
-											<div class="comment-name on_cursor align-self-center">Hanulso</div>
-											<div class="comment-time align-self-center mx-5">17분전</div>
-										</div>
-										<div class="comment-content">
-											<span class="hashTag" onclick="location.href='#'">@JSHanulso</span>
-											장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
-										</div>
-									</div>
-									<div class="comment-depth">
-										<div class="comment-profile d-flex">
-											<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
-											<div class="comment-profile-flag">
-												<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>
 											</div>
 											<div class="comment-name on_cursor align-self-center">Hanulso</div>
 											<div class="comment-time align-self-center mx-5">17분전</div>
@@ -945,13 +931,13 @@
 						if( $("#collapse" + data.refno).length == 0 ) {
 							$(".all-comment #comment-content"+data.refno).append('<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#collapse' + data.refno + '" aria-expanded="false">' + 
 																	      			 '<i class="bi bi-arrow-return-right fs-5"></i>' + 
-																	      		     '<span class="cocoment-open ms-3" data-oc="c"><spring:message code="postModal.cocoOpen"/></span>' + 
+																	      		     '<span class="cocoment-open ms-3" data-oc="c"><spring:message code="postModal.cocoClose"/></span>' + 
 																      			 '</div>');
 							$(".all-comment #comment-content"+data.refno).append('<div class="collapse show" id="collapse' + data.refno + '">');
 						}
 						var dAllComCol = '<div class="comment-depth">' + 
 								         '<div class="comment-profile d-flex">' + 
-								           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="profile">' + 
+								           '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="profile" onclick="location.href=\'/mypage/profile/' + data.nickname + '\'">' + 
 								           '<div class="comment-profile-flag">';
 						if( data.language == 'J' ){  
 							dAllComCol += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
@@ -959,7 +945,7 @@
 							dAllComCol += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
 						}
 						dAllComCol += '</div>' + 
-										'<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>' + 
+										'<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + data.nickname + '\'">' + data.nickname + '</div>' + 
 										'<div class="comment-time align-self-center mx-5">' + accpt + '</div>' + 
 							          '</div>' + 
 							          '<div class="comment-content">' + 
@@ -973,7 +959,7 @@
 	 		 				$(".all-comment").prepend('<p class="fs-5 mb-3"><spring:message code="postmodal.commentList"/></p>' + 
 	 		 										 '<div class="comment-profile d-flex" id="comment-profile' + data.repno + '"></div>' + 
 			 						 				 '<div class="comment-content" id="comment-content' + data.repno + '"></div>');
-	 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="profile">' + 
+	 		 				var insert_all_comment_profile = '<img class="comment-profile-img on_cursor" src="/hello_img/member/' + data.profile + '" alt="profile" onclick="location.href=\'/mypage/profile/' + data.nickname + '\'">' + 
 							  								 '<div class="comment-profile-flag">';
 							if( data.language == 'J' ) {
 								insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/>';
@@ -981,7 +967,7 @@
 								insert_all_comment_profile += '<img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/>';
 							}
 							insert_all_comment_profile += '</div>' + 
-					    	  							  '<div class="comment-name on_cursor align-self-center">' + data.nickname + '</div>';
+					    	  							  '<div class="comment-name on_cursor align-self-center" onclick="location.href=\'/mypage/profile/' + data.nickname + '\'">' + data.nickname + '</div>';
 							var accpt = data.timer.slice(0, -1);
 							var accpt_1 = data.timer.slice(-1);
 							if(accpt_1 == 's') {
