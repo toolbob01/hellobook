@@ -116,7 +116,7 @@ body {
             </sec:authorize>
         </div>
 		<div id="changeLang">
-			<select class="form-control" id="langController" name="lang" style="width: auto;">
+			<select class="form-control" name="lang" id="langController" style="width: auto;" onchange="changLang(this.value)">
 			  <option value=""><spring:message code="header.setlanguage"/>
 			  <option value="en">English</option>
 			  <option value="ja">日本語</option>
@@ -148,18 +148,8 @@ body {
 
 
 <script>
-<<<<<<< HEAD
-	function changeLang(lang,callback){
-		$.ajax({
-			type : "get",
-			url : "/changelang?lang=" + lang,
-			success : function(){
-				callback()
-			},error: function(){
-			}
-		})
-=======
 	var em = '<%=(String)session.getAttribute("username")%>';
+	
 	function changLang(lang){
 		var protocol = window.location.protocol;
 		var host = window.location.host;
@@ -172,17 +162,8 @@ body {
 		console.log(link);
 
 		location.replace(link);
-
->>>>>>> 38ae114a9203af73883683eb8b6f85f3bbd20d38
 	}
 	
-	$('#langController').on('change',function(){
-		var lang = $(this).val();
-		changeLang(lang,function(){
-			location.reload();
-		})
-		
-	})
 </script>
 
 <script>

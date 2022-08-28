@@ -182,10 +182,27 @@
 									<div class="detail">
 										<div class="id" onclick="location.href='/mypage/profile/${friendVO.nickname}'">${friendVO.nickname}</div>
 										<div class="time">
-											<div class="online-circle"></div>
-											<span class="time-status">온라인</span>
-<!-- 											<div class="offline-circle"></div> -->
-<!-- 											<span class="time-status">1시간 전</span> -->
+											<c:choose>
+												<c:when test="${fn:contains(loginUsers,friendVO.email)}">
+													<div class="online-circle"></div>
+													<span class="time-status"><spring:message code="index.online"/></span>
+												</c:when>
+												<c:otherwise>
+													<div class="offline-circle"></div>
+													<c:choose>
+														<c:when test="${!fn:contains(logoutUsers,friendVO.email)}">
+															<span class="time-status"><spring:message code="index.lastAccessTime"/></span>
+														</c:when>
+														<c:otherwise>
+															<c:forEach items="${logoutUsers }" var="logoutUser">
+																<c:if test="${logoutUser.username eq friendVO.email }">
+																	<span class="time-status">${logoutUser.timer}</span>
+																</c:if>
+															</c:forEach>
+														</c:otherwise>
+													</c:choose>
+												</c:otherwise>
+											</c:choose>
 										</div>
 									</div>
 									
@@ -207,11 +224,10 @@
 					<article class="recommend">
 						<header class="reco_header">
 							<div><spring:message code="index.friendRecommend"/></div>
-<!-- 							<div class="more">모두 보기</div> -->
 							<div class="sprite_more_icon" data-name="more" onclick="location.href='#'"></div>
 						</header>
 
-						<div class="scroll_inner">
+						<!-- <div class="scroll_inner">
 							<div class="thumb_user">
 								<div class="profile_thumb">
 									<img class="profile_img_side" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
@@ -230,7 +246,64 @@
 									<i class="bi bi-plus-lg" onclick="location.href='#'"></i>
 								</div>
 							</div>
-						</div>
+						</div> -->
+						<c:choose>
+						<c:when test="${recommend_list[0] != null}">
+						<c:forEach var="recommendVO" items="${recommend_list}">
+							<div class="scroll_inner">
+								<div class="thumb_user">
+									<div class="profile_thumb" onclick="location.href='/mypage/profile/${recommendVO.nickname}'">
+										<img class="profile_img_side" src="/hello_img/member/${recommendVO.profile}" alt="프로필사진">
+										<c:choose>
+										  <c:when test="${recommendVO.language eq 'J'}">
+										    <div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/japan-circular.png"/></div>
+										  </c:when>
+										  <c:otherwise>
+										    <div class="profile_flag_side"><img src="https://img.icons8.com/color/22/000000/south-korea-circular.png"/></div>
+										  </c:otherwise>
+										</c:choose>
+									</div>
+	
+									<div class="detail">
+										<div class="id" onclick="location.href='/mypage/profile/${recommendVO.nickname}'">${recommendVO.nickname}</div>
+										<div class="time">
+											<c:choose>
+												<c:when test="${fn:contains(loginUsers,recommendVO.email)}">
+													<div class="online-circle"></div>
+													<span class="time-status"><spring:message code="index.online"/></span>
+												</c:when>
+												<c:otherwise>
+													<div class="offline-circle"></div>
+													<c:choose>
+														<c:when test="${!fn:contains(logoutUsers,recommendVO.email)}">
+															<span class="time-status"><spring:message code="index.lastAccessTime"/></span>
+														</c:when>
+														<c:otherwise>
+															<c:forEach items="${logoutUsers }" var="logoutUser">
+																<c:if test="${logoutUser.username eq recommendVO.email }">
+																	<span class="time-status">${logoutUser.timer}</span>
+																</c:if>
+															</c:forEach>
+														</c:otherwise>
+													</c:choose>
+												</c:otherwise>
+											</c:choose>
+										</div>
+									</div>
+									
+									<div class="msg-link">
+										<i class="bi bi-chat-dots" onclick="location.href='/chat/chat_list?email=${username}&who=${recommendVO.nickname}'"></i>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<div class="no_friend">
+								<p><spring:message code="index.noRecommed"/></p>
+							</div>
+						</c:otherwise>
+					  </c:choose>
 					</article>
 				</div> <!-- side_box -->
 			</div> <!-- col-md-3 -->

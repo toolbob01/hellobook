@@ -318,8 +318,4 @@ public class MemberController {
 		return nicknameCheck != 0? Integer.toString(nicknameCheck) : "0";
 	}
 	
-	@GetMapping("testPage")
-	public void testPage() {
-		
-	}
 }

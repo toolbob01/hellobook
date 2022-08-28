@@ -28,7 +28,7 @@ public interface MemberMapper {
 	
 	public List<MemberVO> selectFriends(String email);
 	
-	public List<MemberVO> friendRecommend();
+	public List<MemberVO> friendRecommend(String email);
 	
 	public void updateThumbnailByNickname(MemberVO mvo); //프로필 사진 수정
 	
