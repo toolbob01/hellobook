@@ -127,9 +127,13 @@
 		WHERE f.email = #{email}
 	</select>
 
-	<select id="friendRecommend">
-		SELECT * FROM ( SELECT * FROM member ORDER BY
-		dbms_random.value)
+	<select id="friendRecommend" resultType="com.hellobook.domain.MemberVO">
+		<![CDATA[
+			select * from member m 
+			where m.email not in
+			(select f.femail from friend f where f.email = #{email}) 
+			and m.email != #{email} and rownum <=5 order by dbms_random.value
+		]]>
 	</select>
 
 	<update id="updateThumbnailByNickname">

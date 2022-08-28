@@ -107,7 +107,7 @@ body {
             </sec:authorize>
         </div>
 		<div id="changeLang">
-			<select class="form-control" id="langController" name="lang" style="width: auto;">
+			<select class="form-control" name="lang" id="langController" style="width: auto;" onchange="changLang(this.value)">
 			  <option value=""><spring:message code="header.setlanguage"/>
 			  <option value="en">English</option>
 			  <option value="ja">日本語</option>
@@ -131,6 +131,25 @@ body {
 
 
 <script>
+<<<<<<< HEAD
+	var em = '<%=(String)session.getAttribute("username")%>';
+	
+	function changLang(lang){
+		var protocol = window.location.protocol;
+		var host = window.location.host;
+		var path = window.location.pathname;
+		var link = path+"?lang="+lang;
+		if(path=="/chat/chat_list") {
+			link = path+"?email="+em+"&lang="+lang;
+		}
+		
+		console.log(link);
+
+		location.replace(link);
+	}
+	
+</script>
+=======
 
 	var csrfHeanderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
@@ -157,6 +176,7 @@ body {
 			location.reload();
 		})
 	})
+>>>>>>> eccc0b01da6716b656b8552b07231dd4edaff13e
 
 	function logoutFN(){
 		$("#logoutFN").submit();

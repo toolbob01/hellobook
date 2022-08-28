@@ -1,6 +1,7 @@
 package com.hellobook.controller;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.LocaleResolver;
 
 import com.hellobook.utility.PageVO;
 import com.hellobook.utility.SessionConfig;
@@ -24,6 +26,7 @@ import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Criteria;
 import com.hellobook.utility.Time;
+import com.hellobook.utility.UserSessionVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -68,7 +71,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, Criteria cri, HttpServletRequest request) {
-		
 		int count = service.selectPostCount(cri);
 		List<PostVO> post_list = service.selectAllPost(cri);
 
@@ -90,9 +92,30 @@ public class HomeController {
 		model.addAttribute("pageVO" , new PageVO(cri, count));
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("username");
+		
 		List<MemberVO> friend_list = member_service.selectFriends(email); // Friend List
 		model.addAttribute("friend_list", friend_list);
 		
+		List<MemberVO> Recommend_list = member_service.selectRecommendFriends(email); //Recommend List
+		model.addAttribute("recommend_list", Recommend_list);
+		
+		//언어를 담는 locale// 기본은 ja
+		String locale = session.getAttribute("org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE") != null?
+				session.getAttribute("org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE").toString() : "ja";
+		
+		//서버 세션에 로그인 중인 사람을 담는 list
+		List<UserSessionVO> loginUsers = SessionConfig.loginUserCheck(email);
+		model.addAttribute("loginUsers",loginUsers);
+		
+		//로그아웃 한 유저를 담는 list
+		List<UserSessionVO> logoutUsers = SessionConfig.LogoutUserCheck();
+		if(logoutUsers != null) {
+			for(UserSessionVO logoutUser : logoutUsers) {
+				String timer = Time.calculateTime(logoutUser.getLastAccessTime(),locale);
+				logoutUser.setTimer(timer);
+			}
+		}
+		model.addAttribute("logoutUsers",logoutUsers);
 		return "index";
 	}
 
@@ -124,42 +147,4 @@ public class HomeController {
 	public @ResponseBody String changeLang() {
 		return "success";
 	}
-	
-	@GetMapping("/loginUser")
-	public String loginUser(Model model, HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		String email = (String) session.getAttribute("username");
-		
-		//서버 세션에 로그인 중인 사람을 담은 list
-		List<String> loginUsers = SessionConfig.loginUserCheck(email);
-		model.addAttribute("loginUsers",loginUsers);
-		
-		//친구를 담는 리스트가 있어야 합니다.
-		List<String> friend = new ArrayList<String>();
-		friend.add("kumosun@naver.com");
-		friend.add("test11@test.com");
-		friend.add("test22@test.com");
-		friend.add("test33@test.com");
-		model.addAttribute("friend",friend);
-		
-		/*
-		 * <c:forEach items="${friend}" var="friend">
-				친구 ${friend } 님은 현재 <br>
-				<c:choose>
-					<c:when test="${fn:contains(loginUsers,friend)}">
-						로그인 중입니다. <br>
-					</c:when>
-					<c:otherwise>
-						로그인 중이 아닙니다.<br>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			붙여 넣기 사용
-		 * 
-		 */
-		
-		return "loginuser";
-	}
-
 }
