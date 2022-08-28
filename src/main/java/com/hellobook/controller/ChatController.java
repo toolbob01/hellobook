@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hellobook.domain.ChatMessageVO;
 import com.hellobook.domain.ChatVO;
@@ -25,56 +26,53 @@ import com.hellobook.utility.Message;
 @Controller
 @RequestMapping("/chat/*")
 public class ChatController {
-	
+
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private ChatService chatService;
-	
+
 	@PreAuthorize("isAuthenticated() and (#email == principal.username)")
 	@GetMapping("chat_list")
 	public String chatList(String email, Model model) {
-		
+
 		List<MemberVO> mvoList = memberService.selectAllMember();
 		List<ChatVO> cvoList = chatService.chatRoomList(email);
-		
 
-		
 		model.addAttribute("mvoList", mvoList);
 		model.addAttribute("cvoList", cvoList);
-		
 		return "/chat/chat_list";
 	}
-	
+
 	@PostMapping("createChatRoom")
 	public ModelAndView createChatRoom(@Param("email") String email, @Param("femail") String femail, ModelAndView mav) {
 		Integer existChatRoom = chatService.existChatRoom(email, femail);
-		if(existChatRoom != null) {
-			mav.addObject("data", new Message("existChatRoomTrue", "/chat/chat_list?email="+email));
+		if (existChatRoom != null) {
+			mav.addObject("data", new Message("existChatRoomTrue", "/chat/chat_list?email=" + email));
 			mav.setViewName("Message");
-		}else {
+		} else {
 			chatService.createChatRoom(email, femail);
-			mav.addObject("data", new Message("existChatRoomFalse", "/chat/chat_list?email="+email));
+			mav.addObject("data", new Message("existChatRoomFalse", "/chat/chat_list?email=" + email));
 			mav.setViewName("Message");
 		}
 		return mav;
 	}
-	
+
 	@PostMapping("sendMessage")
 	public @ResponseBody int sendMessage(@RequestBody ChatMessageVO cvo) {
 		System.out.println(cvo);
 
 		int result = chatService.sendMessage(cvo);
-		
+
 		return result;
-		
+
 	}
-	
+
 	@GetMapping("messageList")
 	public @ResponseBody List<ChatMessageVO> messageList(Integer rno) {
 		List<ChatMessageVO> chatMessageVO = chatService.messageList(rno);
 		System.out.println(chatMessageVO);
-		return chatMessageVO==null?null:chatMessageVO;
+		return chatMessageVO == null ? null : chatMessageVO;
 	}
 }

@@ -177,15 +177,17 @@
          $(".inbox_chat").css("height", 550 + obj.scrollHeight);
       }
       
-      var who = 'pjh';
-      who != null && who != ''
+      		<%-- var who = '${who}';
+			if($("#who" + who).length==0) {
+				alert('만들어라~');
+			}
           let firstChat = who != '' ? $("#who" + who) : $(".inbox_chat").children("div").first();
           let chatRoom = $(".msg_history");
-          let userId = '<%=(String)session.getAttribute("username")%>';;
+          let userId = '<%=(String)session.getAttribute("username")%>'; --%>
 
-//          let firstChat = $(".inbox_chat").children("div").first();
-//          let chatRoom = $(".msg_history");
-<%--           let userId = '<%=(String)session.getAttribute("username")%>';; --%>
+		let firstChat = $(".inbox_chat").children("div").first();
+		let chatRoom = $(".msg_history");
+		let userId = '<%=(String)session.getAttribute("username")%>';
      
       //enter 시 submit
       //shift+enter시 줄바꿈
