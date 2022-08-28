@@ -193,6 +193,15 @@ hr:not([size]) {
     width: 100%;
     height: 1px;
 }
+
+input[type='date']::before {
+  content: attr(data-placeholder);
+  width: 100%;
+}
+input[type='date']:focus::before, input[type='date']:valid::before {
+  display: none;
+}
+
 </style>
 </head>
 <div class="container register">
@@ -239,7 +248,7 @@ hr:not([size]) {
 			</div>
 			<div class="input_div">
 				<label for="birth"><spring:message code="join.birth"/></label>
-				<input type="date" class="input_register" name="birth" id="birth" min="1900-01-01" >
+				<input type="date" class="input_register" name="birth" id="birth" min="1900-01-01" data-placeholder="YYYY-MM-DD" required>
 				<div class="notice-bubble" id="birth-notice"></div>
 			</div>
 			<div class="input_div" id="sex_input_div">
