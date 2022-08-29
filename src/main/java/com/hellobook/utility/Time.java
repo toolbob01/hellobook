@@ -43,7 +43,6 @@ public class Time {
 		long regTime = date.getTime();
 		long diffTime = (curTime - regTime) / 1000;
 		String msg = null;
-		System.out.println(locale);
 		if(locale.equals("en")) {
 			if (diffTime < TIME_MAXIMUM.SEC) {
 				// sec
