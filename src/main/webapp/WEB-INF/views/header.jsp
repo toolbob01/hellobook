@@ -131,8 +131,7 @@ body {
 
 
 <script>
-<<<<<<< HEAD
-=======
+
 	var em = '<%=(String)session.getAttribute("username")%>';
 	
 	function changLang(lang){
@@ -148,12 +147,7 @@ body {
 
 		location.replace(link);
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 3956a6a3a482050b43bb1242286111e5b7c381c4
->>>>>>> 2d7815527968c4a1da5db73a3bf0592e1bf35f0e
 	var csrfHeanderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
 	
@@ -161,35 +155,6 @@ body {
 		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
 	});
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 2d7815527968c4a1da5db73a3bf0592e1bf35f0e
-	function changeLang(lang,callback){
-		$.ajax({
-			type : "get",
-			url : "/changelang?lang=" + lang,
-			success : function(){
-				callback();
-			},error: function(){
-				
-			}
-		})
-	}
-		
-	$('#langController').on('change',function(){
-		var lang = $(this).val();
-		changeLang(lang,function(){
-			location.reload();
-		})
-	})
-
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> 3956a6a3a482050b43bb1242286111e5b7c381c4
->>>>>>> 2d7815527968c4a1da5db73a3bf0592e1bf35f0e
 	function logoutFN(){
 		$("#logoutFN").submit();
 		console.log('Logout Success !!!');
