@@ -20,5 +20,7 @@ public interface ChatMapper {
 	public Integer existChatRoom(@Param("email") String email, @Param("femail") String femail);
 	
 	public String recentMsgByRno(int rno);
+	
+	public String readMsgByMno(int mno);
 }
 
