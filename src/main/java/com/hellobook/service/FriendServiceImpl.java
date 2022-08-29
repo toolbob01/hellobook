@@ -71,15 +71,28 @@ public class FriendServiceImpl implements FriendService {
 
 
 		@Override
-		public List<MemberVO> requestInsert(MemberVO mvo) {
-			// TODO Auto-generated method stub
-			return friendMapper.requestInsert(mvo);
+		public void requestInsert(MemberVO mvo) {
+
+			friendMapper.requestInsert(mvo);
+		}
+
+
+
+		
+		
+
+
+
+		@Override
+		public void requestInsert_reverse(MemberVO mvo) {
+
+			friendMapper.requestInsert_reverse(mvo);
 		}
 
 
 
 
-		
+
 
 
 

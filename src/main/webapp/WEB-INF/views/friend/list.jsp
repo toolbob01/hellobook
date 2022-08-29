@@ -147,11 +147,49 @@
 .friendlist_ul {
 	list-style: none;
 	padding-left: 0;
+	font-weight: bold;
 }
+
+
+
+.button_class p {
+	font-weight:bold;
+	margin-top: 2px;
+}
+
+.reject .button_div p {
+	font-weight:bold;
+	padding-top: 5px;
+
+}
+
+.friendlist_ul li {
+     font-weight:bold;
+}
+
+.friendlist_ul .button {
+	background-color: white;
+	margin-left: 12px;
+	margin-top: 5px;
+	
+	
+	
+}
+
+.button:hover {
+   transform:scale(1.1);
+   box-shadow:200px 0 0 0 rgba(0,0,0,0.1) inset;
+
+
+}
+
+
+
+
 /* 즐겨찾기, 친구 부분 */
 .profile-title>* {
 	font-size: 13px; /* 16px 브라우저 기준 12px 의미*/
-	color: gray;
+	color: gray;s
 	display: inline-block;
 	margin: 0;
 }
@@ -210,14 +248,12 @@
 		<!-- 헤더 영역 -->
 		<header class="friendlist_header" style="display: block;">
 			<button class="btn btn-light" type="submit" 
-				style="font-size: 24px; font-weight: bold; display: inline; background-color:white; border-style:none">친구
-				목록</button>
+				style="font-size: 24px; font-weight: bold; display: inline; background-color:white; border-style:none">フレンド　リスト</button>
 				
 				
 						
 			<button class="btn btn-light" type="submit" onclick="location.href='/friend/search'"
-				style="font-size: 15px; font-weight: bold; border-style:none; background-color:white; border-style:none">친구
-				찾기</button>
+				style="font-size: 15px; font-weight: bold; border-style:none; background-color:white; border-style:none">フレンド探し</button>
 		</header>
 
 	
@@ -226,39 +262,43 @@
 			<div>
 			
 				<div class="profile-title">
-					<h2>친구신청</h2>
+					<h2>フレンド申し込み</h2>
 				</div>
 				<c:forEach var="requestfriendlist" items="${requestfriendlist}">
 				<ul class="friendlist_ul">
-					<li><img src="/resources/imgs/me.png" alt="친구1프로필사진">
+					<li><img src="/hello_img/member/${requestfriendlist.profile}" alt="프로필이미지">
 						<div class="profile">
 							<p>${requestfriendlist.nickname}</p>
-							<p>수락 대기 중</p>
+							<p>受け入れをお待ちしております。</p>
 						</div>
 					</li>
 				
 				</ul>
 				</c:forEach>	
 			</div>
-			<div>
+			<div class="button_class">
 			
 				<div class="profile-title">
-					<h2>친구요청</h2>
+					<h2>フレンド　要請</h2>
 				</div>
 				
 				
 				<c:forEach var="merequestfriendlist" items="${merequestfriendlist}">
 				<div id="reject">
 				<ul class="friendlist_ul">
-					<li><img src="/resources/imgs/me.png" alt="친구1프로필사진">
-					<form action="/friend/list" method="get">
+					<li><img src="/hello_img/member/${merequestfriendlist.profile}" alt="프로필이미지">
+					<form method="post" id="requestFriend">
+					<sec:csrfInput/>
 						<div class="profile">
-							<p>${merequestfriendlist.nickname}님에게서 친구 등록 요청이 왔습니다.</p>
-							<button type="submit" class="button" name="insert" value="${merequestfriendlist.remail}" >수락</button>
-							 
-							<button type="submit" class="button" name="delete" value="${merequestfriendlist.remail}" >거절</button>
-           				     
+							<p>${merequestfriendlist.nickname}様からの登録の要請が来ておりました。</p>
 						</div>
+						<div class="button_div">
+						<input type="hidden" name="insert" value="${merequestfriendlist.remail}">
+						<input type="hidden" name="delete" value="${merequestfriendlist.remail}">
+						<button type="button" class="button" id="requestInsert" name="insert" value="${merequestfriendlist.remail}" ><p>受け入れ</p></button>
+							 
+					    <button type="button" class="button" id="requestDelete" name="delete" value="${merequestfriendlist.remail}" ><p>断り</p></button>
+					    </div>
 						</form>
 					</li>
 				
@@ -272,12 +312,12 @@
 			<!-- 친구 프로필 부분 -->
 			<div>
 				<div class="profile-title">
-					<h2>친구</h2>
+					<h2>フレンド</h2>
 					<p>${friendcount}</p>
 				</div>
 				<c:forEach var="friend" items="${friendlist}">
 				<ul class="friendlist_ul">
-					<li><img src="/resources/imgs/me.png" alt="친구3프로필사진">
+					<li><img src="/hello_img/member/${friend.profile}" alt="프로필이미지">
 						<div class="profile">
 							<p>${friend.nickname}</p>
 							<p>${friend.intro}</p>
@@ -294,5 +334,16 @@
 </body>
 </html>
 
+<script>
+	$('#requestInsert').click(function(){
+		$('#requestFriend').attr("action","/friend/requestInsert");
+		$('#requestFriend').submit();
+	});
+	
+	$('#requestDelete').click(function(){
+		$('#requestFriend').attr("action","/friend/requestDelete");
+		$('#requestFriend').submit();
+	});
+</script>
 
 <%@ include file="../footer.jsp"%>

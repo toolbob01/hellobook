@@ -88,4 +88,13 @@ public class ChatController {
 		System.out.println(chatMessageVO);
 		return chatMessageVO == null ? null : chatMessageVO;
 	}
+	
+	@GetMapping("readMsgByMno")
+	public @ResponseBody String readMsgByMno(@RequestBody String mno) {
+		System.out.println(mno);
+		int mnos = Integer.parseInt(mno);
+		String content = chatService.readMsgByMno(mnos);
+		System.out.println(content);
+		return content;
+	}
 }

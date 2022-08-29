@@ -54,5 +54,9 @@
 	<select id="recentMsgByRno" resultType="String">
 		SELECT content FROM chat_msg WHERE rno = #{rno} AND rownum = 1 ORDER BY mno DESC
 	</select>
+	
+	<select id="readMsgByMno" resultType="String">
+		select content from chat_msg where mno = #{mno}
+	</select>
 
 </mapper>

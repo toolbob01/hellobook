@@ -160,6 +160,34 @@
     <!-- </div> -->
   </div>
 </div>
+
+   <!-- Modal -->
+<div class="modal modal-hide fade py-5" tabindex="-1" role="dialog" id="translateModal" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <!-- <div class="modal-body p-5"> -->
+         <div class="d-flex flex-column align-items-stretch flex-shrink-0">
+      
+          <div class="list-group list-group-flush border-bottom scrollarea mp-st-sidebar_b">
+               <div style="margin:20px;display: flex;flex-direction: column;justify-content: space-evenly;align-items: stretch;">
+               		<div>
+               			<input type="text" disabled="disabled">
+               			<div class="trslbtns">
+               			<button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>
+			   			<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>
+			   			<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>
+			   			<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button>
+			   			</div>
+               		</div>
+                  
+                  
+               </div>
+          </div>
+       </div>
+     </div>
+    <!-- </div> -->
+  </div>
+</div>
    
    <script>
    $('#createChatRoom').on('click', function(){
@@ -227,14 +255,14 @@
          console.log(data.length);
         for (var i = 0; i<data.length; i++) {
            if(data[i].email == userId){
-               chatMsg += '<div class="outgoing_msg"><div class="sent_msg"><p class="chatMessage">'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span>';
+               chatMsg += '<div class="outgoing_msg"><div class="sent_msg"><p class="chatMessage" data-mno="'+data[i].mno+'">'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span>';
                chatMsg += '<div class="trslbtns"><button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>';
                chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>';
                chatMsg += '<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>';
                chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button></div></div></div>';
            }else{
               chatMsg += '<div class="incoming_msg"></div>';
-              chatMsg += '<div class="received_msg"><div class="received_withd_msg"><p class="chatMessage">'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span>';
+              chatMsg += '<div class="received_msg"><div class="received_withd_msg"><p class="chatMessage" data-mno="'+data[i].mno+'">'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span>';
               chatMsg += '<div class="trslbtns"><button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>';
               chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>';
               chatMsg += '<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>';
@@ -391,8 +419,7 @@
          }
          else {
             var str = '<div class="incoming_msg">';
-              str += '<div class="incoming_msg_img">';
-                str += '<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>';
+             
                str += '<div class="received_msg">';
                str += '<div class="received_withd_msg">';
                str += '<p class="chatMessage">'+message+'</p>';
@@ -412,9 +439,25 @@
       
 
     	
-	$('.chatMessage').on("click",function() {
+	$(document).on("click",".chatMessage",function() {
+		/* var mno = $(this).data('mno');
+		console.log(mno);
+		$.ajax({
+			url: "/chat/readMsgByMno",
+			type:"get",
+			dataType:"json"
+			contentType:"application/json",
+			data:{
+				mno:mno
+			},
+			success: function(content) {
+				$('#translateModal').modal('show');
+			}
+		}); */
 		
 	});
+	
+
      
       
       
@@ -422,4 +465,3 @@
    </script>
 
 <%@ include file="../footer.jsp" %>
-transBox += '</div>';

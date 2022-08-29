@@ -32,7 +32,7 @@ body .body1{
 }
 
 .header .search_box {
-	padding-top: 20px;
+	padding-top: 17px;
    padding-bottom: 20px;
     padding-left: 20px;
     
@@ -57,17 +57,26 @@ body .body1{
 }
 
 .header .header_icon {
-  font-size: 25px;
-  margin-left: 10px;
+  font-size: 5px;
+  
   cursor: pointer;
   
 }
 
-.header .search_box .search_btn {
-	border: none;
-	background:white;
+.header .search_btn {
+	margin-top: 10px;
+	background-color: white;
+    color: black;
+    border: 2px solid #555555;
+	border-radius: 4px;
+	font-style:bold;
+	transition-duration: 0.4s;
 }
 
+.header .search_btn:hover {
+	 background-color: #555555;
+    color: white;
+}
 
 
 a {
@@ -112,7 +121,7 @@ main {
 .find .header-btn_title1 {
   
   font-size: 25px;
-  font-weight : bold;
+  
   
   letter-spacing: 25px;
   margin-left: -10px;  
@@ -122,17 +131,17 @@ main {
 .find .header-btn_title2 {
   
   font-size: 25px;
-  font-weight : bold;
-  margin-left: -40px;  
+  
+  margin-left: -50px;  
 
 
 }
 .find .header-btn_title3 {
   
   font-size: 25px;
-  font-weight : bold;
   
-  letter-spacing: 25px;
+  
+  letter-spacing: 5px;
  
 
 }
@@ -178,6 +187,16 @@ main {
   border-radius: 5px;
   background-color: #f5f5f5;
   cursor: pointer;
+}
+
+
+.friend .friend_add-btn .button {
+     margin-top: 18px;	
+}
+
+
+.friend .friend_add-btn .fas fa-user-plus {
+	margin-top: 10px;
 }
 
 .container {

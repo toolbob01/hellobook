@@ -131,26 +131,6 @@ body {
 
 
 <script>
-<<<<<<< HEAD
-	var em = '<%=(String)session.getAttribute("username")%>';
-	
-	function changLang(lang){
-		var protocol = window.location.protocol;
-		var host = window.location.host;
-		var path = window.location.pathname;
-		var link = path+"?lang="+lang;
-		if(path=="/chat/chat_list") {
-			link = path+"?email="+em+"&lang="+lang;
-		}
-		
-		console.log(link);
-
-		location.replace(link);
-	}
-	
-</script>
-=======
-
 	var csrfHeanderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
 	
@@ -176,7 +156,7 @@ body {
 			location.reload();
 		})
 	})
->>>>>>> eccc0b01da6716b656b8552b07231dd4edaff13e
+
 
 	function logoutFN(){
 		$("#logoutFN").submit();
