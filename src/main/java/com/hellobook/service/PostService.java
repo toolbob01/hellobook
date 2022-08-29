@@ -46,4 +46,5 @@ public interface PostService {
 	public List<PostVO> selectMypost(String nickname);
 	public List<PostVO> selectMyLikepost(String email);
 
+	public int countPost(String email);
 }

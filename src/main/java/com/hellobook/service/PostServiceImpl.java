@@ -130,5 +130,9 @@ public class PostServiceImpl implements PostService {
 		return mapper.recentCommentByEmail(email);
 	}
 	
-	
+	@Override
+	public int countPost(String email) {
+		
+		return mapper.countPost(email);
+	}
 }

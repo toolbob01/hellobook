@@ -165,6 +165,8 @@
 		WHERE ROWNUM = 1		
 	</select>
 
-
+	<select id="countPost" resultType="int">
+		select count(*) from post where email=#{email}
+	</select>
 
 </mapper>
