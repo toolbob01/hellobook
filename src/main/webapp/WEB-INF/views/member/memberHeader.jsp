@@ -37,12 +37,12 @@
 <link rel="stylesheet" href="/resources/css/mypage.css">
 
 <script>
-// 	var csrfHeanderName = "${_csrf.headerName}";
-// 	var csrfTokenValue = "${_csrf.token}";
+	var csrfHeanderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
 
-// 	$(document).ajaxSend(function(e, xhr, options) {
-// 		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
-// 	});
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
+	});
 </script>
 
 <style>

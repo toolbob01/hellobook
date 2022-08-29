@@ -229,6 +229,7 @@ p {
 							email:email.val(),
 							password:pw.val()
 					}
+					console.log(userData);
 					
 					findPwdService.changePwd(userData,function(data){
 						email.val("");
