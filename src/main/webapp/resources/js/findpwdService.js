@@ -38,11 +38,11 @@ var findPwdService = (function() {
 	
 	function changePwd(userData,callback,err) {
 		$.ajax({
-			type:'post',
-			url:'/findpwd/changePwd',
+			type:"post",
+			url:"/findpwd/changePwd",
 			data:JSON.stringify(userData),
-			contentType : "application/json",
-			success:function(result){
+			contentType : 'application/json; charset = utf-8',
+			success:function(result,status,xhr){
 				if(callback){
 					callback(result);
 				}
