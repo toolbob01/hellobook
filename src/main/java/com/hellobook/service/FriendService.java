@@ -14,7 +14,9 @@ public interface FriendService {
 	
 	 public List<MemberVO> requestFriend(MemberVO mvo);
 	
-	 public List<MemberVO> requestInsert(MemberVO mvo);
+	 public void requestInsert(MemberVO mvo);
+	 
+	 public void requestInsert_reverse(MemberVO mvo);
 	 
 	 public List<MemberVO> merequestDelete(MemberVO mvo);
 	 

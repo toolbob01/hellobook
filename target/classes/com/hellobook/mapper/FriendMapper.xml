@@ -14,7 +14,7 @@
     
     
 	<select id="requestFriendList" resultType="com.hellobook.domain.MemberVO">
-		SELECT DISTINCT r.email, m.nickname 
+		SELECT DISTINCT r.email, m.nickname, m.profile 
 		FROM friend_request r
 		LEFT OUTER JOIN member m   
 		ON r.email = m.email 
@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="merequestFriendList" resultType="com.hellobook.domain.MemberVO">
-		SELECT DISTINCT r.email, r.remail, m.nickname 
+		SELECT DISTINCT r.email, r.remail, m.nickname, m.profile
 		FROM friend_request r
 		LEFT OUTER JOIN member m   
 		ON r.remail = m.email 
@@ -37,11 +37,17 @@
 		
 	</select>
 	
-	<select id="requestInsert" resultType="com.hellobook.domain.MemberVO">
+	<insert id="requestInsert">
 		INSERT into friend (frno, email, femail) 
 		VALUES (SEQ_NUM.NEXTVAL, #{remail}, #{insert})
-		
-	</select>
+	</insert>
+	
+	<insert id="requestInsert_reverse">
+		INSERT into friend (frno, email, femail) 
+		VALUES (SEQ_NUM.NEXTVAL, #{insert}, #{remail})
+	</insert>
+	
+	
 	
 	<select id="merequestDelete" resultType="com.hellobook.domain.MemberVO">
 		DELETE FROM friend_request WHERE email = #{remail} AND remail = #{insert}
@@ -60,9 +66,14 @@
 		FROM member m   
 		LEFT OUTER JOIN friend f   
 		ON m.email = f.femail
-        WHERE f.email is null AND 
-              m.email != #{userid} AND
-        	  m.nickname LIKE CONCAT('%' || #{keyword} ,'%') 
+        WHERE f.email is null 
+              
+              AND m.nickname LIKE CONCAT('%' || #{keyword} ,'%') 
+              OR m.email LIKE CONCAT('%' || #{email} ,'%')
+        	  OR m.hobby LIKE CONCAT('%' || #{hobby} ,'%')
+        	  
+        	  AND m.email != #{userid}
+        	  AND m.email NOT IN (select femail from friend where email = #{userid})
 	</select>
 	
 	

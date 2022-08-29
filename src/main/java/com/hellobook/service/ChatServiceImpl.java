@@ -49,6 +49,11 @@ public class ChatServiceImpl implements ChatService {
 		return chatMapper.existChatRoom(email, femail);
 	}
 	
+	@Override
+	public String readMsgByMno(int mno) {
+	
+		return chatMapper.readMsgByMno(mno);
+	}
 
 }
 
