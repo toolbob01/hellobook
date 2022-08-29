@@ -146,11 +146,7 @@ body {
 
 		location.replace(link);
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 3956a6a3a482050b43bb1242286111e5b7c381c4
 	var csrfHeanderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
 	
@@ -158,7 +154,6 @@ body {
 		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
 	});
 
-<<<<<<< HEAD
 	function changeLang(lang,callback){
 		$.ajax({
 			type : "get",
@@ -178,8 +173,6 @@ body {
 		})
 	})
 
-=======
->>>>>>> 3956a6a3a482050b43bb1242286111e5b7c381c4
 	function logoutFN(){
 		$("#logoutFN").submit();
 		console.log('Logout Success !!!');
