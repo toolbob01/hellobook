@@ -129,10 +129,10 @@
 
 	<select id="friendRecommend" resultType="com.hellobook.domain.MemberVO">
 		<![CDATA[
-			select * from member m 
+			select * from (select * from member m 
 			where m.email not in
 			(select f.femail from friend f where f.email = #{email}) 
-			and m.email != #{email} and rownum <=5 order by dbms_random.value
+			and m.email != #{email} order by dbms_random.value) where rownum <=5
 		]]>
 	</select>
 
