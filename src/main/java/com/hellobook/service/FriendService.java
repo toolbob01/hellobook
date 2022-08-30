@@ -25,5 +25,5 @@ public interface FriendService {
 	 
 	 public List<MemberVO> findFriendList(MemberVO mvo);
 	 
-	
+	 public int countFriend(String email);
 }
