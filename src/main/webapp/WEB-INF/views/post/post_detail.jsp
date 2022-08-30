@@ -196,7 +196,7 @@
 										    </c:if>
 										  </c:when>
 										</c:choose>
-										<div class="comment-cocoment align-self-center" data-refno="${replyVO.repno}">답글 달기</div>
+										<div class="comment-cocoment align-self-center" data-refno="${replyVO.repno}"><spring:message code="postModal.coComment"/></div>
 									</div>
 									<div class="comment-content" id="comment-content${replyVO.repno}">
 										${replyVO.rcontent}
