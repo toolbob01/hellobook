@@ -122,10 +122,10 @@
 				<div class="col-md-5 p-0">
 					<div class="modal-detail-right">
 						<div class="all-comment">		
-							<p class="fs-5 mb-3">댓글 리스트</p>
+							<p class="fs-5 mb-3">コメント リスト</p>
 							<c:choose>
 							  <c:when test="${postVO.reply_list[0] == null}">
-							  	<p class="fs-6 text-center mt-5">아직 댓글이 없습니다.</p>
+							  	<p class="fs-6 text-center mt-5">まだ、コメントがありません。</p>
 							  </c:when>
 							  <c:otherwise>
 								<c:forEach var="replyVO" items="${postVO.reply_list}">
@@ -203,7 +203,7 @@
 										<c:if test="${replyVO.cocomment_list[0] != null}">
 											<div class="comment-accordion on_cursor mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#collapse${replyVO.repno}" aria-expanded="false">
 												<i class="bi bi-arrow-return-right fs-5"></i>
-												<span class="cocoment-open ms-3" data-oc="c">펼치기</span>
+												<span class="cocoment-open ms-3" data-oc="c">オープン</span>
 											</div>
 											
 											<div class="collapse" id="collapse${replyVO.repno}">
@@ -511,10 +511,10 @@ $(".msg_send_btn").on("click", function(e){
 $(document).on("click",".cocoment-open",function() {
 	if( $(this).data("oc") == 'c' ){
 		$(this).data("oc", "o")
-		$(this).html("접기");
+		$(this).html('<spring:message code="postModal.cocoOpen"/>');
 	}else {
 		$(this).data("oc", "c")
-		$(this).html("펼치기");
+		$(this).html('<spring:message code="postModal.cocoClose"/>');
 	}
 })
 
