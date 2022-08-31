@@ -25,6 +25,8 @@
 				top.alert('<spring:message code="chatList.existChatRoomTrue"/>');
 			}else if(message == 'existChatRoomFalse'){
 				top.alert('<spring:message code="chatList.existChatRoomFalse"/>');
+			}else if(message == '3'){
+				top.alert('<spring:message code="pwd.changePwdAlert"/>');
 			}
 			
 			else {

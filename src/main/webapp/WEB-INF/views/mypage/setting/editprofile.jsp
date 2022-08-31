@@ -100,6 +100,10 @@ body {
 		margin-top: 5px;
     	margin-bottom: 5px;
 	}
+	
+	#nickname-notice{
+		margin-top: 7px;
+	}
 
 </style>
 <div class="container-fluid">
@@ -264,10 +268,11 @@ var pwCheck = /^(?=.*?[a-zA-Z0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 //blur 이벤트
 nickname.on("blur",function(){
 	nicknameNotice.css('display','none')
-	
+	nicknameNotice.css('color','green')
 	if(nickname.val() == ''){
 		nicknameNotice.html('<spring:message code="setting.editProfile.checkNickname1"/>');
 		nicknameNotice.css('display','flex')
+		nicknameNotice.css('color','red')
 		nickname.focus();
 		return
 	}
@@ -275,6 +280,15 @@ nickname.on("blur",function(){
 	if(nickname.val().search(/\s/) != -1){
 		nicknameNotice.html('<spring:message code="setting.editProfile.checkNickname2"/>');
 		nicknameNotice.css('display','flex')
+		nicknameNotice.css('color','red')
+		nickname.focus();
+		return
+	}
+	
+	if(nickname.val().search("#") != -1){
+		nicknameNotice.html('<spring:message code="setting.editProfile.checkNickname5"/>');
+		nicknameNotice.css('display','flex')
+		nicknameNotice.css('color','red')
 		nickname.focus();
 		return
 	}
@@ -348,8 +362,8 @@ function formCheck(){
 		return
 	}
 	
-	if(nicknameNotice.text().includes('<spring:message code="setting.editProfile.checkNickname4"/>')) {
-		alert('<spring:message code="setting.editProfile.checkNickname4"/>');
+	if(nickname.val().search("#") != -1) {
+		alert('<spring:message code="setting.editProfile.checkNickname5"/>');
 		nickname.focus();
 		return
 	}
@@ -392,8 +406,8 @@ function formCheck(){
 	hb = hb.substr(0,hb.length-1);
 	
 	hobby.val(hb);
-	
-	$("#regForm").submit();
+	console.log("여기까지 오나?");
+	$('#regForm').submit();
 }
 
 $(function() {
