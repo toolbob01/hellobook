@@ -605,10 +605,12 @@
 									}else {
 										if( likeVO.friendYN == 'Y' ) {
 											luld += 
-									'<button type="button" class="btn btn-outline-secondary"><spring:message code="index.removeFriend"/></button>'; // transalte
+									'<button type="button" class="btn btn-outline-secondary" onclick="alert(\'친삭기능앙망\')"><spring:message code="index.removeFriend"/></button>'; // transalte
 										}else {
 											luld += 
-									'<button type="button" class="btn btn-outline-info"><spring:message code="index.addFriend"/></button>'; // transalte
+									'<button type="button" class="btn btn-outline-info" onclick="location.href=\'/friend/request?request=' + likeVO.email + '\'">' +
+										'<spring:message code="index.addFriend"/>' + // transalte
+									'</button>';
 										}	
 									}
 									luld += 

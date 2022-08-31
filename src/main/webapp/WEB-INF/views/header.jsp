@@ -131,6 +131,10 @@ body {
 
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2d1c3a85639adf5ae02d1aaf548088e7de5176b8
 	var em = '<%=(String)session.getAttribute("username")%>';
 	
 	function changLang(lang){
@@ -146,14 +150,22 @@ body {
 
 		location.replace(link);
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 2d1c3a85639adf5ae02d1aaf548088e7de5176b8
 	var csrfHeanderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
 	
 	$(document).ajaxSend(function(e, xhr, options) {
 		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
 	});
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 2d1c3a85639adf5ae02d1aaf548088e7de5176b8
 	function logoutFN(){
 		$("#logoutFN").submit();
 		console.log('Logout Success !!!');

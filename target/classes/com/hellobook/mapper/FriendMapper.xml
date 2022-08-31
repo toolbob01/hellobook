@@ -76,6 +76,9 @@
         	  AND m.email NOT IN (select femail from friend where email = #{userid})
 	</select>
 	
+	<select id="countFriend" resultType="int">
+		select count(*) from friend where email=#{email}
+	</select>
 	
 	
 	

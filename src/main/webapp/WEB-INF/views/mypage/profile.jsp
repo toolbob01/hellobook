@@ -81,13 +81,13 @@
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
 							<a href="#nav-tabContent" style="text-decoration: none;color:#000;"><spring:message code="profile.post"/></a>
-							<span class="mypage_info_d">0</span>
+							<span class="mypage_info_d">${countPost}</span>
 							</div>
 						</li>
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
 							<a href="/friend/list" style="text-decoration: none;color:#000;"><spring:message code="profile.friend"/></a>
-							<span class="mypage_info_d">0</span>
+							<span class="mypage_info_d">${countFriend}</span>
 							</div>
 						</li>
 					</ul>

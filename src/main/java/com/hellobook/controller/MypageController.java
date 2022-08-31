@@ -32,6 +32,7 @@ import com.hellobook.domain.MemberVO;
 import com.hellobook.domain.PostVO;
 import com.hellobook.domain.ReplyVO;
 import com.hellobook.domain.SessionVO;
+import com.hellobook.service.FriendService;
 import com.hellobook.service.MemberService;
 import com.hellobook.service.PostService;
 import com.hellobook.utility.Message;
@@ -51,6 +52,9 @@ public class MypageController {
 	private PostService postService;
 	
 	@Autowired
+	private FriendService friendService;
+	
+	@Autowired
 	private BCryptPasswordEncoder pwencoder;
 	
 	@GetMapping("/unknown")
@@ -66,7 +70,15 @@ public class MypageController {
 		String email = (String) session.getAttribute("username");
 		
 		List<PostVO> pvoList = postService.selectMypost(nickname);
+		
 		List<PostVO> likeList = postService.selectMyLikepost(email);
+		
+		int countPost = postService.countPost(email);
+		model.addAttribute("countPost", countPost);
+		
+		int countFriend = friendService.countFriend(email);
+		model.addAttribute("countFriend", countFriend);
+		
 		if(mvo == null) {
 			return "/mypage/unknown";
 		} else {
