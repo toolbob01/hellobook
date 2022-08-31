@@ -132,39 +132,31 @@ body {
 
 <script>
 
+   var em = '<%=(String)session.getAttribute("username")%>';
+   
+   function changLang(lang){
+      var protocol = window.location.protocol;
+      var host = window.location.host;
+      var path = window.location.pathname;
+      var link = path+"?lang="+lang;
+      if(path=="/chat/chat_list") {
+         link = path+"?email="+em+"&lang="+lang;
+      }
+      
+      console.log(link);
 
-	var em = '<%=(String)session.getAttribute("username")%>';
-	
-	function changLang(lang){
-		var protocol = window.location.protocol;
-		var host = window.location.host;
-		var path = window.location.pathname;
-		var link = path+"?lang="+lang;
-		if(path=="/chat/chat_list") {
-			link = path+"?email="+em+"&lang="+lang;
-		}
-		
-		console.log(link);
+      location.replace(link);
+   }
 
-		location.replace(link);
-	}
+   var csrfHeanderName = "${_csrf.headerName}";
+   var csrfTokenValue = "${_csrf.token}";
+   
+   $(document).ajaxSend(function(e, xhr, options) {
+      xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
+   });
 
-
-
-	
-
-	var csrfHeanderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
-	
-	$(document).ajaxSend(function(e, xhr, options) {
-		xhr.setRequestHeader(csrfHeanderName, csrfTokenValue);
-	});
-
-
-	
-	
-	function logoutFN(){
-		$("#logoutFN").submit();
-		console.log('Logout Success !!!');
-	}
+   function logoutFN(){
+      $("#logoutFN").submit();
+      console.log('Logout Success !!!');
+   }
 </script>

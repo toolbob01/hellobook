@@ -25,5 +25,5 @@ public interface FriendMapper {
 	
 	public List<MemberVO> findFriendList(MemberVO mvo);
 	
-
+	public int countFriend(String email);
 }

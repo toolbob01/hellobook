@@ -129,6 +129,10 @@ public class FriendServiceImpl implements FriendService {
 		}
 
 		
-		
+		@Override
+		public int countFriend(String email) {
+		// TODO Auto-generated method stub
+		return friendMapper.countFriend(email);
+		}
 		
 }

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("utf-8"); 
+	request.setCharacterEncoding("utf-8");
 %>
-<%@ include file="../header.jsp" %>
-<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
-<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+<%@ include file="../header.jsp"%>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
 
 <div class="container-fluid">
 	<div class="container">
@@ -15,42 +16,50 @@
 					<div class="mypage_thumbnail_b">
 						<div class="mypage_thumbnail_c">
 							<c:if test="${mvo.email == username}">
-							<c:if test="${mvo.profile==null}">
-							<button class="mypage_thumbnail_d" title="<spring:message code="profile.createThumbnail"/>">
-									<img class="mypage_thumbnail_e" src="/resources/imgs/unknown_thumbnail.jpg">
-							</button>
-							</c:if>
-							<c:if test="${mvo.profile!=null}">
-							<button class="mypage_thumbnail_d" title="<spring:message code="profile.updateThumbnail"/>">
-									<img class="mypage_thumbnail_e" src="/hello_img/member/${mvo.profile}">
-							</button>
-							</c:if>
-							<div>
-								<form id="thumbnail_update" enctype="multipart/form-data">
-									<input type="hidden" name="nickname" value="${Nname}">
-									<sec:csrfInput/>
-									<input accept="image/jpeg,image/png,image/gif,image/jpg" class="mypage_thumbnail_f" type="file" name="profile">
-								</form>
-							</div>
+								<c:if test="${mvo.profile==null}">
+									<button class="mypage_thumbnail_d"
+										title="<spring:message code="profile.createThumbnail"/>">
+										<img class="mypage_thumbnail_e"
+											src="/resources/imgs/unknown_thumbnail.jpg">
+									</button>
+								</c:if>
+								<c:if test="${mvo.profile!=null}">
+									<button class="mypage_thumbnail_d"
+										title="<spring:message code="profile.updateThumbnail"/>">
+										<img class="mypage_thumbnail_e"
+											src="/hello_img/member/${mvo.profile}">
+									</button>
+								</c:if>
+								<div>
+									<form id="thumbnail_update" enctype="multipart/form-data">
+										<input type="hidden" name="nickname" value="${Nname}">
+										<sec:csrfInput />
+										<input accept="image/jpeg,image/png,image/gif,image/jpg"
+											class="mypage_thumbnail_f" type="file" name="profile">
+									</form>
+								</div>
 							</c:if>
 							<c:if test="${mvo.email != username}">
-							<c:if test="${mvo.profile==null}">
-							<div class="mypage_thumbnail_d_2">
-								<img class="mypage_thumbnail_e" src="/resources/imgs/unknown_thumbnail.jpg">
-							</div>
+								<c:if test="${mvo.profile==null}">
+									<div class="mypage_thumbnail_d_2">
+										<img class="mypage_thumbnail_e"
+											src="/resources/imgs/unknown_thumbnail.jpg">
+									</div>
+								</c:if>
+								<c:if test="${mvo.profile!=null}">
+									<div class="mypage_thumbnail_d_2">
+										<img class="mypage_thumbnail_e"
+											src="/hello_img/member/${mvo.profile}">
+									</div>
+								</c:if>
+								<div>
+									<form>
+										<input accept="image/jpeg,image/png"
+											class="mypage_thumbnail_f" type="file" name="image">
+									</form>
+								</div>
 							</c:if>
-							<c:if test="${mvo.profile!=null}">
-							<div class="mypage_thumbnail_d_2">
-								<img class="mypage_thumbnail_e" src="/hello_img/member/${mvo.profile}">
-							</div>
-							</c:if>
-							<div>
-								<form>
-									<input accept="image/jpeg,image/png" class="mypage_thumbnail_f" type="file" name="image">
-								</form>
-							</div>
-							</c:if>
-							
+
 						</div>
 					</div>
 				</div>
@@ -58,20 +67,22 @@
 					<div class="mypage_profile_b">
 						<h2 class="mypage_profile_c" tabidex="-1">${mvo.nickname}</h2>
 						<c:if test="${mvo.email == username}">
-						<div class="mypage_profile_d">
-							<div class="mypage_profile_e">
-								<a class="btn btn-primary" href="/mypage/setting/editprofile"><spring:message code="profile.editProfileBtn"/></a>
-							</div>
-						</div>
-						<div class="mypage_profile_g">
-							<form id="mypage_profile_frm">
-							<button class="mypage_profile_h" type="button">
-								<div class="mypage_profule_i">
-									<img src="https://img.icons8.com/ios-glyphs/30/000000/gear.png"/>
+							<div class="mypage_profile_d">
+								<div class="mypage_profile_e">
+									<a class="btn btn-primary" href="/mypage/setting/editprofile"><spring:message
+											code="profile.editProfileBtn" /></a>
 								</div>
-							</button>
-							</form>
-						</div>
+							</div>
+							<div class="mypage_profile_g">
+								<form id="mypage_profile_frm">
+									<button class="mypage_profile_h" type="button">
+										<div class="mypage_profule_i">
+											<img
+												src="https://img.icons8.com/ios-glyphs/30/000000/gear.png" />
+										</div>
+									</button>
+								</form>
+							</div>
 						</c:if>
 					</div>
 					<div class="mypage_margin">
@@ -80,169 +91,214 @@
 					<ul class="mypage_info_a">
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							<a href="#nav-tabContent" style="text-decoration: none;color:#000;"><spring:message code="profile.post"/></a>
-							<span class="mypage_info_d">0</span>
+								<a href="#nav-tabContent"
+									style="text-decoration: none; color: #000;"><spring:message
+										code="profile.post" /></a> <span class="mypage_info_d">${countPost}</span>
 							</div>
 						</li>
 						<li class="mypage_info_b">
 							<div class="mypage_info_c">
-							<a href="/friend/list" style="text-decoration: none;color:#000;"><spring:message code="profile.friend"/></a>
-							<span class="mypage_info_d">0</span>
+								<a href="/friend/list"
+									style="text-decoration: none; color: #000;"><spring:message
+										code="profile.friend" /></a> <span class="mypage_info_d">${countFriend}</span>
 							</div>
 						</li>
 					</ul>
 					<div class="mypage_nickname_a">
-						<p style="color: #000;"><spring:message code="profile.introduce"/></p><br>
-						<span class="mypage_nickname_b py-3">
-							${mvo.intro}
-						</span>
-						<br>
+						<p style="color: #000;">
+							<spring:message code="profile.introduce" />
+						</p>
+						<br> <span class="mypage_nickname_b py-3">
+							${mvo.intro} </span> <br>
 					</div>
 					<div class="mypage_nickname_a py-3">
-						<p style="color: #000;"><spring:message code="profile.hobby"/></p><br>
-						<span class="mypage_nickname_b py-3">
-							<c:if test = "${fn:contains(mvo.hobby,1)}">
-								<span class="badge bg-primary text-white"><spring:message code="profile.hobby.tour"/></span>
+						<p style="color: #000;">
+							<spring:message code="profile.hobby" />
+						</p>
+						<br> <span class="mypage_nickname_b py-3"> <c:if
+								test="${fn:contains(mvo.hobby,1)}">
+								<span class="badge bg-primary text-white"><spring:message
+										code="profile.hobby.tour" /></span>
+							</c:if> <c:if test="${fn:contains(mvo.hobby,2)}">
+								<span class="badge bg-secondary text-white"><spring:message
+										code="profile.hobby.food" /></span>
+							</c:if> <c:if test="${fn:contains(mvo.hobby,3)}">
+								<span class="badge bg-success text-white"><spring:message
+										code="profile.hobby.lang" /></span>
+							</c:if> <c:if test="${fn:contains(mvo.hobby,4)}">
+								<span class="badge bg-danger text-white"><spring:message
+										code="profile.hobby.inst" /></span>
+							</c:if> <c:if test="${fn:contains(mvo.hobby,5)}">
+								<span class="badge bg-warning text-dark"><spring:message
+										code="profile.hobby.read" /></span>
+							</c:if> <c:if test="${fn:contains(mvo.hobby,6)}">
+								<span class="badge bg-info text-dark"><spring:message
+										code="profile.hobby.workout" /></span>
+							</c:if> <c:if test="${fn:contains(mvo.hobby,7)}">
+								<span class="badge bg-dark text-white"><spring:message
+										code="profile.hobby.photo" /></span>
+							</c:if> <c:if test="${fn:contains(mvo.hobby,8)}">
+								<span class="badge bg-primary text-white"><spring:message
+										code="profile.hobby.music" /></span>
+							</c:if> <c:if test="${fn:contains(mvo.hobby,9)}">
+								<span class="badge bg-secondary text-white"><spring:message
+										code="profile.hobby.animal" /></span>
 							</c:if>
-							<c:if test = "${fn:contains(mvo.hobby,2)}">
-								<span class="badge bg-secondary text-white"><spring:message code="profile.hobby.food"/></span>
-							</c:if>
-							<c:if test = "${fn:contains(mvo.hobby,3)}">
-								<span class="badge bg-success text-white"><spring:message code="profile.hobby.lang"/></span>
-							</c:if>
-							<c:if test = "${fn:contains(mvo.hobby,4)}">
-								<span class="badge bg-danger text-white"><spring:message code="profile.hobby.inst"/></span>
-							</c:if>
-							<c:if test = "${fn:contains(mvo.hobby,5)}">
-								<span class="badge bg-warning text-dark"><spring:message code="profile.hobby.read"/></span>
-							</c:if>
-							<c:if test = "${fn:contains(mvo.hobby,6)}">
-								<span class="badge bg-info text-dark"><spring:message code="profile.hobby.workout"/></span>
-							</c:if>
-							<c:if test = "${fn:contains(mvo.hobby,7)}">
-								<span class="badge bg-dark text-white"><spring:message code="profile.hobby.photo"/></span>
-							</c:if>
-							<c:if test = "${fn:contains(mvo.hobby,8)}">
-								<span class="badge bg-primary text-white"><spring:message code="profile.hobby.music"/></span>
-							</c:if>
-							<c:if test = "${fn:contains(mvo.hobby,9)}">
-								<span class="badge bg-secondary text-white"><spring:message code="profile.hobby.animal"/></span>
-							</c:if>
-						</span>
-						<br>
+						</span> <br>
 					</div>
 				</section>
 			</header>
-			<div class="nav nav-tabs mypage_tablist_a" id="nav-tab" role="tablist">
-				<button class="mypage_tablist_b" id="nav-post-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-post" aria-selected="true">
+			<div class="nav nav-tabs mypage_tablist_a" id="nav-tab"
+				role="tablist">
+				<button class="mypage_tablist_b" id="nav-post-tab"
+					data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+					role="tab" aria-controls="nav-post" aria-selected="true">
 					<div class="mypage_tablist_c">
-						<img src="https://img.icons8.com/ios-glyphs/30/000000/keypad.png"/><spring:message code="profile.mypost"/>
+						<img src="https://img.icons8.com/ios-glyphs/30/000000/keypad.png" />
+						<spring:message code="profile.mypost" />
 					</div>
 				</button>
 				<c:if test="${mvo.email == username}">
-				<button class="mypage_tablist_b" id="nav-like-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-like" aria-selected="false">
-					<div class="mypage_tablist_c">
-						<img src="https://img.icons8.com/ios-glyphs/30/000000/filled-like.png"/><spring:message code="profile.mylike"/>
-					</div>
-				</button>
+					<button class="mypage_tablist_b" id="nav-like-tab"
+						data-bs-toggle="tab" data-bs-target="#nav-contact" type="button"
+						role="tab" aria-controls="nav-like" aria-selected="false">
+						<div class="mypage_tablist_c">
+							<img
+								src="https://img.icons8.com/ios-glyphs/30/000000/filled-like.png" />
+							<spring:message code="profile.mylike" />
+						</div>
+					</button>
 				</c:if>
 			</div>
 			<div class="tab-content" id="nav-tabContent">
-				<div class="tab-pane fade show active mypage_content_a current" id="nav-home" role="tabpanel" aria-labelledby="nav-post-tab" tabindex="0">
+				<div class="tab-pane fade show active mypage_content_a current"
+					id="nav-home" role="tabpanel" aria-labelledby="nav-post-tab"
+					tabindex="0">
 					<div class="mypage_content_b">
 						<div class="mypage_content_c">
 							<c:if test="${pvoList.size()==0}">
 								<div class="mypage_like_a">
 									<div class="mypage_like_b">
-										<h1><spring:message code="profile.empty.post1"/></h1>
-										<p><spring:message code="profile.empty.post2"/></p>
-										<span><spring:message code="profile.empty.post3"/></span>
+										<h1>
+											<spring:message code="profile.empty.post1" />
+										</h1>
+										<p>
+											<spring:message code="profile.empty.post2" />
+										</p>
+										<span><spring:message code="profile.empty.post3" /></span>
 									</div>
 								</div>
 							</c:if>
 							<c:if test="${pvoList.size()!=0}">
 								<div class="mypage_like_a">
-								<div class="mypage_content_d">
-								<div class="mypage_content_e">
-								<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-							        
-							        
-							        <c:forEach var="PostVO" items="${pvoList}">
-							        	<div class="col">
-								          <div class="card shadow-sm posted">
-								            <img src="/hello_img/post/${PostVO.file_list[0].uuid}" alt="..." width="100%" height="225">
-											<div class="mypage_post_btn" style="position: relative;">
-													<c:if test="${PostVO.email == username}">
-													<a href="/post/post_update?pno=${PostVO.pno}&email=${username}" onclick="return confirm('${PostVO.pno}번 게시물을 수정하시겠습니까?')"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-													</c:if>
-													<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;" data-pno="${PostVO.pno}"/></a>
-													<c:if test="${PostVO.email == username}">
-									       			<a href="/post/post_delete?pno=${PostVO.pno}&email=${username}" onclick="return confirm('${PostVO.pno}번 게시물을 삭제하시겠습니까?')"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-									       			</c:if>
-									          		
-									          	</div>
-								            
-								          </div>
-								          
-								        </div>
-							        </c:forEach>
-							        
-							      </div>
-							      </div>
-							  	</div>
-						      </div>
+									<div class="mypage_content_d">
+										<div class="mypage_content_e">
+											<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+
+												<c:forEach var="PostVO" items="${pvoList}">
+													<div class="col">
+														<div class="card shadow-sm posted">
+															<img src="/hello_img/post/${PostVO.file_list[0].uuid}"
+																alt="..." width="100%" height="225">
+															<div class="mypage_post_btn" style="position: relative;">
+																<c:if test="${PostVO.email == username}">
+																	<a
+																		href="/post/post_update?pno=${PostVO.pno}&email=${username}"
+																		onclick="return confirm('${PostVO.pno}番ポストを修正しますか。')"><img
+																		src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png"
+																		style="position: absolute; top: -40px; left: 10px; z-index: 5;" /></a>
+																</c:if>
+																<a><img class="go_post"
+																	src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png"
+																	style="position: absolute; top: -40px; left: 140px; z-index: 5;"
+																	data-pno="${PostVO.pno}" /></a>
+																<c:if test="${PostVO.email == username}">
+																	<a
+																		href="/post/post_delete?pno=${PostVO.pno}&email=${username}"
+																		onclick="return confirm('${PostVO.pno}番ポストを削除しますか。')"><img
+																		src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png"
+																		style="position: absolute; top: -40px; right: 10px; z-index: 5;" /></a>
+																</c:if>
+
+															</div>
+
+														</div>
+
+													</div>
+												</c:forEach>
+
+											</div>
+										</div>
+									</div>
+								</div>
 							</c:if>
-							
+
 						</div>
 					</div>
 				</div>
-				
-				
-				<div class="tab-pane fade mypage_content_a" id="nav-contact" role="tabpanel" aria-labelledby="nav-like-tab" tabindex="0">
+
+
+				<div class="tab-pane fade mypage_content_a" id="nav-contact"
+					role="tabpanel" aria-labelledby="nav-like-tab" tabindex="0">
 					<div class="mypage_content_b">
 						<div class="mypage_content_c">
 							<c:if test="${likeList.size()==0}">
 								<div class="mypage_like_a">
 									<div class="mypage_like_b">
-										<h1><spring:message code="profile.empty.like1"/></h1>
-										<p><spring:message code="profile.empty.like2"/></p>
-										<span><spring:message code="profile.empty.like3"/></span>
+										<h1>
+											<spring:message code="profile.empty.like1" />
+										</h1>
+										<p>
+											<spring:message code="profile.empty.like2" />
+										</p>
+										<span><spring:message code="profile.empty.like3" /></span>
 									</div>
 								</div>
 							</c:if>
 							<c:if test="${likeList.size()!=0}">
 								<div class="mypage_like_a">
-								<div class="mypage_content_d">
-								<div class="mypage_content_e">
-								<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-							        
-							        
-							        <c:forEach var="LikeVO" items="${likeList}">
-							        	<div class="col">
-								          <div class="card shadow-sm posted">
-								            <img src="/hello_img/post/${LikeVO.file_list[0].uuid}" alt="..." width="100%" height="225">
-											<div class="mypage_post_btn" style="position: relative;">
-													<c:if test="${LikeVO.email == username}">
-													<a href="/post/post_update?pno=${LikeVO.pno}&email=${username}"><img src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png" style="position: absolute; top: -40px; left: 10px; z-index: 5;"/></a>
-													</c:if>
-													<a><img class="go_post" src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png" style="position: absolute; top: -40px; left: 140px; z-index: 5;" data-pno="${LikeVO.pno}"/></a>
-													<c:if test="${LikeVO.email == username}">
-									       			<a href="/post/post_delete?pno=${LikeVO.pno}&email=${username}"><img src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png" style="position: absolute; top: -40px; right: 10px; z-index: 5;"/></a>
-									       			</c:if>
-									          		
-									          	</div>
-								            
-								          </div>
-								          
-								        </div>
-							        </c:forEach>
-							        
-							      </div>
-							      </div>
-							  	</div>
-						      </div>
+									<div class="mypage_content_d">
+										<div class="mypage_content_e">
+											<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+
+												<c:forEach var="LikeVO" items="${likeList}">
+													<div class="col">
+														<div class="card shadow-sm posted">
+															<img src="/hello_img/post/${LikeVO.file_list[0].uuid}"
+																alt="..." width="100%" height="225">
+															<div class="mypage_post_btn" style="position: relative;">
+																<c:if test="${LikeVO.email == username}">
+																	<a
+																		href="/post/post_update?pno=${LikeVO.pno}&email=${username}"><img
+																		src="https://img.icons8.com/ios-glyphs/30/000000/available-updates.png"
+																		style="position: absolute; top: -40px; left: 10px; z-index: 5;" /></a>
+																</c:if>
+																<a><img class="go_post"
+																	src="https://img.icons8.com/ios-glyphs/30/000000/enter-2.png"
+																	style="position: absolute; top: -40px; left: 140px; z-index: 5;"
+																	data-pno="${LikeVO.pno}" /></a>
+																<c:if test="${LikeVO.email == username}">
+																	<a
+																		href="/post/post_delete?pno=${LikeVO.pno}&email=${username}"><img
+																		src="https://img.icons8.com/ios-glyphs/30/000000/delete-forever.png"
+																		style="position: absolute; top: -40px; right: 10px; z-index: 5;" /></a>
+																</c:if>
+
+															</div>
+
+														</div>
+
+													</div>
+												</c:forEach>
+
+											</div>
+										</div>
+									</div>
+								</div>
 							</c:if>
-							
+
 						</div>
 					</div>
 				</div>
@@ -252,59 +308,75 @@
 </div>
 
 <!-- Modal -->
-<div class="modal modal-hide fade py-5" tabindex="-1" role="dialog" id="mypagemodal" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-4 shadow">
-      <!-- <div class="modal-body p-5"> -->
-      	<div class="d-flex flex-column align-items-stretch flex-shrink-0">
-		
-		    <div class="list-group list-group-flush border-bottom scrollarea mp-st-sidebar_b">
-		      <a href="/mypage/setting/editprofile" class="list-group-item list-group-item-action py-3 lh-sm">
-		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.editProfile"/></strong>
-		        </div>
-		      </a>
-		      <a href="/mypage/setting/changepwd" class="list-group-item list-group-item-action py-3 lh-sm">
-		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.changePwd"/></strong>
-		        </div>
-		      </a>
-		      <a href="/mypage/setting/quit" class="list-group-item list-group-item-action py-3 lh-sm">
-		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.quit"/></strong>
-		        </div>
-		      </a>
-		
-		      <a href="/mypage/setting/report" class="list-group-item list-group-item-action py-3 lh-sm">
-		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.report"/></strong>
-		
-		        </div>
-		
-		      </a>
-		      <form action="/member/logout" method="post">
-		      <sec:csrfInput/>
-		      <button class="list-group-item list-group-item-action py-3 lh-sm mp-logout">
-		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.logout"/></strong>
-		
-		        </div>
-		
-		      </button>
-		      </form>
-		      <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-		        <div class="d-flex w-100 align-items-center justify-content-between">
-		          <strong class="mb-1" style="margin:auto;"><spring:message code="profile.link.cancel"/></strong>
-		
-		        </div>
-		
-		      </a>
-		      
-		    </div>
-		  </div>
-      </div>
-    <!-- </div> -->
-  </div>
+<div class="modal modal-hide fade py-5" tabindex="-1" role="dialog"
+	id="mypagemodal" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content rounded-4 shadow">
+			<!-- <div class="modal-body p-5"> -->
+			<div class="d-flex flex-column align-items-stretch flex-shrink-0">
+
+				<div
+					class="list-group list-group-flush border-bottom scrollarea mp-st-sidebar_b">
+					<a href="/mypage/setting/editprofile"
+						class="list-group-item list-group-item-action py-3 lh-sm">
+						<div
+							class="d-flex w-100 align-items-center justify-content-between">
+							<strong class="mb-1" style="margin: auto;"><spring:message
+									code="profile.link.editProfile" /></strong>
+						</div>
+					</a> <a href="/mypage/setting/changepwd"
+						class="list-group-item list-group-item-action py-3 lh-sm">
+						<div
+							class="d-flex w-100 align-items-center justify-content-between">
+							<strong class="mb-1" style="margin: auto;"><spring:message
+									code="profile.link.changePwd" /></strong>
+						</div>
+					</a> <a href="/mypage/setting/quit"
+						class="list-group-item list-group-item-action py-3 lh-sm">
+						<div
+							class="d-flex w-100 align-items-center justify-content-between">
+							<strong class="mb-1" style="margin: auto;"><spring:message
+									code="profile.link.quit" /></strong>
+						</div>
+					</a> <a href="/mypage/setting/report"
+						class="list-group-item list-group-item-action py-3 lh-sm">
+						<div
+							class="d-flex w-100 align-items-center justify-content-between">
+							<strong class="mb-1" style="margin: auto;"><spring:message
+									code="profile.link.report" /></strong>
+
+						</div>
+
+					</a>
+					<form action="/member/logout" method="post">
+						<sec:csrfInput />
+						<button
+							class="list-group-item list-group-item-action py-3 lh-sm mp-logout">
+							<div
+								class="d-flex w-100 align-items-center justify-content-between">
+								<strong class="mb-1" style="margin: auto;"><spring:message
+										code="profile.link.logout" /></strong>
+
+							</div>
+
+						</button>
+					</form>
+					<a href="#"
+						class="list-group-item list-group-item-action py-3 lh-sm">
+						<div
+							class="d-flex w-100 align-items-center justify-content-between">
+							<strong class="mb-1" style="margin: auto;"><spring:message
+									code="profile.link.cancel" /></strong>
+
+						</div>
+
+					</a>
+
+				</div>
+			</div>
+		</div>
+		<!-- </div> -->
+	</div>
 </div>
 
 <!-- Post Modal -->
@@ -312,55 +384,59 @@
 	<div class="closeModalBtnDiv">
 		<span class="closeModalBtn fs-5 text-white on_cursor">X</span>
 	</div>
-      		<div class="modal-detail">
-				<div class="container-fluid">
-					<div class="row">
-					
-						<div class="col-md-7 p-0">
-							<div class="modal-detail-left d-flex flex-column">
-								<div class="trans_inner">
-									<div id="carousel-modal1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-									  <div class="carousel-inner" id="carousel-inner">
-		<!-- 							    <div class="carousel-item active"> -->
-		<!-- 							      <img src="/resources/imgs/long.jpg" alt="..."> -->
-		<!-- 							    </div> -->
-		<!-- 							    <div class="carousel-item"> -->
-		<!-- 							      <img src="/resources/imgs/img_section/img01.jpg" alt="..."> -->
-		<!-- 							    </div> -->
-									  </div>
-									  <button class="carousel-control-prev" type="button" data-bs-target="#carousel-modal1" data-bs-slide="prev">
-									    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									    <span class="visually-hidden">Previous</span>
-									  </button>
-									  <button class="carousel-control-next" type="button" data-bs-target="#carousel-modal1" data-bs-slide="next">
-									    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-									    <span class="visually-hidden">Next</span>
-									  </button>
-									</div>
+	<div class="modal-detail">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-7 p-0">
+					<div class="modal-detail-left d-flex flex-column">
+						<div class="trans_inner">
+							<div id="carousel-modal1" class="carousel slide"
+								data-bs-ride="carousel" data-bs-interval="false">
+								<div class="carousel-inner" id="carousel-inner">
+									<!-- 							    <div class="carousel-item active"> -->
+									<!-- 							      <img src="/resources/imgs/long.jpg" alt="..."> -->
+									<!-- 							    </div> -->
+									<!-- 							    <div class="carousel-item"> -->
+									<!-- 							      <img src="/resources/imgs/img_section/img01.jpg" alt="..."> -->
+									<!-- 							    </div> -->
 								</div>
-								<div class="modal-detail-contents">
-									<div class="posting-master">
-										<div class="comment-profile d-flex">
-		<!-- 									<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진"> -->
-		<!-- 									<div class="comment-profile-flag"> -->
-		<!-- 										<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/> -->
-		<!-- 									</div> -->
-		<!-- 									<div class="comment-name on_cursor align-self-center">Hanulso</div> -->
-		<!-- 									<div class="comment-time align-self-center mx-5">1<spring:message code="timer.hour"/></div> -->
-										</div>
-										
-										<div class="modal-posting-master-content">
-		<!-- 									 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-										</div>
-									</div>
+								<button class="carousel-control-prev" type="button"
+									data-bs-target="#carousel-modal1" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button"
+									data-bs-target="#carousel-modal1" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+							</div>
+						</div>
+						<div class="modal-detail-contents">
+							<div class="posting-master">
+								<div class="comment-profile d-flex">
+									<!-- 									<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진"> -->
+									<!-- 									<div class="comment-profile-flag"> -->
+									<!-- 										<img src="https://img.icons8.com/color/22/000000/japan-circular.png"/> -->
+									<!-- 									</div> -->
+									<!-- 									<div class="comment-name on_cursor align-self-center">Hanulso</div> -->
+									<!-- 									<div class="comment-time align-self-center mx-5">1<spring:message code="timer.hour"/></div> -->
+								</div>
+
+								<div class="modal-posting-master-content">
+									<!-- 									 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! 여기는 두줄 이상 안잘림 ! 자동 개행 ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 								</div>
 							</div>
-						</div> <!-- / col-md-7 -->
-						
-	<div class="col-md-5 p-0">
-		<div class="modal-detail-right">
-			<div class="all-comment">		
-				<!-- <p class="fs-5 mb-3">댓글 리스트</p>
+						</div>
+					</div>
+				</div>
+				<!-- / col-md-7 -->
+
+				<div class="col-md-5 p-0">
+					<div class="modal-detail-right">
+						<div class="all-comment">
+							<!-- <p class="fs-5 mb-3">댓글 리스트</p>
 
 				<div class="comment-profile d-flex">
 					<img class="comment-profile-img on_cursor" src="/resources/imgs/thumb02.jpg" alt="프로필사진">
@@ -407,29 +483,35 @@
 								장수하늘소는 딱정벌레 종류의 곤충 중에서 가장 크며 중국 만주 동북부, 시베리아 우수리 지방 및 우리나라 경기도 광릉지역 등에 분포하고 있다.
 							</div>
 						</div> -->
-					<!-- </div> --> <!-- / commment-depth-all -->
-				<!-- </div> --> <!-- / comment-content -->
-			</div> <!-- / all-comment -->
-								
-			<div class="comment-write-div">
-				<span class="fs-5 mb-3"><spring:message code="postmodal.writeComment"/></span>
-				<span class="depth2div ms-2">
-<!-- 				<span class="depth2nick">@イェーイ韓国人</span> -->
-<!-- 				<span class="depth2x on_cursor"><i class="bi bi-x-lg"></i></span> -->
-				</span>
-                <button class="msg_send_btn float-end" id="msg_send_btn" type="button" data-pno="" data-refno="0" data-depth="1">
-                   <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-                </button>
-				<div class="form-floating">
-				  <textarea class="form-control" placeholder="Leave a comment here" id="commentInsert"></textarea>
+							<!-- </div> -->
+							<!-- / commment-depth-all -->
+							<!-- </div> -->
+							<!-- / comment-content -->
+						</div>
+						<!-- / all-comment -->
+
+						<div class="comment-write-div">
+							<span class="fs-5 mb-3"><spring:message
+									code="postmodal.writeComment" /></span> <span class="depth2div ms-2">
+								<!-- 				<span class="depth2nick">@イェーイ韓国人</span> --> <!-- 				<span class="depth2x on_cursor"><i class="bi bi-x-lg"></i></span> -->
+							</span>
+							<button class="msg_send_btn float-end" id="msg_send_btn"
+								type="button" data-pno="" data-refno="0" data-depth="1">
+								<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+							</button>
+							<div class="form-floating">
+								<textarea class="form-control"
+									placeholder="Leave a comment here" id="commentInsert"></textarea>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>								
-		  </div>
-		</div> <!-- / col-md-5 -->		
-	  </div>
+				<!-- / col-md-5 -->
+			</div>
+		</div>
 	</div>
-  </div>
-</div> <!-- / class="modal-background" id="postmodal" -->
+</div>
+<!-- / class="modal-background" id="postmodal" -->
 
 
 
@@ -921,15 +1003,15 @@
  });
  
  $('.mypage_thumbnail_f').on("change",function() {
-	 var nickname = '<%=(String)session.getAttribute("Nname")%>'
-	 $('#thumbnail_update').attr("action","/mypage/thumbnailUpdate/"+nickname);
-	 $('#thumbnail_update').attr("method","post");
-	 $('#thumbnail_update').submit();
- });
- 
- $('.mp-logout').on("click",function() {
-	 
- });
- 
+	 var nickname = '<%=(String) session.getAttribute("Nname")%>'
+				$('#thumbnail_update').attr("action",
+						"/mypage/thumbnailUpdate/" + nickname);
+				$('#thumbnail_update').attr("method", "post");
+				$('#thumbnail_update').submit();
+			});
+
+	$('.mp-logout').on("click", function() {
+
+	});
 </script>
-<%@ include file="../footer.jsp" %>
+<%@ include file="../footer.jsp"%>
