@@ -5,7 +5,6 @@
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <link rel="stylesheet" href="/resources/css/chat_list.css">
 
-
    <div class="container">
       <div>
          <button class="btn btn-primary float-end" id="createChatRoom" style="margin-bottom:20px;"><spring:message code="chatList.createChatRoom"/></button>
@@ -165,27 +164,36 @@
 <div class="modal modal-hide fade py-5" tabindex="-1" role="dialog" id="translateModal" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content rounded-4 shadow">
-      <!-- <div class="modal-body p-5"> -->
-         <div class="d-flex flex-column align-items-stretch flex-shrink-0">
-      
-          <div class="list-group list-group-flush border-bottom scrollarea mp-st-sidebar_b">
-               <div style="margin:20px;display: flex;flex-direction: column;justify-content: space-evenly;align-items: stretch;">
-               		<div>
-               			<input type="text" disabled="disabled">
-               			<div class="trslbtns">
-               			<button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>
-			   			<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>
-			   			<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>
-			   			<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button>
-			   			</div>
-               		</div>
-                  
-                  
-               </div>
-          </div>
-       </div>
-     </div>
-    <!-- </div> -->
+      <div class="modal-body p-5">
+		<div class="row" id="pw_input_group">
+			<div class="col-md-12 mb-3" id="selectText">
+				<input type="text" id="selectTextInput" disabled="disabled">
+			</div>
+			<div class="btn-group" role="group" aria-label="translateBtnGroup">
+				<button class="btn btn-default" id="translateBtn" data-in="ko" data-out="ja">
+					<img id="flag_icon" alt="korean" src="/resources/imgs/flag_icon/kr.png"/>
+					<img id="arrow" alt="arrow" src="/resources/imgs/flag_icon/arrow-right.png"/>
+					<img id="flag_icon" alt="japanese" src="/resources/imgs/flag_icon/jp.png"/>
+				</button>
+		   		<button class="btn btn-default" id="translateBtn" data-in="ja" data-out="ko">
+		   			<img id="flag_icon" alt="japanese" src="/resources/imgs/flag_icon/jp.png"/>
+					<img id="arrow" alt="arrow" src="/resources/imgs/flag_icon/arrow-right.png"/>
+		   			<img id="flag_icon" alt="korean" src="/resources/imgs/flag_icon/kr.png"/>
+		   		</button>
+		   		<button class="btn btn-default" id="translateBtn" data-in="ko" data-out="en">
+		   			<img id="flag_icon" alt="korean" src="/resources/imgs/flag_icon/kr.png"/>
+					<img id="arrow" alt="arrow" src="/resources/imgs/flag_icon/arrow-right.png"/>
+					<img id="flag_icon" alt="english" src="/resources/imgs/flag_icon/gb.png"/>
+		   		</button>
+		   		<button class="btn btn-default" id="translateBtn" data-in="ja" data-out="en">
+		   			<img id="flag_icon" alt="japanese" src="/resources/imgs/flag_icon/jp.png"/>
+					<img id="arrow" alt="arrow" src="/resources/imgs/flag_icon/arrow-right.png"/>
+					<img id="flag_icon" alt="english" src="/resources/imgs/flag_icon/gb.png"/>
+		   		</button>
+			</div>
+		</div>
+      </div>
+    </div>
   </div>
 </div>
    
@@ -256,17 +264,10 @@
         for (var i = 0; i<data.length; i++) {
            if(data[i].email == userId){
                chatMsg += '<div class="outgoing_msg"><div class="sent_msg"><p class="chatMessage" data-mno="'+data[i].mno+'">'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span>';
-               chatMsg += '<div class="trslbtns"><button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>';
-               chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>';
-               chatMsg += '<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>';
-               chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button></div></div></div>';
+               chatMsg += '</div></div>';
            }else{
-              chatMsg += '<div class="incoming_msg"></div>';
               chatMsg += '<div class="received_msg"><div class="received_withd_msg"><p class="chatMessage" data-mno="'+data[i].mno+'">'+data[i].content+'</p><span class="time_date">'+data[i].mdate+'</span>';
-              chatMsg += '<div class="trslbtns"><button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>';
-              chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>';
-              chatMsg += '<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>';
-              chatMsg += '<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button></div></div></div></div>';
+              chatMsg += '</div></div></div>';
            } 
         }
 
@@ -308,7 +309,6 @@
             $(this).addClass('active_chat');
 
       })
-      
       
       //유저 검색(Email을 이용한 검색)
       function searchUser() {
@@ -411,10 +411,7 @@
             str += '<div class="sent_msg">';
             str += '<p class="chatMessage">'+message+'</p>';
             str += '<span class="time_date">'+today+'</span>';
-            str += '<div class="trslbtns"><button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>';
-			str += '<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>';
-			str += '<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>';
-			str += '<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button></div></div></div>';
+            str += '</div></div>';
             $('.msg_history').append(str);
          }
          else {
@@ -424,10 +421,7 @@
                str += '<div class="received_withd_msg">';
                str += '<p class="chatMessage">'+message+'</p>';
                str += '<span class="time_date">'+today+'</span>';
-               str += '<div class="trslbtns"><button id="tarnslateBtn" data-in="ko" data-out="ja">한>일</button>';
-   			str += '<button id="tarnslateBtn" data-in="ja" data-out="ko">일>한</button>';
-   			str += '<button id="tarnslateBtn" data-in="ko" data-out="en">한>영</button>';
-   			str += '<button id="tarnslateBtn" data-in="ja" data-out="en">일>영</button></div></div></div></div>';
+               str += '</div></div></div>';
                $('.msg_history').append(str);
          }
          
@@ -437,31 +431,40 @@
          $('.msg_history').append("<spring:message code='chatList.disconnected'/>");
       }
       
-
-    	
-	$(document).on("click",".chatMessage",function() {
-		/* var mno = $(this).data('mno');
-		console.log(mno);
-		$.ajax({
-			url: "/chat/readMsgByMno",
-			type:"get",
-			dataType:"json"
-			contentType:"application/json",
-			data:{
-				mno:mno
-			},
-			success: function(content) {
-				$('#translateModal').modal('show');
-			}
-		}); */
-		
-	});
+    //번역모달 호출
+    var selectedChat = null;
+	$('.mesgs').on("click",".chatMessage",function(){
+		selectedChat = $(this);
+		$('#selectTextInput').val($(this).html());
+		$('#translateModal').modal('show');
+	})
 	
-
-     
-      
-      
-      
+  	$('button#translateBtn').on("click",function(){
+  		var inLang = $(this).data('in');
+  		var outLang = $(this).data('out');
+  		var text = $('#selectTextInput').val();
+  		
+  		var data = {
+				inLang:inLang,
+				outLang:outLang,
+				text:text
+		}
+  		
+  		$.ajax({
+			type:"post",
+			url:"/translate/translate",
+			data:JSON.stringify(data),
+			contentType:'application/json; charset=utf-8',
+			success: function(result,status,xhr) {
+				console.log(result);
+				selectedChat.html(result['message']['result']['translatedText']);
+				$('#selectTextInput').val('');
+				$('#translateModal').modal('hide');
+			},error: function(xhr,status,er){
+				console.log("error!")
+			}
+		})
+  	})	
    </script>
 
 <%@ include file="../footer.jsp" %>

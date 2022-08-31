@@ -286,6 +286,23 @@ button:focus {
 	opacity: 0.5;
 }
 
-.trslbtns {
-	display: none;
+#translateBtn {
+	border: 1px solid #d0d0d0;
+	letter-spacing: -3px;
+}
+
+img#flag_icon {
+    max-width: 30%;
+    vertical-align: middle;
+}
+
+img#arrow {
+    max-width: 15%;
+    vertical-align: middle;
+}
+
+input#selectTextInput {
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
 }

@@ -97,4 +97,29 @@ public class ChatController {
 		System.out.println(content);
 		return content;
 	}
+	
+	@PreAuthorize("isAuthenticated() and (#email == principal.username)")
+	   @GetMapping("chat_list2")
+	   public String chatList2(String email, String who, Model model, RedirectAttributes rttr) {
+
+	      System.out.println("who : " + who);
+	      if( who != null && !who.equals("") ) {
+	         MemberVO whoVO = memberService.readByNickname(who);
+	         Integer result = chatService.existChatRoom(email, whoVO.getEmail());
+	         if( result == null || result < 1) {
+	            // Create Room
+	            System.out.println(who + " 's ROOM CREATE SUCCESS");
+	            chatService.createChatRoom(email, whoVO.getEmail());
+	            model.addAttribute("who", who);
+	         }else {
+	            model.addAttribute("who", who);
+	         }
+	      }
+	      
+	      List<MemberVO> mvoList = memberService.selectAllMember();
+	      List<ChatVO> cvoList = chatService.chatRoomList(email);
+	      model.addAttribute("mvoList", mvoList);
+	      model.addAttribute("cvoList", cvoList);
+	      return "/chat/chat_list2";
+	   }
 }
