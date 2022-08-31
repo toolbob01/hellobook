@@ -172,7 +172,6 @@ public class MypageController {
 		  
 		  String putInPwd = cpvo.getMemberPw();
 		  SessionVO svo = memberService.read(cpvo.getEmail());
-		  boolean match = pwencoder.matches(putInPwd, svo.getPassword());
 
 		  //입력받은 비밀번호(인코딩x)와 기존 비밀번호(인코딩o)를 비교
 		  if(pwencoder.matches(putInPwd, svo.getPassword())) {
@@ -195,7 +194,7 @@ public class MypageController {
 		String hashedPw = BCrypt.hashpw(memberPw1, BCrypt.gensalt());
 		int result = memberService.pwUpdate(email, hashedPw);
 		if(result == 1) {
-			mav.addObject("data", new Message("비밀번호 변경에 성공하셨습니다.", "/mypage/setting/changepwd"));
+			mav.addObject("data", new Message("3", "/mypage/setting/changepwd"));
 			mav.setViewName("Message");
 		}
 		return mav;
